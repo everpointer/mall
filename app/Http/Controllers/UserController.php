@@ -30,10 +30,7 @@ class UserController extends Controller
         'password_confirmation' => 'required_with:old_password,password|different:old_password|same:password',
     ];
 
-    /**
-     * Inicializa variables para la validacion de perfil.
-     */
-    public function __construct()
+    protected function filterFormRules()
     {
         $user = \Auth::user();
 
@@ -78,7 +75,7 @@ class UserController extends Controller
     /**
      * Vista de dashboard de usuario.
      *
-     * @return Illuminate\Contracts\View [Vista de dashboard]
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View [Vista de dashboard]
      */
     public function dashBoard()
     {
@@ -148,12 +145,11 @@ class UserController extends Controller
     /**
      * MUestra el perfil del usuario.
      *
-     * @return Illuminate\Contracts\View Vista de perfil
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function profile()
     {
         $user = User::findOrFail(\Auth::id())->relationsToArray();
-        // dd($user);
         $panel = $this->view_panel;
 
         return view('user.profile', compact('panel', 'user'));
@@ -227,7 +223,8 @@ class UserController extends Controller
     public function saveProfile(Request $request)
     {
         $user = \Auth::user();
-        dd($request->all());
+        $this->filterFormRules();
+
         $v = \Validator::make($request->all(), $this->form_rules);
 
         if ($v->fails()) {
