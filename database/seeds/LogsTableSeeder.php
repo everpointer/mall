@@ -6,9 +6,9 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\ActionType;
 use App\Log;
 use App\User;
+use App\ActionType;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -22,8 +22,8 @@ class LogsTableSeeder extends Seeder
         //Category
         foreach (range(1, 20) as $void) {
             Log::create([
-                'user_id'        => $users->random(1)->id,
-                'action_type_id' => $actions->random(1)->id,
+                'user_id'        => $users->random(1)->first()->id,
+                'action_type_id' => $actions->random(1)->first()->id,
                 'source_id'      => $faker->numberBetween(50, 1000000),
                 'details'        => $faker->text(50),
             ]);
