@@ -63,7 +63,7 @@ class Order extends Model
 
     public static function create(array $options = [])
     {
-        //separate order details
+        // separate order details
         $details = [];
         if (isset($options['details'])) {
             $details = $options['details'];
@@ -72,7 +72,10 @@ class Order extends Model
             $details[] = $options['detail'];
         }
         unset($options['detail'], $options['details']);
-        $order = parent::create($options);
+
+        $order = new static($options);
+        $order->save();
+
         if (count($details)) {
             $order->inDetail()->saveMany(OrderDetail::createModels($details));
         }

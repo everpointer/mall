@@ -21,12 +21,14 @@ class Model extends BaseModel
      */
     public static function createMany(array $elements)
     {
-        if (!count($elements)) {
+        if (! count($elements)) {
             return new Collection();
         }
         $models = [];
         foreach ($elements as $attributes) {
-            $models[] = static::create($attributes);
+            $object = new static($attributes);
+            $object->save();
+            $models[] = $object;
         }
 
         return new Collection($models);

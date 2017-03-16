@@ -26,8 +26,8 @@ class Notice extends Model
 
     /**
      * Notices type array list
-     * this array is controlling kind of notice shown in the store, so any other value that is not here can not be shown who notice
-     * to know more about these id you must go to the action_types migration.
+     * this array is controlling kind of notice shown in the store, so any other value that is not here can not be
+     * shown who notice to know more about these id you must go to the action_types migration.
      *
      * @var [array]
      */
@@ -49,7 +49,7 @@ class Notice extends Model
      */
     public static function create(array $attr = [])
     {
-        if (!isset($attr['status'])) {
+        if (! isset($attr['status'])) {
             $attr['status'] = 'new';
         }
         $notices = [];
@@ -73,7 +73,15 @@ class Notice extends Model
 
             return self::createMany($notices);
         } else {
-            return ($attr['user_id'] == $attr['sender_id']) ? null : parent::create($attr);
+
+            if ($attr['user_id'] == $attr['sender_id']) {
+                return null;
+            }
+
+            $notice = new static($attr);
+            $notice->save();
+
+            return $notice;
         }
     }
 
@@ -118,8 +126,9 @@ class Notice extends Model
         switch ($this->action->source_type) {
             case 'orders':
                 $source = $this->hasOne('App\Order')->first();
-            break;
+                break;
         }
+
         //return $this->hasOne('App\xxx');
         return isset($source) ? $source : new Collection();
     }
@@ -129,10 +138,10 @@ class Notice extends Model
         switch ($this->action->source_type) {
             case 'orders':
                 return '';
-            break;
+                break;
             case 'products':
                 return '';
-            break;
+                break;
         }
 
         return '';

@@ -26,7 +26,13 @@ class OrdersTableSeeder extends Seeder
         $products = Product::select('id', 'price')->get();
 
         for ($i = 0; $i < 20; $i++) {
-            $address = $addresses->random(1);
+
+            $address = $addresses->random(1)->first();
+
+            if (! $address) {
+                continue;
+            }
+
             $type = $faker->randomElement(['cart', 'wishlist', 'order']);
             $status = 'open';
 
@@ -41,7 +47,7 @@ class OrdersTableSeeder extends Seeder
             $order = Order::create([
                 'user_id'     => $address->user_id,
                 'seller_id'   => '3',
-                'address_id'  => $address->id, //address id
+                'address_id'  => $address->id, // address id
                 'status'      => $status,
                 'type'        => $type,
                 'description' => $type == 'wishlist' ? $faker->companySuffix : '',
@@ -58,7 +64,7 @@ class OrdersTableSeeder extends Seeder
             for ($j = 0; $j < $num; $j++) {
                 do {
                     $a = true;
-                    $product = $products->random(1);
+                    $product = $products->random(1)->first();
                     if (in_array($product->id, $list)) {
                         $a = false;
                     } else {
