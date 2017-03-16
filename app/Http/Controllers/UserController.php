@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers;
 
 /*
  * Antvel - Users Controller
@@ -8,15 +8,12 @@ namespace app\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Business;
-use App\Helpers\File;
-use App\Helpers\userHelper;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ProductsController;
+use App\User;
 use App\Order;
 use App\Person;
 use App\Product;
-use App\User;
+use App\Business;
+use App\Helpers\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -42,14 +39,14 @@ class UserController extends Controller
             // Validaciones segun tipo de user
             if ($user->hasRole(['admin', 'person'])) {
                 $form_rules['first_name'] = 'required|min:3|max:20|string';
-                $form_rules['last_name'] = 'required|min:3|max:20|string';
+                $form_rules['last_name']  = 'required|min:3|max:20|string';
             } else {
                 $form_rules['business_name'] = 'required|min:5|max:30|string';
             }
         }
     }
 
-    //Paneles por defecto Usuarios
+    // Paneles por defecto Usuarios
     private $view_panel = [
         'left'   => ['width' => '2', 'class' => 'user-panel'],
         'center' => ['width' => '10'],
@@ -79,8 +76,8 @@ class UserController extends Controller
      */
     public function dashBoard()
     {
-        $panel = $this->view_panel;
-        $query = Product::where('user_id', \Auth::id())->Free()->get();
+        $panel    = $this->view_panel;
+        $query    = Product::where('user_id', \Auth::id())->Free()->get();
         $products = ['active' => 0, 'inactive' => 0, 'lowStock' => 0, 'all' => $query->count()];
         foreach ($query as $row) {
             if ($row->status) {
@@ -93,7 +90,7 @@ class UserController extends Controller
             }
         }
         unset($query);
-        $query = Order::auth()->ofType('order')->get();
+        $query  = Order::auth()->ofType('order')->get();
         $orders = ['closed' => 0, 'open' => 0, 'cancelled' => 0, 'all' => $query->count(), 'total' => 0, 'nopRate' => 0];
         foreach ($query as $row) {
             if ($row->status == 'cancelled') {
@@ -105,7 +102,7 @@ class UserController extends Controller
             }
             foreach ($row->details as $deta) {
                 $orders['total'] += ($deta->quantity * $deta->price);
-                if ($row->status == 'closed' && !$deta->rate) {
+                if ($row->status == 'closed' && ! $deta->rate) {
                     $orders['nopRate']++;
                 }
             }
@@ -114,7 +111,7 @@ class UserController extends Controller
         $sales = null;
         if (\Auth::check() && \Auth::user()->hasRole(['business', 'admin'])) {
             $orders = Order::where('seller_id', \Auth::user()->id)->ofType('order')->get();
-            $sales = ['closed' => 0, 'open' => 0, 'cancelled' => 0, 'all' => $orders->count(), 'total' => 0, 'rate' => 0, 'numRate' => 0, 'totalRate' => 0, 'nopRate' => 0];
+            $sales  = ['closed' => 0, 'open' => 0, 'cancelled' => 0, 'all' => $orders->count(), 'total' => 0, 'rate' => 0, 'numRate' => 0, 'totalRate' => 0, 'nopRate' => 0];
             foreach ($orders as $row) {
                 if ($row->status == 'cancelled') {
                     $sales['cancelled']++;
@@ -129,7 +126,7 @@ class UserController extends Controller
                         $sales['numRate']++;
                         $sales['totalRate'] = $sales['totalRate'] + $deta->rate;
                     }
-                    if ($row->status == 'closed' && !$deta->rate) {
+                    if ($row->status == 'closed' && ! $deta->rate) {
                         $sales['nopRate']++;
                     }
                 }
@@ -149,7 +146,7 @@ class UserController extends Controller
      */
     public function profile()
     {
-        $user = User::findOrFail(\Auth::id())->relationsToArray();
+        $user  = User::findOrFail(\Auth::id())->relationsToArray();
         $panel = $this->view_panel;
 
         return view('user.profile', compact('panel', 'user'));
@@ -234,24 +231,24 @@ class UserController extends Controller
         //user update
         \Session::flash('message', trans('user.saved'));
         $user->fill($request->all());
-        $user->pic_url = $request->get('pic_url');
+        $user->pic_url  = $request->get('pic_url');
         $user->password = bcrypt($request->get('password'));
         $user->save();
 
         //bussiness update
         if ($request->get('business_name') !== null && trim($request->get('business_name')) != '') {
-            $business = Business::find($user->id);
+            $business                = Business::find($user->id);
             $business->business_name = $request->get('business_name');
             $business->save();
         }
 
         //person update
         if ($request->get('first_name') !== null && trim($request->get('first_name')) != '') {
-            $person = Person::find($user->id);
+            $person             = Person::find($user->id);
             $person->first_name = $request->get('first_name');
-            $person->last_name = $request->get('last_name');
-            $person->birthday = $request->get('birthday');
-            $person->sex = $request->get('sex');
+            $person->last_name  = $request->get('last_name');
+            $person->birthday   = $request->get('birthday');
+            $person->sex        = $request->get('sex');
             $person->save();
         }
 
@@ -268,8 +265,8 @@ class UserController extends Controller
     {
         $user = \Auth::user();
         if ($user) {
-            $userHelper = new UserHelper();
-            $categories = ProductsController::getTagsCategories($tags);
+            $userHelper        = new UserHelper();
+            $categories        = ProductsController::getTagsCategories($tags);
             $user->preferences = $userHelper->preferencesToJson($user->preferences, $index, $tags, $categories);
             $user->save();
         }
@@ -278,8 +275,8 @@ class UserController extends Controller
     /**
      * Return the users preferences taking in account the key requered.
      *
-     * @param [interger] $user_id         user id
-     * @param [string]   $preferences_key user preferences array key
+     * @param  [interger] $user_id         user id
+     * @param  [string]   $preferences_key user preferences array key
      *
      * @return [Array] info to evaluate user products suggestion
      */
@@ -296,7 +293,7 @@ class UserController extends Controller
     public function getPoints()
     {
         $points = ['points' => '0'];
-        $user = \Auth::user();
+        $user   = \Auth::user();
         if ($user) {
             $points = ['points' => $user->current_points];
         }
@@ -313,11 +310,11 @@ class UserController extends Controller
     {
         //validating if the token retrieved is valid
         $user = User::select(['id'])
-            ->where(\DB::raw('md5(concat(email, "_", "'.csrf_token().'", "_", email))'), 'LIKE', $token)
+            ->where(\DB::raw('md5(concat(email, "_", "' . csrf_token() . '", "_", email))'), 'LIKE', $token)
             ->first();
 
         if ($user) {
-            $name = $user->name.' '.$user->last_name;
+            $name = $user->name . ' ' . $user->last_name;
             Session::put('message', str_replace('[name]', $name, trans('user.account_verified_ok_message')));
         } else {
             Session::put('messageClass', 'alert alert-danger');

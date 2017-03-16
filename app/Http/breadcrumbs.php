@@ -21,8 +21,8 @@ Breadcrumbs::register('products', function ($breadcrumbs) {
 Breadcrumbs::register('productDetail', function ($breadcrumbs, $product) {
     $breadcrumbs->parent('products');
     $list = [];
-    $catProd = app\Category::find($product->categories->id);
-    $categoriesTree = app\Category::parentsTree($catProd->category_id, $list);
+    $catProd = App\Category::find($product->categories->id);
+    $categoriesTree = App\Category::parentsTree($catProd->category_id, $list);
 
     $list = array_reverse($list);
 
