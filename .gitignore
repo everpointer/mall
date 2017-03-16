@@ -1,0 +1,7 @@
+/_ide_helper.php
+/vendor
+/node_modules
+/storage/files/*
+/public/antvel-bower
+.env
+/.idea
