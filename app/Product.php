@@ -71,7 +71,10 @@ class Product extends Model
             $attr['features'] = json_encode($attr['features']);
         }
 
-        return parent::create($attr);
+        $product = new static($attr);
+        $product->save();
+
+        return $product;
     }
 
     public function getLastCommentsAttribute()

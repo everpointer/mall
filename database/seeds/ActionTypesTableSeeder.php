@@ -1,6 +1,6 @@
 <?php
 
-use app\ActionType;
+use App\ActionType;
 use Illuminate\Database\Seeder;
 
 class ActionTypesTableSeeder extends Seeder

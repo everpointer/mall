@@ -6,11 +6,12 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\Business as Business;
 use App\Product as Product;
-use App\ProductOffer as ProductOffer;
 use Faker\Factory as Faker;
+use App\Business as Business;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use App\ProductOffer as ProductOffer;
 
 class ProductsTableSeeder extends Seeder
 {
