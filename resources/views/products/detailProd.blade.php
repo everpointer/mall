@@ -129,7 +129,7 @@
 
 	                    {!! Form::open(array('url' => route('orders.add_to_order',['cart',$product->id]), 'method' => 'put')) !!}
 
-	                    @if (auth()->user()->id != $product->user_id)
+	                    @if (auth()->guard() || (auth()->user()->id != $product->user_id))
 		                    <div class="row">
 								<div class="col-lg-12">
 									<label for = "quantity">{{ trans('store.quantity_long') }}:</label>

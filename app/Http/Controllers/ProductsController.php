@@ -45,6 +45,7 @@ class ProductsController extends Controller
         'software_key' => 'required',
         'stock'        => 'required|numeric|digits_between:1,11|min:0',
     ];
+
     private $panel = [
         'left'   => ['width' => '2'],
         'center' => ['width' => '10'],
@@ -432,7 +433,6 @@ class ProductsController extends Controller
                 $featuresHelper = new FeaturesHelper();
                 $product->group = $featuresHelper->group($product->group);
             }
-
             return view('products.detailProd', compact('product', 'panel', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions'));
         } else {
             return redirect(route('products'));
