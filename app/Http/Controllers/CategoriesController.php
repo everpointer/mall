@@ -8,12 +8,12 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Category;
-use App\Helpers\categoriesHelper;
-use App\Helpers\File;
-use App\Http\Controllers\Controller;
 use App\Product;
+use App\Category;
+use App\Helpers\File;
 use Illuminate\Http\Request;
+use App\Helpers\CategoriesHelper;
+use App\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {
@@ -118,7 +118,7 @@ class CategoriesController extends Controller
             'center' => ['width' => '10'],
         ];
 
-        $categoriesHelper = new categoriesHelper();
+        $categoriesHelper = new CategoriesHelper();
 
         $data = Category::select('name', 'id', 'type')->mothers()->orderBy('type')->get()->toArray();
         $data = $categoriesHelper->separateTypesCategories($data);
@@ -182,7 +182,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $categoriesHelper = new categoriesHelper();
+        $categoriesHelper = new CategoriesHelper();
         $data = Category::where('id', '<>', $id)->mothers()->orderBy('type')->get()->toArray();
         $data = $categoriesHelper->separateTypesCategories($data);
         $panel = [

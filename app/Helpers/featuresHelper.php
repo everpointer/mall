@@ -8,8 +8,8 @@ namespace App\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Helpers\colorsHelper;
 use App\ProductDetail;
+use App\Helpers\ColorsHelper;
 use Illuminate\Support\Facades\Validator;
 
 class featuresHelper

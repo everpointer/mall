@@ -9,7 +9,7 @@ namespace App\Helpers;
  */
 
 use App\Category;
-use App\Helpers\categoriesHelper;
+use App\Helpers\CategoriesHelper;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Session;
@@ -172,7 +172,7 @@ class productsHelper
              *
              * @var [type]
              */
-            $level = categoriesHelper::level($array, $row['category_id']);
+            $level = CategoriesHelper::level($array, $row['category_id']);
 
             $s = '';
             for ($i = 0; $i < $level; $i++) {
