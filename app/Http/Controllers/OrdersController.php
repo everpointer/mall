@@ -8,29 +8,29 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Address;
-use App\Business;
-use App\Comment;
-use App\Helpers\productsHelper;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ProductsController as ProductsController;
 use App\Log;
-use App\Notice;
-use App\Order;
-use App\OrderDetail;
-use App\Product;
-use App\Repositories\OrderRepository;
 use App\User;
+use App\Order;
+use App\Notice;
+use App\Address;
+use App\Comment;
+use App\Product;
+use App\Business;
+use Carbon\Carbon;
+use App\OrderDetail;
 use App\VirtualProduct;
 use App\VirtualProductOrder;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use App\Helpers\ProductsHelper;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Repositories\OrderRepository;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Http\Controllers\ProductsController as ProductsController;
 
 class OrdersController extends Controller
 {
@@ -381,7 +381,7 @@ class OrdersController extends Controller
 
         $user = \Auth::user();
 
-        $productsHelper = new productsHelper();
+        $productsHelper = new ProductsHelper();
 
         $suggestions = [];
 

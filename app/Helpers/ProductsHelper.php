@@ -10,11 +10,11 @@ namespace App\Helpers;
 
 use App\Category;
 use App\Helpers\CategoriesHelper;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductsController;
 
-class productsHelper
+class ProductsHelper
 {
     /**
      * get the table product field evaluated by the time when it calls.

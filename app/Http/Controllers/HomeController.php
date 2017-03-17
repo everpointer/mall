@@ -8,11 +8,11 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\FreeProduct;
-use App\Helpers\productsHelper;
-use App\Http\Controllers\Controller;
 use App\Order;
 use App\Product;
+use App\FreeProduct;
+use App\Helpers\ProductsHelper;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -28,7 +28,7 @@ class HomeController extends Controller
             ],
         ];
 
-        $helperProd = new productsHelper();
+        $helperProd = new ProductsHelper();
 
         $carousel = $helperProd->suggest('carousel');
         $viewed = $helperProd->suggest('viewed', 8);

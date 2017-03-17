@@ -19,7 +19,7 @@ use App\VirtualProduct;
 use App\FreeProductOrder;
 use Illuminate\Http\Request;
 use App\Helpers\FeaturesHelper;
-use App\Helpers\productsHelper;
+use App\Helpers\ProductsHelper;
 use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -103,7 +103,7 @@ class ProductsController extends Controller
          */
         $suggestions = [];
         if (count($all_products) < 28) {
-            $suggestions = productsHelper::suggest('my_searches');
+            $suggestions = ProductsHelper::suggest('my_searches');
         }
 
         /*
@@ -120,7 +120,7 @@ class ProductsController extends Controller
             ->toArray();
         });
 
-        $filters = productsHelper::countingProductsByCategory($all_products, $categories);
+        $filters = ProductsHelper::countingProductsByCategory($all_products, $categories);
 
         //condition
         $filters['conditions'] = array_count_values($all_products->pluck('condition')->toArray());
@@ -232,7 +232,7 @@ class ProductsController extends Controller
         $typeItem = 'item';
 
         //categories drop down formatted
-        productsHelper::categoriesDropDownFormat($arrayCategories, $categories);
+        ProductsHelper::categoriesDropDownFormat($arrayCategories, $categories);
 
         $disabled = '';
         $edit = false;
@@ -471,7 +471,7 @@ class ProductsController extends Controller
         $categories = ['' => trans('product.controller.select_category')];
 
         //categories drop down formatted
-        productsHelper::categoriesDropDownFormat($allCategoriesStore, $categories);
+        ProductsHelper::categoriesDropDownFormat($allCategoriesStore, $categories);
 
         $condition = ['new' => trans('product.controller.new'), 'refurbished' => trans('product.controller.refurbished'), 'used' => trans('product.controller.used')];
 
