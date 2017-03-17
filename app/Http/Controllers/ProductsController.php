@@ -8,23 +8,23 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Category;
-use App\FreeProductOrder;
-use App\Helpers\featuresHelper;
-use App\Helpers\File;
-use App\Helpers\productsHelper;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\UserController;
-use App\Order;
-use App\OrderDetail;
-use App\Product;
-use App\ProductDetail;
 use App\User;
+use App\Order;
+use App\Product;
+use App\Category;
+use App\OrderDetail;
+use App\Helpers\File;
+use App\ProductDetail;
 use App\VirtualProduct;
+use App\FreeProductOrder;
 use Illuminate\Http\Request;
+use App\Helpers\FeaturesHelper;
+use App\Helpers\productsHelper;
 use Illuminate\Support\Collection;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Validator;
 
 class ProductsController extends Controller
@@ -238,7 +238,7 @@ class ProductsController extends Controller
         $edit = false;
         $panel = $this->panel;
         $oldFeatures = ProductDetail::oldFeatures([]);
-        $productsDetails = new featuresHelper();
+        $productsDetails = new FeaturesHelper();
 
         return view('products.form',
                 compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'typesProduct', 'disabled', 'edit', 'oldFeatures', 'productsDetails'));
@@ -429,7 +429,7 @@ class ProductsController extends Controller
 
             //retrieving products groups of the product shown
             if (count($product->group)) {
-                $featuresHelper = new featuresHelper();
+                $featuresHelper = new FeaturesHelper();
                 $product->group = $featuresHelper->group($product->group);
             }
 
@@ -480,7 +480,7 @@ class ProductsController extends Controller
 
         $oldFeatures = ProductDetail::oldFeatures($product->features);
 
-        $productsDetails = new featuresHelper();
+        $productsDetails = new FeaturesHelper();
 
         return view('products.form', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'));
     }

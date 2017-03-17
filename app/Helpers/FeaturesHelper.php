@@ -12,7 +12,7 @@ use App\ProductDetail;
 use App\Helpers\ColorsHelper;
 use Illuminate\Support\Facades\Validator;
 
-class featuresHelper
+class FeaturesHelper
 {
     private $features = [];
     private $called = '';
