@@ -1,6 +1,6 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
  * Antvel - Categories Model
@@ -8,8 +8,8 @@ namespace Notadd\Shop;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Collection\Categories;
 use Notadd\Shop\Eloquent\Model;
+use Notadd\Shop\Collection\Categories;
 
 class Category extends Model
 {

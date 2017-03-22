@@ -9,7 +9,7 @@ namespace Notadd\Shop\Http\Controllers;
  */
 
 use Notadd\Shop\Http\Controllers\Controller;
-use Notadd\Shop\Log;
+use Notadd\Shop\Models\Log;
 
 class LogController extends Controller
 {

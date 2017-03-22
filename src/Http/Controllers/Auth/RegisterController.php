@@ -4,7 +4,7 @@ namespace Notadd\Shop\Http\Controllers\Auth;
 
 use Notadd\Shop\Http\Controllers\Controller;
 use Notadd\Shop\Person;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 

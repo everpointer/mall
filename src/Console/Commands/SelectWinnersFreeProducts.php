@@ -2,13 +2,13 @@
 
 namespace Notadd\Shop\Console\Commands;
 
-use Notadd\Shop\Address;
+use Notadd\Shop\Models\Address;
 use Notadd\Shop\FreeProduct;
 use Notadd\Shop\FreeProductParticipant;
 use Notadd\Shop\Order;
-use Notadd\Shop\OrderDetail;
-use Notadd\Shop\Product;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\OrderDetail;
+use Notadd\Shop\Models\Product;
+use Notadd\Shop\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

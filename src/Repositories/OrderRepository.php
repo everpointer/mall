@@ -3,7 +3,7 @@
 namespace Notadd\Shop\Repositories;
 
 use Notadd\Shop\Order;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\User;
 
 class OrderRepository
 {

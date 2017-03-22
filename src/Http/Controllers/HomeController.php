@@ -9,7 +9,7 @@ namespace Notadd\Shop\Http\Controllers;
  */
 
 use Notadd\Shop\Order;
-use Notadd\Shop\Product;
+use Notadd\Shop\Models\Product;
 use Notadd\Shop\FreeProduct;
 use Notadd\Shop\Helpers\ProductsHelper;
 use Notadd\Shop\Http\Controllers\Controller;

@@ -1,23 +1,23 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
- * Antvel - Virtual Products Order Model
+ * Antvel - User Points Model
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
-class VirtualProductOrder extends Model
+class UserPoints extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'virtual_product_orders';
+    protected $table = 'user_points';
 
     /**
      * The attributes that are mass assignable.
@@ -25,9 +25,9 @@ class VirtualProductOrder extends Model
      * @var array
      */
     protected $fillable = [
-        'order_id',
-        'virtual_product_id',
-        'status',
-        'email',
+        'user_id',
+        'action_type_id',
+        'source_id',
+        'points',
     ];
 }

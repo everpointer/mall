@@ -6,9 +6,9 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Log;
-use Notadd\Shop\User;
-use Notadd\Shop\ActionType;
+use Notadd\Shop\Models\Log;
+use Notadd\Shop\Models\User;
+use Notadd\Shop\Models\ActionType;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

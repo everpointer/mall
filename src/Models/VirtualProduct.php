@@ -1,23 +1,23 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
- * Antvel - Users Preferences Model
+ * Antvel - Virtual Products Model
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
 use Notadd\Shop\Eloquent\Model;
 
-class UserPreference extends Model
+class VirtualProduct extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'user_preferences';
+    protected $table = 'virtual_products';
 
     /**
      * The attributes that are mass assignable.
@@ -25,8 +25,10 @@ class UserPreference extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
-        'type_preference_id',
-        'value',
+        'product_id',
+        'key',
+        'url',
+        'amount',
+        'expiration_date',
     ];
 }

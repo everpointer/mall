@@ -10,7 +10,7 @@ namespace Notadd\Shop\Http\Controllers;
 
 use Notadd\Shop\Http\Controllers\Controller;
 use Notadd\Shop\PaypalOrder;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;

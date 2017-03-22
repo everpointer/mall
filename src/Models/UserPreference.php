@@ -1,23 +1,23 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
- * Antvel - User Points Model
+ * Antvel - Users Preferences Model
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Illuminate\Database\Eloquent\Model;
+use Notadd\Shop\Eloquent\Model;
 
-class UserPoints extends Model
+class UserPreference extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'user_points';
+    protected $table = 'user_preferences';
 
     /**
      * The attributes that are mass assignable.
@@ -26,8 +26,7 @@ class UserPoints extends Model
      */
     protected $fillable = [
         'user_id',
-        'action_type_id',
-        'source_id',
-        'points',
+        'type_preference_id',
+        'value',
     ];
 }

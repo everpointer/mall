@@ -9,7 +9,7 @@ namespace Notadd\Shop\Http\Controllers;
  */
 
 use Notadd\Shop\Http\Controllers\Controller;
-use Notadd\Shop\Product;
+use Notadd\Shop\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsGroupController extends Controller

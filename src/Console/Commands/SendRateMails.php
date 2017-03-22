@@ -3,7 +3,7 @@
 namespace Notadd\Shop\Console\Commands;
 
 use Notadd\Shop\Order;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;

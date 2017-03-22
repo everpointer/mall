@@ -8,18 +8,18 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Log;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\Log;
+use Notadd\Shop\Models\User;
 use Notadd\Shop\Order;
-use Notadd\Shop\Notice;
-use Notadd\Shop\Address;
+use Notadd\Shop\Models\Notice;
+use Notadd\Shop\Models\Address;
 use Notadd\Shop\Comment;
-use Notadd\Shop\Product;
+use Notadd\Shop\Models\Product;
 use Notadd\Shop\Business;
 use Carbon\Carbon;
-use Notadd\Shop\OrderDetail;
-use Notadd\Shop\VirtualProduct;
-use Notadd\Shop\VirtualProductOrder;
+use Notadd\Shop\Models\OrderDetail;
+use Notadd\Shop\Models\VirtualProduct;
+use Notadd\Shop\Models\VirtualProductOrder;
 use Illuminate\Http\Request;
 use Notadd\Shop\Helpers\ProductsHelper;
 use Illuminate\Support\Facades\DB;

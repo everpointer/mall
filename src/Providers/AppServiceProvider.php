@@ -2,7 +2,7 @@
 
 namespace Notadd\Shop\Providers;
 
-use Notadd\Shop\Category;
+use Notadd\Shop\Models\Category;
 use Notadd\Shop\Company;
 use Illuminate\Support\ServiceProvider;
 

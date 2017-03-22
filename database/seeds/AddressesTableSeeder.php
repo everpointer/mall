@@ -6,9 +6,9 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Address as Address;
-use Notadd\Shop\User as User;
 use Faker\Factory as Faker;
+use Notadd\Shop\Models\User;
+use Notadd\Shop\Models\Address;
 use Illuminate\Database\Seeder;
 
 class AddressesTableSeeder extends Seeder

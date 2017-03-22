@@ -1,7 +1,7 @@
 <?php
 
-use Notadd\Shop\ActionType;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\ActionType;
 
 class ActionTypesTableSeeder extends Seeder
 {

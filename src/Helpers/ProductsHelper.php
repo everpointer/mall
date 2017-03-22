@@ -8,7 +8,7 @@ namespace Notadd\Shop\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Category;
+use Notadd\Shop\Models\Category;
 use Notadd\Shop\Helpers\CategoriesHelper;
 use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Http\Controllers\UserController;

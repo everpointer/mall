@@ -8,14 +8,14 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\User;
+use Notadd\Shop\Models\User;
 use Notadd\Shop\Order;
-use Notadd\Shop\Product;
-use Notadd\Shop\Category;
-use Notadd\Shop\OrderDetail;
+use Notadd\Shop\Models\Product;
+use Notadd\Shop\Models\Category;
+use Notadd\Shop\Models\OrderDetail;
 use Notadd\Shop\Helpers\File;
-use Notadd\Shop\ProductDetail;
-use Notadd\Shop\VirtualProduct;
+use Notadd\Shop\Models\ProductDetail;
+use Notadd\Shop\Models\VirtualProduct;
 use Notadd\Shop\FreeProductOrder;
 use Illuminate\Http\Request;
 use Notadd\Shop\Helpers\FeaturesHelper;

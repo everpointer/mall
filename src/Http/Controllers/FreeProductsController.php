@@ -8,15 +8,15 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Address;
+use Notadd\Shop\Models\Address;
 use Notadd\Shop\FreeProduct;
 use Notadd\Shop\FreeProductOrder;
 use Notadd\Shop\FreeProductParticipant;
 use Notadd\Shop\Http\Controllers\Controller;
 use Notadd\Shop\Order;
-use Notadd\Shop\OrderDetail;
-use Notadd\Shop\Product;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\OrderDetail;
+use Notadd\Shop\Models\Product;
+use Notadd\Shop\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;

@@ -2,7 +2,7 @@
 
 namespace Notadd\Shop\Collection;
 
-use Notadd\Shop\Category;
+use Notadd\Shop\Models\Category;
 use Notadd\Shop\Eloquent\Collection;
 
 class Categories extends Collection

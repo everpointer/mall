@@ -6,13 +6,13 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Address;
+use Notadd\Shop\Models\Address;
 use Notadd\Shop\FreeProduct;
 use Notadd\Shop\FreeProductOrder;
 use Notadd\Shop\Order;
-use Notadd\Shop\OrderDetail;
-use Notadd\Shop\Product;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\OrderDetail;
+use Notadd\Shop\Models\Product;
+use Notadd\Shop\Models\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

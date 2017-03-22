@@ -8,8 +8,8 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Product;
-use Notadd\Shop\Category;
+use Notadd\Shop\Models\Product;
+use Notadd\Shop\Models\Category;
 use Notadd\Shop\Helpers\File;
 use Illuminate\Http\Request;
 use Notadd\Shop\Helpers\CategoriesHelper;

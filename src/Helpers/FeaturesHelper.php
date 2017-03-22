@@ -8,7 +8,7 @@ namespace Notadd\Shop\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\ProductDetail;
+use Notadd\Shop\Models\ProductDetail;
 use Notadd\Shop\Helpers\ColorsHelper;
 use Illuminate\Support\Facades\Validator;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
  * Antvel - Action Type Model

@@ -8,7 +8,7 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\ProductDetail;
+use Notadd\Shop\Models\ProductDetail;
 use Illuminate\Http\Request;
 use Notadd\Shop\Helpers\FeaturesHelper;
 use Notadd\Shop\Http\Controllers\Controller;

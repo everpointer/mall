@@ -1,6 +1,6 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
  * Antvel - Business Model
@@ -8,8 +8,8 @@ namespace Notadd\Shop;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
+use Notadd\Shop\Models\User;
 use Notadd\Shop\Eloquent\Model;
-use Notadd\Shop\User;
 
 class Business extends Model
 {

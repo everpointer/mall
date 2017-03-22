@@ -6,9 +6,9 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Category as Category;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\Category as Category;
 
 class CategoriesTableSeeder extends Seeder
 {

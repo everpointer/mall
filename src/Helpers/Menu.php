@@ -9,7 +9,7 @@ namespace Notadd\Shop\Helpers;
  */
 
 use Notadd\Shop\Order;
-use Notadd\Shop\Product;
+use Notadd\Shop\Models\Product;
 
 class Menu
 {

@@ -1,23 +1,23 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
- * Antvel - Virtual Products Model
+ * Antvel - Virtual Products Order Model
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
 use Notadd\Shop\Eloquent\Model;
 
-class VirtualProduct extends Model
+class VirtualProductOrder extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'virtual_products';
+    protected $table = 'virtual_product_orders';
 
     /**
      * The attributes that are mass assignable.
@@ -25,10 +25,9 @@ class VirtualProduct extends Model
      * @var array
      */
     protected $fillable = [
-        'product_id',
-        'key',
-        'url',
-        'amount',
-        'expiration_date',
+        'order_id',
+        'virtual_product_id',
+        'status',
+        'email',
     ];
 }

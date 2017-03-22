@@ -10,11 +10,11 @@ namespace Notadd\Shop\Http\Controllers;
 
 use Notadd\Shop\Http\Controllers\Controller;
 use Notadd\Shop\Order;
-use Notadd\Shop\OrderDetail;
-use Notadd\Shop\Product;
-use Notadd\Shop\User;
-use Notadd\Shop\VirtualProduct;
-use Notadd\Shop\VirtualProductOrder;
+use Notadd\Shop\Models\OrderDetail;
+use Notadd\Shop\Models\Product;
+use Notadd\Shop\Models\User;
+use Notadd\Shop\Models\VirtualProduct;
+use Notadd\Shop\Models\VirtualProductOrder;
 use Illuminate\Http\Request;
 
 class VirtualProductOrdersController extends Controller

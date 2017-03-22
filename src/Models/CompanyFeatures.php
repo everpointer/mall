@@ -1,23 +1,27 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
- * Antvel - Products Offers Model
+ * Antvel - Company Features Model
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
 use Notadd\Shop\Eloquent\Model;
 
-class ProductOffer extends Model
+class CompanyFeatures extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'product_offers';
+    protected $table = 'company_features';
+
+    public $primaryKey = 'id';
+
+    public $company_id = 'company_id';
 
     /**
      * The attributes that are mass assignable.
@@ -25,11 +29,7 @@ class ProductOffer extends Model
      * @var array
      */
     protected $fillable = [
-        'product_id',
-        'day_start',
-        'day_end',
-        'percentage',
-        'price',
-        'quantity',
+        'company_id',
+        'description',
     ];
 }

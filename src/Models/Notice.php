@@ -1,6 +1,6 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
  * Antvel - Notice Model
@@ -8,8 +8,8 @@ namespace Notadd\Shop;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Eloquent\Collection;
 use Notadd\Shop\Eloquent\Model;
+use Notadd\Shop\Eloquent\Collection;
 
 class Notice extends Model
 {

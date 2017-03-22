@@ -8,10 +8,10 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\User;
+use Notadd\Shop\Models\User;
 use Notadd\Shop\Order;
 use Notadd\Shop\Person;
-use Notadd\Shop\Product;
+use Notadd\Shop\Models\Product;
 use Notadd\Shop\Business;
 use Notadd\Shop\Helpers\File;
 use Notadd\Shop\Helpers\UserHelper;

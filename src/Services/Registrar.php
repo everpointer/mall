@@ -3,7 +3,7 @@
 namespace Notadd\Shop\Services;
 
 use Notadd\Shop\Person;
-use Notadd\Shop\User;
+use Notadd\Shop\Models\User;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use Validator;
 

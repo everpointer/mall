@@ -8,9 +8,9 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\ActionType;
+use Notadd\Shop\Models\Notice;
+use Notadd\Shop\Models\ActionType;
 use Notadd\Shop\Http\Controllers\Controller;
-use Notadd\Shop\Notice;
 
 class NoticesController extends Controller
 {

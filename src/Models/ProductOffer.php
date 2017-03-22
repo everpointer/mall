@@ -1,23 +1,23 @@
 <?php
 
-namespace Notadd\Shop;
+namespace Notadd\Shop\Models;
 
 /*
- * Antvel - Type Preferences Model
+ * Antvel - Products Offers Model
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
 use Notadd\Shop\Eloquent\Model;
 
-class TypePreference extends Model
+class ProductOffer extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'type_preferences';
+    protected $table = 'product_offers';
 
     /**
      * The attributes that are mass assignable.
@@ -25,8 +25,11 @@ class TypePreference extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'type',
-        'status',
+        'product_id',
+        'day_start',
+        'day_end',
+        'percentage',
+        'price',
+        'quantity',
     ];
 }
