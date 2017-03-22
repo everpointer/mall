@@ -8,9 +8,9 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Order;
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
-use Notadd\Shop\FreeProduct;
+use Notadd\Shop\Models\FreeProduct;
 use Notadd\Shop\Helpers\ProductsHelper;
 use Notadd\Shop\Http\Controllers\Controller;
 

@@ -2,8 +2,11 @@
 
 namespace Notadd\Shop\Providers;
 
+use Notadd\Shop\Models\Company;
 use Notadd\Shop\Models\Category;
-use Notadd\Shop\Company;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,14 +20,14 @@ class AppServiceProvider extends ServiceProvider
     {
         $table = 'company';
 
-        if (\Schema::hasTable($table)) {
+        if (Schema::hasTable($table)) {
             try {
                 $main_company = Company::find(1);
             } catch (ModelNotFoundException $e) {
                 $main_company = Company::defaultCompany();
             }
 
-            $categories_menu = \Cache::remember('categories_mothers', 25, function () {
+            $categories_menu = Cache::remember('categories_mothers', 25, function () {
                 return Category::select('id', 'name')
                   ->childsOf('mothers')
                   ->actives()
@@ -37,8 +40,8 @@ class AppServiceProvider extends ServiceProvider
                 $menu[$value['id']] = $value;
             }
 
-            \View::share('main_company', $main_company);
-            \View::share('categories_menu', $menu);
+            View::share('main_company', $main_company);
+            View::share('categories_menu', $menu);
         }
     }
 

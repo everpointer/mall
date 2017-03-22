@@ -9,14 +9,14 @@ namespace Notadd\Shop\Http\Controllers;
  */
 
 use Notadd\Shop\Models\User;
-use Notadd\Shop\Order;
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\Category;
 use Notadd\Shop\Models\OrderDetail;
 use Notadd\Shop\Helpers\File;
 use Notadd\Shop\Models\ProductDetail;
 use Notadd\Shop\Models\VirtualProduct;
-use Notadd\Shop\FreeProductOrder;
+use Notadd\Shop\Models\FreeProductOrder;
 use Illuminate\Http\Request;
 use Notadd\Shop\Helpers\FeaturesHelper;
 use Notadd\Shop\Helpers\ProductsHelper;

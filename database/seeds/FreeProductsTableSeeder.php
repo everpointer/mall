@@ -6,15 +6,15 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Models\Address;
-use Notadd\Shop\FreeProduct;
-use Notadd\Shop\FreeProductOrder;
-use Notadd\Shop\Order;
-use Notadd\Shop\Models\OrderDetail;
-use Notadd\Shop\Models\Product;
-use Notadd\Shop\Models\User;
 use Faker\Factory as Faker;
+use Notadd\Shop\Models\User;
+use Notadd\Shop\Models\Order;
+use Notadd\Shop\Models\Address;
+use Notadd\Shop\Models\Product;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\OrderDetail;
+use Notadd\Shop\Models\FreeProduct;
+use Notadd\Shop\Models\FreeProductOrder;
 
 class FreeProductsTableSeeder extends Seeder
 {

@@ -10,7 +10,7 @@ namespace Notadd\Shop\Http\Controllers;
 
 use Notadd\Shop\Models\Log;
 use Notadd\Shop\Models\User;
-use Notadd\Shop\Order;
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Notice;
 use Notadd\Shop\Models\Address;
 use Notadd\Shop\Comment;

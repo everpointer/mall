@@ -8,7 +8,7 @@ namespace Notadd\Shop\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Order;
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
 
 class Menu

@@ -8,7 +8,7 @@
  */
 use Notadd\Shop\Models\Address;
 use Notadd\Shop\Models\Category;
-use Notadd\Shop\Order;
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\User;
 use Notadd\Shop\Models\UserPoints;

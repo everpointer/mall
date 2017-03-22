@@ -6,7 +6,7 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Company;
+use Notadd\Shop\Models\Company;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

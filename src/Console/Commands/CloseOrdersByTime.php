@@ -2,7 +2,7 @@
 
 namespace Notadd\Shop\Console\Commands;
 
-use Notadd\Shop\Order;
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;

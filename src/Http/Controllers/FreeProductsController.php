@@ -9,11 +9,11 @@ namespace Notadd\Shop\Http\Controllers;
  */
 
 use Notadd\Shop\Models\Address;
-use Notadd\Shop\FreeProduct;
-use Notadd\Shop\FreeProductOrder;
-use Notadd\Shop\FreeProductParticipant;
+use Notadd\Shop\Models\FreeProduct;
+use Notadd\Shop\Models\FreeProductOrder;
+use Notadd\Shop\Models\FreeProductParticipant;
 use Notadd\Shop\Http\Controllers\Controller;
-use Notadd\Shop\Order;
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\OrderDetail;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\User;

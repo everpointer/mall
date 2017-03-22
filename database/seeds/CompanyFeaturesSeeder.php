@@ -6,9 +6,9 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Company;
-use Notadd\Shop\CompanyFeatures;
+use Notadd\Shop\Models\Company;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\CompanyFeatures;
 
 class CompanyFeaturesSeeder extends Seeder
 {

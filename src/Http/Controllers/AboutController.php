@@ -8,7 +8,7 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Company;
+use Notadd\Shop\Models\Company;
 use Notadd\Shop\Http\Controllers\Controller;
 use Notadd\Shop\Http\Requests\ContactFormRequest;
 

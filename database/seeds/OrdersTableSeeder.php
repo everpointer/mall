@@ -7,7 +7,7 @@
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 use Notadd\Shop\Models\Address;
-use Notadd\Shop\Order;
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\OrderDetail;
 use Notadd\Shop\Models\Product;
 use Faker\Factory as Faker;
