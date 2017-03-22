@@ -9,15 +9,17 @@
 
 namespace Notadd\Shop;
 
+use Illuminate\Events\Dispatcher;
 use Notadd\Shop\Injections\Installer;
 use Notadd\Shop\Injections\Uninstaller;
+use Notadd\Shop\Listeners\CsrfTokenRegister;
 use Notadd\Foundation\Module\Abstracts\Module;
 
 class ModuleServiceProvider extends Module
 {
     public function boot()
     {
-        
+        $this->app->make(Dispatcher::class)->subscribe(CsrfTokenRegister::class);
     }
 
     public static function description()
