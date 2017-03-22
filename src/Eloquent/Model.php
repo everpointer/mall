@@ -2,8 +2,9 @@
 
 namespace Notadd\Shop\Eloquent;
 
+use Illuminate\Support\Facades\Auth;
 use Notadd\Shop\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model as BaseModel;
+use Notadd\Foundation\Database\Model as BaseModel;
 
 class Model extends BaseModel
 {
@@ -70,6 +71,6 @@ class Model extends BaseModel
 
     public function scopeAuth($query)
     {
-        return $query->whereUserId(\Auth::user()->id);
+        return $query->whereUserId(Auth::user()->id);
     }
 }
