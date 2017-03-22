@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Auth;
+namespace Notadd\Shop\Notifications\Auth;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Collection;
+namespace Notadd\Shop\Collection;
 
-use App\Category;
-use App\Eloquent\Collection;
+use Notadd\Shop\Category;
+use Notadd\Shop\Eloquent\Collection;
 
 class Categories extends Collection
 {

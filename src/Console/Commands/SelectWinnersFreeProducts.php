@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Notadd\Shop\Console\Commands;
 
-use App\Address;
-use App\FreeProduct;
-use App\FreeProductParticipant;
-use App\Order;
-use App\OrderDetail;
-use App\Product;
-use App\User;
+use Notadd\Shop\Address;
+use Notadd\Shop\FreeProduct;
+use Notadd\Shop\FreeProductParticipant;
+use Notadd\Shop\Order;
+use Notadd\Shop\OrderDetail;
+use Notadd\Shop\Product;
+use Notadd\Shop\User;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

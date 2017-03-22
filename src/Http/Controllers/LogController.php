@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Logs Controller
@@ -8,8 +8,8 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Http\Controllers\Controller;
-use App\Log;
+use Notadd\Shop\Http\Controllers\Controller;
+use Notadd\Shop\Log;
 
 class LogController extends Controller
 {

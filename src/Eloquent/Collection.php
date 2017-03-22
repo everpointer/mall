@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Eloquent;
+namespace Notadd\Shop\Eloquent;
 
 use Illuminate\Database\Eloquent\Collection as BaseCollection;
 

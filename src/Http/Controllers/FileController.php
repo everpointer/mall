@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Files Manager Controller
@@ -8,8 +8,8 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Helpers\File;
-use App\Http\Controllers\Controller;
+use Notadd\Shop\Helpers\File;
+use Notadd\Shop\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class FileController extends Controller

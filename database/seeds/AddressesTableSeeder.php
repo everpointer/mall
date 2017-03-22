@@ -6,8 +6,8 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\Address as Address;
-use App\User as User;
+use Notadd\Shop\Address as Address;
+use Notadd\Shop\User as User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace Notadd\Shop\Services;
 
-use App\Person;
-use App\User;
+use Notadd\Shop\Person;
+use Notadd\Shop\User;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use Validator;
 

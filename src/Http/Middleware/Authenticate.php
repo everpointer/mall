@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Notadd\Shop\Http\Middleware;
 
-use App\Http\Controllers\OrdersController;
+use Notadd\Shop\Http\Controllers\OrdersController;
 use Closure;
 
 class Authenticate

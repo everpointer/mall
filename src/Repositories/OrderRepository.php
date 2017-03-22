@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace Notadd\Shop\Repositories;
 
-use App\Order;
-use App\User;
+use Notadd\Shop\Order;
+use Notadd\Shop\User;
 
 class OrderRepository
 {

@@ -6,9 +6,9 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\Business as Business;
-use App\Product as Product;
-use App\VirtualProduct;
+use Notadd\Shop\Business as Business;
+use Notadd\Shop\Product as Product;
+use Notadd\Shop\VirtualProduct;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

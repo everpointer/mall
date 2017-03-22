@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Notadd\Shop\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

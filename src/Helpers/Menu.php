@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Notadd\Shop\Helpers;
 
 /*
  * Antvel - App Menus Helper
@@ -8,8 +8,8 @@ namespace App\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Order;
-use App\Product;
+use Notadd\Shop\Order;
+use Notadd\Shop\Product;
 
 class Menu
 {

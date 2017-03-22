@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Comments Controller
@@ -8,8 +8,8 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Comment;
-use App\Http\Controllers\Controller;
+use Notadd\Shop\Comment;
+use Notadd\Shop\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace Notadd\Shop;
 
 /*
  * Antvel - Comment Model
@@ -8,9 +8,9 @@ namespace app;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\ActionType;
-use App\Eloquent\Model;
-use App\Notice;
+use Notadd\Shop\ActionType;
+use Notadd\Shop\Eloquent\Model;
+use Notadd\Shop\Notice;
 
 class Comment extends Model
 {

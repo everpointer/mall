@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace Notadd\Shop;
 
 /*
  * Antvel - Order Model
@@ -8,16 +8,16 @@ namespace app;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Address;
-use App\Eloquent\Model;
-use App\Http\Controllers\ProductsController as ProductsController;
-use App\Http\Controllers\UserController as UserController;
-use App\Log;
-use App\Notice;
-use App\OrderDetail;
-use App\Product;
-use App\VirtualProduct;
-use App\VirtualProductOrder;
+use Notadd\Shop\Address;
+use Notadd\Shop\Eloquent\Model;
+use Notadd\Shop\Http\Controllers\ProductsController as ProductsController;
+use Notadd\Shop\Http\Controllers\UserController as UserController;
+use Notadd\Shop\Log;
+use Notadd\Shop\Notice;
+use Notadd\Shop\OrderDetail;
+use Notadd\Shop\Product;
+use Notadd\Shop\VirtualProduct;
+use Notadd\Shop\VirtualProductOrder;
 use Illuminate\Support\Facades\Mail;
 
 class Order extends Model

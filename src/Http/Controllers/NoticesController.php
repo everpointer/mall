@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Notice Controller
@@ -8,9 +8,9 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\ActionType;
-use App\Http\Controllers\Controller;
-use App\Notice;
+use Notadd\Shop\ActionType;
+use Notadd\Shop\Http\Controllers\Controller;
+use Notadd\Shop\Notice;
 
 class NoticesController extends Controller
 {

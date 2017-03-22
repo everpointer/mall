@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace Notadd\Shop;
 
 /*
  * Antvel - Person Model
@@ -8,8 +8,8 @@ namespace app;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\User;
-use App\Eloquent\Model;
+use Notadd\Shop\User;
+use Notadd\Shop\Eloquent\Model;
 
 class Person extends Model
 {

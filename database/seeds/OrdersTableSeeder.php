@@ -6,10 +6,10 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\Address;
-use App\Order;
-use App\OrderDetail;
-use App\Product;
+use Notadd\Shop\Address;
+use Notadd\Shop\Order;
+use Notadd\Shop\OrderDetail;
+use Notadd\Shop\Product;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

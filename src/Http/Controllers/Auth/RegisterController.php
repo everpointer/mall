@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Notadd\Shop\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Person;
-use App\User;
+use Notadd\Shop\Http\Controllers\Controller;
+use Notadd\Shop\Person;
+use Notadd\Shop\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 

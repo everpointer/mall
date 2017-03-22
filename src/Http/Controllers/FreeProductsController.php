@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Free Products Controller
@@ -8,15 +8,15 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Address;
-use App\FreeProduct;
-use App\FreeProductOrder;
-use App\FreeProductParticipant;
-use App\Http\Controllers\Controller;
-use App\Order;
-use App\OrderDetail;
-use App\Product;
-use App\User;
+use Notadd\Shop\Address;
+use Notadd\Shop\FreeProduct;
+use Notadd\Shop\FreeProductOrder;
+use Notadd\Shop\FreeProductParticipant;
+use Notadd\Shop\Http\Controllers\Controller;
+use Notadd\Shop\Order;
+use Notadd\Shop\OrderDetail;
+use Notadd\Shop\Product;
+use Notadd\Shop\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;

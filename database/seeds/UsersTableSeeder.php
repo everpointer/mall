@@ -6,9 +6,9 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\Business as Business;
-use App\Person as Person;
-use App\User as User;
+use Notadd\Shop\Business as Business;
+use Notadd\Shop\Person as Person;
+use Notadd\Shop\User as User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

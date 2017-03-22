@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Notadd\Shop\Helpers;
 
 /*
  * Antvel - Products Helper
@@ -8,11 +8,11 @@ namespace App\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Category;
-use App\Helpers\CategoriesHelper;
+use Notadd\Shop\Category;
+use Notadd\Shop\Helpers\CategoriesHelper;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductsController;
+use Notadd\Shop\Http\Controllers\UserController;
+use Notadd\Shop\Http\Controllers\ProductsController;
 
 class ProductsHelper
 {

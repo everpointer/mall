@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Company CMS Controller
@@ -8,9 +8,9 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Company;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ContactFormRequest;
+use Notadd\Shop\Company;
+use Notadd\Shop\Http\Controllers\Controller;
+use Notadd\Shop\Http\Requests\ContactFormRequest;
 
 class AboutController extends Controller
 {

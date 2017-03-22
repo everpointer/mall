@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Users Controller
@@ -8,13 +8,13 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\User;
-use App\Order;
-use App\Person;
-use App\Product;
-use App\Business;
-use App\Helpers\File;
-use App\Helpers\UserHelper;
+use Notadd\Shop\User;
+use Notadd\Shop\Order;
+use Notadd\Shop\Person;
+use Notadd\Shop\Product;
+use Notadd\Shop\Business;
+use Notadd\Shop\Helpers\File;
+use Notadd\Shop\Helpers\UserHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 

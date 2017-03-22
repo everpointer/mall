@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Notadd\Shop\Http\Requests;
 
-use App\Http\Requests\Request;
+use Notadd\Shop\Http\Requests\Request;
 
 class ContactFormRequest extends Request
 {

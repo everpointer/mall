@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Categories Controller
@@ -8,12 +8,12 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Product;
-use App\Category;
-use App\Helpers\File;
+use Notadd\Shop\Product;
+use Notadd\Shop\Category;
+use Notadd\Shop\Helpers\File;
 use Illuminate\Http\Request;
-use App\Helpers\CategoriesHelper;
-use App\Http\Controllers\Controller;
+use Notadd\Shop\Helpers\CategoriesHelper;
+use Notadd\Shop\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {

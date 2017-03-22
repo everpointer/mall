@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace Notadd\Shop\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 

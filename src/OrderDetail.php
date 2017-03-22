@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace Notadd\Shop;
 
 /*
  * Antvel - Order Detail Model
@@ -8,7 +8,7 @@ namespace app;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Eloquent\Model;
+use Notadd\Shop\Eloquent\Model;
 
 class OrderDetail extends Model
 {

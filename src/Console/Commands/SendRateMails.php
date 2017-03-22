@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Notadd\Shop\Console\Commands;
 
-use App\Order;
-use App\User;
+use Notadd\Shop\Order;
+use Notadd\Shop\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;

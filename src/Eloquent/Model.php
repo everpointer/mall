@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Eloquent;
+namespace Notadd\Shop\Eloquent;
 
-use App\Eloquent\Collection;
+use Notadd\Shop\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 class Model extends BaseModel

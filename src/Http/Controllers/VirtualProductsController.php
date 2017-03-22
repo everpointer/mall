@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Virtual Products Controller
@@ -8,10 +8,10 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Http\Controllers\Controller;
-use App\Product;
-use App\VirtualProduct;
-use App\VirtualProductOrder;
+use Notadd\Shop\Http\Controllers\Controller;
+use Notadd\Shop\Product;
+use Notadd\Shop\VirtualProduct;
+use Notadd\Shop\VirtualProductOrder;
 use Illuminate\Http\Request;
 
 class VirtualProductsController extends Controller

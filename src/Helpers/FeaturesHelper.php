@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Notadd\Shop\Helpers;
 
 /*
  * Antvel - Products Features Helper
@@ -8,8 +8,8 @@ namespace App\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\ProductDetail;
-use App\Helpers\ColorsHelper;
+use Notadd\Shop\ProductDetail;
+use Notadd\Shop\Helpers\ColorsHelper;
 use Illuminate\Support\Facades\Validator;
 
 class FeaturesHelper

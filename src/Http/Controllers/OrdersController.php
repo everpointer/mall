@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Orders Controller
@@ -8,29 +8,29 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Log;
-use App\User;
-use App\Order;
-use App\Notice;
-use App\Address;
-use App\Comment;
-use App\Product;
-use App\Business;
+use Notadd\Shop\Log;
+use Notadd\Shop\User;
+use Notadd\Shop\Order;
+use Notadd\Shop\Notice;
+use Notadd\Shop\Address;
+use Notadd\Shop\Comment;
+use Notadd\Shop\Product;
+use Notadd\Shop\Business;
 use Carbon\Carbon;
-use App\OrderDetail;
-use App\VirtualProduct;
-use App\VirtualProductOrder;
+use Notadd\Shop\OrderDetail;
+use Notadd\Shop\VirtualProduct;
+use Notadd\Shop\VirtualProductOrder;
 use Illuminate\Http\Request;
-use App\Helpers\ProductsHelper;
+use Notadd\Shop\Helpers\ProductsHelper;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
+use Notadd\Shop\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Repositories\OrderRepository;
+use Notadd\Shop\Repositories\OrderRepository;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Http\Controllers\ProductsController as ProductsController;
+use Notadd\Shop\Http\Controllers\ProductsController as ProductsController;
 
 class OrdersController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Products Controller
@@ -8,23 +8,23 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\User;
-use App\Order;
-use App\Product;
-use App\Category;
-use App\OrderDetail;
-use App\Helpers\File;
-use App\ProductDetail;
-use App\VirtualProduct;
-use App\FreeProductOrder;
+use Notadd\Shop\User;
+use Notadd\Shop\Order;
+use Notadd\Shop\Product;
+use Notadd\Shop\Category;
+use Notadd\Shop\OrderDetail;
+use Notadd\Shop\Helpers\File;
+use Notadd\Shop\ProductDetail;
+use Notadd\Shop\VirtualProduct;
+use Notadd\Shop\FreeProductOrder;
 use Illuminate\Http\Request;
-use App\Helpers\FeaturesHelper;
-use App\Helpers\ProductsHelper;
+use Notadd\Shop\Helpers\FeaturesHelper;
+use Notadd\Shop\Helpers\ProductsHelper;
 use Illuminate\Support\Collection;
-use App\Http\Controllers\Controller;
+use Notadd\Shop\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\UserController;
+use Notadd\Shop\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Validator;
 
 class ProductsController extends Controller

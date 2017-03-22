@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Notadd\Shop\Helpers;
 
 /**
  * Antvel - Utilities Functions Helper.

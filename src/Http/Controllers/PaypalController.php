@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - PayPal Controller
@@ -8,9 +8,9 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Http\Controllers\Controller;
-use App\PaypalOrder;
-use App\User;
+use Notadd\Shop\Http\Controllers\Controller;
+use Notadd\Shop\PaypalOrder;
+use Notadd\Shop\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;

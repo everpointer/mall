@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands;
+namespace Notadd\Shop\Commands;
 
 abstract class Command
 {

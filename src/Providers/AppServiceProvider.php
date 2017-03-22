@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace Notadd\Shop\Providers;
 
-use App\Category;
-use App\Company;
+use Notadd\Shop\Category;
+use Notadd\Shop\Company;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

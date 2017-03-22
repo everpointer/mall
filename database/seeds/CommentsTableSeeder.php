@@ -6,9 +6,9 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\ActionType;
-use App\Comment;
-use App\User;
+use Notadd\Shop\ActionType;
+use Notadd\Shop\Comment;
+use Notadd\Shop\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

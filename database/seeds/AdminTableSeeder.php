@@ -6,8 +6,8 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\Person;
-use App\Business;
+use Notadd\Shop\Person;
+use Notadd\Shop\Business;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Notadd\Shop\Http\Middleware;
 
 use Closure;
 

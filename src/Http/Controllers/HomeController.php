@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Home Controller
@@ -8,11 +8,11 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Order;
-use App\Product;
-use App\FreeProduct;
-use App\Helpers\ProductsHelper;
-use App\Http\Controllers\Controller;
+use Notadd\Shop\Order;
+use Notadd\Shop\Product;
+use Notadd\Shop\FreeProduct;
+use Notadd\Shop\Helpers\ProductsHelper;
+use Notadd\Shop\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {

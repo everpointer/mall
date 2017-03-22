@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Notadd\Shop\Http\Controllers;
 
 /*
  * Antvel - Orders Details Controller
@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Http\Controllers\Controller;
+use Notadd\Shop\Http\Controllers\Controller;
 
 class OrderDetailsController extends Controller
 {

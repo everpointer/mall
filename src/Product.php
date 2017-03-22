@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace Notadd\Shop;
 
 /*
  * Antvel - Products Model
@@ -8,8 +8,8 @@ namespace app;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use App\Category;
-use App\Eloquent\Model;
+use Notadd\Shop\Category;
+use Notadd\Shop\Eloquent\Model;
 
 class Product extends Model
 {

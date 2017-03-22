@@ -6,7 +6,7 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use App\Category as Category;
+use Notadd\Shop\Category as Category;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
