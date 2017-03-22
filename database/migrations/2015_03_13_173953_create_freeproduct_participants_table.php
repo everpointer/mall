@@ -24,7 +24,7 @@ class CreateFreeproductParticipantsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->enum('status', array_keys(trans('globals.participant_status')));
 
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('freeproduct_id')->references('id')->on('freeproducts');
 
             $table->timestamps();

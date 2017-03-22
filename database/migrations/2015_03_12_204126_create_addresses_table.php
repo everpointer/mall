@@ -26,12 +26,12 @@ class CreateAddressesTable extends Migration
             $table->string('line2')->nullable();
             $table->string('phone', 20);
             $table->string('name_contact', 100);
-            $table->integer('zipcode');
+            $table->string('zipcode', 10);
             $table->string('city');
             $table->string('country', 50);
             $table->string('state');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
         });
     }

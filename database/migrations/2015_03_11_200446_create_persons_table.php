@@ -25,7 +25,7 @@ class CreatePersonsTable extends Migration
             $table->date('birthday')->nullable();
             $table->enum('sex', array_keys(trans('globals.person_sex')));
             $table->string('home_phone')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

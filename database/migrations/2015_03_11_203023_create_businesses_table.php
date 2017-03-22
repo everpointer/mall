@@ -25,7 +25,7 @@ class CreateBusinessesTable extends Migration
             $table->string('local_phone')->nullable();
             $table->integer('rate_val')->nullable();
             $table->integer('rate_count')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

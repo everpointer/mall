@@ -26,8 +26,8 @@ class CreateNoticesTable extends Migration
             $table->integer('source_id')->unsigned();
             $table->enum('status', ['new', 'unread', 'read']);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('sender_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('sender_id')->references('id')->on('users');
             $table->foreign('action_type_id')->references('id')->on('action_types');
         });
     }
