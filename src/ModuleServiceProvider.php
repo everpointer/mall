@@ -22,6 +22,8 @@ class ModuleServiceProvider extends Module
     {
         $this->app->make(Dispatcher::class)->subscribe(CsrfTokenRegister::class);
         $this->app->make(Dispatcher::class)->subscribe(RouteRegister::class);
+
+        $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
     }
 
     public static function description()
