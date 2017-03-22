@@ -9,6 +9,8 @@
 
 namespace Notadd\Shop;
 
+use Notadd\Shop\Injections\Installer;
+use Notadd\Shop\Injections\Uninstaller;
 use Notadd\Foundation\Module\Abstracts\Module;
 
 class ModuleServiceProvider extends Module
@@ -25,12 +27,12 @@ class ModuleServiceProvider extends Module
 
     public static function install()
     {
-        return true;
+        return Installer::class;
     }
 
     public static function uninstall()
     {
-        return true;
+        return Uninstaller::class;
     }
 
     public static function name()
