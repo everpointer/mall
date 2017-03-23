@@ -2,17 +2,11 @@
 
 namespace Notadd\Shop\Http\Controllers;
 
-/*
- * Antvel - Home Controller
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
- */
-
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\FreeProduct;
+use Illuminate\Support\Facades\Auth;
 use Notadd\Shop\Helpers\ProductsHelper;
-use Notadd\Shop\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -42,7 +36,7 @@ class HomeController extends Controller
             'purchased'  => $purchased,
         ];
 
-        $helperProd->resetHaystack(); //reseting session id validator
+        $helperProd->resetHaystack(); // reseting session id validator
 
         $events = [];
         if (config('app.offering_free_products')) {
@@ -60,12 +54,12 @@ class HomeController extends Controller
         $tagsCloud = ProductsController::getTopRated(0, 20, true);
 
         $allWishes = '';
-        $user = \Auth::user();
+        $user = Auth::user();
         if ($user) {
             $allWishes = Order::ofType('wishlist')->where('user_id', $user->id)->where('description', '<>', '')->get();
         }
 
-        $i = 0; //carousel implementation
+        $i = 0; // carousel implementation
         $jumbotronClasses = ['jumbotron-box-left', 'jumbotron-box-right']; //carousel implementation
 
         $banner = [

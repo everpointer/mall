@@ -26,7 +26,7 @@ class ModuleServiceProvider extends Module
         $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
 
         $this->publishes([
-            realpath(__DIR__ . '/../databases/seeds/') => base_path('storage/databases/seeds/')
+            realpath(__DIR__ . '/../databases/seeds/') => database_path('seeds/')
         ], 'seeds');
     }
 
