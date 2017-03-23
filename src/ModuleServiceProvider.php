@@ -24,6 +24,10 @@ class ModuleServiceProvider extends Module
         $this->app->make(Dispatcher::class)->subscribe(RouteRegister::class);
 
         $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
+
+        $this->publishes([
+            realpath(__DIR__ . '/../databases/seeds/') => base_path('storage/databases/seeds/')
+        ], 'seeds');
     }
 
     public static function description()
