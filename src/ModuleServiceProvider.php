@@ -9,6 +9,8 @@
 
 namespace Notadd\Shop;
 
+use Notadd\Shop\Models\Address;
+use Notadd\Member\Models\Member;
 use Illuminate\Events\Dispatcher;
 use Notadd\Shop\Injections\Installer;
 use Notadd\Shop\Injections\Uninstaller;
@@ -30,6 +32,10 @@ class ModuleServiceProvider extends Module
             realpath(__DIR__ . '/../databases/seeds/') => database_path('seeds/'),
             realpath(__DIR__ . '/../config/shop.php') => config_path('shop.php')
         ], 'shop');
+
+        Member::registerWith('address', function ($model) {
+            return $model->hasMany(Address::class, 'user_id', 'id');
+        });
     }
 
     public function register()

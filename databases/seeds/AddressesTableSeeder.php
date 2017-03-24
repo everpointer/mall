@@ -7,18 +7,19 @@
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 use Faker\Factory as Faker;
-use Notadd\Shop\Models\User;
 use Notadd\Shop\Models\Address;
 use Illuminate\Database\Seeder;
+use Notadd\Member\Models\Member;
 
 class AddressesTableSeeder extends Seeder
 {
     public function run()
     {
         $faker = Faker::create();
-        //Category
+        // Category
         for ($i = 0; $i < 10; $i++) {
-            $user = User::select(['id'])->where('id', rand(1, User::count()))->first();
+            $user = Member::select(['id'])->where('id', 1)->first();
+            dd($user);
             $address = Address::create([
                 'user_id'      => ($i <= 2) ? 4 : $user->id,
                 'default'      => 0,

@@ -2,6 +2,7 @@
 
 namespace Notadd\Shop\Http\Controllers;
 
+use Notadd\Member\Models\Member;
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\FreeProduct;
@@ -12,6 +13,12 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // $seeder = new \AddressesTableSeeder();
+        // dd($seeder->run());
+
+        $members = Member::with('address')->get()->toArray();
+        dd($members);
+
         $helperProd = new ProductsHelper();
 
         $carousel = $helperProd->suggest('carousel');
