@@ -17,7 +17,7 @@ class UserPoints extends Model
      *
      * @var string
      */
-    protected $table = 'user_points';
+    protected $table = 'shop_user_points';
 
     /**
      * The attributes that are mass assignable.

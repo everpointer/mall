@@ -17,7 +17,7 @@ class VirtualProduct extends Model
      *
      * @var string
      */
-    protected $table = 'virtual_products';
+    protected $table = 'shop_virtual_products';
 
     /**
      * The attributes that are mass assignable.

@@ -17,7 +17,7 @@ class Log extends Model
      *
      * @var string
      */
-    protected $table = 'logs';
+    protected $table = 'shop_logs';
 
     protected $fillable = ['action_type_id', 'details', 'source_id', 'user_id'];
 

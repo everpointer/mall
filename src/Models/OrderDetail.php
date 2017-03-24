@@ -17,7 +17,7 @@ class OrderDetail extends Model
      *
      * @var string
      */
-    protected $table = 'order_details';
+    protected $table = 'shop_order_details';
 
     /**
      * The attributes that are mass assignable.

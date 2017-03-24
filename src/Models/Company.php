@@ -17,7 +17,7 @@ class Company extends Model
      *
      * @var string
      */
-    protected $table = 'company';
+    protected $table = 'shop_company';
 
     public $primaryKey = 'id';
 

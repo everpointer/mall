@@ -12,5 +12,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaypalOrder extends Model
 {
-    protected $table = 'paypal_orders';
+    protected $table = 'shop_paypal_orders';
 }

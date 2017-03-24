@@ -18,7 +18,7 @@ class Notice extends Model
      *
      * @var string
      */
-    protected $table = 'notices';
+    protected $table = 'shop_notices';
 
     protected $fillable = ['user_id', 'sender_id', 'action_type_id', 'source_id', 'status'];
 

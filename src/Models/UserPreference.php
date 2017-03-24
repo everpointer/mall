@@ -17,7 +17,7 @@ class UserPreference extends Model
      *
      * @var string
      */
-    protected $table = 'user_preferences';
+    protected $table = 'shop_user_preferences';
 
     /**
      * The attributes that are mass assignable.

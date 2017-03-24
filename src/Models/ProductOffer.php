@@ -17,7 +17,7 @@ class ProductOffer extends Model
      *
      * @var string
      */
-    protected $table = 'product_offers';
+    protected $table = 'shop_product_offers';
 
     /**
      * The attributes that are mass assignable.

@@ -17,7 +17,7 @@ class Comment extends Model
      *
      * @var string
      */
-    protected $table = 'comments';
+    protected $table = 'shop_comments';
 
     protected $fillable = ['action_type_id', 'comment', 'source_id', 'user_id'];
 

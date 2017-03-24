@@ -19,7 +19,7 @@ class FreeProduct extends Model
      *
      * @var string
      */
-    protected $table = 'freeproducts';
+    protected $table = 'shop_freeproducts';
 
     /**
      * The attributes that are mass assignable.

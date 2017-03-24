@@ -18,7 +18,7 @@ class Business extends Model
      *
      * @var string
      */
-    protected $table = 'businesses';
+    protected $table = 'shop_businesses';
     public $timestamps = false;
     public $primaryKey = 'user_id';
     public $incrementing = false;

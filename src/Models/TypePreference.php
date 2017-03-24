@@ -17,7 +17,7 @@ class TypePreference extends Model
      *
      * @var string
      */
-    protected $table = 'type_preferences';
+    protected $table = 'shop_type_preferences';
 
     /**
      * The attributes that are mass assignable.

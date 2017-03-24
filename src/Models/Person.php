@@ -17,7 +17,7 @@ class Person extends Model
      *
      * @var string
      */
-    protected $table = 'persons';
+    protected $table = 'shop_persons';
 
     public $timestamps = false;
 

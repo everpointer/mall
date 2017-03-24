@@ -17,7 +17,7 @@ class CompanyFeatures extends Model
      *
      * @var string
      */
-    protected $table = 'company_features';
+    protected $table = 'shop_company_features';
 
     public $primaryKey = 'id';
 

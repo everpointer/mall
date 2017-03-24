@@ -17,7 +17,7 @@ class Product extends Model
      *
      * @var string
      */
-    protected $table = 'products';
+    protected $table = 'shop_products';
     protected $appends = ['num_of_reviews'];
 
     /**

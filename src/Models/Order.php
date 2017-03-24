@@ -20,7 +20,7 @@ class Order extends Model
      *
      * @var string
      */
-    protected $table = 'orders';
+    protected $table = 'shop_orders';
 
     /**
      * The attributes that are mass assignable.

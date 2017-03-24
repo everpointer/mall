@@ -17,7 +17,7 @@ class ActionType extends Model
      *
      * @var string
      */
-    protected $table = 'action_types';
+    protected $table = 'shop_action_types';
 
     public $timestamps = false;
 
