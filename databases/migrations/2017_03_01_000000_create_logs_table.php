@@ -26,7 +26,7 @@ class CreateLogsTable extends Migration
             $table->string('details');
             $table->timestamps();
 
-            $table->foreign('action_type_id')->references('id')->on('action_types');
+            // $table->foreign('action_type_id')->references('id')->on('action_types');
             // $table->foreign('user_id')->references('id')->on('users');
         });
     }

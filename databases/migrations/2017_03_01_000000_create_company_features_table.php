@@ -24,7 +24,7 @@ class CreateCompanyFeaturesTable extends Migration
             $table->string('description');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('company_id')->references('id')->on('company');
+            // $table->foreign('company_id')->references('id')->on('company');
         });
     }
 

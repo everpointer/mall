@@ -26,7 +26,7 @@ class CreateUserPointsTable extends Migration
             $table->integer('points');
             $table->timestamps();
             // $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('action_type_id')->references('id')->on('action_types');
+            // $table->foreign('action_type_id')->references('id')->on('action_types');
             $table->index('user_id');
         });
     }

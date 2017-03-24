@@ -25,7 +25,7 @@ class CreateFreeproductParticipantsTable extends Migration
             $table->enum('status', array_keys(trans('shop::globals.participant_status')));
 
             // $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('freeproduct_id')->references('id')->on('freeproducts');
+            // $table->foreign('freeproduct_id')->references('id')->on('freeproducts');
 
             $table->timestamps();
         });

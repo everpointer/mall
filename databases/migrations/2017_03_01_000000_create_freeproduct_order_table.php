@@ -22,8 +22,8 @@ class CreateFreeproductOrderTable extends Migration
             $table->integer('freeproduct_id')->unsigned()->index();
             $table->integer('order_id')->unsigned()->index();
 
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('freeproduct_id')->references('id')->on('freeproducts');
+            // $table->foreign('order_id')->references('id')->on('orders');
+            // $table->foreign('freeproduct_id')->references('id')->on('freeproducts');
 
             $table->timestamps();
         });

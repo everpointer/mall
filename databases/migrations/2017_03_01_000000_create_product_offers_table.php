@@ -26,7 +26,7 @@ class CreateProductOffersTable extends Migration
             $table->double('percentage', 2, 2);
             $table->double('price')->default(0);
             $table->integer('quantity')->default(0);
-            $table->foreign('product_id')->references('id')->on('products');
+            // $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }

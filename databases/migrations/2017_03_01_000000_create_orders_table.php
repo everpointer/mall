@@ -31,7 +31,7 @@ class CreateOrdersTable extends Migration
             $table->string('rate_comment')->nullable();
             $table->boolean('rate_mail_sent')->default(false);
             // $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('address_id')->references('id')->on('addresses');
+            // $table->foreign('address_id')->references('id')->on('addresses');
             // $table->foreign('seller_id')->references('id')->on('users');
             $table->timestamps();
         });

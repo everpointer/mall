@@ -24,8 +24,8 @@ class CreateVirtualProductOrdersTable extends Migration
             $table->integer('virtual_product_id')->unsigned();
             $table->boolean('status')->default(0);
             $table->string('email')->nullable();
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('virtual_product_id')->references('id')->on('virtual_products');
+            // $table->foreign('order_id')->references('id')->on('orders');
+            // $table->foreign('virtual_product_id')->references('id')->on('virtual_products');
             $table->timestamps();
         });
     }

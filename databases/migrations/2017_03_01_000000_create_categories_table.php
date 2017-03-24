@@ -28,7 +28,7 @@ class CreateCategoriesTable extends Migration
             $table->boolean('status')->default(1);
             $table->enum('type', array_keys(trans('shop::globals.type_categories')));
 
-            $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreign('category_id')->references('id')->on('categories');
 
             $table->timestamps();
         });
