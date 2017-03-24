@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Orders Detail Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateOrderDetailsTable extends Migration
+class CreateShopOrderDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_details', function (Blueprint $table) {
+        $this->schema->create('shop_order_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->integer('product_id')->unsigned();
@@ -28,8 +26,8 @@ class CreateOrderDetailsTable extends Migration
             $table->dateTime('delivery_date')->nullable();
             $table->integer('rate')->nullable();
             $table->string('rate_comment')->nullable();
-            // $table->foreign('product_id')->references('id')->on('products');
-            // $table->foreign('order_id')->references('id')->on('orders');
+            // $table->foreign('product_id')->references('id')->on('shop_products');
+            // $table->foreign('order_id')->references('id')->on('shop_orders');
             $table->timestamps();
         });
     }
@@ -41,6 +39,6 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('order_details');
+        $this->schema->dropIfExists('shop_order_details');
     }
 }

@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Orders Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateShopOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        $this->schema->create('shop_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('address_id')->unsigned()->nullable();
@@ -31,7 +29,7 @@ class CreateOrdersTable extends Migration
             $table->string('rate_comment')->nullable();
             $table->boolean('rate_mail_sent')->default(false);
             // $table->foreign('user_id')->references('id')->on('users');
-            // $table->foreign('address_id')->references('id')->on('addresses');
+            // $table->foreign('address_id')->references('id')->on('shop_addresses');
             // $table->foreign('seller_id')->references('id')->on('users');
             $table->timestamps();
         });
@@ -44,6 +42,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('orders');
+        $this->schema->dropIfExists('shop_orders');
     }
 }

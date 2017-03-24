@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Person Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreatePersonsTable extends Migration
+class CreateShopPersonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreatePersonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('persons', function (Blueprint $table) {
+        $this->schema->create('shop_persons', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->primary();
             $table->string('first_name');
             $table->string('last_name');
@@ -36,6 +34,6 @@ class CreatePersonsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('persons');
+        $this->schema->dropIfExists('shop_persons');
     }
 }

@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Actions Type Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateActionTypesTable extends Migration
+class CreateShopActionTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreateActionTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('action_types', function (Blueprint $table) {
+        $this->schema->create('shop_action_types', function (Blueprint $table) {
             $table->integer('id')->unsigned()->primary();
             $table->enum('source_type', array_keys(trans('shop::globals.source_types')));
             $table->string('action');
@@ -32,6 +30,6 @@ class CreateActionTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('action_types');
+        $this->schema->dropIfExists('shop_action_types');
     }
 }

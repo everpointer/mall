@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Main Company Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateCompanyTable extends Migration
+class CreateShopCompanyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreateCompanyTable extends Migration
      */
     public function up()
     {
-        Schema::create('company', function (Blueprint $table) {
+        $this->schema->create('shop_company', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('contact_email');
@@ -60,6 +58,6 @@ class CreateCompanyTable extends Migration
      */
     public function down()
     {
-        Schema::drop('company');
+        $this->schema->dropIfExists('shop_company');
     }
 }

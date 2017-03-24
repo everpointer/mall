@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * PayPal Transactions Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreatePaypalOrdersTable extends Migration
+class CreateShopPaypalOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreatePaypalOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('paypal_orders', function (Blueprint $table) {
+        $this->schema->create('shop_paypal_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('payment_id');
@@ -36,6 +34,6 @@ class CreatePaypalOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('paypal_orders');
+        $this->schema->drop('shop_paypal_orders');
     }
 }

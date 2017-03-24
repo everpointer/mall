@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Virtual Products Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateVirtualProductOrdersTable extends Migration
+class CreateShopVirtualProductOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,14 +16,14 @@ class CreateVirtualProductOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('virtual_product_orders', function (Blueprint $table) {
+        $this->schema->create('shop_virtual_product_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->integer('virtual_product_id')->unsigned();
             $table->boolean('status')->default(0);
             $table->string('email')->nullable();
-            // $table->foreign('order_id')->references('id')->on('orders');
-            // $table->foreign('virtual_product_id')->references('id')->on('virtual_products');
+            // $table->foreign('order_id')->references('id')->on('shop_orders');
+            // $table->foreign('virtual_product_id')->references('id')->on('shop_virtual_products');
             $table->timestamps();
         });
     }
@@ -37,6 +35,6 @@ class CreateVirtualProductOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('virtual_product_orders');
+        $this->schema->dropIfExists('shop_virtual_product_orders');
     }
 }

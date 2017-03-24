@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Free Products Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateFreeproductsTable extends Migration
+class CreateShopFreeproductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreateFreeproductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('freeproducts', function (Blueprint $table) {
+        $this->schema->create('shop_freeproducts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->string('description');
@@ -43,6 +41,6 @@ class CreateFreeproductsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('freeproducts');
+        $this->schema->dropIfExists('shop_freeproducts');
     }
 }

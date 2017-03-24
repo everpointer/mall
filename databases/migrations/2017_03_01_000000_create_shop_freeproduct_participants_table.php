@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Free Products Participants Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateFreeproductParticipantsTable extends Migration
+class CreateShopFreeproductParticipantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,14 +16,14 @@ class CreateFreeproductParticipantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('freeproduct_participants', function (Blueprint $table) {
+        $this->schema->create('shop_freeproduct_participants', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('freeproduct_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->enum('status', array_keys(trans('shop::globals.participant_status')));
 
-            // $table->foreign('user_id')->references('id')->on('users');
-            // $table->foreign('freeproduct_id')->references('id')->on('freeproducts');
+            // $table->foreign('user_id')->references('id')->on('shop_users');
+            // $table->foreign('freeproduct_id')->references('id')->on('shop_freeproducts');
 
             $table->timestamps();
         });
@@ -38,6 +36,6 @@ class CreateFreeproductParticipantsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('freeproduct_participants');
+        $this->schema->dropIfExists('shop_freeproduct_participants');
     }
 }

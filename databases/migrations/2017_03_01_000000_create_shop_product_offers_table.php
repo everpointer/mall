@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Products Offers Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateProductOffersTable extends Migration
+class CreateShopProductOffersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreateProductOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_offers', function (Blueprint $table) {
+        $this->schema->create('shop_product_offers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->dateTime('day_start');
@@ -26,7 +24,7 @@ class CreateProductOffersTable extends Migration
             $table->double('percentage', 2, 2);
             $table->double('price')->default(0);
             $table->integer('quantity')->default(0);
-            // $table->foreign('product_id')->references('id')->on('products');
+            // $table->foreign('product_id')->references('id')->on('shop_products');
             $table->timestamps();
         });
     }
@@ -38,6 +36,6 @@ class CreateProductOffersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_offers');
+        $this->schema->dropIfExists('shop_product_offers');
     }
 }

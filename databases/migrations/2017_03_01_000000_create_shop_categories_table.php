@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Categories Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateShopCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        $this->schema->create('shop_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned()->nullable();
             $table->string('name', 50);
@@ -28,7 +26,7 @@ class CreateCategoriesTable extends Migration
             $table->boolean('status')->default(1);
             $table->enum('type', array_keys(trans('shop::globals.type_categories')));
 
-            // $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreign('category_id')->references('id')->on('shop_categories');
 
             $table->timestamps();
         });
@@ -41,6 +39,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categories');
+        $this->schema->dropIfExists('shop_categories');
     }
 }

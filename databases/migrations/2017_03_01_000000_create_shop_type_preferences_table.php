@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Type Preferences Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateTypePreferencesTable extends Migration
+class CreateShopTypePreferencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +16,7 @@ class CreateTypePreferencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_preferences', function (Blueprint $table) {
+        $this->schema->create('shop_type_preferences', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->enum('type', array_keys(trans('shop::globals.type_preferences')));
@@ -34,6 +32,6 @@ class CreateTypePreferencesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('type_preferences');
+        $this->schema->dropIfExists('shop_type_preferences');
     }
 }

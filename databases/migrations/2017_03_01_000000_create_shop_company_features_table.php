@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
+ * Notadd Shop - Data Base
  * Main company features.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateCompanyFeaturesTable extends Migration
+class CreateShopCompanyFeaturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,13 +16,13 @@ class CreateCompanyFeaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_features', function (Blueprint $table) {
+        $this->schema->create('shop_company_features', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned();
             $table->string('description');
             $table->timestamps();
             $table->softDeletes();
-            // $table->foreign('company_id')->references('id')->on('company');
+            // $table->foreign('company_id')->references('id')->on('shop_company');
         });
     }
 
@@ -35,6 +33,6 @@ class CreateCompanyFeaturesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('company_features');
+        $this->schema->dropIfExists('shop_company_features');
     }
 }

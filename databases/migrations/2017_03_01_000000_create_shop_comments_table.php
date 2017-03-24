@@ -1,15 +1,13 @@
 <?php
 
 /**
- * Antvel - Data Base
- * Logs Table.
- *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * Notadd Shop - Data Base
+ * Comments Table.
  */
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Notadd\Foundation\Database\Migrations\Migration;
 
-class CreateLogsTable extends Migration
+class CreateShopCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,15 +16,15 @@ class CreateLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('logs', function (Blueprint $table) {
+        $this->schema->create('shop_comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('action_type_id')->unsigned();
             $table->integer('source_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->string('details');
+            $table->string('comment', 500);
             $table->timestamps();
 
-            // $table->foreign('action_type_id')->references('id')->on('action_types');
+            // $table->foreign('action_type_id')->references('id')->on('shop_action_types');
             // $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -38,6 +36,6 @@ class CreateLogsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('logs');
+        $this->schema->dropIfExists('shop_comments');
     }
 }
