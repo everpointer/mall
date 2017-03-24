@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('address_id')->unsigned()->nullable();
             $table->integer('seller_id')->unsigned()->nullable();
-            $table->enum('status', array_keys(trans('globals.order_status')));
+            $table->enum('status', array_keys(trans('shop::globals.order_status')));
             $table->enum('type', ['cart', 'wishlist', 'order', 'later', 'freeproduct']);
             $table->string('description')->nullable();
             $table->dateTime('end_date')->nullable(); //cancelled or paid

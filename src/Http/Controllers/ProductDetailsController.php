@@ -55,9 +55,9 @@ class ProductDetailsController extends Controller
     public function __construct()
     {
         $this->typesProduct = [
-                'all'               => trans('globals.all'),
-                'item'              => trans('product.controller.item'),
-                'key'               => trans('product.globals.digital_item').' '.trans('product.globals.key'),
+                'all'               => trans('shop::globals.all'),
+                'item'              => trans('shop::product.controller.item'),
+                'key'               => trans('shop::product.globals.digital_item').' '.trans('shop::product.globals.key'),
                 // 'software'       =>trans("product.globals.digital_item").' '.trans("product.globals.software"),
                 // 'software_key'   =>trans("product.globals.digital_item").' '.trans("product.controller.software_key"),
                 // 'gift_card'      =>trans("product.controller.gift_card")
@@ -99,7 +99,7 @@ class ProductDetailsController extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), $this->form_rules, trans('features.validation_messages'));
+        $v = Validator::make($request->all(), $this->form_rules, trans('shop::features.validation_messages'));
         if ($v->fails()) {
             return redirect()->back()
             ->withErrors($v->errors())->withInput(\Input::except('default', 'message'));
@@ -111,7 +111,7 @@ class ProductDetailsController extends Controller
         }
         ProductDetail::create($data);
 
-        \Session::flash('message', trans('features.insert_message'));
+        \Session::flash('message', trans('shop::features.insert_message'));
 
         return redirect('wpanel/features');
     }
@@ -195,7 +195,7 @@ class ProductDetailsController extends Controller
      */
     public function update($id, Request $request)
     {
-        $v = Validator::make($request->all(), $this->form_rules, trans('features.validation_messages'));
+        $v = Validator::make($request->all(), $this->form_rules, trans('shop::features.validation_messages'));
         if ($v->fails()) {
             return redirect()->back()
             ->withErrors($v->errors())->withInput(\Input::except('default', 'message'));
@@ -207,7 +207,7 @@ class ProductDetailsController extends Controller
         }
 
         ProductDetail::where('id', $id)->update($data);
-        \Session::flash('message', trans('features.update_message'));
+        \Session::flash('message', trans('shop::features.update_message'));
 
         return redirect('wpanel/features');
     }
@@ -317,10 +317,10 @@ class ProductDetailsController extends Controller
                                     'values'  => true,
                                 ]);
                             } else {
-                                return ['error' => [trans('features.defaults_required')]];
+                                return ['error' => [trans('shop::features.defaults_required')]];
                             }
                         } else {
-                            return ['error' => [trans('features.defaults_required')]];
+                            return ['error' => [trans('shop::features.defaults_required')]];
                         }
                     break;
                     case 'specific_data':
@@ -339,7 +339,7 @@ class ProductDetailsController extends Controller
                                     if (count($subsRow) > 1) {
                                         $values[$i] = $subsRow;
                                     } else {
-                                        return ['error' => [trans('features.defaults_required')]];
+                                        return ['error' => [trans('shop::features.defaults_required')]];
                                     }
                                 } else {
                                     unset($values[$i]);
@@ -351,10 +351,10 @@ class ProductDetailsController extends Controller
                                     'values'   => true,
                                 ]);
                             } else {
-                                return ['error' => [trans('features.defaults_required')]];
+                                return ['error' => [trans('shop::features.defaults_required')]];
                             }
                         } else {
-                            return ['error' => [trans('features.defaults_required')]];
+                            return ['error' => [trans('shop::features.defaults_required')]];
                         }
                     break;
                     case 'custom_General':
@@ -365,10 +365,10 @@ class ProductDetailsController extends Controller
                                     'values'  => false,
                                 ]);
                             } else {
-                                return ['error' => [trans('features.defaults_method_not_exist')]];
+                                return ['error' => [trans('shop::features.defaults_method_not_exist')]];
                             }
                         } else {
-                            return ['error' => [trans('features.defaults_required')]];
+                            return ['error' => [trans('shop::features.defaults_required')]];
                         }
                     break;
                     case 'custom_specific_data':
@@ -379,7 +379,7 @@ class ProductDetailsController extends Controller
                                 if (trim($row) != '' && method_exists($helper, $row)) {
                                     $values[$i++] = $row;
                                 } else {
-                                    return ['error' => [trans('features.defaults_method_not_exist')]];
+                                    return ['error' => [trans('shop::features.defaults_method_not_exist')]];
                                 }
                             }
                             if ($i > 0) {
@@ -388,10 +388,10 @@ class ProductDetailsController extends Controller
                                     'values'   => false,
                                 ]);
                             } else {
-                                return ['error' => [trans('features.defaults_method_not_exist')]];
+                                return ['error' => [trans('shop::features.defaults_method_not_exist')]];
                             }
                         } else {
-                            return ['error' => [trans('features.defaults_required')]];
+                            return ['error' => [trans('shop::features.defaults_required')]];
                         }
                     break;
                 }
@@ -416,7 +416,7 @@ class ProductDetailsController extends Controller
                             'values'  => true,
                         ]);
                     } else {
-                        return ['error' => [trans('features.defaults_required')]];
+                        return ['error' => [trans('shop::features.defaults_required')]];
                     }
                 }
             break;

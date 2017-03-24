@@ -164,7 +164,7 @@ class Notice extends Model
 
     public function scopeAuth($query, $input = false)
     {
-        return $query->where('user_id', \Auth::id())->whereIn('action_type_id', $this->actionsType); //trans('notices.actions')
+        return $query->where('user_id', \Auth::id())->whereIn('action_type_id', $this->actionsType); //trans('shop::notices.actions')
     }
 
     public function scopeOfStatus($query, $input)

@@ -108,49 +108,49 @@ class FeaturesHelper
     {
         $return = [];
         if (strpos($rules, '|in') !== false) {
-            $return[$index.'.in'] = $name.' '.trans('features.is_invalid');
+            $return[$index.'.in'] = $name.' '.trans('shop::features.is_invalid');
         }
         if (strpos($rules, '|numeric') !== false) {
-            $return[$index.'.numeric'] = $name.' '.trans('features.only_allows_numbers');
+            $return[$index.'.numeric'] = $name.' '.trans('shop::features.only_allows_numbers');
             if (strpos($rules, '|min') !== false) {
                 $num = explode('min:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('features.minimum_number'));
+                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('shop::features.minimum_number'));
             } elseif (strpos($rules, '|max') !== false) {
                 $num = explode('max:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('features.maximum_number_2'));
+                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('shop::features.maximum_number_2'));
             } elseif (strpos($rules, '|between') !== false) {
                 $num = explode('between:', $rules);
                 $num = explode('|', $num[1]);
                 $num = explode(',', $num[0]);
-                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('features.between_n_and_n'));
+                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('shop::features.between_n_and_n'));
             }
         } else {
             if (strpos($rules, '|alpha') !== false) {
-                $return[$index.'.alpha'] = $name.' '.trans('features.only_allows_letters');
+                $return[$index.'.alpha'] = $name.' '.trans('shop::features.only_allows_letters');
             }
             if (strpos($rules, '|min') !== false) {
                 $num = explode('min:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('features.minimum_characters'));
+                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('shop::features.minimum_characters'));
             } elseif (strpos($rules, '|max') !== false) {
                 $num = explode('max:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('features.maximum_characters'));
+                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('shop::features.maximum_characters'));
             } elseif (strpos($rules, '|between') !== false) {
                 $num = explode('between:', $rules);
                 $num = explode('|', $num[1]);
                 $num = explode(',', $num[0]);
-                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('features.between_n_and_n_characters'));
+                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('shop::features.between_n_and_n_characters'));
             }
         }
         if (strpos($rules, 'required_without_all') !== false) {
-            $return[$index.'.required_without_all'] = $name.' '.trans('features.one_is_required');
+            $return[$index.'.required_without_all'] = $name.' '.trans('shop::features.one_is_required');
         } elseif (strpos($rules, 'required_with') !== false) {
-            $return[$index.'.required_with'] = $name.' '.trans('features.is_required');
+            $return[$index.'.required_with'] = $name.' '.trans('shop::features.is_required');
         } elseif (strpos($rules, 'required') !== false) {
-            $return[$index.'.required'] = $name.' '.trans('features.is_required');
+            $return[$index.'.required'] = $name.' '.trans('shop::features.is_required');
         }
 
         return $return;

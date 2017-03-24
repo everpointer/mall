@@ -216,18 +216,18 @@ class ProductsController extends Controller
            ->toArray();
 
         $categories = [
-            '' => trans('product.controller.select_category'),
+            '' => trans('shop::product.controller.select_category'),
         ];
 
         $condition = [
-            'new'         => trans('product.controller.new'),
-            'refurbished' => trans('product.controller.refurbished'),
-            'used'        => trans('product.controller.used'),
+            'new'         => trans('shop::product.controller.new'),
+            'refurbished' => trans('shop::product.controller.refurbished'),
+            'used'        => trans('shop::product.controller.used'),
         ];
 
         $typesProduct = [
-            'item' => trans('product.controller.item'),
-            'key'  => trans('product.globals.digital_item').' '.trans('product.globals.key'),
+            'item' => trans('shop::product.controller.item'),
+            'key'  => trans('shop::product.globals.digital_item').' '.trans('shop::product.globals.key'),
         ];
 
         $typeItem = 'item';
@@ -254,7 +254,7 @@ class ProductsController extends Controller
     {
         if (!$request->input('type')) {
             return redirect()->back()
-            ->withErrors(['induced_error' => [trans('globals.error').' '.trans('globals.induced_error')]]);
+            ->withErrors(['induced_error' => [trans('shop::globals.error').' '.trans('shop::globals.induced_error')]]);
         }
 
         $rules = $this->rulesByTypes($request);
@@ -301,7 +301,7 @@ class ProductsController extends Controller
                     $num = 0;
                     if (!Storage::disk('local')->exists($request->input('key'))) {
                         return redirect()->back()
-                        ->withErrors(['induced_error' => [trans('globals.file_does_not_exist')]])->withInput();
+                        ->withErrors(['induced_error' => [trans('shop::globals.file_does_not_exist')]])->withInput();
                         // ->withErrors(array('induced_error'=>array(storage_path().'files/key_code'.$request->input('key'))))->withInput();
                     }
                     $contents = Storage::disk('local')->get($request->input('key'));
@@ -330,9 +330,9 @@ class ProductsController extends Controller
                         $product->status = 0;
                     }
                     $product->save();
-                    $message = ' '.trans('product.controller.review_keys');
+                    $message = ' '.trans('shop::product.controller.review_keys');
                     if ($warning) {
-                        $message .= ' '.trans('product.controller.may_invalid_keys');
+                        $message .= ' '.trans('shop::product.controller.may_invalid_keys');
                     }
                     Storage::disk('local')->deleteDirectory('key_code/'.\Auth::id());
                 break;
@@ -344,7 +344,7 @@ class ProductsController extends Controller
                 break;
             }
         }
-        Session::flash('message', trans('product.controller.saved_successfully').$message);
+        Session::flash('message', trans('shop::product.controller.saved_successfully').$message);
 
         return redirect('products/'.$product->id);
     }
@@ -399,7 +399,7 @@ class ProductsController extends Controller
             $features = ProductDetail::all()->toArray();
 
             //increasing product counters, in order to have a suggestion orden
-            $this->setCounters($product, ['view_counts' => trans('globals.product_value_counters.view')], 'viewed');
+            $this->setCounters($product, ['view_counts' => trans('shop::globals.product_value_counters.view')], 'viewed');
 
             //saving the product tags into users preferences
             if (trim($product->tags) != '') {
@@ -450,7 +450,7 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
         if (\Auth::id() != $product->user_id) {
-            return redirect('products/'.$product->user_id)->withErrors(['not_access' => [trans('globals.not_access')]]);
+            return redirect('products/'.$product->user_id)->withErrors(['not_access' => [trans('shop::globals.not_access')]]);
         }
 
         $typeItem = $product->type;
@@ -468,12 +468,12 @@ class ProductsController extends Controller
 
         $allCategoriesStore = Category::actives()->lightSelection()->get()->toArray();
 
-        $categories = ['' => trans('product.controller.select_category')];
+        $categories = ['' => trans('shop::product.controller.select_category')];
 
         //categories drop down formatted
         ProductsHelper::categoriesDropDownFormat($allCategoriesStore, $categories);
 
-        $condition = ['new' => trans('product.controller.new'), 'refurbished' => trans('product.controller.refurbished'), 'used' => trans('product.controller.used')];
+        $condition = ['new' => trans('shop::product.controller.new'), 'refurbished' => trans('shop::product.controller.refurbished'), 'used' => trans('shop::product.controller.used')];
 
         $edit = true;
         $panel = $this->panel;
@@ -496,7 +496,7 @@ class ProductsController extends Controller
     {
         if (!$request->input('type')) {
             return redirect()->back()
-            ->withErrors(['induced_error' => [trans('globals.error').' '.trans('globals.induced_error')]])->withInput();
+            ->withErrors(['induced_error' => [trans('shop::globals.error').' '.trans('shop::globals.induced_error')]])->withInput();
         }
         $rules = $this->rulesByTypes($request, true);
         $order = OrderDetail::where('product_id', $id)->join('orders', 'order_details.order_id', '=', 'orders.id')->first();
@@ -517,7 +517,7 @@ class ProductsController extends Controller
         }
         $product = Product::find($id);
         if (\Auth::id() != $product->user_id) {
-            return redirect('products/'.$product->user_id)->withErrors(['feature_images' => [trans('globals.not_access')]]);
+            return redirect('products/'.$product->user_id)->withErrors(['feature_images' => [trans('shop::globals.not_access')]]);
         }
         if (!$order) {
             $product->name = $request->input('name');
@@ -569,9 +569,9 @@ class ProductsController extends Controller
                             $product->status = 0;
                         }
                         $product->save();
-                        $message = ' '.trans('product.controller.review_keys');
+                        $message = ' '.trans('shop::product.controller.review_keys');
                         if ($warning) {
-                            $message .= ' '.trans('product.controller.may_invalid_keys');
+                            $message .= ' '.trans('shop::product.controller.may_invalid_keys');
                         }
                         Storage::disk('local')->deleteDirectory('key_code/'.\Auth::id());
                     }
@@ -587,7 +587,7 @@ class ProductsController extends Controller
                 break;
             }
         }
-        Session::flash('message', trans('product.controller.saved_successfully').$message);
+        Session::flash('message', trans('shop::product.controller.saved_successfully').$message);
 
         return redirect('products/'.$product->id);
     }
@@ -603,11 +603,11 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
         if (\Auth::id() != $product->user_id) {
-            return redirect('products/'.$product->user_id)->withErrors(['feature_images' => [trans('globals.not_access')]]);
+            return redirect('products/'.$product->user_id)->withErrors(['feature_images' => [trans('shop::globals.not_access')]]);
         }
         $product->status = 0;
         $product->save();
-        Session::flash('message', trans('product.controller.saved_successfully'));
+        Session::flash('message', trans('shop::product.controller.saved_successfully'));
 
         return redirect('products/'.$product->id);
     }
@@ -623,11 +623,11 @@ class ProductsController extends Controller
     {
         $product = Product::select('id', 'user_id', 'features', 'status', 'type')->find($id);
         if (\Auth::id() != $product->user_id) {
-            return redirect('products/'.$product->user_id)->withErrors(['feature_images' => [trans('globals.not_access')]]);
+            return redirect('products/'.$product->user_id)->withErrors(['feature_images' => [trans('shop::globals.not_access')]]);
         }
         $product->status = ($product->status) ? 0 : 1;
         $product->save();
-        Session::flash('message', trans('product.controller.saved_successfully'));
+        Session::flash('message', trans('shop::product.controller.saved_successfully'));
 
         return redirect('products/'.$product->id);
     }
@@ -808,49 +808,49 @@ class ProductsController extends Controller
     {
         $return = [];
         if (strpos($rules, '|in') !== false) {
-            $return[$index.'.in'] = $name.' '.trans('features.is_invalid');
+            $return[$index.'.in'] = $name.' '.trans('shop::features.is_invalid');
         }
         if (strpos($rules, '|numeric') !== false) {
-            $return[$index.'.numeric'] = $name.' '.trans('features.only_allows_numbers');
+            $return[$index.'.numeric'] = $name.' '.trans('shop::features.only_allows_numbers');
             if (strpos($rules, '|min') !== false) {
                 $num = explode('min:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('features.minimum_number'));
+                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('shop::features.minimum_number'));
             } elseif (strpos($rules, '|max') !== false) {
                 $num = explode('max:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('features.maximum_number_2'));
+                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('shop::features.maximum_number_2'));
             } elseif (strpos($rules, '|between') !== false) {
                 $num = explode('between:', $rules);
                 $num = explode('|', $num[1]);
                 $num = explode(',', $num[0]);
-                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('features.between_n_and_n'));
+                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('shop::features.between_n_and_n'));
             }
         } else {
             if (strpos($rules, '|alpha') !== false) {
-                $return[$index.'.alpha'] = $name.' '.trans('features.only_allows_letters');
+                $return[$index.'.alpha'] = $name.' '.trans('shop::features.only_allows_letters');
             }
             if (strpos($rules, '|min') !== false) {
                 $num = explode('min:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('features.minimum_characters'));
+                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('shop::features.minimum_characters'));
             } elseif (strpos($rules, '|max') !== false) {
                 $num = explode('max:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('features.maximum_characters'));
+                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('shop::features.maximum_characters'));
             } elseif (strpos($rules, '|between') !== false) {
                 $num = explode('between:', $rules);
                 $num = explode('|', $num[1]);
                 $num = explode(',', $num[0]);
-                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('features.between_n_and_n_characters'));
+                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('shop::features.between_n_and_n_characters'));
             }
         }
         if (strpos($rules, 'required_without_all') !== false) {
-            $return[$index.'.required_without_all'] = $name.' '.trans('features.one_is_required');
+            $return[$index.'.required_without_all'] = $name.' '.trans('shop::features.one_is_required');
         } elseif (strpos($rules, 'required_with') !== false) {
-            $return[$index.'.required_with'] = $name.' '.trans('features.is_required');
+            $return[$index.'.required_with'] = $name.' '.trans('shop::features.is_required');
         } elseif (strpos($rules, 'required') !== false) {
-            $return[$index.'.required'] = $name.' '.trans('features.is_required');
+            $return[$index.'.required'] = $name.' '.trans('shop::features.is_required');
         }
 
         return $return;
@@ -892,7 +892,7 @@ class ProductsController extends Controller
             break;
             default:
                 return redirect()->back()
-            ->withErrors(['induced_error' => [trans('globals.error').' '.trans('globals.induced_error')]])->withInput();
+            ->withErrors(['induced_error' => [trans('shop::globals.error').' '.trans('shop::globals.induced_error')]])->withInput();
             break;
         }
 
@@ -1182,9 +1182,9 @@ class ProductsController extends Controller
             }
         }
 
-        $response['products']['categories_title'] = trans('globals.suggested_categories');
-        $response['products']['suggestions_title'] = trans('globals.suggested_products');
-        $response['products']['results_title'] = trans('globals.searchResults');
+        $response['products']['categories_title'] = trans('shop::globals.suggested_categories');
+        $response['products']['suggestions_title'] = trans('shop::globals.suggested_products');
+        $response['products']['results_title'] = trans('shop::globals.searchResults');
 
         if ($request->wantsJson()) {
             return json_encode($response);

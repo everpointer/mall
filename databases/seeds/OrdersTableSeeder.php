@@ -21,7 +21,7 @@ class OrdersTableSeeder extends Seeder
 
         $addresses = Address::get();
 
-        $status_list = array_keys(trans('globals.order_status'));
+        $status_list = array_keys(trans('shop::globals.order_status'));
 
         $products = Product::select('id', 'price')->get();
 

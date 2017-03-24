@@ -43,17 +43,17 @@ class VirtualProductsController extends Controller
         $product = Product::find($id);
 
         if (!count($product->toArray())) {
-            return json_encode(['message' => trans('globals.error_not_available')]);
+            return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
 
         if ($product->user_id != \Auth::id()) {
-            return json_encode(['message' => trans('globals.not_access')]);
+            return json_encode(['message' => trans('shop::globals.not_access')]);
         }
 
         $VirtualProduct = VirtualProduct::where('product_id', $product->id)->where('status', '=', 'open')->get();
 
         if (!count($VirtualProduct->toArray())) {
-            return json_encode(['message' => trans('globals.error_not_available')]);
+            return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
 
         return $VirtualProduct->toJson();
@@ -76,23 +76,23 @@ class VirtualProductsController extends Controller
         $VirtualProduct = VirtualProduct::find($id);
 
         if (!count($VirtualProduct->toArray())) {
-            return json_encode(['message' => trans('globals.error_not_available')]);
+            return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
 
         $product = Product::find($VirtualProduct->product_id);
 
         if (!count($product->toArray())) {
-            return json_encode(['message' => trans('globals.error_not_available')]);
+            return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
 
         if ($product->user_id != \Auth::id()) {
-            return json_encode(['message' => trans('globals.not_access')]);
+            return json_encode(['message' => trans('shop::globals.not_access')]);
         }
 
         $VirtualProductOrder = VirtualProductOrder::where('virtual_product_id', $VirtualProduct->id)->get();
 
         if (count($VirtualProductOrder->toArray()) > 0) {
-            return json_encode(['message' => trans('product.virtualProductsController_controller.key_been_sold')]);
+            return json_encode(['message' => trans('shop::product.virtualProductsController_controller.key_been_sold')]);
         }
 
         $VirtualProduct->status = 'cancelled';
@@ -109,6 +109,6 @@ class VirtualProductsController extends Controller
 
         $product->save();
 
-        return json_encode(['success' => trans('product.controller.saved_successfully')]);
+        return json_encode(['success' => trans('shop::product.controller.saved_successfully')]);
     }
 }

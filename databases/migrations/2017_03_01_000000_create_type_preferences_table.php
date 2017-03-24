@@ -21,7 +21,7 @@ class CreateTypePreferencesTable extends Migration
         Schema::create('type_preferences', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->enum('type', array_keys(trans('globals.type_preferences')));
+            $table->enum('type', array_keys(trans('shop::globals.type_preferences')));
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

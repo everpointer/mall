@@ -97,7 +97,7 @@ class Order extends Model
 
     public function getTranslatedStatusAttribute()
     {
-        return trans('globals.order_status.'.$this->status);
+        return trans('shop::globals.order_status.'.$this->status);
     }
 
     public function inDetail()
@@ -108,7 +108,7 @@ class Order extends Model
     public function createLog()
     {
         $actions = [];
-        foreach (trans('globals.action_types') as $value) {
+        foreach (trans('shop::globals.action_types') as $value) {
             if ($value['source_type'] == 'order') {
                 $actions[$value['action']] = $value['id'];
             }
@@ -183,24 +183,24 @@ class Order extends Model
                 $template = 'emails.order_status_changed';
                 $buyer_user = User::findOrFail($this->user_id);
                 $email = $buyer_user->email;
-                $email_message = trans('email.status_changed.changed_to_pending');
-                $subject = trans('email.status_changed.subject1').$this->id.' '.trans('email.status_changed.subject2').' '.trans('store.pending');
+                $email_message = trans('shop::email.status_changed.changed_to_pending');
+                $subject = trans('shop::email.status_changed.subject1').$this->id.' '.trans('shop::email.status_changed.subject2').' '.trans('shop::store.pending');
             break;
             case 'closed':
                 //Sends the buyer a mail to notify that the Order is Closed
                 $template = 'emails.order_status_changed';
                 $seller_user = User::findOrFail($this->seller_id);
                 $email = $seller_user->email;
-                $email_message = trans('email.status_changed.changed_to_closed');
-                $subject = trans('email.status_changed.subject1').$this->id.' '.trans('email.status_changed.subject2').' '.trans('store.closed');
+                $email_message = trans('shop::email.status_changed.changed_to_closed');
+                $subject = trans('shop::email.status_changed.subject1').$this->id.' '.trans('shop::email.status_changed.subject2').' '.trans('shop::store.closed');
             break;
             case 'sent':
                 //Sends the user a mail to notify that the order is Sent
                 $template = 'emails.order_status_changed';
                 $buyer_user = User::findOrFail($this->user_id);
                 $email = $buyer_user->email;
-                $email_message = trans('email.status_changed.changed_to_sent');
-                $subject = trans('email.status_changed.subject1').$this->id.' '.trans('email.status_changed.subject2').' '.trans('store.sent');
+                $email_message = trans('shop::email.status_changed.changed_to_sent');
+                $subject = trans('shop::email.status_changed.subject1').$this->id.' '.trans('shop::email.status_changed.subject2').' '.trans('shop::store.sent');
             break;
         }
         $data = [
@@ -240,7 +240,7 @@ class Order extends Model
             if ($useraddress) {
                 $address_id = $useraddress->address_id;
             } else {
-                return trans('address.no_registered');
+                return trans('shop::address.no_registered');
             }
         } else {
             $address_id = $cart->address_id;
@@ -278,20 +278,20 @@ class Order extends Model
                                                          ->where('order_id', $orderDetail->order_id)
                                                          ->where('status', 1)->get();
                         if ((count($virtual) - 1) < count($virtualOrder)) {
-                            return trans('store.insufficientStock');
+                            return trans('shop::store.insufficientStock');
                         }
                     break;
                     default: break;
                 }
             } elseif ($product->stock < $orderDetail->quantity) {
-                return trans('store.insufficientStock');
+                return trans('shop::store.insufficientStock');
             }
         }
 
         //Checks if the user has points for the cart price
         $user = \Auth::user();
         if ($user->current_points < $total_points && config('app.payment_method') == 'Points') {
-            return trans('store.cart_view.insufficient_funds');
+            return trans('shop::store.cart_view.insufficient_funds');
         }
 
         if (config('app.payment_method') == 'Points') {
@@ -329,7 +329,7 @@ class Order extends Model
                     }
 
                     //Increasing product counters.
-                    ProductsController::setCounters($orderDetail->product, ['sale_counts' => trans('globals.product_value_counters.sale')], 'orders');
+                    ProductsController::setCounters($orderDetail->product, ['sale_counts' => trans('shop::globals.product_value_counters.sale')], 'orders');
 
                     //saving tags in users preferences
                     if (trim($orderDetail->product->tags) != '') {
@@ -376,20 +376,20 @@ class Order extends Model
                     'order'   => $mailed_order,
                 ];
                 //dd($data['order']->details,$newOrder->id);
-                $title = trans('email.new_order_for_user.subject')." (#$newOrder->id)";
+                $title = trans('shop::email.new_order_for_user.subject')." (#$newOrder->id)";
                 Mail::queue('emails.neworder', compact('data', 'title'), function ($message) use ($user) {
-                    $message->to($user->email)->subject(trans('email.new_order_for_user.subject'));
+                    $message->to($user->email)->subject(trans('shop::email.new_order_for_user.subject'));
                 });
                 //Send a mail to the seller: Order has been placed
-                $title = trans('email.new_order_for_seller.subject')." (#$newOrder->id)";
+                $title = trans('shop::email.new_order_for_seller.subject')." (#$newOrder->id)";
                 Mail::queue('emails.sellerorder', compact('data', 'title'), function ($message) use ($email) {
-                    $message->to($email)->subject(trans('email.new_order_for_seller.subject'));
+                    $message->to($email)->subject(trans('shop::email.new_order_for_seller.subject'));
                 });
             }
 
             return;
         } else {
-            return trans('store.insufficientFunds');
+            return trans('shop::store.insufficientFunds');
         }
     }
 

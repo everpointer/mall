@@ -20,7 +20,7 @@ class CreateActionTypesTable extends Migration
     {
         Schema::create('action_types', function (Blueprint $table) {
             $table->integer('id')->unsigned()->primary();
-            $table->enum('source_type', array_keys(trans('globals.source_types')));
+            $table->enum('source_type', array_keys(trans('shop::globals.source_types')));
             $table->string('action');
         });
     }

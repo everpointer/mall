@@ -47,7 +47,7 @@ class ProductsDetailTableSeeder extends Seeder
         ]);
 
         ProductDetail::create([
-            'name'             => trans('globals.product_features.weight'),
+            'name'             => trans('shop::globals.product_features.weight'),
             'input_type'       => 'text',
             'default_values'   => '{}',
              'status'          => 'active',
@@ -58,7 +58,7 @@ class ProductsDetailTableSeeder extends Seeder
         ]);
 
         ProductDetail::create([
-            'name'             => trans('globals.product_features.dimensions'),
+            'name'             => trans('shop::globals.product_features.dimensions'),
             'input_type'       => 'text',
             'default_values'   => '{}',
             'validation_rules' => '{}',
@@ -69,7 +69,7 @@ class ProductsDetailTableSeeder extends Seeder
         ]);
 
         ProductDetail::create([
-            'name'             => trans('globals.product_features.color'),
+            'name'             => trans('shop::globals.product_features.color'),
             'input_type'       => 'text',
             'default_values'   => '{}',
             'validation_rules' => '{}',
@@ -80,7 +80,7 @@ class ProductsDetailTableSeeder extends Seeder
         ]);
 
         ProductDetail::create([
-            'name'             => trans('globals.product_features.model'),
+            'name'             => trans('shop::globals.product_features.model'),
             'input_type'       => 'text',
             'default_values'   => '{}',
              'status'          => 'active',

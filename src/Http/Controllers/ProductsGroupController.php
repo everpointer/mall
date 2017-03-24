@@ -64,8 +64,8 @@ class ProductsGroupController extends Controller
         $product->save();
 
         return json_encode(['price'        => \Utility::showPrice($product->price),
-                            'label_delete' => trans('product.delete_from_group'),
-                            'message'      => trans('product.product_successfully_grouped'), ]);
+                            'label_delete' => trans('shop::product.delete_from_group'),
+                            'message'      => trans('shop::product.product_successfully_grouped'), ]);
     }
 
     /**
@@ -122,6 +122,6 @@ class ProductsGroupController extends Controller
         $product->save();
 
         return json_encode(['deleteAll' => ($deleteAll ? true : false),
-                            'message'   => trans('product.product_was_deleted_from_this_group'), ]);
+                            'message'   => trans('shop::product.product_was_deleted_from_this_group'), ]);
     }
 }

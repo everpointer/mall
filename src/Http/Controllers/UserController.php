@@ -164,10 +164,10 @@ class UserController extends Controller
         $user->delete();
 
         if ($request->wantsJson()) {
-            return \Response::json(['success' => true, 'message' => trans('user.profile_disabled')]);
+            return \Response::json(['success' => true, 'message' => trans('shop::user.profile_disabled')]);
         }
 
-        \Session::flash('message', trans('user.profile_disabled'));
+        \Session::flash('message', trans('shop::user.profile_disabled'));
 
         return redirect()->back();
     }
@@ -184,10 +184,10 @@ class UserController extends Controller
         $user->update(['disabled_at' => $date]);
 
         if ($request->wantsJson()) {
-            return \Response::json(['success' => true, 'message' => trans('user.profile_disabled'), 'date' => $date->toDateTimeString()]);
+            return \Response::json(['success' => true, 'message' => trans('shop::user.profile_disabled'), 'date' => $date->toDateTimeString()]);
         }
 
-        \Session::flash('message', trans('user.profile_disabled'));
+        \Session::flash('message', trans('shop::user.profile_disabled'));
 
         return redirect()->back();
     }
@@ -203,10 +203,10 @@ class UserController extends Controller
         $user->update(['disabled_at' => null]);
 
         if ($request->wantsJson()) {
-            return \Response::json(['success' => true, 'message' => trans('user.profile_enabled')]);
+            return \Response::json(['success' => true, 'message' => trans('shop::user.profile_enabled')]);
         }
 
-        \Session::flash('message', trans('user.profile_enabled'));
+        \Session::flash('message', trans('shop::user.profile_enabled'));
 
         return redirect()->back();
     }
@@ -230,7 +230,7 @@ class UserController extends Controller
         }
 
         //user update
-        \Session::flash('message', trans('user.saved'));
+        \Session::flash('message', trans('shop::user.saved'));
         $user->fill($request->all());
         $user->pic_url  = $request->get('pic_url');
         $user->password = bcrypt($request->get('password'));
@@ -316,10 +316,10 @@ class UserController extends Controller
 
         if ($user) {
             $name = $user->name . ' ' . $user->last_name;
-            Session::put('message', str_replace('[name]', $name, trans('user.account_verified_ok_message')));
+            Session::put('message', str_replace('[name]', $name, trans('shop::user.account_verified_ok_message')));
         } else {
             Session::put('messageClass', 'alert alert-danger');
-            Session::put('message', trans('user.account_verified_error_message'));
+            Session::put('message', trans('shop::user.account_verified_error_message'));
         }
 
         Session::save();

@@ -60,7 +60,7 @@ class CloseOrdersByTime extends Command
 
             if ($buyer) {
                 $email = $buyer->email;
-                $mail_subject = trans('email.cron_emails.order_closed_for_time');
+                $mail_subject = trans('shop::email.cron_emails.order_closed_for_time');
                 $data = [
                     'email_message' => $mail_subject,
                     'email'         => $email,

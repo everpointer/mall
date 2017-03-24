@@ -122,8 +122,8 @@ class CategoriesController extends Controller
 
         $data = Category::select('name', 'id', 'type')->mothers()->orderBy('type')->get()->toArray();
         $data = $categoriesHelper->separateTypesCategories($data);
-        $storeCategories = ['' => trans('categories.no_father')];
-        $groupCategories = ['' => trans('categories.no_father')];
+        $storeCategories = ['' => trans('shop::categories.no_father')];
+        $groupCategories = ['' => trans('shop::categories.no_father')];
         foreach ($data['group'] as $row) {
             $groupCategories[$row['id']] = $row['name'];
         }
@@ -144,7 +144,7 @@ class CategoriesController extends Controller
         $this->validate($request, $this->form_rules);
         $data = $this->formatData($request);
         $category = Category::create($data);
-        \Session::flash('message', trans('categories.insert_message'));
+        \Session::flash('message', trans('shop::categories.insert_message'));
 
         return redirect('wpanel/categories');
     }
@@ -189,8 +189,8 @@ class CategoriesController extends Controller
             'left'   => ['width' => '2'],
             'center' => ['width' => '10'],
         ];
-        $storeCategories = ['' => trans('categories.no_father')];
-        $groupCategories = ['' => trans('categories.no_father')];
+        $storeCategories = ['' => trans('shop::categories.no_father')];
+        $groupCategories = ['' => trans('shop::categories.no_father')];
         foreach ($data['group'] as $row) {
             $groupCategories[$row['id']] = $row['name'];
         }
@@ -214,7 +214,7 @@ class CategoriesController extends Controller
         $data = $this->formatData($request);
         $category = Category::find($id);
         $category->update($data);
-        \Session::flash('message', trans('categories.update_message'));
+        \Session::flash('message', trans('shop::categories.update_message'));
 
         return redirect()->route('wpanel.category.show', [$id]);
     }

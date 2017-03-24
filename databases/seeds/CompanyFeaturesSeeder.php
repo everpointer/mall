@@ -22,7 +22,7 @@ class CompanyFeaturesSeeder extends Seeder
         $company = Company::find('1');
         CompanyFeatures::create([
             'company_id'  => $company->id,
-            'description' => trans('globals.freeproducts'),
+            'description' => trans('shop::globals.freeproducts'),
         ]);
     }
 }

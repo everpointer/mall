@@ -24,7 +24,7 @@ class CreateCompanyTable extends Migration
             $table->string('contact_email');
             $table->string('sales_email');
             $table->string('support_email');
-            $table->enum('status', array_keys(trans('globals.company_status')))->default('active');
+            $table->enum('status', array_keys(trans('shop::globals.company_status')))->default('active');
             $table->string('name');
             $table->string('website_name');
             $table->string('slogan')->nullable();

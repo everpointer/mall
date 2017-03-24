@@ -62,7 +62,7 @@ class SendRateMails extends Command
 
             if ($buyer) {
                 $email = $buyer->email;
-                $mail_subject = trans('email.cron_emails.remind_rate_order_subject');
+                $mail_subject = trans('shop::email.cron_emails.remind_rate_order_subject');
                 $data = [
                     'email_message' => $mail_subject,
                     'email'         => $email,

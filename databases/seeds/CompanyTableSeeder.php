@@ -53,9 +53,9 @@ class CompanyTableSeeder extends Seeder
                 'description'          => $faker->text(200),
                 'keywords'             => implode(',', $faker->words(20)),
                 'about_us'             => $faker->text(1200),
-                'refund_policy'        => trans('law.refund'),
-                'privacy_policy'       => trans('law.privacy'),
-                'terms_of_service'     => trans('law.terms'),
+                'refund_policy'        => trans('shop::law.refund'),
+                'privacy_policy'       => trans('shop::law.privacy'),
+                'terms_of_service'     => trans('shop::law.terms'),
                 'google_maps_key_api'  => 'AIzaSyCutQnEgrqX8W2X-nBCYB7-CbsTC-LlRMw',
 
             ]);

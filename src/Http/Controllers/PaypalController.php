@@ -57,7 +57,7 @@ class PaypalController extends Controller
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
         $item_1 = new Item();
-        $item_1->setName(trans('store.paypal.item_name1').env('PAYPAL_POINTS_PER_DOLLAR', 1000).trans('store.paypal.item_name2')) // item name
+        $item_1->setName(trans('shop::store.paypal.item_name1').env('PAYPAL_POINTS_PER_DOLLAR', 1000).trans('shop::store.paypal.item_name2')) // item name
         ->setCurrency('USD')
             ->setQuantity($quantity)
             ->setPrice('1'); // unit price
@@ -116,7 +116,7 @@ class PaypalController extends Controller
         Session::forget('paypal_payment_id');
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
             return Redirect::route('paypal.buy_points')
-                ->withErrors(['main_error' => [trans('store.paypal.user_cancelled')]]);
+                ->withErrors(['main_error' => [trans('shop::store.paypal.user_cancelled')]]);
         }
         $payment = Payment::get($payment_id, $this->_api_context);
         // PaymentExecution object includes information necessary
@@ -156,13 +156,13 @@ class PaypalController extends Controller
 
             $user->modifyPoints($total_points, 13, $paypal_order->id);
 
-            Session::flash('message', trans('store.paypal.approved').' '.$amount);
+            Session::flash('message', trans('shop::store.paypal.approved').' '.$amount);
 
             return Redirect::route('paypal.buy_points')
                 ->with('success', 'Payment success');
         }
 
         return Redirect::route('paypal.buy_points')
-            ->withErrors(['main_error' => [trans('store.paypal.error')]]);
+            ->withErrors(['main_error' => [trans('shop::store.paypal.error')]]);
     }
 }

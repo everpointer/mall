@@ -37,7 +37,7 @@ class RouteRegister extends AbstractRouteRegister
            // $this->router->get('categories', 'CategoriesController@index');
            //
            //  //Acceso Usuario General(Admin,Persona,Empresa)
-           // $this->router->group(['prefix' => 'user', 'roles' => array_keys(trans('globals.roles')), 'middleware' => ['auth', 'roles']], function () {
+           // $this->router->group(['prefix' => 'user', 'roles' => array_keys(trans('shop::globals.roles')), 'middleware' => ['auth', 'roles']], function () {
            //     $this->router->get('dashboard', 'UserController@dashBoard');
            //
            //     $this->router->get('/', 'UserController@profile');
@@ -193,7 +193,7 @@ class RouteRegister extends AbstractRouteRegister
            //   * here you will be able to find all the routes related to users wish list
            //   */
            //
-           // $this->router->group(['prefix' => 'wishes', 'roles' => array_keys(trans('globals.roles')), 'middleware' => ['auth', 'roles']], function () {
+           // $this->router->group(['prefix' => 'wishes', 'roles' => array_keys(trans('shop::globals.roles')), 'middleware' => ['auth', 'roles']], function () {
            //
            //      //create
            //     $this->router->get('/create', ['uses' => 'OrdersController@createWishList', 'as' => 'orders.create_wish_list']);

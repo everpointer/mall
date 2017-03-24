@@ -12,6 +12,6 @@ class ActionTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        ActionType::createMany(trans('globals.action_types'));
+        ActionType::createMany(trans('shop::globals.action_types'));
     }
 }

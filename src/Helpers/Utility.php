@@ -60,7 +60,7 @@ class Utility
 
                    $points = self::thousandSuffix($options['amount']);
                    if ($options['thousandSuffix']) {
-                       $points .= ' <small>'.trans('store.points').'</small>';
+                       $points .= ' <small>'.trans('shop::store.points').'</small>';
                    }
 
                    return $points;
@@ -70,7 +70,7 @@ class Utility
                   setlocale(LC_MONETARY, config('app.lc_monetary'));
                   $format = '%i';
                   if ($options['discount']) {
-                      $format = str_replace('##', $options['discount'], trans('product.globals.price_after_discount'));
+                      $format = str_replace('##', $options['discount'], trans('shop::product.globals.price_after_discount'));
                   }
 
                   return self::money_format($format, $options['amount']);
@@ -313,7 +313,7 @@ class Utility
     public static function printBarCode($product = null, $type = 'EAN8')
     {
         if ($product == null || !$product) {
-            return trans('globals.barcode_error_msg');
+            return trans('shop::globals.barcode_error_msg');
         } else {
             return \DNS1D::getBarcodeSVG(trim($product->bar_code) != '' ? $product->bar_code : $product->id, $type);
         }

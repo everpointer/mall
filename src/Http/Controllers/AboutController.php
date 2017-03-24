@@ -16,9 +16,9 @@ class AboutController extends Controller
 {
     public function create()
     {
-        $kind_of_request = ['contact' => trans('company.contact'),
-                    'sales'           => trans('company.sales'),
-                    'support'         => trans('company.support'), ];
+        $kind_of_request = ['contact' => trans('shop::company.contact'),
+                    'sales'           => trans('shop::company.sales'),
+                    'support'         => trans('shop::company.support'), ];
 
         $panel = ['center' => ['width' => '12']];
 
@@ -38,8 +38,8 @@ class AboutController extends Controller
         $name = $request->get('name');
         $email = $request->get('email');
         $message_ = $request->get('message');
-        $title = trans('company.email_title_'.$request->get('type_of_request'));
-        $thanks = trans('company.email_thanks_'.$request->get('type_of_request'));
+        $title = trans('shop::company.email_title_'.$request->get('type_of_request'));
+        $thanks = trans('shop::company.email_thanks_'.$request->get('type_of_request'));
 
         return view('emails.contact', compact('thanks', 'title', 'name', 'email', 'message_'));
 
@@ -48,7 +48,7 @@ class AboutController extends Controller
                 $message->from($from_address, $company['website_name']);
                 $message->to($email)
                         ->cc($from_address)
-                        ->subject(trans('about.contact').' :: '.$company['website_name']);
+                        ->subject(trans('shop::about.contact').' :: '.$company['website_name']);
             });
 
         return \Redirect::route('contact')->with('message', $thanks);

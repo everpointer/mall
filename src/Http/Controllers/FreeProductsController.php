@@ -93,12 +93,12 @@ class FreeProductsController extends Controller
         if ($user) {
             //If a user is not trusted, send the error. Avoiding direct access routes to action by invalid user
             if (!$user->isTrusted()) {
-                return redirect()->route('orders.show_cart', [$order->id])->withErrors(trans('freeproduct.unauthorized_access'));
+                return redirect()->route('orders.show_cart', [$order->id])->withErrors(trans('shop::freeproduct.unauthorized_access'));
             }
 
             //You can create free product from a sort order cart or wish list
             if (($order->type != 'cart') && ($order->type != 'wishlist')) {
-                return redirect()->route('orders.show_cart', [$order->id])->withErrors(trans('freeproduct.order_type_invalid'));
+                return redirect()->route('orders.show_cart', [$order->id])->withErrors(trans('shop::freeproduct.order_type_invalid'));
             }
 
             //As is authorized to create, I check order detail
@@ -111,7 +111,7 @@ class FreeProductsController extends Controller
                 $total_points += $orderDetail->quantity * $product->price;
             }
             if ($user->current_points < $total_points) {
-                return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('store.cart_view.insufficient_funds')]]);
+                return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('shop::store.cart_view.insufficient_funds')]]);
             }
 
             $jsonOrder = json_encode($order_content->toArray());
@@ -119,7 +119,7 @@ class FreeProductsController extends Controller
 
             return view('freeproducts.create', compact('jsonOrder', 'panel', 'orderId'));
         } else {
-            return redirect()->route('products')->withErrors(trans('freeproduct.unauthorized_access'));
+            return redirect()->route('products')->withErrors(trans('shop::freeproduct.unauthorized_access'));
         }
     }
 
@@ -141,7 +141,7 @@ class FreeProductsController extends Controller
             $cart_detail = OrderDetail::where('order_id', $request->input('order_id'))->get();
             if ($request->input('draw_number') > $cart_detail->count()) {
                 return redirect()->route('freeproducts.create', [$request->input('order_id')])
-                                     ->withErrors(trans('freeproduct.drawnumber_exceed_total_products'))->withInput();
+                                     ->withErrors(trans('shop::freeproduct.drawnumber_exceed_total_products'))->withInput();
             } else {
                 //Process the order. The process is the same as with a shopping cart. The address is not requested
                 //Direction is taken as the one with the user by default. Not having, it notifies the user to create a.
@@ -196,7 +196,7 @@ class FreeProductsController extends Controller
                     }
 
                     //Send message process Ok and redirect
-                    Session::flash('message', trans('freeproduct.saved_successfully'));
+                    Session::flash('message', trans('shop::freeproduct.saved_successfully'));
 
                     return redirect()->route('freeproducts.show', [$freeproduct->id]);
                 }
@@ -204,7 +204,7 @@ class FreeProductsController extends Controller
         } catch (ModelNotFoundException $e) {
             Log::error($e);
 
-            return redirect()->back()->withErrors(['induced_error' => [trans('freeproduct.error_exception')]])->withInput();
+            return redirect()->back()->withErrors(['induced_error' => [trans('shop::freeproduct.error_exception')]])->withInput();
         }
     }
 
@@ -226,7 +226,7 @@ class FreeProductsController extends Controller
 
             return view('freeproducts.show', compact('freeproduct', 'isParticipating', 'panel'));
         } else {
-            Session::flash('message', trans('freeproduct.freeproduct_not_exist'));
+            Session::flash('message', trans('shop::freeproduct.freeproduct_not_exist'));
 
             return redirect(route('products'));
         }
@@ -277,34 +277,34 @@ class FreeProductsController extends Controller
                                     //Report by email to the participant
                                     $data = ['freeproduct_id' => $id];
                                     Mail::queue('emails.freeproducts.participate', $data, function ($message) use ($user) {
-                                        $message->to($user->email)->subject(trans('email.free_products_participation.subject'));
+                                        $message->to($user->email)->subject(trans('shop::email.free_products_participation.subject'));
                                     });
 
                                     //It is sent to the view (dashboard) where the user can view their participation in it.
-                                    Session::flash('message', trans('freeproduct.congratulations_participate'));
+                                    Session::flash('message', trans('shop::freeproduct.congratulations_participate'));
 
                                     return redirect()->route('freeproducts.show', [$freeproduct->id]);
                                 } else {
                                 }
                             } else {
-                                Session::flash('message', trans('freeproduct.max_participations_for_user'));
+                                Session::flash('message', trans('shop::freeproduct.max_participations_for_user'));
                             }
                         } else {
-                            Session::flash('message', trans('freeproduct.participations_not_available'));
+                            Session::flash('message', trans('shop::freeproduct.participations_not_available'));
                         }
                     } else {
-                        Session::flash('message', trans('freeproduct.not_enough_point'));
+                        Session::flash('message', trans('shop::freeproduct.not_enough_point'));
                     }
                 } else {
-                    Session::flash('message', trans('freeproduct.freeproduct_not_available'));
+                    Session::flash('message', trans('shop::freeproduct.freeproduct_not_available'));
                 }
             } else {
-                Session::flash('message', trans('freeproduct.address_not_registered'));
+                Session::flash('message', trans('shop::freeproduct.address_not_registered'));
             }
 
             return redirect()->route('freeproducts.show', [$id]);
         } else {
-            Session::flash('message', trans('freeproduct.freeproduct_not_exist'));
+            Session::flash('message', trans('shop::freeproduct.freeproduct_not_exist'));
 
             return redirect(route('products'));
         }

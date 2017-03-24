@@ -150,16 +150,16 @@ class CategoriesHelper
                         }
                     }
                 } else {
-                    $father = ''; //trans('globals.action')
+                    $father = ''; //trans('shop::globals.action')
                 }
                 echo '<li class="list-group-item" ng-init="str'.$row['id'].'=\''.$row['name'].'\'" ng-show="(search==\'\'||(str'.$row['id'].'.toLowerCase().indexOf(search.toLowerCase())>-1))?true:false">
 						<div class="row">
 							<div class="col-md-1"><span class="label label-default visible-xs-inline">#ID:</span>  '.$row['id'].'</div>
-		                    <div class="col-md-3"><span class="label label-default visible-xs-inline">'.trans('product.inputs_view.name').':</span>  <a name="category'.$row['id'].'">'.$row['name'].'</a></div>
-		                    <div class="col-md-2"><span class="label label-default visible-xs-inline">'.trans('globals.status').':</span>  '.($row['status'] == 1 ? '<span class="label label-success">'.trans('globals.active').'</span>' :
-                            '<span class="label label-danger">'.trans('globals.inactive').'</span>').'</div>
-		                    <div class="col-md-2"><span class="label label-default visible-xs-inline">'.trans('store.father').':</span>  '.$father.'</div>
-		                    <div class="col-md-2"><span class="label label-default visible-xs-inline">'.trans('globals.type').':</span>  '.$row['type'].'</div>
+		                    <div class="col-md-3"><span class="label label-default visible-xs-inline">'.trans('shop::product.inputs_view.name').':</span>  <a name="category'.$row['id'].'">'.$row['name'].'</a></div>
+		                    <div class="col-md-2"><span class="label label-default visible-xs-inline">'.trans('shop::globals.status').':</span>  '.($row['status'] == 1 ? '<span class="label label-success">'.trans('shop::globals.active').'</span>' :
+                            '<span class="label label-danger">'.trans('shop::globals.inactive').'</span>').'</div>
+		                    <div class="col-md-2"><span class="label label-default visible-xs-inline">'.trans('shop::store.father').':</span>  '.$father.'</div>
+		                    <div class="col-md-2"><span class="label label-default visible-xs-inline">'.trans('shop::globals.type').':</span>  '.$row['type'].'</div>
 		                    <div class="col-md-2"><a href="'.route('wpanel.category.edit', $row['id']).'">Edit</a></div>
 		                </div>
 					</li>';

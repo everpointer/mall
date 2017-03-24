@@ -147,15 +147,15 @@ class OrdersController extends Controller
 
             //callback url
             if ($destination == 'wishlist') {
-                Session::push('message', trans('store.productAddedToWishList'));
+                Session::push('message', trans('shop::store.productAddedToWishList'));
 
                 return redirect()->route('orders.show_wish_list');
             } elseif ($destination == 'later') {
-                Session::push('message', trans('store.productsSavedForLater'));
+                Session::push('message', trans('shop::store.productsSavedForLater'));
 
                 return redirect()->route('products.show', [$productId]);
             } else {
-                Session::push('message', trans('store.productAdded'));
+                Session::push('message', trans('shop::store.productAdded'));
 
                 return redirect()->route('orders.show_cart');
             }
@@ -203,7 +203,7 @@ class OrdersController extends Controller
             Session::put('user.cart_content', $user_cart_content);
             Session::put('user.cart', $user_cart);
             Session::save();
-            Session::push('message', trans('store.productAdded'));
+            Session::push('message', trans('shop::store.productAdded'));
 
             if ($destination == 'wishlist') {
                 /*
@@ -279,10 +279,10 @@ class OrdersController extends Controller
                 ]
             );
 
-            Session::push('message', trans('store.productAddedToWishList').', '.trans('globals.reference_label').$order->description);
+            Session::push('message', trans('shop::store.productAddedToWishList').', '.trans('shop::globals.reference_label').$order->description);
         } else {
             Session::push('messageClass', 'alert-danger');
-            Session::push('message', trans('store.wishlist_no_exists').', '.trans('globals.reference_label').$order->description);
+            Session::push('message', trans('shop::store.wishlist_no_exists').', '.trans('shop::globals.reference_label').$order->description);
         }
 
         return redirect()->route('orders.show_wish_list_by_id', [$order->id]);
@@ -336,7 +336,7 @@ class OrdersController extends Controller
             //if the wish list requested is in our records, a error is sent
             if ($newList) {
                 Session::push('messageClass', 'alert-danger');
-                Session::push('message', trans('store.form_create_list_view.message_fail'));
+                Session::push('message', trans('shop::store.form_create_list_view.message_fail'));
 
                 return \Response::json(['success' => true], 200);
             } else {
@@ -348,7 +348,7 @@ class OrdersController extends Controller
                 $newList->status = 'open';
                 $newList->save();
 
-                Session::push('message', trans('store.form_create_list_view.message_success'));
+                Session::push('message', trans('shop::store.form_create_list_view.message_success'));
 
                 return \Response::json(['success' => true], 200);
             }
@@ -389,7 +389,7 @@ class OrdersController extends Controller
 
         $hasLaterCart = true;
 
-        $wishListName = trans('store.basic_wish_list');
+        $wishListName = trans('shop::store.basic_wish_list');
 
         if ($user) {
             /*
@@ -597,7 +597,7 @@ class OrdersController extends Controller
                     if ($detail->quantity > $detail->product->stock) {
                         $detail->quantity = $detail->product->stock;
                         $detail->save();
-                        $validation_message[] = trans('store.cart_view.item_changed_stock1').' '.$detail->product->name.' '.trans('store.cart_view.item_changed_stock2');
+                        $validation_message[] = trans('shop::store.cart_view.item_changed_stock1').' '.$detail->product->name.' '.trans('shop::store.cart_view.item_changed_stock2');
                     }
 
                     //saving the product listed to not show it on suggestion view
@@ -636,7 +636,7 @@ class OrdersController extends Controller
                     if ($quantity > $product->stock) {
                         $quantity = $product->stock;
 
-                        $validation_message[] = trans('store.cart_view.item_changed_stock1').' '.$product->name.' '.trans('store.cart_view.item_changed_stock2');
+                        $validation_message[] = trans('shop::store.cart_view.item_changed_stock1').' '.$product->name.' '.trans('shop::store.cart_view.item_changed_stock2');
                     }
 
                     $cart_details[] = [
@@ -727,7 +727,7 @@ class OrdersController extends Controller
         $basicCart = $basicCart->first();
 
         if (!($basicCart)) {
-            Session::push('message', trans('store.productNotFound'));
+            Session::push('message', trans('shop::store.productNotFound'));
         } else {
             if ($product->type != 'item') {
                 switch ($product->type) {
@@ -740,7 +740,7 @@ class OrdersController extends Controller
             $orderDetail = OrderDetail::where('order_id', $basicCart->id)->where('product_id', $product->id)->first();
             $orderDetail->delete();
 
-            Session::push('message', trans('store.productDeleted'));
+            Session::push('message', trans('shop::store.productDeleted'));
         }
 
         if (($orderName == 'wishlist') || ($orderName == 'later')) {
@@ -866,9 +866,9 @@ class OrdersController extends Controller
         }
 
         if ($destination == 'later') {
-            Session::push('message', trans('store.productSavedForLater'));
+            Session::push('message', trans('shop::store.productSavedForLater'));
         } elseif ($destination == 'cart') {
-            Session::push('message', trans('store.productAdded'));
+            Session::push('message', trans('shop::store.productAdded'));
         }
 
         return redirect()->route('orders.show_cart');
@@ -950,7 +950,7 @@ class OrdersController extends Controller
         }
 
         if ($user->current_points < $total_points && config('app.payment_method') == 'Points') {
-            return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('store.cart_view.insufficient_funds')]]);
+            return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('shop::store.cart_view.insufficient_funds')]]);
         } else {
             $panel = [
                 'center' => ['width' => '12'],
@@ -997,13 +997,13 @@ class OrdersController extends Controller
                 $totalAmount += ($orderDetail->quantity * $orderDetail->price);
 
                 if ($product->stock < $orderDetail->quantity) {
-                    return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('store.insufficientStock')]]);
+                    return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('shop::store.insufficientStock')]]);
                 }
             }
 
             //Checks if the user has points for the cart price
             if ($user->current_points < $total_points && config('app.payment_method') == 'Points') {
-                return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('store.cart_view.insufficient_funds')]]);
+                return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('shop::store.cart_view.insufficient_funds')]]);
             } else {
                 //Copies the Address to a new one and attaches it to the order or replaces the old one
                 $cartAddress = Address::find($cart->address_id);
@@ -1045,7 +1045,7 @@ class OrdersController extends Controller
                 return view('orders.cart', compact('cart', 'user', 'panel', 'isResume', 'cartAddress', 'totalItems', 'totalAmount'));
             }
         } else {
-            return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('store.errorOnAddress')]]);
+            return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('shop::store.errorOnAddress')]]);
         }
     }
 
@@ -1063,7 +1063,7 @@ class OrdersController extends Controller
         if ($errors) {
             return redirect()->route('orders.show_cart')->withErrors(['main_error' => [$errors]]);
         } else {
-            Session::push('message', trans('store.order_placed'));
+            Session::push('message', trans('shop::store.order_placed'));
 
             return redirect()->route('orders.show_orders');
         }
@@ -1091,7 +1091,7 @@ class OrdersController extends Controller
          * provide control on the processed message to users
          * @var array
          */
-        $message['msg'] = trans('store.cancelled_order');
+        $message['msg'] = trans('shop::store.cancelled_order');
         $message['class'] = 'alert alert-success';
 
         /**
@@ -1144,7 +1144,7 @@ class OrdersController extends Controller
 
             $order->save();
         } else {
-            $message['msg'] = trans('store.no_order_message');
+            $message['msg'] = trans('shop::store.no_order_message');
             $message['class'] = 'alert alert-danger';
         }
 
@@ -1182,7 +1182,7 @@ class OrdersController extends Controller
                 'status'         => 'new',
             ]);
 
-            Session::push('message', trans('store.orders_index.order_started').' (#'.$order->id.')');
+            Session::push('message', trans('shop::store.orders_index.order_started').' (#'.$order->id.')');
 
             return redirect(route('orders.pendingOrders'));
         } else {
@@ -1226,7 +1226,7 @@ class OrdersController extends Controller
                     $band = $band === 'closed' ? true : false;
                 }
             }
-            Session::push('message', trans('store.orders_index.order_sent').' (#'.$order->id.')'.(!$band ? '' : trans('store.order_closed_message')));
+            Session::push('message', trans('shop::store.orders_index.order_sent').' (#'.$order->id.')'.(!$band ? '' : trans('shop::store.order_closed_message')));
 
             return redirect(route('orders.pendingOrders'));
         } else {
@@ -1250,7 +1250,7 @@ class OrdersController extends Controller
             $order->end_date = DB::raw('NOW()');
             // $order->end_date = Carbon::now(); Esto lo cambie porque no me parece guardar la fecha de php en la bd...
             $order->save();
-            Session::push('message', trans('store.orders_index.order_received').' (#'.$order->id.')');
+            Session::push('message', trans('shop::store.orders_index.order_received').' (#'.$order->id.')');
 
             Notice::create([
                 'user_id'        => $order->seller_id,
@@ -1417,9 +1417,9 @@ class OrdersController extends Controller
 
             $order->delete();
 
-            Session::push('message', trans('store.wish_list_view.success_deleting_msg'));
+            Session::push('message', trans('shop::store.wish_list_view.success_deleting_msg'));
         } else {
-            Session::push('message', trans('store.wish_list_view.error_deleting_msg'));
+            Session::push('message', trans('shop::store.wish_list_view.error_deleting_msg'));
         }
 
         return redirect()->back();
@@ -1446,26 +1446,26 @@ class OrdersController extends Controller
     public function showDetailsProductCart($id, Request $request)
     {
         if (!$request->wantsJson()) {
-            return json_encode(['message' => trans('globals.error_not_available')]);
+            return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
         $cart = Order::ofType('cart')->select('id')->where('user_id', \Auth::user()->id)->first();
         if (!$cart) {
-            return json_encode(['message' => trans('globals.error_not_available')]);
+            return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
         $product = Product::find($id);
         if (!$product) {
-            return json_encode(['message' => trans('globals.error_not_available')]);
+            return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
         $order = OrderDetail::where('order_id', $cart->id)->where('product_id', $product->id)->first();
         if (!$order) {
-            return json_encode(['message' => trans('globals.error_not_available')]);
+            return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
         $seller = User::select('nickname')->find($product->user_id);
         $product->seller = $seller->nickname;
         $return = ['product' => $product, 'order' => $order];
         if ($product->type != 'item') {
             $virtual = VirtualProduct::where('product_id', $product->id)->first();
-            $arrayV = ['type' => $product->type, 'title' => trans('product.globals.digital_item').' '.trans('product.'.$product->type)];
+            $arrayV = ['type' => $product->type, 'title' => trans('shop::product.globals.digital_item').' '.trans('shop::product.'.$product->type)];
             switch ($product->type) {
                 case 'key':
                     $virtualOrder = VirtualProductOrder::where('virtual_product_id', $virtual->id)->where('order_id', $order->order_id)->where('status', 1)->get();
@@ -1600,19 +1600,19 @@ class OrdersController extends Controller
     public function deliveryVirtualProduct($orderId, $productId, Request $request, $ajax = true)
     {
         if ($ajax && !$request->wantsJson()) {
-            return json_encode(['message' => trans('globals.error_not_available'), 'json' => false]);
+            return json_encode(['message' => trans('shop::globals.error_not_available'), 'json' => false]);
         }
         $Order = Order::find($orderId);
         $product = Product::find($productId);
         if (!$Order || !$product) {
-            return json_encode(['message' => trans('globals.error_not_available'), 'id' => false]);
+            return json_encode(['message' => trans('shop::globals.error_not_available'), 'id' => false]);
         }
         if ($Order->status != 'pending' && $Order->status != 'sent') {
-            return json_encode(['message' => trans('globals.error_not_available'), 'status' => false]);
+            return json_encode(['message' => trans('shop::globals.error_not_available'), 'status' => false]);
         }
         $virtuals = VirtualProduct::where('product_id', $product->id)->where('status', 'paid')->get();
         if (!count($virtuals->toArray())) {
-            return json_encode(['message' => trans('globals.error_not_available'), 'virtual' => false]);
+            return json_encode(['message' => trans('shop::globals.error_not_available'), 'virtual' => false]);
         }
         $detail = OrderDetail::where('order_id', $Order->id)->where('product_id', $product->id)->first();
         $user = User::find($Order->user_id);
@@ -1621,7 +1621,7 @@ class OrdersController extends Controller
             if ($virtualOrders) {
                 if ($virtualOrders->email) {
                     Mail::queue('emails.virtualsProducts', ['product' => $product, 'row' => $row, 'order' => $virtualOrders, 'user' => $user], function ($message) use ($virtualOrders) {
-                        $message->to($virtualOrders->email)->subject(trans('email.delivery_virtuals_products.subject'));
+                        $message->to($virtualOrders->email)->subject(trans('shop::email.delivery_virtuals_products.subject'));
                     });
                 }
                 $row->status = 'Sent';
@@ -1643,13 +1643,13 @@ class OrdersController extends Controller
             if (!$ajax) {
                 return 'Sent';
             } else {
-                return json_encode(['message' => trans('store.delivery_successfully').' '.trans('store.closedOrders'), 'success' => true, 'closed' => true]);
+                return json_encode(['message' => trans('shop::store.delivery_successfully').' '.trans('shop::store.closedOrders'), 'success' => true, 'closed' => true]);
             }
         } else {
             if (!$ajax) {
                 return 'success';
             } else {
-                return json_encode(['message' => trans('store.delivery_successfully'), 'success' => true]);
+                return json_encode(['message' => trans('shop::store.delivery_successfully'), 'success' => true]);
             }
         }
     }
@@ -1692,12 +1692,12 @@ class OrdersController extends Controller
                 $new_comment = Comment::create($data);
 
                 if ($order->user_id == $user->id) {
-                    $mail_subject = trans('email.order_commented.comment_from_user');
+                    $mail_subject = trans('shop::email.order_commented.comment_from_user');
                     $seller_user = User::find($order->seller_id);
                     $email = $seller_user->email;
                 }
                 if ($order->seller_id == $user->id) {
-                    $mail_subject = trans('email.order_commented.comment_from_seller');
+                    $mail_subject = trans('shop::email.order_commented.comment_from_seller');
                     $buyer_user = User::find($order->user_id);
                     $email = $buyer_user->email;
                 }
@@ -1720,7 +1720,7 @@ class OrdersController extends Controller
         } else {
             return \Response::json(['success' => false, 'order_id' => $order_id], 200);
         }
-        Session::push('message', trans('store.create_comment_modal.added_order_comment'));
+        Session::push('message', trans('shop::store.create_comment_modal.added_order_comment'));
 
         return \Response::json(['success' => true, 'order_id' => $order_id], 200);
     }
@@ -1805,7 +1805,7 @@ class OrdersController extends Controller
 
                 $seller_user = User::find($order->seller_id);
                 $email = $seller_user->email;
-                $mail_subject = trans('email.order_rated.subject');
+                $mail_subject = trans('shop::email.order_rated.subject');
                 $data = [
                     'order_id'      => $order_id,
                     'subject'       => $mail_subject,
@@ -1831,12 +1831,12 @@ class OrdersController extends Controller
                     'status'         => 'new',
                 ]);
 
-                return \Response::json(['success' => true, 'message' => trans('store.order_rate_view.http_messages.success'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
+                return \Response::json(['success' => true, 'message' => trans('shop::store.order_rate_view.http_messages.success'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
             } else {
-                return \Response::json(['success' => false, 'message' => trans('store.order_rate_view.http_messages.no_order'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
+                return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_order'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
             }
         } else {
-            return \Response::json(['success' => false, 'message' => trans('store.order_rate_view.http_messages.no_user'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
+            return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
         }
     }
 
@@ -1888,7 +1888,7 @@ class OrdersController extends Controller
 
                     $seller_user = User::find($order->seller_id);
                     $email = $seller_user->email;
-                    $mail_subject = trans('email.product_rated.subject');
+                    $mail_subject = trans('shop::email.product_rated.subject');
                     $data = [
                         'product_id'    => $product->id,
                         'subject'       => $mail_subject,
@@ -1912,15 +1912,15 @@ class OrdersController extends Controller
                         'status'         => 'new',
                     ]);
 
-                    return \Response::json(['success' => true, 'message' => trans('store.order_rate_view.http_messages.success'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
+                    return \Response::json(['success' => true, 'message' => trans('shop::store.order_rate_view.http_messages.success'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
                 } else {
-                    return \Response::json(['success' => false, 'message' => trans('store.order_rate_view.http_messages.no_order'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
+                    return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_order'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
                 }
             } else {
-                return \Response::json(['success' => false, 'message' => trans('store.order_rate_view.http_messages.no_user'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
+                return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
             }
         } else {
-            return \Response::json(['success' => false, 'message' => trans('store.order_rate_view.http_messages.no_user'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
+            return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
         }
     }
 

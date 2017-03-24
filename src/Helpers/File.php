@@ -161,7 +161,7 @@ class File
                 $uploaded[] = (explode(self::$default_path, str_replace('\\', '/', $return))[1]);
             } else {
                 $MaxFilesize = self::formatBytes($file->getMaxFilesize());
-                $uploaded[] = 'Error: '.trans('globals.file_upload_error', ['MaxFilesize' => $MaxFilesize]);
+                $uploaded[] = 'Error: '.trans('shop::globals.file_upload_error', ['MaxFilesize' => $MaxFilesize]);
             }
         }
 

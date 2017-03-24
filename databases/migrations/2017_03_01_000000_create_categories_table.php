@@ -26,7 +26,7 @@ class CreateCategoriesTable extends Migration
             $table->string('icon');
             $table->string('image');
             $table->boolean('status')->default(1);
-            $table->enum('type', array_keys(trans('globals.type_categories')));
+            $table->enum('type', array_keys(trans('shop::globals.type_categories')));
 
             $table->foreign('category_id')->references('id')->on('categories');
 

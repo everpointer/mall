@@ -99,7 +99,7 @@ class AddressesController extends Controller
         $v = \Validator::make($request->all(), $this->form_rules);
 
         if ($v->fails()) {
-            return \Response::json(['success' => false, 'message' => trans('address.error_validation'), 'class' => 'alert alert-danger']);
+            return \Response::json(['success' => false, 'message' => trans('shop::address.error_validation'), 'class' => 'alert alert-danger']);
         }
 
         $this->resetDefault();
@@ -118,12 +118,12 @@ class AddressesController extends Controller
         $address->save();
 
         if ($address) {
-            \Session::put('message', trans('address.success_save'));
+            \Session::put('message', trans('shop::address.success_save'));
             \Session::save();
 
             return \Response::json(['success' => true, 'callback' => '/user/address']);
         } else {
-            return \Response::json(['success' => false, 'message' => trans('address.error_updating'), 'class' => 'alert alert-danger']);
+            return \Response::json(['success' => false, 'message' => trans('shop::address.error_updating'), 'class' => 'alert alert-danger']);
         }
     }
 
@@ -169,7 +169,7 @@ class AddressesController extends Controller
         $v = \Validator::make($request->all(), $this->form_rules);
 
         if ($v->fails()) {
-            return \Response::json(['success' => false, 'message' => trans('address.error_validation'), 'class' => 'alert alert-danger']);
+            return \Response::json(['success' => false, 'message' => trans('shop::address.error_validation'), 'class' => 'alert alert-danger']);
         }
 
         $address = Address::find($id);
@@ -177,12 +177,12 @@ class AddressesController extends Controller
         $address->save();
 
         if ($address) {
-            \Session::put('message', trans('address.success_update'));
+            \Session::put('message', trans('shop::address.success_update'));
             \Session::save();
 
             return \Response::json(['success' => true, 'callback' => '/user/address']);
         } else {
-            return \Response::json(['success' => false, 'message' => trans('address.error_updating'), 'class' => 'alert alert-danger']);
+            return \Response::json(['success' => false, 'message' => trans('shop::address.error_updating'), 'class' => 'alert alert-danger']);
         }
     }
 

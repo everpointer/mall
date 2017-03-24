@@ -135,13 +135,13 @@ class SelectWinnersFreeProducts extends Command
                             //Notify the user that was selected as winner of that freeproduct
                             $data = ['product' => $product_award];
                             Mail::queue('emails.freeproducts.winner', $data, function ($message) use ($winner) {
-                                $message->to($winner->email)->subject(trans('email.free_products_winner.subject'));
+                                $message->to($winner->email)->subject(trans('shop::email.free_products_winner.subject'));
                             });
                             $this->info('email sent notice that won');
                             //He also sent an email indicating that a new order was created.(tracking)
                             $data = ['orderId' => $newOrder->id];
                             Mail::queue('emails.neworder', $data, function ($message) use ($winner) {
-                                $message->to($winner->email)->subject(trans('email.new_order_for_user.subject'));
+                                $message->to($winner->email)->subject(trans('shop::email.new_order_for_user.subject'));
                             });
                             $this->info('email I sent notice that an order for the product won');
                         }

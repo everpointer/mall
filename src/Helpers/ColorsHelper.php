@@ -135,7 +135,7 @@ class ColorsHelper
     {
         $array = [];
         foreach ($this->colors as $row) {
-            $array[$row['code']] = trans('colors.'.$row['name']);
+            $array[$row['code']] = trans('shop::colors.'.$row['name']);
         }
 
         return $array;

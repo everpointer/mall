@@ -30,22 +30,22 @@ class VirtualProductOrdersController extends Controller
     public function editKey($id, Request $request)
     {
         if (!$request->wantsJson()) {
-            return ['message' => trans('globals.error_not_available')];
+            return ['message' => trans('shop::globals.error_not_available')];
         }
         if (!$request->has('email')) {
-            return ['message' => trans('globals.error_not_available')];
+            return ['message' => trans('shop::globals.error_not_available')];
         }
         $cart = Order::ofType('cart')->select('id', 'status')->where('user_id', \Auth::id())->first();
         if (!$cart) {
-            return ['message' => trans('globals.error_not_available')];
+            return ['message' => trans('shop::globals.error_not_available')];
         }
         $product = Product::select('id', 'stock')->find($id);
         if (!$product) {
-            return ['message' => trans('globals.error_not_available')];
+            return ['message' => trans('shop::globals.error_not_available')];
         }
         $order = OrderDetail::where('order_id', $cart->id)->where('product_id', $product->id)->first();
         if (!$order) {
-            return ['message' => trans('globals.error_not_available')];
+            return ['message' => trans('shop::globals.error_not_available')];
         }
         $virtual = VirtualProduct::select('id')->where('product_id', $product->id)->first();
         if ($request->has('delete')) {
@@ -78,7 +78,7 @@ class VirtualProductOrdersController extends Controller
         } elseif ($request->has('increment')) {
             $num2 = VirtualProductOrder::where('virtual_product_id', $virtual->id)->where('status', 1)->get()->toArray();
             if ((count($num2) + 1) > $product->stock) {
-                return ['message' => trans('product.virtualProductOrdersController_controller.no_stock')];
+                return ['message' => trans('shop::product.virtualProductOrdersController_controller.no_stock')];
             }
             $virtualOrder = new VirtualProductOrder();
             $virtualOrder->order_id = $order->order_id;
@@ -93,7 +93,7 @@ class VirtualProductOrdersController extends Controller
             return ['insert' => true, 'num' => count($num)];
         }
 
-        return ['message' => trans('globals.error_not_available')];
+        return ['message' => trans('shop::globals.error_not_available')];
     }
 
     public function modalSeeKeysPurchased()
@@ -104,20 +104,20 @@ class VirtualProductOrdersController extends Controller
     public function showKeyVirtualProductPurchased($idProduct, $idOrder, Request $request)
     {
         if (!$request->wantsJson()) {
-            return ['message' => trans('globals.error_not_available')];
+            return ['message' => trans('shop::globals.error_not_available')];
         }
         $product = Product::find($idProduct);
         $order = Order::find($idOrder);
         $virtual = VirtualProduct::select('id')->where('product_id', $idProduct)->get()->toArray();
         if (!$product || !$order || !count($virtual)) {
-            return ['message' => trans('globals.error_not_available'), 'id' => false];
+            return ['message' => trans('shop::globals.error_not_available'), 'id' => false];
         }
         if ($order->user_id != \Auth::id()) {
-            return ['message' => trans('globals.error_not_available'), 'my' => false];
+            return ['message' => trans('shop::globals.error_not_available'), 'my' => false];
         }
         $virtualOrder = VirtualProductOrder::where('order_id', $order->id)->whereIn('virtual_product_id', $virtual)->get();
         if (!count($virtualOrder)) {
-            return ['message' => trans('globals.error_not_available'), 'order' => false];
+            return ['message' => trans('shop::globals.error_not_available'), 'order' => false];
         }
         $user = User::find(\Auth::id());
         $return = ['info' => [

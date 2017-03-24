@@ -180,10 +180,10 @@ class Product extends Model
     public function getStatusLettersAttribute()
     {
         if ($this->status == 0) {
-            return trans('globals.inactive');
+            return trans('shop::globals.inactive');
         }
 
-        return trans('globals.active');
+        return trans('shop::globals.active');
     }
 
     public function scopeFree($query)

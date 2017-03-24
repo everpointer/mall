@@ -25,7 +25,7 @@ class CreateVirtualProductsTable extends Migration
             $table->string('url')->nullable(); /*url del archivo al cual le hizo upload (.rar .zip), esto se descarga dentro de antvel*/
             $table->integer('amount')->nullable(); /*puntos a recibir en la venta de puntos y gift card*/
             $table->dateTime('expiration_date')->nullable(); /*fecha de expiracion del producto, despues de esta fecha se coloca inactivo el producto*/
-            $table->enum('status', array_keys(trans('globals.order_status')));
+            $table->enum('status', array_keys(trans('shop::globals.order_status')));
             $table->timestamps();
         });
     }
