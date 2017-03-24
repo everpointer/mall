@@ -12,16 +12,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $panel = [
-            'center' => [
-                'width' => 10,
-            ],
-            'left' => [
-                'width' => 2,
-                'class' => 'home-no-padding',
-            ],
-        ];
-
         $helperProd = new ProductsHelper();
 
         $carousel = $helperProd->suggest('carousel');
@@ -71,7 +61,7 @@ class HomeController extends Controller
 
         // $this->createTags();
 
-        return view('home', compact('panel', 'suggestion', 'allWishes', 'events', 'tagsCloud', 'jumbotronClasses', 'i', 'banner'));
+        return view('home', compact('suggestion', 'allWishes', 'events', 'tagsCloud', 'jumbotronClasses', 'i', 'banner'));
     }
 
     private function createTags()

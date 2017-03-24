@@ -27,8 +27,17 @@ class ModuleServiceProvider extends Module
         $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
 
         $this->publishes([
-            realpath(__DIR__ . '/../databases/seeds/') => database_path('seeds/')
-        ], 'seeds');
+            realpath(__DIR__ . '/../databases/seeds/') => database_path('seeds/'),
+            realpath(__DIR__ . '/../config/shop.php') => config_path('shop.php')
+        ], 'shop');
+    }
+
+    public function register()
+    {
+        $this->mergeConfigFrom(
+            realpath(__DIR__ . '/../config/shop.php'),
+            'shop'
+        );
     }
 
     public static function description()

@@ -9,7 +9,6 @@ namespace Notadd\Shop\Helpers;
  */
 
 use Notadd\Shop\Models\Category;
-use Notadd\Shop\Helpers\CategoriesHelper;
 use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Http\Controllers\UserController;
 use Notadd\Shop\Http\Controllers\ProductsController;
