@@ -10,9 +10,9 @@ namespace Notadd\Shop\Http\Controllers;
 
 use Notadd\Shop\Models\User;
 use Notadd\Shop\Models\Order;
-use Notadd\Shop\Person;
+use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Product;
-use Notadd\Shop\Business;
+use Notadd\Shop\Models\Business;
 use Notadd\Shop\Helpers\File;
 use Notadd\Shop\Helpers\UserHelper;
 use Illuminate\Http\Request;

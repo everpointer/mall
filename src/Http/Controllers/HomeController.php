@@ -29,7 +29,7 @@ class HomeController extends Controller
         $helperProd->resetHaystack(); // reseting session id validator
 
         $events = [];
-        if (config('app.offering_free_products')) {
+        if (config('shop.offering_free_products')) {
             $events = FreeProduct::getNextEvents([
                 'id',
                 'description',
@@ -49,9 +49,6 @@ class HomeController extends Controller
             $allWishes = Order::ofType('wishlist')->where('user_id', $user->id)->where('description', '<>', '')->get();
         }
 
-        $i = 0; // carousel implementation
-        $jumbotronClasses = ['jumbotron-box-left', 'jumbotron-box-right']; //carousel implementation
-
         $banner = [
             '/img/banner/01.png',
             '/img/banner/02.png',
@@ -59,9 +56,7 @@ class HomeController extends Controller
             '/img/banner/04.png',
         ];
 
-        // $this->createTags();
-
-        return view('home', compact('suggestion', 'allWishes', 'events', 'tagsCloud', 'jumbotronClasses', 'i', 'banner'));
+        return response()->json(compact('suggestion', 'allWishes', 'events', 'tagsCloud', 'banner'));
     }
 
     private function createTags()

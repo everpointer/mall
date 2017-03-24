@@ -23,7 +23,7 @@ class RouteRegister extends AbstractRouteRegister
 
            $this->router->group(['prefix' => 'home'], function () {
                $this->router->get('/', HomeController::class . '@index');
-            });
+           });
 
            //  // Product list
            // $this->router->get('products', ['uses' => 'ProductsController@index', 'as' => 'products']);

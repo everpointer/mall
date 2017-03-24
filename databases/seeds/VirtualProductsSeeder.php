@@ -6,7 +6,7 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Business as Business;
+use Notadd\Shop\Models\Business as Business;
 use Notadd\Shop\Models\Product as Product;
 use Notadd\Shop\Models\VirtualProduct;
 use Faker\Factory as Faker;

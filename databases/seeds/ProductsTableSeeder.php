@@ -8,7 +8,7 @@
  */
 use Notadd\Shop\Models\Product as Product;
 use Faker\Factory as Faker;
-use Notadd\Shop\Business as Business;
+use Notadd\Shop\Models\Business as Business;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Notadd\Shop\Models\ProductOffer as ProductOffer;

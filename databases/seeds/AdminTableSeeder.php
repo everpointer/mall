@@ -6,10 +6,10 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Person;
-use Notadd\Shop\Business;
 use Faker\Factory as Faker;
+use Notadd\Shop\Models\Person;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\Business;
 use Illuminate\Support\Facades\Hash;
 
 class AdminTableSeeder extends Seeder

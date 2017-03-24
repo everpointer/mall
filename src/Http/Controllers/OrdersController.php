@@ -15,7 +15,7 @@ use Notadd\Shop\Models\Notice;
 use Notadd\Shop\Models\Address;
 use Notadd\Shop\Comment;
 use Notadd\Shop\Models\Product;
-use Notadd\Shop\Business;
+use Notadd\Shop\Models\Business;
 use Carbon\Carbon;
 use Notadd\Shop\Models\OrderDetail;
 use Notadd\Shop\Models\VirtualProduct;
