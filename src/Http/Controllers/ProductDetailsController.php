@@ -58,9 +58,9 @@ class ProductDetailsController extends Controller
                 'all'               => trans('shop::globals.all'),
                 'item'              => trans('shop::product.controller.item'),
                 'key'               => trans('shop::product.globals.digital_item').' '.trans('shop::product.globals.key'),
-                // 'software'       =>trans("product.globals.digital_item").' '.trans("product.globals.software"),
-                // 'software_key'   =>trans("product.globals.digital_item").' '.trans("product.controller.software_key"),
-                // 'gift_card'      =>trans("product.controller.gift_card")
+                // 'software'       => trans("shop::product.globals.digital_item").' '.trans("shop::product.globals.software"),
+                // 'software_key'   => trans("shop::product.globals.digital_item").' '.trans("shop::product.controller.software_key"),
+                // 'gift_card'      => trans("shop::product.controller.gift_card")
             ];
     }
 

@@ -45,12 +45,12 @@ class ActionType extends Model
 
     public function getNoticeTemplateAttribute()
     {
-        return trans("notices.templates.$this->source_type:$this->action");
+        return trans("shop::notices.templates.$this->source_type:$this->action");
     }
 
     public function getLinkAttribute()
     {
-        return trans("notices.links.$this->source_type");
+        return trans("shop::notices.links.$this->source_type");
     }
 
     public function scopeUnique($query, $input)

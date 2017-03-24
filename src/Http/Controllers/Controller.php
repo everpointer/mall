@@ -2,23 +2,18 @@
 
 namespace Notadd\Shop\Http\Controllers;
 
-use Notadd\Shop\Eloquent\Collection;
 use Notadd\Shop\Eloquent\Model;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Notadd\Shop\Eloquent\Collection;
+use Notadd\Foundation\Routing\Abstracts\Controller as BaseController;
 
 abstract class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
     protected static function isAssoc($arr)
     {
         $len = count($arr);
         $keys = array_keys($arr);
         for ($i = 0; $i < $len; $i++) {
-            if ($i !== $key[$i]) {
+            if ($i !== $keys[$i]) {
                 return true;
             }
         }
