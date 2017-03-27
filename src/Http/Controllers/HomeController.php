@@ -13,11 +13,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // $seeder = new \DatabaseSeeder();
-        // dd($seeder->run());
+        $seeder = new \DatabaseSeeder();
+        dd($seeder->run());
 
-        $members = Member::with('profile')->get()->toArray();
-        dd($members);
+        // $members = Member::with('profile')->get()->toArray();
+        // dd($members);
 
         $helperProd = new ProductsHelper();
 

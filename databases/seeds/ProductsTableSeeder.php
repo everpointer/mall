@@ -9,9 +9,9 @@
 use Faker\Factory as Faker;
 use Notadd\Shop\Models\Product;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Notadd\Shop\Models\Business as Business;
-use Notadd\Shop\Models\ProductOffer as ProductOffer;
+use Notadd\Shop\Models\Category;
+use Notadd\Shop\Models\Business;
+use Notadd\Shop\Models\ProductOffer;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -19,7 +19,7 @@ class ProductsTableSeeder extends Seeder
     {
         $faker = Faker::create();
         $businesses = Business::get();
-        $numCategories = DB::table('categories')->count();
+        $numCategories = Category::count();
         for ($i = 0; $i < 150; $i++) {
             $price = $faker->numberBetween(1, 99);
             $stock = $faker->numberBetween(20, 50);
