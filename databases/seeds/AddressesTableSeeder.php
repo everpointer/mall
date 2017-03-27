@@ -17,11 +17,11 @@ class AddressesTableSeeder extends Seeder
     {
         $faker = Faker::create();
         // Category
-        for ($i = 0; $i < 10; $i++) {
-            $user = Member::select(['id'])->where('id', 1)->first();
-            dd($user);
+        for ($i = 0; $i < 3; $i++) {
+            // $user = Member::select(['id'])->where('id', 1)->first();
             $address = Address::create([
-                'user_id'      => ($i <= 2) ? 4 : $user->id,
+                // 'user_id'      => ($i <= 2) ? 4 : $user->id,
+                'user_id'      => 1,
                 'default'      => 0,
                 'line1'        => $faker->streetAddress,
                 'line2'        => $faker->streetAddress,

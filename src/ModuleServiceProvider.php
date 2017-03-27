@@ -9,6 +9,7 @@
 
 namespace Notadd\Shop;
 
+use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Address;
 use Notadd\Member\Models\Member;
 use Illuminate\Events\Dispatcher;
@@ -35,6 +36,14 @@ class ModuleServiceProvider extends Module
 
         Member::registerInjectedRelation('address', function ($model) {
             return $model->hasMany(Address::class, 'user_id', 'id');
+        });
+
+        Member::registerInjectedRelation('profile', function ($model) {
+            // if (in_array($model->role, ['business', 'nonprofit'])) {
+            //     return $model->hasOne('App\Business');
+            // }
+
+            return $model->hasOne(Person::class, 'user_id', 'id');
         });
     }
 

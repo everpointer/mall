@@ -9,6 +9,7 @@ namespace Notadd\Shop\Models;
  */
 
 use Notadd\Shop\Eloquent\Model;
+use Notadd\Member\Models\Member;
 
 class Person extends Model
 {
@@ -42,8 +43,8 @@ class Person extends Model
     public static function create(array $attr = [])
     {
         if (! isset($attr['user_id']) && isset($attr['user'])) {
-            $attr['user']['role'] = @$attr['user']['role'] ?: 'person';
-            $user                 = User::create($attr['user']);
+            // $attr['user']['role'] = @$attr['user']['role'] ?: 'person';
+            $user                 = Member::create($attr['user']);
             unset($attr['user']);
             $attr['user_id'] = $user->id;
         }
@@ -56,7 +57,7 @@ class Person extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(Member::class, 'user_id', 'id');
     }
 
     public function relationsToArray()
@@ -81,6 +82,6 @@ class Person extends Model
 
     public function setUpdatedAtAttribute($value)
     {
-        $this->belongsTo('App\User')->updated_at = $value;
+        $this->belongsTo(Member::class, 'user_id', 'id')->updated_at = $value;
     }
 }
