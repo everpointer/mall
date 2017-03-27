@@ -9,6 +9,8 @@ namespace Notadd\Shop\Models;
  */
 
 use Notadd\Shop\Eloquent\Model;
+use Notadd\Member\Models\Member;
+use Illuminate\Support\Facades\Lang;
 
 class Product extends Model
 {
@@ -46,22 +48,22 @@ class Product extends Model
 
     public function details()
     {
-        return $this->hasMany('App\OrderDetail');
+        return $this->hasMany(OrderDetail::class, 'product_id', 'id');
     }
 
     public function categories()
     {
-        return $this->belongsTo('App\Category', 'category_id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(Member::class, 'user_id', 'id');
     }
 
     public function group()
     {
-        return $this->hasMany('App\Product', 'products_group', 'products_group');
+        return $this->hasMany(Product::class, 'products_group', 'products_group');
     }
 
     public static function create(array $attr = [])
@@ -247,6 +249,6 @@ class Product extends Model
 
     public function getNumOfReviewsAttribute()
     {
-        return $this->rate_count.' '.\Lang::choice('store.review', $this->rate_count);
+        return $this->rate_count.' '.Lang::choice('store.review', $this->rate_count);
     }
 }

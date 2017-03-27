@@ -9,6 +9,7 @@
 
 namespace Notadd\Shop;
 
+use function foo\func;
 use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Address;
 use Notadd\Member\Models\Member;
@@ -19,6 +20,7 @@ use Notadd\Shop\Injections\Uninstaller;
 use Notadd\Shop\Listeners\RouteRegister;
 use Notadd\Shop\Listeners\CsrfTokenRegister;
 use Notadd\Foundation\Module\Abstracts\Module;
+use Notadd\Shop\Models\Product;
 
 class ModuleServiceProvider extends Module
 {
@@ -45,6 +47,10 @@ class ModuleServiceProvider extends Module
             }
 
             return $model->hasOne(Person::class, 'user_id', 'id');
+        });
+
+        Member::registerInjectedRelation('product', function ($model) {
+            return $model->hasMany(Product::class, 'user_id', 'id');
         });
     }
 

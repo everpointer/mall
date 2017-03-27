@@ -6,11 +6,11 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Models\Product as Product;
 use Faker\Factory as Faker;
-use Notadd\Shop\Models\Business as Business;
+use Notadd\Shop\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Notadd\Shop\Models\Business as Business;
 use Notadd\Shop\Models\ProductOffer as ProductOffer;
 
 class ProductsTableSeeder extends Seeder
@@ -37,11 +37,11 @@ class ProductsTableSeeder extends Seeder
                 'brand'        => $faker->randomElement(['Apple', 'Gigabyte', 'Microsoft', 'Google. Inc', 'Samsung', 'Lg']),
                 'features'     => json_encode([
                     'images' => [
-                    '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
-                    '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
-                    '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
-                    '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
-                    '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
+                        '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
+                        '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
+                        '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
+                        '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
+                        '/img/pt-default/'.$faker->numberBetween(1, 330).'.jpg',
                     ],
                     trans('shop::globals.product_features.weight')     => $faker->numberBetween(10, 150).' '.$faker->randomElement(['Mg', 'Gr', 'Kg', 'Oz', 'Lb']),
                     trans('shop::globals.product_features.dimensions') => $faker->numberBetween(1, 30).' X '.
