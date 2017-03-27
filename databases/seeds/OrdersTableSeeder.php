@@ -6,12 +6,12 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Models\Address;
-use Notadd\Shop\Models\Order;
-use Notadd\Shop\Models\OrderDetail;
-use Notadd\Shop\Models\Product;
 use Faker\Factory as Faker;
+use Notadd\Shop\Models\Order;
+use Notadd\Shop\Models\Product;
+use Notadd\Shop\Models\Address;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\OrderDetail;
 
 class OrdersTableSeeder extends Seeder
 {

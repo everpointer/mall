@@ -6,8 +6,8 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Models\ProductDetail;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\ProductDetail;
 
 class ProductsDetailTableSeeder extends Seeder
 {
@@ -27,7 +27,7 @@ class ProductsDetailTableSeeder extends Seeder
         ProductDetail::create([
             'name'             => 'virtual weight',
             'input_type'       => 'text',
-             'status'          => 'active',
+            'status'           => 'active',
             'default_values'   => '{}',
             'validation_rules' => '{}',
             'help_message'     => '{}',
@@ -38,7 +38,7 @@ class ProductsDetailTableSeeder extends Seeder
         ProductDetail::create([
             'name'             => 'OS',
             'input_type'       => 'text',
-             'status'          => 'active',
+            'status'           => 'active',
             'default_values'   => '{}',
             'validation_rules' => '{}',
             'help_message'     => '{}',
@@ -50,7 +50,7 @@ class ProductsDetailTableSeeder extends Seeder
             'name'             => trans('shop::globals.product_features.weight'),
             'input_type'       => 'text',
             'default_values'   => '{}',
-             'status'          => 'active',
+            'status'           => 'active',
             'validation_rules' => '{}',
             'help_message'     => '{}',
             'type_products'    => 'item',
@@ -62,7 +62,7 @@ class ProductsDetailTableSeeder extends Seeder
             'input_type'       => 'text',
             'default_values'   => '{}',
             'validation_rules' => '{}',
-             'status'          => 'active',
+            'status'           => 'active',
             'help_message'     => '{}',
             'type_products'    => 'item',
             'max_num_values'   => 1,
@@ -73,7 +73,7 @@ class ProductsDetailTableSeeder extends Seeder
             'input_type'       => 'text',
             'default_values'   => '{}',
             'validation_rules' => '{}',
-             'status'          => 'active',
+            'status'           => 'active',
             'help_message'     => '{}',
             'type_products'    => 'item',
             'max_num_values'   => 1,
@@ -83,7 +83,7 @@ class ProductsDetailTableSeeder extends Seeder
             'name'             => trans('shop::globals.product_features.model'),
             'input_type'       => 'text',
             'default_values'   => '{}',
-             'status'          => 'active',
+            'status'           => 'active',
             'validation_rules' => '{}',
             'help_message'     => '{}',
             'type_products'    => 'all',

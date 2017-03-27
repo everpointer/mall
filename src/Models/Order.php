@@ -9,6 +9,7 @@ namespace Notadd\Shop\Models;
  */
 
 use Notadd\Shop\Eloquent\Model;
+use Notadd\Member\Models\Member;
 use Illuminate\Support\Facades\Mail;
 use Notadd\Shop\Http\Controllers\UserController as UserController;
 use Notadd\Shop\Http\Controllers\ProductsController as ProductsController;
@@ -41,17 +42,17 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(Member::class, 'user_id', 'id');
     }
 
     public function details()
     {
-        return $this->hasMany('App\OrderDetail');
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 
     public function freeproducts()
     {
-        return $this->belongsToMany('App\FreeProduct')->withTimestamps();
+        return $this->belongsToMany(FreeProduct::class)->withTimestamps();
     }
 
     public static function create(array $options = [])
@@ -92,7 +93,7 @@ class Order extends Model
 
     public function getDetailsAttribute()
     {
-        return $this->hasMany('App\OrderDetail')->get();
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id')->get();
     }
 
     public function getTranslatedStatusAttribute()
@@ -102,7 +103,7 @@ class Order extends Model
 
     public function inDetail()
     {
-        return $this->hasMany('App\OrderDetail');
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 
     public function createLog()
