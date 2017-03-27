@@ -6,21 +6,21 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Models\Address;
-use Notadd\Shop\Models\Category;
-use Notadd\Shop\Models\Order;
-use Notadd\Shop\Models\Product;
-use Notadd\Shop\Models\User;
-use Notadd\Shop\Models\UserPoints;
 use Faker\Factory as Faker;
+use Notadd\Shop\Models\Order;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\Address;
+use Notadd\Shop\Models\Product;
+use Notadd\Member\Models\Member;
+use Notadd\Shop\Models\Category;
+use Notadd\Shop\Models\UserPoints;
 
 class ProductsRatesSeeder extends Seeder
 {
     public function run()
     {
         $faker = Faker::create();
-        $user = User::select('id')->where('id', 4)->first();
+        $user = Member::select('id')->where('id', 4)->first();
 
         for ($j = 0; $j < 2; $j++) {
             $userPoints = UserPoints::create([
