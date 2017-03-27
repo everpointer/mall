@@ -6,11 +6,11 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Models\Business as Business;
-use Notadd\Shop\Models\Product as Product;
-use Notadd\Shop\Models\VirtualProduct;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
+use Notadd\Shop\Models\Product;
+use Notadd\Shop\Models\Business;
+use Notadd\Shop\Models\VirtualProduct;
 
 class VirtualProductsSeeder extends Seeder
 {

@@ -7,19 +7,20 @@
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 use Notadd\Shop\Models\Log;
-use Notadd\Shop\Models\User;
-use Notadd\Shop\Models\ActionType;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
+use Notadd\Member\Models\Member;
+use Notadd\Shop\Models\ActionType;
 
 class LogsTableSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
+        $faker   = Faker::create();
         $actions = ActionType::get();
-        $users = User::select('id')->get();
-        //Category
+        $users   = Member::select('id')->get();
+
+        // Category
         foreach (range(1, 20) as $void) {
             Log::create([
                 'user_id'        => $users->random(1)->first()->id,

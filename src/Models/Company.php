@@ -58,6 +58,6 @@ class Company extends Model
 
     public function features()
     {
-        return $this->hasMany('App\CompanyFeatures');
+        return $this->hasMany(CompanyFeatures::class, 'company_id', 'id');
     }
 }
