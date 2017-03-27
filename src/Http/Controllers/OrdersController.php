@@ -13,7 +13,7 @@ use Notadd\Shop\Models\User;
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Notice;
 use Notadd\Shop\Models\Address;
-use Notadd\Shop\Comment;
+use Notadd\Shop\Models\Comment;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\Business;
 use Carbon\Carbon;

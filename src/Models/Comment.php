@@ -60,7 +60,7 @@ class Comment extends Model
 
     public function action()
     {
-        return $this->hasOne('App\ActionType', 'id', 'action_type_id');
+        return $this->hasOne(ActionType::class, 'id', 'action_type_id');
     }
 
     public function source()
@@ -68,7 +68,7 @@ class Comment extends Model
         //here we validate the type and return the source reference
         switch ($this->action->source_type) {
             case 'order':
-                $source = 'App\Order';
+                $source = Order::cl;
             break;
         }
 

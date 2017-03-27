@@ -6,19 +6,19 @@
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-use Notadd\Shop\Models\ActionType;
-use Notadd\Shop\Comment;
-use Notadd\Shop\Models\User;
 use Faker\Factory as Faker;
+use Notadd\Shop\Models\Comment;
 use Illuminate\Database\Seeder;
+use Notadd\Member\Models\Member;
+use Notadd\Shop\Models\ActionType;
 
 class CommentsTableSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
+        $faker   = Faker::create();
         $actions = ActionType::get();
-        $users = User::select('id')->get();
+        $users   = Member::select('id')->get();
         // Category
         foreach (range(1, 20) as $void) {
             Comment::create([

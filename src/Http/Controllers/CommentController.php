@@ -8,7 +8,7 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Comment;
+use Notadd\Shop\Models\Comment;
 use Notadd\Shop\Http\Controllers\Controller;
 
 class CommentController extends Controller
