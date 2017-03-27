@@ -27,11 +27,11 @@ class DatabaseSeeder extends Seeder
         $this->call(CommentsTableSeeder::class);
         $this->call(VirtualProductsSeeder::class);
         $this->call(CompanyTableSeeder::class);
-        // $this->call(CompanyFeaturesSeeder::class);
+        $this->call(CompanyFeaturesSeeder::class);
 
-        // if (config('app.offering_free_products')) {
-        //     $this->call(FreeProductsTableSeeder::class);
-        // }
+        if (config('app.offering_free_products')) {
+            $this->call(FreeProductsTableSeeder::class);
+        }
 
         Model::reguard();
     }

@@ -36,11 +36,11 @@ class FreeProductOrder extends Model
      */
     public function Orders()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany(Order::class);
     }
 
     public function FreeProducts()
     {
-        return $this->hasMany('App\FreeProduct');
+        return $this->hasMany(FreeProduct::class);
     }
 }

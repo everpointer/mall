@@ -7,9 +7,9 @@
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 use Faker\Factory as Faker;
-use Notadd\Shop\Models\User;
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Address;
+use Notadd\Member\Models\Member;
 use Notadd\Shop\Models\Product;
 use Illuminate\Database\Seeder;
 use Notadd\Shop\Models\OrderDetail;
@@ -79,7 +79,7 @@ class FreeProductsTableSeeder extends Seeder
         }
 
         $orders = Order::where('type', '=', 'freeproduct')->get();
-        $users = User::where('type', 'trusted')->get();
+        $users = Member::where('type', 'trusted')->get();
         $list_orders = [];
         for ($i = 0; $i < 15; $i++) {
             //Se crea el free product y se asocia las ordenes

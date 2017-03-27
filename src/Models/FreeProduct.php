@@ -49,7 +49,7 @@ class FreeProduct extends Model
      */
     public function Orders()
     {
-        return $this->belongsToMany('App\Order', 'freeproduct_order', 'freeproduct_id')->withTimestamps();
+        return $this->belongsToMany(Order::class, 'freeproduct_order', 'freeproduct_id')->withTimestamps();
     }
 
     public function scopeOfStatus($query, $status)
