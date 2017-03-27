@@ -27,14 +27,10 @@ class UsersTableSeeder extends Seeder
                 'sex'        => $faker->randomElement(['male', 'female']),
                 'home_phone' => $faker->e164PhoneNumber,
                 'user'       => [
-                    'nickname'    => $faker->userName,
-                    'email'       => $faker->unique()->email,
-                    'role'        => 'person',
-                    'password'    => Hash::make('123456'),
-                    'pic_url'     => '/img/pt-default/' . $faker->numberBetween(1, 20) . '.jpg',
-                    'twitter'     => '@' . $faker->userName,
-                    'facebook'    => $faker->userName,
-                    'preferences' => '{"product_viewed":[],"product_purchased":[],"product_shared":[],"product_categories":[],"my_searches":[]}',
+                    'name'      => $faker->userName,
+                    'nick_name' => $faker->userName,
+                    'email'     => $faker->unique()->email,
+                    'password'  => Hash::make('123456'),
                 ],
             ]);
         }
@@ -46,15 +42,10 @@ class UsersTableSeeder extends Seeder
                 'creation_date' => $faker->date(),
                 'local_phone'   => $faker->e164PhoneNumber,
                 'user'          => [
-                    'nickname'    => $faker->userName,
-                    'email'       => $faker->unique()->email,
-                    'role'        => 'business', //, 'nonprofit'
-                    'type'        => $faker->randomElement(['normal', 'trusted']),
-                    'password'    => Hash::make('123456'),
-                    'pic_url'     => '/img/pt-default/' . $faker->numberBetween(1, 20) . '.jpg',
-                    'twitter'     => '@' . $company_name,
-                    'facebook'    => $company_name,
-                    'preferences' => '{"product_viewed":[],"product_purchased":[],"product_shared":[],"product_categories":[],"my_searches":[]}',
+                    'name'      => $faker->userName,
+                    'nick_name' => $faker->userName,
+                    'email'     => $faker->unique()->email,
+                    'password'  => Hash::make('123456'),
                 ],
             ]);
         }
