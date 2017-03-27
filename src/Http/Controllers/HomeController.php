@@ -13,18 +13,18 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $seeder = new \DatabaseSeeder();
-        dd($seeder->run());
+        // $seeder = new \DatabaseSeeder();
+        // dd($seeder->run());
 
         // $members = Member::with('profile')->get()->toArray();
         // dd($members);
 
         $helperProd = new ProductsHelper();
 
-        $carousel = $helperProd->suggest('carousel');
-        $viewed = $helperProd->suggest('viewed', 8);
+        $carousel   = $helperProd->suggest('carousel');
+        $viewed     = $helperProd->suggest('viewed', 8);
         $categories = $helperProd->suggest('categories');
-        $purchased = $helperProd->suggest('purchased');
+        $purchased  = $helperProd->suggest('purchased');
 
         $suggestion = [
             'carousel'   => $carousel,
@@ -51,7 +51,7 @@ class HomeController extends Controller
         $tagsCloud = ProductsController::getTopRated(0, 20, true);
 
         $allWishes = '';
-        $user = Auth::user();
+        $user      = Auth::user();
         if ($user) {
             $allWishes = Order::ofType('wishlist')->where('user_id', $user->id)->where('description', '<>', '')->get();
         }
@@ -63,7 +63,11 @@ class HomeController extends Controller
             '/img/banner/04.png',
         ];
 
-        return response()->json(compact('suggestion', 'allWishes', 'events', 'tagsCloud', 'banner'));
+        return response()->json([
+            'code'    => 200,
+            'data'    => compact('suggestion', 'allWishes', 'events', 'tagsCloud', 'banner'),
+            'message' => 'success!',
+        ]);
     }
 
     private function createTags()

@@ -9,9 +9,9 @@
 
 namespace Notadd\Shop;
 
-use function foo\func;
 use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Address;
+use Notadd\Shop\Models\Product;
 use Notadd\Member\Models\Member;
 use Notadd\Shop\Models\Business;
 use Illuminate\Events\Dispatcher;
@@ -20,7 +20,6 @@ use Notadd\Shop\Injections\Uninstaller;
 use Notadd\Shop\Listeners\RouteRegister;
 use Notadd\Shop\Listeners\CsrfTokenRegister;
 use Notadd\Foundation\Module\Abstracts\Module;
-use Notadd\Shop\Models\Product;
 
 class ModuleServiceProvider extends Module
 {
@@ -34,7 +33,7 @@ class ModuleServiceProvider extends Module
 
         $this->publishes([
             realpath(__DIR__ . '/../databases/seeds/') => database_path('seeds/'),
-            realpath(__DIR__ . '/../config/shop.php') => config_path('shop.php')
+            realpath(__DIR__ . '/../config/shop.php')  => config_path('shop.php'),
         ], 'shop');
 
         Member::registerInjectedRelation('address', function ($model) {
