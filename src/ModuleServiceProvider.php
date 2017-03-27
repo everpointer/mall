@@ -12,6 +12,7 @@ namespace Notadd\Shop;
 use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Address;
 use Notadd\Member\Models\Member;
+use Notadd\Shop\Models\Business;
 use Illuminate\Events\Dispatcher;
 use Notadd\Shop\Injections\Installer;
 use Notadd\Shop\Injections\Uninstaller;
@@ -39,9 +40,9 @@ class ModuleServiceProvider extends Module
         });
 
         Member::registerInjectedRelation('profile', function ($model) {
-            // if (in_array($model->role, ['business', 'nonprofit'])) {
-            //     return $model->hasOne('App\Business');
-            // }
+            if ($model->hasGroup(['business', 'nonprofit'])) {
+                return $model->hasOne(Business::class, 'user_id', 'id');
+            }
 
             return $model->hasOne(Person::class, 'user_id', 'id');
         });

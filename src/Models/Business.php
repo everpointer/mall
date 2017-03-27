@@ -8,8 +8,8 @@ namespace Notadd\Shop\Models;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Models\User;
 use Notadd\Shop\Eloquent\Model;
+use Notadd\Member\Models\Member;
 
 class Business extends Model
 {
@@ -34,8 +34,8 @@ class Business extends Model
     {
         $role = $normal ? 'business' : 'nonprofit';
         if (!isset($attr['user_id']) && isset($attr['user'])) {
-            $attr['user']['role'] = $role;
-            $user = User::create($attr['user']);
+            // $attr['user']['role'] = $role;
+            $user = Member::create($attr['user']);
             unset($attr['user']);
             $attr['user_id'] = $user->id;
         }
@@ -53,7 +53,7 @@ class Business extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(Member::class, 'user_id', 'id');
     }
 
     public function getAgeAttribute()

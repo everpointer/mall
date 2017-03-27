@@ -16,8 +16,8 @@ class HomeController extends Controller
         // $seeder = new \DatabaseSeeder();
         // dd($seeder->run());
 
-        // $members = Member::with('profile')->get()->toArray();
-        // dd($members);
+        $members = Member::with('profile')->get()->toArray();
+        dd($members);
 
         $helperProd = new ProductsHelper();
 
