@@ -39,11 +39,11 @@ class OrderDetail extends Model
 
     public function order()
     {
-        return $this->belongsTo('App\Order');
+        return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 
     public function getProductAttribute()
     {
-        return $this->hasOne('App\Product', 'id', 'product_id')->first();
+        return $this->hasOne(Product::class, 'id', 'product_id')->first();
     }
 }
