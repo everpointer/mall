@@ -33,7 +33,7 @@ class ModuleServiceProvider extends Module
             realpath(__DIR__ . '/../config/shop.php') => config_path('shop.php')
         ], 'shop');
 
-        Member::registerWith('address', function ($model) {
+        Member::registerInjectedRelation('address', function ($model) {
             return $model->hasMany(Address::class, 'user_id', 'id');
         });
     }
