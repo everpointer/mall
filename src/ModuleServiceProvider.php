@@ -9,6 +9,7 @@
 
 namespace Notadd\Shop;
 
+use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Address;
 use Notadd\Shop\Models\Product;
@@ -66,6 +67,42 @@ class ModuleServiceProvider extends Module
     {
         Member::injectionFunction('relationsToArray', function ($model) {
             return array_merge($model->attributesToArray(), $model->profile ? $model->profile->attributesToArray() : []);
+        });
+
+        Member::injectionFunction('isAdmin', function ($model) {
+            return $model->hasGroup('admin');
+        });
+
+        Member::injectionFunction('isPerson', function ($model) {
+            return $model->hasGroup('person');
+        });
+
+        Member::injectionFunction('isCompany', function ($model) {
+            return $model->hasGroup('business');
+        });
+
+        // Cart Manage
+        Member::injectionFunction('getCartCount', function ($model) {
+            $basicCart = Order::ofType('cart')->where('user_id', $model->id)->first();
+            if (! $basicCart) {
+                return 0;
+            } else {
+                $totalItems = 0;
+                foreach ($basicCart->details  as $orderDetail) {
+                    $totalItems += $orderDetail->quantity;
+                }
+
+                return $totalItems;
+            }
+        });
+
+        Member::injectionFunction('getCartContent', function ($model) {
+            $basicCart = Order::ofType('cart')->where('user_id', $model->id)->first();
+            if (! $basicCart) {
+                return [];
+            } else {
+                return $basicCart->details;
+            }
         });
     }
 
