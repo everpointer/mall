@@ -36,6 +36,15 @@ class ModuleServiceProvider extends Module
             realpath(__DIR__ . '/../config/shop.php')  => config_path('shop.php'),
         ], 'shop');
 
+        // Injection some relations for member model
+        $this->injectionRelationsForMember();
+
+        // Injection some functions for member model
+        $this->injectionFunctionsForMember();
+    }
+
+    public function injectionRelationsForMember()
+    {
         Member::injectionFunction('address', function ($model) {
             return $model->hasMany(Address::class, 'user_id', 'id');
         });
@@ -50,6 +59,13 @@ class ModuleServiceProvider extends Module
 
         Member::injectionFunction('product', function ($model) {
             return $model->hasMany(Product::class, 'user_id', 'id');
+        });
+    }
+
+    public function injectionFunctionsForMember()
+    {
+        Member::injectionFunction('relationsToArray', function ($model) {
+            return array_merge($model->attributesToArray(), $model->profile ? $model->profile->attributesToArray() : []);
         });
     }
 
