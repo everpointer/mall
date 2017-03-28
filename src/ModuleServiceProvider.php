@@ -36,11 +36,11 @@ class ModuleServiceProvider extends Module
             realpath(__DIR__ . '/../config/shop.php')  => config_path('shop.php'),
         ], 'shop');
 
-        Member::registerInjectedRelation('address', function ($model) {
+        Member::injectionFunction('address', function ($model) {
             return $model->hasMany(Address::class, 'user_id', 'id');
         });
 
-        Member::registerInjectedRelation('profile', function ($model) {
+        Member::injectionFunction('profile', function ($model) {
             if ($model->hasGroup(['business', 'nonprofit'])) {
                 return $model->hasOne(Business::class, 'user_id', 'id');
             }
@@ -48,7 +48,7 @@ class ModuleServiceProvider extends Module
             return $model->hasOne(Person::class, 'user_id', 'id');
         });
 
-        Member::registerInjectedRelation('product', function ($model) {
+        Member::injectionFunction('product', function ($model) {
             return $model->hasMany(Product::class, 'user_id', 'id');
         });
     }
