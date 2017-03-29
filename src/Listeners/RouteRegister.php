@@ -23,7 +23,8 @@ class RouteRegister extends AbstractRouteRegister
            $this->router->get('/', HomeController::class . '@index');
 
             // Product list
-           $this->router->get('products', ProductsController::class . '@index');
+            $this->router->get('products', ProductsController::class . '@index');
+            $this->router->get('products/{id}', ProductsController::class . '@show');
 
            //  //Orders Reports
            // $this->router->get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
@@ -230,9 +231,7 @@ class RouteRegister extends AbstractRouteRegister
            // $this->router->post('editKeyVirtualProductsOrders/{id}', ['uses' => 'VirtualProductOrdersController@editKey', 'as' => 'virtualProductOrdersController.editKey']);
            //
            // $this->router->resource('virtualproducts', 'VirtualProductsController');
-           //
-           // $this->router->get('products/{id}', ['uses' => 'ProductsController@show', 'as' => 'products.show']);
-           //
+
            // $this->router->get('img/{file?}', 'FileController@img')->where('file', '(.*)');
            //
            // $this->router->get('freeproducts/{id}', ['uses' => 'FreeProductsController@show', 'as' => 'freeproducts.show']);
