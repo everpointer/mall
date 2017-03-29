@@ -7,27 +7,15 @@
  * @datetime      2017-03-29 17:58
  */
 
-
 namespace Notadd\Shop\Http\Handlers\Product;
 
-use Illuminate\Http\Request;
-use Notadd\Shop\Helpers\File;
-use Notadd\Shop\Http\Controllers\UserController;
-use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\Category;
 use Notadd\Shop\Helpers\Utility;
-use Notadd\Shop\Models\OrderDetail;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Cache;
-use Notadd\Shop\Models\ProductDetail;
-use Notadd\Shop\Models\VirtualProduct;
 use Notadd\Shop\Helpers\ProductsHelper;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Session;
-use Notadd\Shop\Helpers\FeaturesHelper;
-use Notadd\Shop\Models\FreeProductOrder;
-use Illuminate\Support\Facades\Validator;
+use Notadd\Shop\Http\Controllers\UserController;
 use Notadd\Foundation\Passport\Abstracts\DataHandler;
 
 class SearchHandler extends DataHandler

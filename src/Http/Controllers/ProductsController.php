@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Helpers\FeaturesHelper;
 use Notadd\Shop\Models\FreeProductOrder;
 use Illuminate\Support\Facades\Validator;
+use Notadd\Shop\Http\Handlers\Product\SearchHandler;
 
 class ProductsController extends Controller
 {
@@ -47,9 +48,9 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(SearchHandler $handler)
     {
-
+        return $handler->toResponse()->generateHttpResponse();
     }
 
     public function myProducts(Request $request)
