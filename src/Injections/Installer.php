@@ -9,10 +9,18 @@
 
 namespace Notadd\Shop\Injections;
 
+use Illuminate\Container\Container;
 use Notadd\Foundation\Module\Abstracts\Installer as AbstractInstaller;
 
 class Installer extends AbstractInstaller
 {
+    public function __construct(Container $container)
+    {
+        parent::__construct($container);
+
+        $this->info->put('errors', '安装商城模块失败！');
+        $this->info->put('messages', '安装商城模块成功！');
+    }
     /**
      * @return bool
      */
@@ -26,6 +34,6 @@ class Installer extends AbstractInstaller
      */
     public function require()
     {
-        return true;
+        return [];
     }
 }
