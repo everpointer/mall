@@ -11,6 +11,7 @@ namespace Notadd\Shop\Listeners;
 
 use Notadd\Shop\Http\Controllers\HomeController;
 use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
+use Notadd\Shop\Http\Controllers\ProductsController;
 
 class RouteRegister extends AbstractRouteRegister
 {
@@ -19,15 +20,11 @@ class RouteRegister extends AbstractRouteRegister
         $this->router->group(['middleware' => ['api'], 'prefix' => 'api/shop'], function () {
 
             // home control
-           $this->router->get('/', ['as' => 'shop.home', 'uses' => HomeController::class . '@index']);
+           $this->router->get('/', HomeController::class . '@index');
 
-           $this->router->group(['prefix' => 'home'], function () {
-               $this->router->get('/', HomeController::class . '@index');
-           });
+            // Product list
+           $this->router->get('products', ProductsController::class . '@index');
 
-           //  // Product list
-           // $this->router->get('products', ['uses' => 'ProductsController@index', 'as' => 'products']);
-           //
            //  //Orders Reports
            // $this->router->get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
            //
