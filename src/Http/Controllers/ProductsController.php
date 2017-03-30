@@ -227,7 +227,7 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function show(ShowHandler $handler)
+    public function show(ShowHandler $handler, $id)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
