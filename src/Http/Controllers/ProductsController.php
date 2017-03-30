@@ -54,6 +54,18 @@ class ProductsController extends Controller
         return $handler->toResponse()->generateHttpResponse();
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show(ShowHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
     public function myProducts(Request $request)
     {
         $filter = $request->get('filter');
@@ -218,18 +230,6 @@ class ProductsController extends Controller
         Session::flash('message', trans('shop::product.controller.saved_successfully').$message);
 
         return redirect('products/'.$product->id);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show(ShowHandler $handler, $id)
-    {
-        return $handler->toResponse()->generateHttpResponse();
     }
 
     /**
