@@ -10,8 +10,9 @@
 namespace Notadd\Shop\Listeners;
 
 use Notadd\Shop\Http\Controllers\HomeController;
-use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
+use Notadd\Shop\Http\Controllers\OrdersController;
 use Notadd\Shop\Http\Controllers\ProductsController;
+use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
 
 class RouteRegister extends AbstractRouteRegister
 {
@@ -25,6 +26,28 @@ class RouteRegister extends AbstractRouteRegister
             // Product list
             $this->router->get('products', ProductsController::class . '@index');
             $this->router->get('products/{id}', ProductsController::class . '@show');
+
+            /*
+             * WISH LISTS
+             * here you will be able to find all the routes related to users wish list
+             */
+            $this->router->group(['prefix' => 'wishes'], function () {
+
+                // create
+                // $this->router->get('/create', ['uses' => 'OrdersController@createWishList', 'as' => 'orders.create_wish_list']);
+
+                // add into a specific wish list by id
+                // $this->router->get('/{id}/products', ['uses' => 'OrdersController@showWishList', 'as' => 'orders.show_wish_list_by_id']);
+
+                // list
+                $this->router->get('/', OrdersController::class . '@showWishList');
+
+                // user directory
+                // $this->router->get('/directory', ['uses' => 'OrdersController@wishListDirectory', 'as' => 'orders.show_list_directory']);
+
+                // store
+                // $this->router->post('/store', ['uses' => 'OrdersController@storeWishList', 'as' => 'orders.store_list']);
+            });
 
            //  //Orders Reports
            // $this->router->get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
@@ -185,30 +208,7 @@ class RouteRegister extends AbstractRouteRegister
            //
            //     $this->router->resource('profile', 'CompanyController');
            //  });
-           //
-           //  /*
-           //   * WISH LISTS
-           //   * here you will be able to find all the routes related to users wish list
-           //   */
-           //
-           // $this->router->group(['prefix' => 'wishes', 'roles' => array_keys(trans('shop::globals.roles')), 'middleware' => ['auth', 'roles']], function () {
-           //
-           //      //create
-           //     $this->router->get('/create', ['uses' => 'OrdersController@createWishList', 'as' => 'orders.create_wish_list']);
-           //
-           //      //add into a specific wish list by id
-           //     $this->router->get('/{id}/products', ['uses' => 'OrdersController@showWishList', 'as' => 'orders.show_wish_list_by_id']);
-           //
-           //      //list
-           //     $this->router->get('/', ['uses' => 'OrdersController@showWishList', 'as' => 'orders.show_wish_list']);
-           //
-           //      //user directory
-           //     $this->router->get('/directory', ['uses' => 'OrdersController@wishListDirectory', 'as' => 'orders.show_list_directory']);
-           //
-           //      //store
-           //     $this->router->post('/store', ['uses' => 'OrdersController@storeWishList', 'as' => 'orders.store_list']);
-           //  });
-           //
+
            //  // Acceso sin login Cambios para poder crear carrito y listas
            //
            // $this->router->get('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);

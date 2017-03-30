@@ -50,7 +50,7 @@ class OrdersController extends Controller
      */
     public function __construct(OrderRepository $order)
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
 
         $this->order = $order;
     }
