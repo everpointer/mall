@@ -482,32 +482,30 @@ class OrdersController extends Controller
         } //if ($user)
 
         else {
-            return redirect()->route('/auth/login');
+            return response()->json(['code' => 403, 'messages' => 'Please login', 'data' => []]);
         }
 
         $panel = [
             'center' => ['width' => '12'],
         ];
 
-        //suggestions based on cart content
+        // suggestions based on cart content
         $suggestions = ProductsController::getSuggestions(['preferences_key' => Session::get('suggest-listed'), 'limit' => 4]);
 
         Session::forget('suggest-listed');
 
-        return view('orders.wish',
-            compact(
-                'cart',
-                'user',
-                'panel',
-                'suggestions',
-                'cart',
-                'laterCart',
-                'wishLists',
-                'wishListName',
-                'hasWishList',
-                'hasLaterCart'
-            )
-        );
+        return response()->json(compact(
+            'cart',
+            'user',
+            'panel',
+            'suggestions',
+            'cart',
+            'laterCart',
+            'wishLists',
+            'wishListName',
+            'hasWishList',
+            'hasLaterCart'
+        ));
     }
 
     /**
