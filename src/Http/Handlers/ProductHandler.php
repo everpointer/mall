@@ -112,7 +112,7 @@ class ProductHandler extends DataHandler
                     explode(' ', trim($needleAux['name'])));
             }
         } else {
-            $needle = UserController::getPreferences($data['preferences_key']); //getting the user preferences
+            $needle = UserHandler::getPreferences($data['preferences_key']); //getting the user preferences
         }
 
         if (count($needle['tags']) > 0) {

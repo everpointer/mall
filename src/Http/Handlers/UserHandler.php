@@ -26,7 +26,7 @@ class UserHandler extends DataHandler
         $user = Auth::user();
         if ($user) {
             $userHelper        = new UserHelper();
-            $categories        = ProductsController::getTagsCategories($tags);
+            $categories        = ProductHandler::getTagsCategories($tags);
             $user->preferences = $userHelper->preferencesToJson($user->preferences, $index, $tags, $categories);
             $user->save();
         }

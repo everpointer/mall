@@ -10,8 +10,6 @@ namespace Notadd\Shop\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notadd\Shop\Helpers\File;
-use Notadd\Shop\Http\Handlers\Product\ShowHandler;
-use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\Category;
 use Notadd\Shop\Models\OrderDetail;
@@ -21,8 +19,8 @@ use Notadd\Shop\Helpers\ProductsHelper;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Helpers\FeaturesHelper;
-use Notadd\Shop\Models\FreeProductOrder;
 use Illuminate\Support\Facades\Validator;
+use Notadd\Shop\Http\Handlers\Product\ShowHandler;
 use Notadd\Shop\Http\Handlers\Product\SearchHandler;
 
 class ProductsController extends Controller
