@@ -46,44 +46,44 @@ class ModuleServiceProvider extends Module
 
     public function injectionRelationsToMember()
     {
-        Member::injectionFunction('address', function ($model) {
-            return $model->hasMany(Address::class, 'user_id', 'id');
+        Member::injectionFunction('address', function () {
+            return $this->hasMany(Address::class, 'user_id', 'id');
         });
 
-        Member::injectionFunction('profile', function ($model) {
-            if ($model->hasGroup(['business', 'nonprofit'])) {
-                return $model->hasOne(Business::class, 'user_id', 'id');
+        Member::injectionFunction('profile', function () {
+            if ($this->hasGroup(['business', 'nonprofit'])) {
+                return $this->hasOne(Business::class, 'user_id', 'id');
             }
 
-            return $model->hasOne(Person::class, 'user_id', 'id');
+            return $this->hasOne(Person::class, 'user_id', 'id');
         });
 
-        Member::injectionFunction('product', function ($model) {
-            return $model->hasMany(Product::class, 'user_id', 'id');
+        Member::injectionFunction('product', function () {
+            return $this->hasMany(Product::class, 'user_id', 'id');
         });
     }
 
     public function injectionFunctionsToMember()
     {
-        Member::injectionFunction('relationsToArray', function ($model) {
-            return array_merge($model->attributesToArray(), $model->profile ? $model->profile->attributesToArray() : []);
+        Member::injectionFunction('relationsToArray', function () {
+            return array_merge($this->attributesToArray(), $this->profile ? $this->profile->attributesToArray() : []);
         });
 
-        Member::injectionFunction('isAdmin', function ($model) {
-            return $model->hasGroup('admin');
+        Member::injectionFunction('isAdmin', function () {
+            return $this->hasGroup('admin');
         });
 
-        Member::injectionFunction('isPerson', function ($model) {
-            return $model->hasGroup('person');
+        Member::injectionFunction('isPerson', function () {
+            return $this->hasGroup('person');
         });
 
-        Member::injectionFunction('isCompany', function ($model) {
-            return $model->hasGroup('business');
+        Member::injectionFunction('isCompany', function () {
+            return $this->hasGroup('business');
         });
 
         // Cart Manage
-        Member::injectionFunction('getCartCount', function ($model) {
-            $basicCart = Order::ofType('cart')->where('user_id', $model->id)->first();
+        Member::injectionFunction('getCartCount', function () {
+            $basicCart = Order::ofType('cart')->where('user_id', $this->id)->first();
             if (! $basicCart) {
                 return 0;
             } else {
@@ -96,8 +96,8 @@ class ModuleServiceProvider extends Module
             }
         });
 
-        Member::injectionFunction('getCartContent', function ($model) {
-            $basicCart = Order::ofType('cart')->where('user_id', $model->id)->first();
+        Member::injectionFunction('getCartContent', function () {
+            $basicCart = Order::ofType('cart')->where('user_id', $this->id)->first();
             if (! $basicCart) {
                 return [];
             } else {

@@ -2,6 +2,7 @@
 
 namespace Notadd\Shop\Http\Controllers;
 
+use Notadd\Member\Models\Member;
 use Notadd\Shop\Http\Handlers\HomeDataHandler;
 
 class HomeController extends Controller
@@ -13,6 +14,8 @@ class HomeController extends Controller
 
         // $members = Member::with('profile')->get()->toArray();
         // dd($members);
+        // $member = Member::find(1);
+        // dd($member->address);
 
         return $handler->toResponse()->generateHttpResponse();
     }
