@@ -19,6 +19,23 @@ use Notadd\Foundation\Passport\Abstracts\DataHandler;
 class ProductHandler extends DataHandler
 {
     /**
+     * Get the category id from tags array.
+     *
+     * @param [array] $tags, tags list to find out their categories
+     *
+     * @return [array] $categories, category id array
+     */
+    public static function getTagsCategories($tags = [])
+    {
+        $categories = Product::like('tags', $tags)
+            ->groupBy('category_id')
+            ->free()
+            ->get(['category_id']);
+
+        return $categories;
+    }
+
+    /**
      * Increase the product counters.
      *
      * @param [object] $product is the object which contain the product evaluated
@@ -176,5 +193,64 @@ class ProductHandler extends DataHandler
         }
 
         return $array;
+    }
+
+    /**
+     * To get a existing category id from products.
+     *
+     * @return [integer] $category_id [product category id field]
+     */
+    public static function getRandCategoryId()
+    {
+        $product = Product::select(['category_id'])
+            ->free()
+            ->orderByRaw('RAND()')
+            ->take(1)
+            ->first();
+
+        return ($product) ? $product->id : 1;
+    }
+
+    /**
+     * This method is able to return the higher rate product list, everything will depends of $point parameter.
+     *
+     * @param [integer] $point [it is the rate evaluates point, which allows get the products list required]
+     * @param [integer] $limit [num of records to be returned]
+     * @param [boolean] $tags  [it sees if we want to return a product list or a product tags list]
+     *
+     * @return [array or laravel collection] $_tags, $products [returning either products tags array or products collection]
+     */
+    public static function getTopRated($point = '5', $limit = 5, $tags = false)
+    {
+        if ($tags == true) {
+            $products = Product::select(['id', 'tags', 'rate_count', 'rate_val'])
+                ->WhereNotNull('tags')
+                ->free()
+                ->orderBy('rate_count', 'desc')
+                ->orderBy('rate_val', 'desc')
+                ->take($limit)
+                ->get();
+
+            $_tags = [];
+            $products->each(function ($prod) use (&$_tags) {
+                $array = explode(',', $prod->tags);
+                foreach ($array as $value) {
+                    if (trim($value) != '') {
+                        $_tags[] = trim($value);
+                    }
+                }
+            });
+
+            return array_unique($_tags, SORT_STRING);
+        } else {
+            $products = Product::select(['id', 'name', 'description', 'features', 'price', 'type', 'stock'])
+                ->free()
+                ->orderBy('rate_count', 'desc')
+                ->orderBy('rate_val', 'desc')
+                ->take($limit)
+                ->get();
+
+            return $products;
+        }
     }
 }
