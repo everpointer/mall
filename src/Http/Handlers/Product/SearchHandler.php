@@ -15,7 +15,7 @@ use Notadd\Shop\Helpers\Utility;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Cache;
 use Notadd\Shop\Helpers\ProductsHelper;
-use Notadd\Shop\Http\Controllers\UserController;
+use Notadd\Shop\Http\Handlers\UserHandler;
 use Notadd\Foundation\Passport\Abstracts\DataHandler;
 
 class SearchHandler extends DataHandler
@@ -146,7 +146,7 @@ class SearchHandler extends DataHandler
             }
 
             if (count($my_searches) > 0) {
-                UserController::setPreferences('my_searches', $my_searches);
+                UserHandler::setPreferences('my_searches', $my_searches);
             }
         }
 
