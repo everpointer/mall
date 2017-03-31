@@ -9,25 +9,24 @@ namespace Notadd\Shop\Http\Controllers;
  */
 
 use Notadd\Shop\Models\Log;
-use Notadd\Shop\Models\User;
+use Illuminate\Http\Request;
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Notice;
 use Notadd\Shop\Models\Address;
 use Notadd\Shop\Models\Comment;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\Business;
-use Carbon\Carbon;
-use Notadd\Shop\Models\OrderDetail;
-use Notadd\Shop\Models\VirtualProduct;
-use Notadd\Shop\Models\VirtualProductOrder;
-use Illuminate\Http\Request;
-use Notadd\Shop\Helpers\ProductsHelper;
+use Notadd\Member\Models\Member;
 use Illuminate\Support\Facades\DB;
-use Notadd\Shop\Http\Controllers\Controller;
+use Notadd\Shop\Models\OrderDetail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Notadd\Shop\Repositories\OrderRepository;
+use Notadd\Shop\Models\VirtualProduct;
+use Notadd\Shop\Helpers\ProductsHelper;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Notadd\Shop\Models\VirtualProductOrder;
+use Notadd\Shop\Repositories\OrderRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Notadd\Shop\Http\Controllers\ProductsController as ProductsController;
@@ -79,7 +78,7 @@ class OrdersController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $user = \Auth::user();
+        $user = Auth::user();
 
         //checking if the user is logged
         if ($user) {
@@ -230,7 +229,7 @@ class OrdersController extends Controller
      */
     public function addToOrderById($orderId, $productId, Request $request)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         $quantity = $request->get('quantity') ? $request->get('quantity') : 1;
 
         //checking whether the product required exist or not
@@ -307,7 +306,7 @@ class OrdersController extends Controller
     {
         $description = $request->get('description');
 
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if ($user) {
             //checking if the default wish list exists, otherwise, it is created automatically
@@ -379,7 +378,7 @@ class OrdersController extends Controller
             Session::push('message', Session::get('message'));
         }
 
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $productsHelper = new ProductsHelper();
 
@@ -515,7 +514,7 @@ class OrdersController extends Controller
      */
     public function wishListDirectory()
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if ($user) {
             $orders = Order::ofType('wishlist')
@@ -544,7 +543,7 @@ class OrdersController extends Controller
      */
     public function showCart()
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         /*
          * $suggest-listed keeps tracking listed products to control the suggestion view
@@ -706,7 +705,7 @@ class OrdersController extends Controller
     public function removeFromOrder($orderName, $productId, $idOrder = '')
     {
         $product = Product::findOrFail($productId);
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if (!$user) {
             $cart_content = Session::get('user.cart_content');
@@ -769,7 +768,7 @@ class OrdersController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $user = \Auth::user();
+        $user = Auth::user();
 
         /**
          * $originType allows tracking the type of origin, if it is coming from a specific wish list.
@@ -883,7 +882,7 @@ class OrdersController extends Controller
      */
     public function updateQuantity($orderId, $orderDetailId, $newValue)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         if ($user) {
             $orderDetail = OrderDetail::where('id', $orderDetailId)
                 ->where('order_id', $orderId)
@@ -923,7 +922,7 @@ class OrdersController extends Controller
      */
     public function checkOut()
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $cart = Order::ofType('cart')->ofUser($user->id)->select('id')->first();
 
@@ -969,7 +968,7 @@ class OrdersController extends Controller
      */
     public function checkOutResume($addressId)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $cart = Order::ofType('cart')->with('details')->where('user_id', $user->id)->first();
 
@@ -1074,7 +1073,7 @@ class OrdersController extends Controller
      */
     public function cancel($orderId, Request $request)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         /**
          * $route description
@@ -1160,7 +1159,7 @@ class OrdersController extends Controller
      */
     public function startOrder($order_id)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         $order = Order::where('id', $order_id)
             ->where('seller_id', $user->id)
             ->ofStatus('open')
@@ -1195,7 +1194,7 @@ class OrdersController extends Controller
      */
     public function sendOrder($order_id)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         $order = Order::where('id', $order_id)
         ->where('seller_id', $user->id)
         ->ofStatus('pending')
@@ -1239,7 +1238,7 @@ class OrdersController extends Controller
      */
     public function closeOrder($order_id)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         $order = Order::where('id', $order_id)->where('user_id', $user->id)->ofStatus('sent')->select('id', 'user_id', 'status', 'end_date', 'seller_id')->first();
         //checks if the orders is own by the user and if it is on open status
         if ($order) {
@@ -1260,7 +1259,7 @@ class OrdersController extends Controller
 
             if (config('app.offering_user_points')) {
                 //The order total points are passed to the seller
-                $seller = User::findOrFail($order->seller_id);
+                $seller = Member::findOrFail($order->seller_id);
                 if ($seller) {
                     $order_content = OrderDetail::where('order_id', $order->id)->get();
                     $total_points = 0;
@@ -1290,7 +1289,7 @@ class OrdersController extends Controller
 
     public function reports($type, $filter)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $where_field = $user->role == 'person' ? 'user_id' : 'seller_id';
 
@@ -1337,7 +1336,7 @@ class OrdersController extends Controller
      */
     public function usersOrders(Request $request)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $where_field = $user->role == 'person' ? 'user_id' : 'seller_id';
 
@@ -1446,7 +1445,7 @@ class OrdersController extends Controller
         if (!$request->wantsJson()) {
             return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
-        $cart = Order::ofType('cart')->select('id')->where('user_id', \Auth::user()->id)->first();
+        $cart = Order::ofType('cart')->select('id')->where('user_id', Auth::user()->id)->first();
         if (!$cart) {
             return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
@@ -1458,7 +1457,7 @@ class OrdersController extends Controller
         if (!$order) {
             return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
-        $seller = User::select('nickname')->find($product->user_id);
+        $seller = Member::select('nickname')->find($product->user_id);
         $product->seller = $seller->nickname;
         $return = ['product' => $product, 'order' => $order];
         if ($product->type != 'item') {
@@ -1495,7 +1494,7 @@ class OrdersController extends Controller
             'center' => ['width' => '10'],
         ];
 
-        $user = \Auth::user();
+        $user = Auth::user();
         if ($user) {
             $order = Order::
                 where('id', $id)->where('user_id', $user->id)
@@ -1534,7 +1533,7 @@ class OrdersController extends Controller
      */
     public function showSellerOrder($id)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $order = Order::
             where('id', $id)
@@ -1613,7 +1612,7 @@ class OrdersController extends Controller
             return json_encode(['message' => trans('shop::globals.error_not_available'), 'virtual' => false]);
         }
         $detail = OrderDetail::where('order_id', $Order->id)->where('product_id', $product->id)->first();
-        $user = User::find($Order->user_id);
+        $user = Member::find($Order->user_id);
         foreach ($virtuals as $row) {
             $virtualOrders = VirtualProductOrder::where('virtual_product_id', $row->id)->where('order_id', $Order->id)->first();
             if ($virtualOrders) {
@@ -1675,7 +1674,7 @@ class OrdersController extends Controller
     {
         $order_id = $request->get('order_id');
         $text = $request->get('comment_text');
-        $user = \Auth::user();
+        $user = Auth::user();
         if ($user) {
             $order = Order::find($order_id);
             //Checks if the order belongs to the current user, or if the user is the seller of the order
@@ -1691,12 +1690,12 @@ class OrdersController extends Controller
 
                 if ($order->user_id == $user->id) {
                     $mail_subject = trans('shop::email.order_commented.comment_from_user');
-                    $seller_user = User::find($order->seller_id);
+                    $seller_user = Member::find($order->seller_id);
                     $email = $seller_user->email;
                 }
                 if ($order->seller_id == $user->id) {
                     $mail_subject = trans('shop::email.order_commented.comment_from_seller');
-                    $buyer_user = User::find($order->user_id);
+                    $buyer_user = Member::find($order->user_id);
                     $email = $buyer_user->email;
                 }
 
@@ -1733,14 +1732,14 @@ class OrdersController extends Controller
     public function rateOrder($order_id)
     {
         //Checks if the user is logged in
-        $user = \Auth::user();
+        $user = Auth::user();
         if ($user) {
             //Finds the order to be rated and checks if it belongs to the current user
             $order = Order::where('id', $order_id)->where('user_id', $user->id)->first();
             // dd($order->details);
             if ($order) {
                 $address = Address::find($order->address_id);
-                $seller = User::find($order->seller_id);
+                $seller = Member::find($order->seller_id);
                 $business = Business::where('user_id', $order->seller_id)->first();
                 // $jsonOrder = json_encode($order->toArray());
                 // $jsonOrderAddress = json_encode($address->toArray());
@@ -1760,7 +1759,7 @@ class OrdersController extends Controller
         $order_id = $request->get('order_id');
         $seller_rate = $request->get('seller_rate');
         $seller_comment = $request->get('seller_comment');
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if ($user) {
             $order = Order::where('id', $order_id)
@@ -1801,7 +1800,7 @@ class OrdersController extends Controller
                     }
                 }
 
-                $seller_user = User::find($order->seller_id);
+                $seller_user = Member::find($order->seller_id);
                 $email = $seller_user->email;
                 $mail_subject = trans('shop::email.order_rated.subject');
                 $data = [
@@ -1843,7 +1842,7 @@ class OrdersController extends Controller
         $detail_id = $request->get('detail_id');
         $product_rate = $request->get('product_rate');
         $product_comment = $request->get('product_comment');
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if ($user) {
             $detail = OrderDetail::find($detail_id);
@@ -1884,7 +1883,7 @@ class OrdersController extends Controller
                         }
                     }
 
-                    $seller_user = User::find($order->seller_id);
+                    $seller_user = Member::find($order->seller_id);
                     $email = $seller_user->email;
                     $mail_subject = trans('shop::email.product_rated.subject');
                     $data = [
