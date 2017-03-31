@@ -16,8 +16,8 @@ use Notadd\Shop\Models\ProductDetail;
 use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Helpers\FeaturesHelper;
 use Notadd\Shop\Models\FreeProductOrder;
+use Notadd\Shop\Http\Handlers\UserHandler;
 use Notadd\Shop\Http\Handlers\ProductHandler;
-use Notadd\Shop\Http\Controllers\UserController;
 
 class ShowHandler extends ProductHandler
 {
@@ -73,7 +73,7 @@ class ShowHandler extends ProductHandler
 
             // saving the product tags into users preferences
             if (trim($product->tags) != '') {
-                UserController::setPreferences('product_viewed', explode(',', $product->tags));
+                UserHandler::setPreferences('product_viewed', explode(',', $product->tags));
             }
 
             // receiving products user reviews & comments
@@ -100,8 +100,7 @@ class ShowHandler extends ProductHandler
 
             // retrieving products groups of the product shown
             if (count($product->group)) {
-                $featuresHelper = new FeaturesHelper();
-                $product->group = $featuresHelper->group($product->group);
+                $product->group = (new FeaturesHelper())->group($product->group);
             }
 
             return compact('product', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions');
