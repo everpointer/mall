@@ -406,7 +406,7 @@ class OrdersController extends Controller
                 $order = Order::findOrFail($id);
             } catch (ModelNotFoundException $e) {
                 if (trim($id) != '') {
-                    throw new NotFoundHttpException();
+                    return response()->json(['code' => 404, 'messages' => 'Not Found']);
                 }
             }
 
@@ -424,7 +424,9 @@ class OrdersController extends Controller
                  * @var string
                  */
                 $wishListName = $cart ? $cart->description : $wishListName;
-            } // if the required wish list does not exist, the default one  will beprovided
+            }
+
+            // if the required wish list does not exist, the default one  will beprovided
             else {
                 $cart = Order::ofType('wishlist')
                     ->with('details')
@@ -446,16 +448,16 @@ class OrdersController extends Controller
                 ->take(5)
                 ->get();
 
-            //products list saved for later
+            // products list saved for later
             $laterCart = Order::ofType('later')
                 ->with('details')
                 ->where('user_id', $user->id)
                 ->first();
 
-            //evaluating wish list
+            // evaluating wish list
             if ($cart) {
                 if ($cart->details && $cart->details->count() > 0) {
-                    //saving the ids selected to not include them into suggestions.
+                    // saving the ids selected to not include them into suggestions.
                     $productsHelper->setToHaystack($cart->details, 'product_id');
                 } else {
                     $hasWishList = false;
@@ -464,10 +466,10 @@ class OrdersController extends Controller
                 $hasWishList = false;
             }
 
-            //evaluating wish list
+            // evaluating wish list
             if ($laterCart) {
                 if ($laterCart->details && $laterCart->details->count() > 0) {
-                    //saving the ids selected to not include them into suggestions.
+                    // saving the ids selected to not include them into suggestions.
                     $productsHelper->setToHaystack($laterCart->details, 'product_id');
                 } else {
                     $hasLaterCart = false;
@@ -475,7 +477,7 @@ class OrdersController extends Controller
             } else {
                 $hasLaterCart = false;
             }
-        } //if ($user)
+        } // if ($user)
 
         else {
             return response()->json(['code' => 403, 'messages' => 'Please login', 'data' => []]);
