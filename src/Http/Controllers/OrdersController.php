@@ -372,7 +372,7 @@ class OrdersController extends Controller
             Session::save();
         }
 
-        //saving added to wishlist message (it happens when the product is added to wishlist, and the method call this one)
+        // saving added to wishlist message (it happens when the product is added to wishlist, and the method call this one)
         Session::forget('suggest-listed');
         if (Session::has('message')) {
             Session::push('message', Session::get('message'));
@@ -411,7 +411,7 @@ class OrdersController extends Controller
                 }
             }
 
-            //if the user requires a specific wish list, its details will be provided
+            // if the user requires a specific wish list, its details will be provided
             if ($order) {
                 $cart = Order::ofType('wishlist')
                     ->with('details')
@@ -427,7 +427,7 @@ class OrdersController extends Controller
                 $wishListName = $cart ? $cart->description : $wishListName;
             }
 
-            //if the required wish list does not exist, the default one  will beprovided
+            // if the required wish list does not exist, the default one  will beprovided
             else {
                 $cart = Order::ofType('wishlist')
                     ->with('details')
@@ -1933,41 +1933,5 @@ class OrdersController extends Controller
         $title = 'Title email';
 
         return view('emails.neworder', compact('data', 'title'));
-    }
-
-    /**
-     * fromGuestToUser
-     * This method is able to transfer all the guest shopping cart user to an user cart order.
-     * It happens when a guest user has a shopping cart and press in checkout button.
-     *
-     * @param [object] $ordersController. Order controller object, which is passed through Authentication middleware.
-     */
-    public static function fromGuestToUser($ordersController)
-    {
-        /**
-         * $cart_content contains the guest shopping cart information.
-         *
-         * @var [array]
-         */
-        $cart_content = Session::get('user.cart_content');
-
-        //dd($cart_content, Session::get('user.cart'));
-
-        foreach (Session::get('user.cart_content') as $product => $value) {
-            $ordersController->addToOrder(
-                'cart',
-                $product,
-                new Request(
-                    [
-                        'quantity'    => $cart_content[$product] != '' ? $cart_content[$product] : 1,
-                        'guestToUser' => 1,
-                    ]
-                )
-            );
-        }
-
-        Session::forget('user.cart');
-        Session::forget('user.cart_content');
-        Session::save();
     }
 }
