@@ -58,7 +58,7 @@ class ProductHandler extends DataHandler
             'preferences_key' => '',
             'limit'           => '4',
             'category'        => '',
-            'select'          => '*', //array with items to select
+            'select'          => '*', // array with items to select
         ];
 
         $suggest_listed = Session::get('suggest-listed');
@@ -89,7 +89,7 @@ class ProductHandler extends DataHandler
                     ->first()
                     ->toArray();
 
-                //extraction of tags and name of products
+                // extraction of tags and name of products
                 $needle['tags'] = array_merge($needle['tags'],
                     explode(',', trim($needleAux['tags'])),
                     explode(' ', trim($needleAux['name'])));
@@ -99,9 +99,9 @@ class ProductHandler extends DataHandler
         }
 
         if (count($needle['tags']) > 0) {
-            //by preferences
+            // by preferences
             if ($data['preferences_key'] == 'product_categories') {
-                //look up by categories. If we want to get a specific category, we have to add "category" to data array
+                // look up by categories. If we want to get a specific category, we have to add "category" to data array
                 DB::enableQueryLog();
                 $products[0] = Product::select($data['select'])
                     ->free()
@@ -145,12 +145,12 @@ class ProductHandler extends DataHandler
             $diff = $diff - count($products[1]); //limit control
         }
 
-        //if we get suggestion results, we save those id
+        // if we get suggestion results, we save those id
         if (isset($products[1])) {
             $productsHelper->setToHaystack($products[1]);
         }
 
-        //by rand
+        // by rand
         if ($diff > 0 && $diff <= $data['limit']) {
             $products[2] = Product::select($data['select'])
                 ->free()
@@ -161,12 +161,12 @@ class ProductHandler extends DataHandler
                 ->toArray();
         }
 
-        //if we get suggestion results, we save those id
+        // if we get suggestion results, we save those id
         if (isset($products[2])) {
             $productsHelper->setToHaystack($products[2]);
         }
 
-        //making one array to return
+        // making one array to return
         $array    = [];
         $products = array_values($products);
         for ($i = 0; $i < count($products); $i++) {

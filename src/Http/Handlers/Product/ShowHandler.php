@@ -11,18 +11,15 @@ namespace Notadd\Shop\Http\Handlers\Product;
 
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Product;
-use Illuminate\Support\Facades\DB;
 use Notadd\Shop\Models\OrderDetail;
-use Illuminate\Support\Facades\Auth;
 use Notadd\Shop\Models\ProductDetail;
 use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Helpers\FeaturesHelper;
-use Notadd\Shop\Helpers\ProductsHelper;
 use Notadd\Shop\Models\FreeProductOrder;
+use Notadd\Shop\Http\Handlers\ProductHandler;
 use Notadd\Shop\Http\Controllers\UserController;
-use Notadd\Foundation\Passport\Abstracts\DataHandler;
 
-class ShowHandler extends DataHandler
+class ShowHandler extends ProductHandler
 {
     /**
      * Http code.
@@ -72,7 +69,7 @@ class ShowHandler extends DataHandler
             $features = ProductDetail::all()->toArray();
 
             // increasing product counters, in order to have a suggestion orden
-            $this->setCounters($product, ['view_counts' => trans('shop::globals.product_value_counters.view')], 'viewed');
+            static::setCounters($product, ['view_counts' => trans('shop::globals.product_value_counters.view')], 'viewed');
 
             // saving the product tags into users preferences
             if (trim($product->tags) != '') {
@@ -98,7 +95,7 @@ class ShowHandler extends DataHandler
             // products suggestions control
             // saving product id into suggest-listed, in order to exclude products from suggestions type "view"
             Session::push('suggest-listed', $product->id);
-            $suggestions = $this->getSuggestions(['preferences_key' => $product->id, 'limit' => 4]);
+            $suggestions = static::getSuggestions(['preferences_key' => $product->id, 'limit' => 4]);
             Session::forget('suggest-listed');
 
             // retrieving products groups of the product shown
