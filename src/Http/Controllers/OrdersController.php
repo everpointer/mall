@@ -66,29 +66,29 @@ class OrdersController extends Controller
     {
         $quantity = $request->get('quantity');
 
-        //if there is not quantity requested, the value is 1 as defect
-        if (!$quantity) {
+        // if there is not quantity requested, the value is 1 as defect
+        if (! $quantity) {
             $quantity = 1;
         }
 
-        //making sure if the product requested exists, otherwise, we throw a http exception
+        // making sure if the product requested exists, otherwise, we throw a http exception
         try {
             $product = Product::findOrFail($productId);
         } catch (ModelNotFoundException $e) {
-            throw new NotFoundHttpException();
+            return response()->json(['code' => 404, 'messages' => 'Not Found']);
         }
 
         $user = Auth::user();
 
-        //checking if the user is logged
+        // checking if the user is logged
         if ($user) {
             $basicCart = Order::ofType($destination)->where('user_id', $user->id)->first();
 
-            if (!$basicCart) {
-                $basicCart = new Order();
+            if (! $basicCart) {
+                $basicCart          = new Order();
                 $basicCart->user_id = $user->id;
-                $basicCart->type = $destination;
-                $basicCart->status = 'open';
+                $basicCart->type    = $destination;
+                $basicCart->status  = 'open';
                 $basicCart->save();
 
                 $log = Log::create([
@@ -111,30 +111,30 @@ class OrdersController extends Controller
                 $email = $user->email;
             }
 
-            //creating visrtual order
+            // creating visrtual order
             if ($destination != 'wishlist') {
                 $this->addToCartVirtualsProduct($product, $email, $basicCart->id, $quantity);
             }
 
-            //checking if the user already has a product so it can be added
+            // checking if the user already has a product so it can be added
             $orderDetail = OrderDetail::where('order_id', $basicCart->id)
                 ->where('product_id', $product->id)
                 ->first();
 
-            //creating the order detail
+            // creating the order detail
             if ($orderDetail) {
-                $orderDetail->price = $product->price;
+                $orderDetail->price    = $product->price;
                 $orderDetail->quantity = $orderDetail->quantity + $quantity;
             } else {
-                $orderDetail = new OrderDetail();
-                $orderDetail->order_id = $basicCart->id;
+                $orderDetail             = new OrderDetail();
+                $orderDetail->order_id   = $basicCart->id;
                 $orderDetail->product_id = $product->id;
-                $orderDetail->price = $product->price;
-                $orderDetail->quantity = $quantity;
-                $orderDetail->status = 1;
+                $orderDetail->price      = $product->price;
+                $orderDetail->quantity   = $quantity;
+                $orderDetail->status     = 1;
             }
 
-            //saving detail order
+            // saving detail order
             $orderDetail->save();
 
             $log = Log::create([
@@ -144,23 +144,23 @@ class OrdersController extends Controller
                 'user_id'        => $user->id,
             ]);
 
-            //callback url
-            if ($destination == 'wishlist') {
-                Session::push('message', trans('shop::store.productAddedToWishList'));
-
-                return redirect()->route('orders.show_wish_list');
-            } elseif ($destination == 'later') {
-                Session::push('message', trans('shop::store.productsSavedForLater'));
-
-                return redirect()->route('products.show', [$productId]);
-            } else {
-                Session::push('message', trans('shop::store.productAdded'));
-
-                return redirect()->route('orders.show_cart');
-            }
+            // callback url
+            // if ($destination == 'wishlist') {
+            //     Session::push('message', trans('shop::store.productAddedToWishList'));
+            //
+            //     return redirect()->route('orders.show_wish_list');
+            // } elseif ($destination == 'later') {
+            //     Session::push('message', trans('shop::store.productsSavedForLater'));
+            //
+            //     return redirect()->route('products.show', [$productId]);
+            // } else {
+            //     Session::push('message', trans('shop::store.productAdded'));
+            //
+            //     return redirect()->route('orders.show_cart');
+            // }
         }
 
-        //creating the user guest shopping cart
+        // creating the user guest shopping cart
         else {
 
             /**
@@ -176,29 +176,29 @@ class OrdersController extends Controller
              */
             $user_cart_content = Session::get('user.cart_content');
 
-            //Checking if the user has a session cart, otherwise, it's created
-            if (!is_array($user_cart)) {
+            // Checking if the user has a session cart, otherwise, it's created
+            if (! is_array($user_cart)) {
                 $user_cart = [];
             }
 
-            //Checking if the user has content in the shopping cart, otherwise, it's added.
-            if (!is_array($user_cart_content)) {
+            // Checking if the user has content in the shopping cart, otherwise, it's added.
+            if (! is_array($user_cart_content)) {
                 $user_cart_content = [];
             }
 
-            //Checking if the user has the product in the shopping cart,  otherwise, it's pushed up
-            if (!in_array($productId, $user_cart)) {
+            // Checking if the user has the product in the shopping cart,  otherwise, it's pushed up
+            if (! in_array($productId, $user_cart)) {
                 array_push($user_cart, $productId);
             }
 
-            //Checking if the user has quantity on the selected product, if so, it's quantity is updated, otherwise, 1 is added as defect.
-            if (!isset($user_cart_content[$productId])) {
+            // Checking if the user has quantity on the selected product, if so, it's quantity is updated, otherwise, 1 is added as defect.
+            if (! isset($user_cart_content[$productId])) {
                 $user_cart_content[$productId] = $quantity;
             } else {
                 $user_cart_content[$productId] += $quantity;
             }
 
-            //Saving session for user logged
+            // Saving session for user logged
             Session::put('user.cart_content', $user_cart_content);
             Session::put('user.cart', $user_cart);
             Session::save();
@@ -213,9 +213,9 @@ class OrdersController extends Controller
                 Session::put('flashWishList.quantity', $quantity);
                 Session::save();
 
-                return redirect()->route('orders.show_wish_list');
+                // return redirect()->route('orders.show_wish_list');
             } else {
-                return redirect()->route('orders.show_cart');
+                // return redirect()->route('orders.show_cart');
             }
         }
     }
@@ -225,11 +225,11 @@ class OrdersController extends Controller
      *
      * @param [type]  $orderId   [order id]
      * @param [type]  $productId [product id]
-     * @param Request $request   [laravel object]
+     * @param Request $request [laravel object]
      */
     public function addToOrderById($orderId, $productId, Request $request)
     {
-        $user = Auth::user();
+        $user     = Auth::user();
         $quantity = $request->get('quantity') ? $request->get('quantity') : 1;
 
         //checking whether the product required exist or not
@@ -254,17 +254,16 @@ class OrdersController extends Controller
 
             //if the product exists, its quantity is increased
             if ($orderDetail) {
-                $orderDetail->price = $product->price;
+                $orderDetail->price    = $product->price;
                 $orderDetail->quantity = $orderDetail->quantity + $quantity;
-            }
-            //otherwise, the order details is created from the product received
+            } //otherwise, the order details is created from the product received
             else {
-                $orderDetail = new OrderDetail();
-                $orderDetail->order_id = $order->id;
+                $orderDetail             = new OrderDetail();
+                $orderDetail->order_id   = $order->id;
                 $orderDetail->product_id = $product->id;
-                $orderDetail->price = $product->price;
-                $orderDetail->quantity = $quantity;
-                $orderDetail->status = 1;
+                $orderDetail->price      = $product->price;
+                $orderDetail->quantity   = $quantity;
+                $orderDetail->status     = 1;
             }
 
             $orderDetail->save();
@@ -278,10 +277,10 @@ class OrdersController extends Controller
                 ]
             );
 
-            Session::push('message', trans('shop::store.productAddedToWishList').', '.trans('shop::globals.reference_label').$order->description);
+            Session::push('message', trans('shop::store.productAddedToWishList') . ', ' . trans('shop::globals.reference_label') . $order->description);
         } else {
             Session::push('messageClass', 'alert-danger');
-            Session::push('message', trans('shop::store.wishlist_no_exists').', '.trans('shop::globals.reference_label').$order->description);
+            Session::push('message', trans('shop::store.wishlist_no_exists') . ', ' . trans('shop::globals.reference_label') . $order->description);
         }
 
         return redirect()->route('orders.show_wish_list_by_id', [$order->id]);
@@ -316,12 +315,12 @@ class OrdersController extends Controller
                 ->first();
 
             //creating the default wish list, taking in account that it does not exist
-            if (!$defaultList) {
-                $default = new Order();
-                $default->user_id = $user->id;
+            if (! $defaultList) {
+                $default              = new Order();
+                $default->user_id     = $user->id;
                 $default->description = '';
-                $default->type = 'wishlist';
-                $default->status = 'open';
+                $default->type        = 'wishlist';
+                $default->status      = 'open';
                 $default->save();
             }
 
@@ -340,11 +339,11 @@ class OrdersController extends Controller
                 return \Response::json(['success' => true], 200);
             } else {
                 //Creates the new wishlist with the provided description
-                $newList = new Order();
-                $newList->user_id = $user->id;
+                $newList              = new Order();
+                $newList->user_id     = $user->id;
                 $newList->description = $description;
-                $newList->type = 'wishlist';
-                $newList->status = 'open';
+                $newList->type        = 'wishlist';
+                $newList->status      = 'open';
                 $newList->save();
 
                 Session::push('message', trans('shop::store.form_create_list_view.message_success'));
@@ -425,9 +424,7 @@ class OrdersController extends Controller
                  * @var string
                  */
                 $wishListName = $cart ? $cart->description : $wishListName;
-            }
-
-            // if the required wish list does not exist, the default one  will beprovided
+            } // if the required wish list does not exist, the default one  will beprovided
             else {
                 $cart = Order::ofType('wishlist')
                     ->with('details')
@@ -588,13 +585,13 @@ class OrdersController extends Controller
 
             if ($cart) {
                 foreach ($cart->details as $detail) {
-                    $totalItems += $detail->quantity;
+                    $totalItems  += $detail->quantity;
                     $totalAmount += ($detail->quantity * $detail->price);
 
                     if ($detail->quantity > $detail->product->stock) {
                         $detail->quantity = $detail->product->stock;
                         $detail->save();
-                        $validation_message[] = trans('shop::store.cart_view.item_changed_stock1').' '.$detail->product->name.' '.trans('shop::store.cart_view.item_changed_stock2');
+                        $validation_message[] = trans('shop::store.cart_view.item_changed_stock1') . ' ' . $detail->product->name . ' ' . trans('shop::store.cart_view.item_changed_stock2');
                     }
 
                     //saving the product listed to not show it on suggestion view
@@ -633,7 +630,7 @@ class OrdersController extends Controller
                     if ($quantity > $product->stock) {
                         $quantity = $product->stock;
 
-                        $validation_message[] = trans('shop::store.cart_view.item_changed_stock1').' '.$product->name.' '.trans('shop::store.cart_view.item_changed_stock2');
+                        $validation_message[] = trans('shop::store.cart_view.item_changed_stock1') . ' ' . $product->name . ' ' . trans('shop::store.cart_view.item_changed_stock2');
                     }
 
                     $cart_details[] = [
@@ -705,9 +702,9 @@ class OrdersController extends Controller
     public function removeFromOrder($orderName, $productId, $idOrder = '')
     {
         $product = Product::findOrFail($productId);
-        $user = Auth::user();
+        $user    = Auth::user();
 
-        if (!$user) {
+        if (! $user) {
             $cart_content = Session::get('user.cart_content');
             unset($cart_content[$productId]);
             Session::put('user.cart_content', $cart_content);
@@ -723,7 +720,7 @@ class OrdersController extends Controller
 
         $basicCart = $basicCart->first();
 
-        if (!($basicCart)) {
+        if (! ($basicCart)) {
             Session::push('message', trans('shop::store.productNotFound'));
         } else {
             if ($product->type != 'item') {
@@ -731,7 +728,7 @@ class OrdersController extends Controller
                     case 'key':
                         $idVirtual = VirtualProduct::where('product_id', $product->id)->where('status', 'cancelled')->first();
                         VirtualProductOrder::where('virtual_product_id', $idVirtual->id)->where('order_id', $basicCart->id)->delete();
-                    break;
+                        break;
                 }
             }
             $orderDetail = OrderDetail::where('order_id', $basicCart->id)->where('product_id', $product->id)->first();
@@ -787,9 +784,7 @@ class OrdersController extends Controller
                 ->where('user_id', $user->id)
                 ->where('id', $originType->id)
                 ->first();
-        }
-
-        //if it came either from the default wish list or shopping cart
+        } //if it came either from the default wish list or shopping cart
         else {
             //getting the list information
             $basicCart = Order::ofType($origin)
@@ -803,11 +798,11 @@ class OrdersController extends Controller
             ->first();
 
         //if there is not destination, it is created
-        if (!$destinationOrder) {
-            $destinationOrder = new Order();
+        if (! $destinationOrder) {
+            $destinationOrder          = new Order();
             $destinationOrder->user_id = $user->id;
-            $destinationOrder->type = $destination;
-            $destinationOrder->status = 'open';
+            $destinationOrder->type    = $destination;
+            $destinationOrder->status  = 'open';
             $destinationOrder->save();
 
             $log = Log::create(
@@ -839,15 +834,15 @@ class OrdersController extends Controller
 
         //creating the new orden
         if ($orderMoved) {
-            $orderMoved->price = $product->price;
+            $orderMoved->price    = $product->price;
             $orderMoved->quantity = $orderMoved->quantity + $oldQuantity;
         } else {
-            $orderMoved = new OrderDetail();
-            $orderMoved->order_id = $destinationOrder->id;
+            $orderMoved             = new OrderDetail();
+            $orderMoved->order_id   = $destinationOrder->id;
             $orderMoved->product_id = $product->id;
-            $orderMoved->price = $product->price;
-            $orderMoved->quantity = $oldQuantity;
-            $orderMoved->status = 1;
+            $orderMoved->price      = $product->price;
+            $orderMoved->quantity   = $oldQuantity;
+            $orderMoved->status     = 1;
         }
 
         //save new order
@@ -874,9 +869,9 @@ class OrdersController extends Controller
     /**
      * this method is able to update the quantities values in the shopping cart.
      *
-     * @param  $orderId is the shopping cart order id
+     * @param  $orderId       is the shopping cart order id
      * @param  $orderDetailId is the shopping cart order details
-     * @param  $newValue is new quantity to be used in the update
+     * @param  $newValue      is new quantity to be used in the update
      *
      * @return Response
      */
@@ -896,7 +891,7 @@ class OrdersController extends Controller
             }
 
             if ($orderDetail) {
-                $oldQuantity = $orderDetail->quantity;
+                $oldQuantity           = $orderDetail->quantity;
                 $orderDetail->quantity = $newValue;
                 $orderDetail->save();
 
@@ -942,7 +937,7 @@ class OrdersController extends Controller
         $total_points = 0;
 
         foreach ($cartDetail as $orderDetail) {
-            $product = Product::find($orderDetail->product_id);
+            $product      = Product::find($orderDetail->product_id);
             $total_points += $orderDetail->quantity * $product->price;
         }
 
@@ -990,7 +985,7 @@ class OrdersController extends Controller
             foreach ($cartDetail as $orderDetail) {
                 $product = Product::find($orderDetail->product_id);
 
-                $totalItems += $orderDetail->quantity;
+                $totalItems  += $orderDetail->quantity;
                 $totalAmount += ($orderDetail->quantity * $orderDetail->price);
 
                 if ($product->stock < $orderDetail->quantity) {
@@ -1004,31 +999,31 @@ class OrdersController extends Controller
             } else {
                 //Copies the Address to a new one and attaches it to the order or replaces the old one
                 $cartAddress = Address::find($cart->address_id);
-                if (!$cartAddress) {
+                if (! $cartAddress) {
                     //if the order does not has an address yet
-                    $newAddress = new Address();
-                    $newAddress->line1 = $address->line1;
-                    $newAddress->line2 = $address->line2;
-                    $newAddress->phone = $address->phone;
+                    $newAddress               = new Address();
+                    $newAddress->line1        = $address->line1;
+                    $newAddress->line2        = $address->line2;
+                    $newAddress->phone        = $address->phone;
                     $newAddress->name_contact = $address->name_contact;
-                    $newAddress->zipcode = $address->zipcode;
-                    $newAddress->city = $address->city;
-                    $newAddress->country = $address->country;
-                    $newAddress->state = $address->state;
+                    $newAddress->zipcode      = $address->zipcode;
+                    $newAddress->city         = $address->city;
+                    $newAddress->country      = $address->country;
+                    $newAddress->state        = $address->state;
                     $newAddress->save();
                     $cart->address_id = $newAddress->id;
                     $cart->save();
                     $cartAddress = $newAddress;
                 } else {
                     //if the order needs to be updated
-                    $cartAddress->line1 = $address->line1;
-                    $cartAddress->line2 = $address->line2;
-                    $cartAddress->phone = $address->phone;
+                    $cartAddress->line1        = $address->line1;
+                    $cartAddress->line2        = $address->line2;
+                    $cartAddress->phone        = $address->phone;
                     $cartAddress->name_contact = $address->name_contact;
-                    $cartAddress->zipcode = $address->zipcode;
-                    $cartAddress->city = $address->city;
-                    $cartAddress->country = $address->country;
-                    $cartAddress->state = $address->state;
+                    $cartAddress->zipcode      = $address->zipcode;
+                    $cartAddress->city         = $address->city;
+                    $cartAddress->country      = $address->country;
+                    $cartAddress->state        = $address->state;
                     $cartAddress->save();
                 }
 
@@ -1036,7 +1031,7 @@ class OrdersController extends Controller
                     'center' => ['width' => '12'],
                 ];
                 //Sets the resume option to use the same view
-                $isResume = true;
+                $isResume  = true;
                 $is_logged = true;
 
                 return view('orders.cart', compact('cart', 'user', 'panel', 'isResume', 'cartAddress', 'totalItems', 'totalAmount'));
@@ -1088,7 +1083,7 @@ class OrdersController extends Controller
          * provide control on the processed message to users
          * @var array
          */
-        $message['msg'] = trans('shop::store.cancelled_order');
+        $message['msg']   = trans('shop::store.cancelled_order');
         $message['class'] = 'alert alert-success';
 
         /**
@@ -1106,7 +1101,7 @@ class OrdersController extends Controller
             ->first();
 
         //checking if the user is a seller
-        if (!$order) {
+        if (! $order) {
             $route = '/user/orders';
 
             $order = Order::where('id', $orderId)
@@ -1124,7 +1119,7 @@ class OrdersController extends Controller
 
             //Returning the stock to products
             foreach ($order->details as $detail) {
-                $product = Product::find($detail->product_id);
+                $product        = Product::find($detail->product_id);
                 $product->stock += $detail->quantity;
                 $product->save();
 
@@ -1141,7 +1136,7 @@ class OrdersController extends Controller
 
             $order->save();
         } else {
-            $message['msg'] = trans('shop::store.no_order_message');
+            $message['msg']   = trans('shop::store.no_order_message');
             $message['class'] = 'alert alert-danger';
         }
 
@@ -1159,7 +1154,7 @@ class OrdersController extends Controller
      */
     public function startOrder($order_id)
     {
-        $user = Auth::user();
+        $user  = Auth::user();
         $order = Order::where('id', $order_id)
             ->where('seller_id', $user->id)
             ->ofStatus('open')
@@ -1179,7 +1174,7 @@ class OrdersController extends Controller
                 'status'         => 'new',
             ]);
 
-            Session::push('message', trans('shop::store.orders_index.order_started').' (#'.$order->id.')');
+            Session::push('message', trans('shop::store.orders_index.order_started') . ' (#' . $order->id . ')');
 
             return redirect(route('orders.pendingOrders'));
         } else {
@@ -1194,12 +1189,12 @@ class OrdersController extends Controller
      */
     public function sendOrder($order_id)
     {
-        $user = Auth::user();
+        $user  = Auth::user();
         $order = Order::where('id', $order_id)
-        ->where('seller_id', $user->id)
-        ->ofStatus('pending')
-        ->select('id', 'user_id', 'status', 'seller_id')
-        ->first();
+            ->where('seller_id', $user->id)
+            ->ofStatus('pending')
+            ->select('id', 'user_id', 'status', 'seller_id')
+            ->first();
 
         //checks if the orders is sold by the user and if it is on open status
         if ($order) {
@@ -1216,14 +1211,14 @@ class OrdersController extends Controller
             ]);
 
             $order_content = OrderDetail::where('order_id', $order->id)->get();
-            $band = false;
+            $band          = false;
             foreach ($order_content as $row) {
                 if ($row->product->type != 'item') {
                     $band = $this->deliveryVirtualProduct($order->id, $row->product_id, new Request(), false);
                     $band = $band === 'closed' ? true : false;
                 }
             }
-            Session::push('message', trans('shop::store.orders_index.order_sent').' (#'.$order->id.')'.(!$band ? '' : trans('shop::store.order_closed_message')));
+            Session::push('message', trans('shop::store.orders_index.order_sent') . ' (#' . $order->id . ')' . (! $band ? '' : trans('shop::store.order_closed_message')));
 
             return redirect(route('orders.pendingOrders'));
         } else {
@@ -1238,16 +1233,16 @@ class OrdersController extends Controller
      */
     public function closeOrder($order_id)
     {
-        $user = Auth::user();
+        $user  = Auth::user();
         $order = Order::where('id', $order_id)->where('user_id', $user->id)->ofStatus('sent')->select('id', 'user_id', 'status', 'end_date', 'seller_id')->first();
         //checks if the orders is own by the user and if it is on open status
         if ($order) {
             //Mails and notifications are now sent in the save method for the order
-            $order->status = 'closed';
+            $order->status   = 'closed';
             $order->end_date = DB::raw('NOW()');
             // $order->end_date = Carbon::now(); Esto lo cambie porque no me parece guardar la fecha de php en la bd...
             $order->save();
-            Session::push('message', trans('shop::store.orders_index.order_received').' (#'.$order->id.')');
+            Session::push('message', trans('shop::store.orders_index.order_received') . ' (#' . $order->id . ')');
 
             Notice::create([
                 'user_id'        => $order->seller_id,
@@ -1262,10 +1257,10 @@ class OrdersController extends Controller
                 $seller = Member::findOrFail($order->seller_id);
                 if ($seller) {
                     $order_content = OrderDetail::where('order_id', $order->id)->get();
-                    $total_points = 0;
+                    $total_points  = 0;
                     foreach ($order_content as $order_detail) {
-                        $total_points += $order_detail->quantity * $order_detail->price;
-                        $order_detail->status = 0;
+                        $total_points                += $order_detail->quantity * $order_detail->price;
+                        $order_detail->status        = 0;
                         $order_detail->delivery_date = DB::raw('NOW()');
                         $order_detail->save();
                         if ($order_detail->product->type != 'item') {
@@ -1273,7 +1268,7 @@ class OrdersController extends Controller
                                 case 'key':
                                     $virtualProductsId = VirtualProductOrder::select('virtual_product_id')->where('order_id', $order->id)->get()->toArray();
                                     VirtualProduct::where('product_id', $order_detail->product_id)->whereIn('id', $virtualProductsId)->update(['status' => 'closed']);
-                                break;
+                                    break;
                             }
                         }
                     }
@@ -1302,7 +1297,7 @@ class OrdersController extends Controller
         switch ($type) {
             case 'history':
                 $orders = Order::
-                    where($where_field, $user->id)
+                where($where_field, $user->id)
                     ->with('details')
                     ->with('user')
                     ->ofType('order')
@@ -1321,7 +1316,7 @@ class OrdersController extends Controller
                     'orders'   => $orders,
                     'summary'  => $summary,
                 ];
-            break;
+                break;
         }
 
         $pdf = \PDF::loadView('pdf.orders.history', $data);
@@ -1355,7 +1350,7 @@ class OrdersController extends Controller
         }
 
         $openOrders = Order::
-            where($where_field, $user->id)
+        where($where_field, $user->id)
             ->with('user.profile')
             ->ofType('order')
             ->whereIn('status', ['open', 'pending', 'sent'])
@@ -1364,7 +1359,7 @@ class OrdersController extends Controller
             ->paginate(20);
 
         $closedOrders = Order::
-            where($where_field, $user->id)
+        where($where_field, $user->id)
             ->with('user.profile')
             ->ofType('order')
             ->ofStatus('closed')
@@ -1372,7 +1367,7 @@ class OrdersController extends Controller
             ->paginate(20);
 
         $cancelledOrders = Order::
-            where($where_field, $user->id)
+        where($where_field, $user->id)
             ->with('user.profile')
             ->ofType('order')
             ->ofStatus('cancelled')
@@ -1380,7 +1375,7 @@ class OrdersController extends Controller
             ->paginate(20);
 
         $unRate = Order::
-            where($where_field, $user->id)
+        where($where_field, $user->id)
             ->with('details')
             ->with('user.profile')
             ->ofType('order')
@@ -1425,7 +1420,7 @@ class OrdersController extends Controller
     /**
      *   function, to lift the Modal to display the details product in the card (Only this seller).
      *
-     *   @return view
+     * @return view
      */
     public function modalDetailsProductCart()
     {
@@ -1435,48 +1430,48 @@ class OrdersController extends Controller
     /**
      *   get keys registered (Only this seller).
      *
-     *   @param  $id         int|string  id product
-     *   @param  $request    Request     object to validate the type of request
+     * @param  $id         int|string  id product
+     * @param  $request    Request     object to validate the type of request
      *
-     *   @return json
+     * @return json
      */
     public function showDetailsProductCart($id, Request $request)
     {
-        if (!$request->wantsJson()) {
+        if (! $request->wantsJson()) {
             return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
         $cart = Order::ofType('cart')->select('id')->where('user_id', Auth::user()->id)->first();
-        if (!$cart) {
+        if (! $cart) {
             return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
         $product = Product::find($id);
-        if (!$product) {
+        if (! $product) {
             return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
         $order = OrderDetail::where('order_id', $cart->id)->where('product_id', $product->id)->first();
-        if (!$order) {
+        if (! $order) {
             return json_encode(['message' => trans('shop::globals.error_not_available')]);
         }
-        $seller = Member::select('nickname')->find($product->user_id);
+        $seller          = Member::select('nickname')->find($product->user_id);
         $product->seller = $seller->nickname;
-        $return = ['product' => $product, 'order' => $order];
+        $return          = ['product' => $product, 'order' => $order];
         if ($product->type != 'item') {
             $virtual = VirtualProduct::where('product_id', $product->id)->first();
-            $arrayV = ['type' => $product->type, 'title' => trans('shop::product.globals.digital_item').' '.trans('shop::product.'.$product->type)];
+            $arrayV  = ['type' => $product->type, 'title' => trans('shop::product.globals.digital_item') . ' ' . trans('shop::product.' . $product->type)];
             switch ($product->type) {
                 case 'key':
                     $virtualOrder = VirtualProductOrder::where('virtual_product_id', $virtual->id)->where('order_id', $order->order_id)->where('status', 1)->get();
-                    $email = [];
+                    $email        = [];
                     foreach ($virtualOrder as $row) {
                         if (isset($email[$row->email])) {
                             $email[$row->email]['num']++;
                         } else {
-                            $email[$row->email]['num'] = 1;
+                            $email[$row->email]['num']   = 1;
                             $email[$row->email]['email'] = $row->email;
                         }
                     }
                     $arrayV['data'] = $email;
-                break;
+                    break;
             }
             $return['virtual'] = $arrayV;
         }
@@ -1485,7 +1480,7 @@ class OrdersController extends Controller
     }
 
     /**
-     *   @return view
+     * @return view
      */
     public function showOrder($id)
     {
@@ -1497,13 +1492,13 @@ class OrdersController extends Controller
         $user = Auth::user();
         if ($user) {
             $order = Order::
-                where('id', $id)->where('user_id', $user->id)
+            where('id', $id)->where('user_id', $user->id)
                 ->with('details')
                 ->first();
 
             if ($order) {
-                $orderAddress = Address::find($order->address_id);
-                $is_buyer = true;
+                $orderAddress   = Address::find($order->address_id);
+                $is_buyer       = true;
                 $order_comments = Comment::where('action_type_id', 3)->where('source_id', $id)->orderBy('created_at', 'asc')->get();
 
                 $totalItems = $order->details->sum('quantity');
@@ -1536,7 +1531,7 @@ class OrdersController extends Controller
         $user = Auth::user();
 
         $order = Order::
-            where('id', $id)
+        where('id', $id)
             ->where('seller_id', $user->id)
             ->with('details')
             ->first();
@@ -1548,7 +1543,7 @@ class OrdersController extends Controller
         $orderAddress = Address::find($order->address_id);
 
         $order_comments = Comment::
-            where('action_type_id', 3)
+        where('action_type_id', 3)
             ->where('source_id', $id)
             ->orderBy('created_at', 'asc')
             ->get();
@@ -1564,7 +1559,7 @@ class OrdersController extends Controller
     }
 
     /**
-     *   @return view
+     * @return view
      */
     private function addToCartVirtualsProduct($product, $email, $orderId, $quantity = 0)
     {
@@ -1573,14 +1568,14 @@ class OrdersController extends Controller
             switch ($product->type) {
                 case 'key':
                     for ($i = 0; $i < $quantity; $i++) {
-                        $VirtualProductOrder = new VirtualProductOrder();
-                        $VirtualProductOrder->order_id = $orderId;
-                        $VirtualProductOrder->status = 1;
-                        $VirtualProductOrder->email = $email;
+                        $VirtualProductOrder                     = new VirtualProductOrder();
+                        $VirtualProductOrder->order_id           = $orderId;
+                        $VirtualProductOrder->status             = 1;
+                        $VirtualProductOrder->email              = $email;
                         $VirtualProductOrder->virtual_product_id = $virtual->id;
                         $VirtualProductOrder->save();
                     }
-                break;
+                    break;
             }
         }
     }
@@ -1588,31 +1583,31 @@ class OrdersController extends Controller
     /**
      *   function to action to deliver virtual products.
      *
-     *   @param  $orderId    int|string  id order
-     *   @param  $productId  int|string  id product
-     *   @param  $request    Request     object to validate the type of request
+     * @param  $orderId    int|string  id order
+     * @param  $productId  int|string  id product
+     * @param  $request    Request     object to validate the type of request
      *
-     *   @return json    message error or message success
+     * @return json    message error or message success
      */
     public function deliveryVirtualProduct($orderId, $productId, Request $request, $ajax = true)
     {
-        if ($ajax && !$request->wantsJson()) {
+        if ($ajax && ! $request->wantsJson()) {
             return json_encode(['message' => trans('shop::globals.error_not_available'), 'json' => false]);
         }
-        $Order = Order::find($orderId);
+        $Order   = Order::find($orderId);
         $product = Product::find($productId);
-        if (!$Order || !$product) {
+        if (! $Order || ! $product) {
             return json_encode(['message' => trans('shop::globals.error_not_available'), 'id' => false]);
         }
         if ($Order->status != 'pending' && $Order->status != 'sent') {
             return json_encode(['message' => trans('shop::globals.error_not_available'), 'status' => false]);
         }
         $virtuals = VirtualProduct::where('product_id', $product->id)->where('status', 'paid')->get();
-        if (!count($virtuals->toArray())) {
+        if (! count($virtuals->toArray())) {
             return json_encode(['message' => trans('shop::globals.error_not_available'), 'virtual' => false]);
         }
         $detail = OrderDetail::where('order_id', $Order->id)->where('product_id', $product->id)->first();
-        $user = Member::find($Order->user_id);
+        $user   = Member::find($Order->user_id);
         foreach ($virtuals as $row) {
             $virtualOrders = VirtualProductOrder::where('virtual_product_id', $row->id)->where('order_id', $Order->id)->first();
             if ($virtualOrders) {
@@ -1627,23 +1622,23 @@ class OrdersController extends Controller
                 $virtualOrders->save();
             }
         }
-        $detail->status = 0;
+        $detail->status        = 0;
         $detail->delivery_date = DB::raw('NOW()');
         $detail->save();
         if ($ajax) {
             $detail = OrderDetail::where('order_id', $Order->id)->where('status', 1)->first();
         }
-        if ($ajax && !$detail) {
+        if ($ajax && ! $detail) {
             $Order->end_date = DB::raw('NOW()');
-            $Order->status = 'Sent';
+            $Order->status   = 'Sent';
             $Order->save();
-            if (!$ajax) {
+            if (! $ajax) {
                 return 'Sent';
             } else {
-                return json_encode(['message' => trans('shop::store.delivery_successfully').' '.trans('shop::store.closedOrders'), 'success' => true, 'closed' => true]);
+                return json_encode(['message' => trans('shop::store.delivery_successfully') . ' ' . trans('shop::store.closedOrders'), 'success' => true, 'closed' => true]);
             }
         } else {
-            if (!$ajax) {
+            if (! $ajax) {
                 return 'success';
             } else {
                 return json_encode(['message' => trans('shop::store.delivery_successfully'), 'success' => true]);
@@ -1654,9 +1649,9 @@ class OrdersController extends Controller
     /**
      *   function to action to deliver virtual products.
      *
-     *   @param  $order_id    int
+     * @param  $order_id    int
      *
-     *   @return json    message error or message success
+     * @return json    message error or message success
      */
     public function commentOrder($order_id)
     {
@@ -1666,15 +1661,15 @@ class OrdersController extends Controller
     /**
      *   function to action to deliver virtual products.
      *
-     *   @param  $order_id    int
+     * @param  $order_id    int
      *
-     *   @return json    message error or message success
+     * @return json    message error or message success
      */
     public function storeComment(Request $request)
     {
         $order_id = $request->get('order_id');
-        $text = $request->get('comment_text');
-        $user = Auth::user();
+        $text     = $request->get('comment_text');
+        $user     = Auth::user();
         if ($user) {
             $order = Order::find($order_id);
             //Checks if the order belongs to the current user, or if the user is the seller of the order
@@ -1690,13 +1685,13 @@ class OrdersController extends Controller
 
                 if ($order->user_id == $user->id) {
                     $mail_subject = trans('shop::email.order_commented.comment_from_user');
-                    $seller_user = Member::find($order->seller_id);
-                    $email = $seller_user->email;
+                    $seller_user  = Member::find($order->seller_id);
+                    $email        = $seller_user->email;
                 }
                 if ($order->seller_id == $user->id) {
                     $mail_subject = trans('shop::email.order_commented.comment_from_seller');
-                    $buyer_user = Member::find($order->user_id);
-                    $email = $buyer_user->email;
+                    $buyer_user   = Member::find($order->user_id);
+                    $email        = $buyer_user->email;
                 }
 
                 $data = [
@@ -1725,9 +1720,9 @@ class OrdersController extends Controller
     /**
      *   function to action to rate both the order and its content.
      *
-     *   @param  $order_id  int
+     * @param  $order_id  int
      *
-     *   @return
+     * @return
      */
     public function rateOrder($order_id)
     {
@@ -1738,8 +1733,8 @@ class OrdersController extends Controller
             $order = Order::where('id', $order_id)->where('user_id', $user->id)->first();
             // dd($order->details);
             if ($order) {
-                $address = Address::find($order->address_id);
-                $seller = Member::find($order->seller_id);
+                $address  = Address::find($order->address_id);
+                $seller   = Member::find($order->seller_id);
                 $business = Business::where('user_id', $order->seller_id)->first();
                 // $jsonOrder = json_encode($order->toArray());
                 // $jsonOrderAddress = json_encode($address->toArray());
@@ -1756,10 +1751,10 @@ class OrdersController extends Controller
 
     public function rateSeller(Request $request)
     {
-        $order_id = $request->get('order_id');
-        $seller_rate = $request->get('seller_rate');
+        $order_id       = $request->get('order_id');
+        $seller_rate    = $request->get('seller_rate');
         $seller_comment = $request->get('seller_comment');
-        $user = Auth::user();
+        $user           = Auth::user();
 
         if ($user) {
             $order = Order::where('id', $order_id)
@@ -1775,7 +1770,7 @@ class OrdersController extends Controller
 
                 //Checks if the order has already been rated by the user
                 if ($seller_old_rate_count == 0) {
-                    $seller->rate_val = $seller_rate;
+                    $seller->rate_val   = $seller_rate;
                     $seller->rate_count = 1;
                 } else {
                     //Checks if the new value should add to the rates or not
@@ -1800,10 +1795,10 @@ class OrdersController extends Controller
                     }
                 }
 
-                $seller_user = Member::find($order->seller_id);
-                $email = $seller_user->email;
+                $seller_user  = Member::find($order->seller_id);
+                $email        = $seller_user->email;
                 $mail_subject = trans('shop::email.order_rated.subject');
-                $data = [
+                $data         = [
                     'order_id'      => $order_id,
                     'subject'       => $mail_subject,
                     'email_message' => $mail_subject,
@@ -1813,7 +1808,7 @@ class OrdersController extends Controller
                     $message->to($data['email'])->subject($data['subject']);
                 });
 
-                $order->rate = $seller_rate;
+                $order->rate         = $seller_rate;
                 $order->rate_comment = $seller_comment;
                 $order->save();
                 $seller->save();
@@ -1839,10 +1834,10 @@ class OrdersController extends Controller
 
     public function rateProduct(Request $request)
     {
-        $detail_id = $request->get('detail_id');
-        $product_rate = $request->get('product_rate');
+        $detail_id       = $request->get('detail_id');
+        $product_rate    = $request->get('product_rate');
         $product_comment = $request->get('product_comment');
-        $user = Auth::user();
+        $user            = Auth::user();
 
         if ($user) {
             $detail = OrderDetail::find($detail_id);
@@ -1861,7 +1856,7 @@ class OrdersController extends Controller
 
                     //Checks if it is the first time the product is rated
                     if ($product_old_rate_count == 0) {
-                        $product->rate_val = $product_rate;
+                        $product->rate_val   = $product_rate;
                         $product->rate_count = 1;
                     } else {
                         //Checks if the user has rated this product on this order before
@@ -1883,10 +1878,10 @@ class OrdersController extends Controller
                         }
                     }
 
-                    $seller_user = Member::find($order->seller_id);
-                    $email = $seller_user->email;
+                    $seller_user  = Member::find($order->seller_id);
+                    $email        = $seller_user->email;
                     $mail_subject = trans('shop::email.product_rated.subject');
-                    $data = [
+                    $data         = [
                         'product_id'    => $product->id,
                         'subject'       => $mail_subject,
                         'email_message' => $mail_subject,
@@ -1897,7 +1892,7 @@ class OrdersController extends Controller
                     });
 
                     $product->save();
-                    $detail->rate = $product_rate;
+                    $detail->rate         = $product_rate;
                     $detail->rate_comment = $product_comment;
                     $detail->save();
 
@@ -1923,10 +1918,10 @@ class OrdersController extends Controller
 
     public function mailtest()
     {
-        $orderid = '4';
+        $orderid      = '4';
         $mailed_order = Order::where('id', $orderid)->with('details')->get()->first();
-       // dd($mailed_order->details);
-        $data = [
+        // dd($mailed_order->details);
+        $data  = [
             'orderId' => $orderid,
             'order'   => $mailed_order,
         ];
