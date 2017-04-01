@@ -8,6 +8,7 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
+use Notadd\Shop\Http\Handlers\ProductHandler;
 use Notadd\Shop\Models\Log;
 use Illuminate\Http\Request;
 use Notadd\Shop\Models\Order;
@@ -324,7 +325,7 @@ class OrdersController extends Controller
                 $default->save();
             }
 
-            //checking if the wish list requested is not in our records
+            // checking if the wish list requested is not in our records
             $newList = Order::ofType('wishlist')
                 ->ofUser($user->id)
                 ->where('description', $description)
@@ -348,7 +349,7 @@ class OrdersController extends Controller
 
                 Session::push('message', trans('shop::store.form_create_list_view.message_success'));
 
-                return \Response::json(['success' => true], 200);
+                return response()->json(['success' => true], 200);
             }
         }
     }
@@ -483,12 +484,8 @@ class OrdersController extends Controller
             return response()->json(['code' => 403, 'messages' => 'Please login', 'data' => []]);
         }
 
-        $panel = [
-            'center' => ['width' => '12'],
-        ];
-
         // suggestions based on cart content
-        $suggestions = ProductsController::getSuggestions(['preferences_key' => Session::get('suggest-listed'), 'limit' => 4]);
+        $suggestions = ProductHandler::getSuggestions(['preferences_key' => Session::get('suggest-listed'), 'limit' => 4]);
 
         Session::forget('suggest-listed');
 

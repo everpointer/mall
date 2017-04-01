@@ -37,7 +37,7 @@ class ShowWishListHandler extends OrderHandler
     public function data()
     {
         $route = app(\Illuminate\Routing\Route::class);
-        $id    = intval(collect($route->parametersWithoutNulls())->get('id', 0));
+        $id    = intval(collect($route->parametersWithoutNulls())->get('id', null));
 
         /*
          * Checking if there is a product in flashWishList, if so, it will be saved into the basic wish list.
