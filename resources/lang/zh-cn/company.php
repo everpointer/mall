@@ -33,7 +33,7 @@ return [
    'seo'                        => 'SEO',
    'google_maps_key_api'        => 'Google Maps Embed API',
    'powered_by'                 => '技术支持 ',
-   'powered_url'                => 'https://github.com/ant-vel/antVel',
+   'powered_url'                => '',
    'powered_brand'              => 'Antvel',
    'email_title_sales'          => '销售帮助',
    'email_title_support'        => '客服帮助',

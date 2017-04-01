@@ -5,7 +5,7 @@ return [
     //'actions' => [1,2,3,8,9,11,13],
     //links to the source type of actions
     'links' => [
-        'order' => route('orders.show_order', ['source_id']),
+        'order' => '',
     ],
     //templates to the actions types
     'templates' => [
