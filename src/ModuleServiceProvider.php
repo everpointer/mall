@@ -33,9 +33,12 @@ class ModuleServiceProvider extends Module
         $this->loadMigrationsFrom(realpath(__DIR__ . '/../databases/migrations'));
 
         $this->publishes([
-            realpath(__DIR__ . '/../databases/seeds/') => database_path('seeds/'),
             realpath(__DIR__ . '/../config/shop.php')  => config_path('shop.php'),
         ], 'shop');
+
+        $this->publishes([
+            realpath(__DIR__ . '/../databases/seeds/') => database_path('seeds/'),
+        ], 'shop.seeds');
 
         // Injection some relations to member model
         $this->injectionRelationsToMember();
