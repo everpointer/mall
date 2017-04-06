@@ -8,15 +8,16 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Models\User;
+use Illuminate\Http\Request;
+use Notadd\Shop\Helpers\File;
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\Business;
-use Notadd\Shop\Helpers\File;
-use Notadd\Shop\Helpers\UserHelper;
-use Illuminate\Http\Request;
+use Notadd\Member\Models\Member;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -30,7 +31,7 @@ class UserController extends Controller
 
     protected function filterFormRules()
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if ($user) {
             // Validacion de campos unique
@@ -62,7 +63,7 @@ class UserController extends Controller
      */
     public function upload(Request $request)
     {
-        $v = \Validator::make($request->all(), ['file' => 'image']);
+        $v = Validator::make($request->all(), ['file' => 'image']);
         if ($v->fails()) {
             return $v->errors()->toJson();
         }
@@ -78,7 +79,7 @@ class UserController extends Controller
     public function dashBoard()
     {
         $panel    = $this->view_panel;
-        $query    = Product::where('user_id', \Auth::id())->Free()->get();
+        $query    = Product::where('user_id', Auth::id())->Free()->get();
         $products = ['active' => 0, 'inactive' => 0, 'lowStock' => 0, 'all' => $query->count()];
         foreach ($query as $row) {
             if ($row->status) {
@@ -110,8 +111,8 @@ class UserController extends Controller
         }
         unset($query);
         $sales = null;
-        if (\Auth::check() && \Auth::user()->hasRole(['business', 'admin'])) {
-            $orders = Order::where('seller_id', \Auth::user()->id)->ofType('order')->get();
+        if (Auth::check() && Auth::user()->hasRole(['business', 'admin'])) {
+            $orders = Order::where('seller_id', Auth::user()->id)->ofType('order')->get();
             $sales  = ['closed' => 0, 'open' => 0, 'cancelled' => 0, 'all' => $orders->count(), 'total' => 0, 'rate' => 0, 'numRate' => 0, 'totalRate' => 0, 'nopRate' => 0];
             foreach ($orders as $row) {
                 if ($row->status == 'cancelled') {
@@ -147,8 +148,7 @@ class UserController extends Controller
      */
     public function profile()
     {
-        $user  = User::findOrFail(\Auth::id())->relationsToArray();
-        $panel = $this->view_panel;
+        $user  = Member::findOrFail(Auth::id())->relationsToArray();
 
         return view('user.profile', compact('panel', 'user'));
     }
@@ -160,7 +160,7 @@ class UserController extends Controller
      */
     public function deleteAccount(Request $request)
     {
-        $user = User::findOrFail(\Auth::id());
+        $user = Member::findOrFail(Auth::id());
         $user->delete();
 
         if ($request->wantsJson()) {
@@ -179,7 +179,7 @@ class UserController extends Controller
      */
     public function disableProfile(Request $request)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         $date = \Carbon\Carbon::now();
         $user->update(['disabled_at' => $date]);
 
@@ -199,7 +199,7 @@ class UserController extends Controller
      */
     public function activeProfile(Request $request)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         $user->update(['disabled_at' => null]);
 
         if ($request->wantsJson()) {
@@ -220,10 +220,10 @@ class UserController extends Controller
      */
     public function saveProfile(Request $request)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
         $this->filterFormRules();
 
-        $v = \Validator::make($request->all(), $this->form_rules);
+        $v = Validator::make($request->all(), $this->form_rules);
 
         if ($v->fails()) {
             return redirect()->back()->withErrors($v->errors())->withInput();
@@ -259,12 +259,12 @@ class UserController extends Controller
     public function getPoints()
     {
         $points = ['points' => '0'];
-        $user   = \Auth::user();
+        $user   = Auth::user();
         if ($user) {
             $points = ['points' => $user->current_points];
         }
 
-        return \Response::json($points);
+        return response()->json($points);
     }
 
     /**
@@ -275,7 +275,7 @@ class UserController extends Controller
     public function accountVerification($token)
     {
         //validating if the token retrieved is valid
-        $user = User::select(['id'])
+        $user = Member::select(['id'])
             ->where(\DB::raw('md5(concat(email, "_", "' . csrf_token() . '", "_", email))'), 'LIKE', $token)
             ->first();
 

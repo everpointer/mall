@@ -104,94 +104,94 @@ class RouteRegister extends AbstractRouteRegister
            // $this->router->get('search/', 'ProductsController@searchAll');
            //
            // $this->router->get('categories', 'CategoriesController@index');
-           //
-           //  //Acceso Usuario General(Admin,Persona,Empresa)
-           // $this->router->group(['prefix' => 'user', 'roles' => array_keys(trans('shop::globals.roles')), 'middleware' => ['auth', 'roles']], function () {
-           //     $this->router->get('dashboard', 'UserController@dashBoard');
-           //
-           //     $this->router->get('/', 'UserController@profile');
-           //
-           //     $this->router->get('profile', 'UserController@profile');
-           //
-           //     $this->router->post('profile/save', 'UserController@saveProfile');
-           //
-           //     $this->router->post('profile/disable', 'UserController@disableProfile');
-           //
-           //     $this->router->post('profile/enable', 'UserController@activeProfile');
-           //
-           //     $this->router->post('upload', 'UserController@upload');
-           //
-           //      //Address
-           //     $this->router->get('address/', 'AddressesController@index'); //list
-           //
-           //     $this->router->post('address/default', 'AddressesController@setDefault'); //set default
-           //
-           //     $this->router->get('address/create', 'AddressesController@create');  //create form
-           //
-           //     $this->router->get('address/{id}/edit', 'AddressesController@edit'); //edit form
-           //
-           //     $this->router->put('address/store', 'AddressesController@store'); //store
-           //
-           //     $this->router->put('address/{id}', 'AddressesController@update'); //update
-           //
-           //     $this->router->post('address/delete', 'AddressesController@destroy'); //delete
-           //
-           //      //Store Cart
-           //
-           //     $this->router->get('user/orders/updateQuantity/{orderId}/{orderDetailId}/{newValue}', ['uses' => 'OrdersController@updateQuantity', 'as' => 'orders.update_order_quantity']);
-           //
-           //     $this->router->get('product/save/{product}', ['uses' => 'OrdersController@saveForLater', 'as' => 'orders.save_for_later']);
-           //
-           //     $this->router->get('orders/moveFrom/{origin}/to/{destination}/{productId}', ['uses' => 'OrdersController@moveFromOrder', 'as' => 'orders.move_from_order']);
-           //
-           //     $this->router->get('orders/addToOrder/{orderId}/{productId}', ['uses' => 'OrdersController@addToOrderById', 'as' => 'orders.add_to_order_by_id']);
-           //
-           //     $this->router->get('orders/checkOut/', ['uses' => 'OrdersController@checkOut', 'as' => 'orders.check_out']);
-           //
-           //     $this->router->get('orders/checkOut/address/{addressId}', ['uses' => 'OrdersController@checkOutResume', 'as' => 'orders.check_out_address']);
-           //
-           //     $this->router->get('orders/placeOrder/{type}', ['uses' => 'OrdersController@placeOrder', 'as' => 'orders.place_order']);
-           //
-           //     $this->router->get('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
-           //
-           //      //filtered by dates
-           //     $this->router->post('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
-           //
-           //     $this->router->get('orders/cancel/{orderId}', ['uses' => 'OrdersController@cancel', 'as' => 'orders.cancel']);
-           //
-           //     $this->router->get('orders/showSeller/{orderId}', ['uses' => 'OrdersController@showSellerOrder', 'as' => 'orders.show_seller_order']);
-           //
-           //     $this->router->get('orders/show/{orderId}', ['uses' => 'OrdersController@showOrder', 'as' => 'orders.show_order']);
-           //
-           //     $this->router->get('orders/rate/{orderId}', ['uses' => 'OrdersController@rateOrder', 'as' => 'orders.rate_order']);
-           //
-           //      //Route used to login an user and send it back to the product show
-           //
-           //     $this->router->get('logAndShow/{productId}', ['uses' => 'ProductsController@show', 'as' => 'products.log_and_show']);
-           //
-           //     $this->router->get('orders/close/{order_id}', ['uses' => 'OrdersController@closeOrder', 'as' => 'orders.close']);
-           //
-           //     $this->router->get('modalSeeKeysPurchased', ['uses' => 'VirtualProductOrdersController@modalSeeKeysPurchased', 'as' => 'VirtualProductOrders.modalSeeKeysPurchased']);
-           //
-           //     $this->router->get('showKeyVirtualProductPurchased/{idProduct}/{idOrder}', ['uses' => 'VirtualProductOrdersController@showKeyVirtualProductPurchased', 'as' => 'VirtualProductOrders.showKeyVirtualProductPurchased']);
-           //
-           //     $this->router->get('orders/comment/{order_id}', ['uses' => 'OrdersController@commentOrder', 'as' => 'orders.comment']);
-           //
-           //     $this->router->post('orders/storeComment', ['uses' => 'OrdersController@storeComment', 'as' => 'orders.store_comment']);
-           //
-           //     $this->router->get('orders/delete/{order_id}/{type}', ['uses' => 'OrdersController@destroy', 'as' => 'orders.delete']);
-           //
-           //      //Rates
-           //     $this->router->post('rates/seller', ['uses' => 'OrdersController@rateSeller', 'as' => 'orders.rate_seller']);
-           //
-           //     $this->router->post('rates/product', ['uses' => 'OrdersController@rateProduct', 'as' => 'orders.rate_product']);
-           //
-           //      //Freeproducts
-           //     $this->router->put('freeproducts/subscribe/{id}', ['uses' => 'FreeProductsController@subscribe', 'as' => 'freeproducts.subscribe']);
-           //
-           //     $this->router->get('myFreeProducts', ['uses' => 'FreeProductsController@myFreeProducts', 'as' => 'freeproducts.my_free_products']);
-           //  });
-           //
+
+            // Acceso Usuario General(Admin,Persona,Empresa)
+            $this->router->group(['prefix' => 'user'], function () {
+                // $this->router->get('dashboard', 'UserController@dashBoard');
+
+                // $this->router->get('/', 'UserController@profile');
+
+                // $this->router->get('profile', 'UserController@profile');
+
+                // $this->router->post('profile/save', 'UserController@saveProfile');
+                //
+                // $this->router->post('profile/disable', 'UserController@disableProfile');
+                //
+                // $this->router->post('profile/enable', 'UserController@activeProfile');
+                //
+                // $this->router->post('upload', 'UserController@upload');
+                //
+                // //Address
+                // $this->router->get('address/', 'AddressesController@index'); //list
+                //
+                // $this->router->post('address/default', 'AddressesController@setDefault'); //set default
+                //
+                // $this->router->get('address/create', 'AddressesController@create');  //create form
+                //
+                // $this->router->get('address/{id}/edit', 'AddressesController@edit'); //edit form
+                //
+                // $this->router->put('address/store', 'AddressesController@store'); //store
+                //
+                // $this->router->put('address/{id}', 'AddressesController@update'); //update
+                //
+                // $this->router->post('address/delete', 'AddressesController@destroy'); //delete
+                //
+                // //Store Cart
+                //
+                // $this->router->get('user/orders/updateQuantity/{orderId}/{orderDetailId}/{newValue}', ['uses' => 'OrdersController@updateQuantity', 'as' => 'orders.update_order_quantity']);
+                //
+                // $this->router->get('product/save/{product}', ['uses' => 'OrdersController@saveForLater', 'as' => 'orders.save_for_later']);
+                //
+                // $this->router->get('orders/moveFrom/{origin}/to/{destination}/{productId}', ['uses' => 'OrdersController@moveFromOrder', 'as' => 'orders.move_from_order']);
+                //
+                // $this->router->get('orders/addToOrder/{orderId}/{productId}', ['uses' => 'OrdersController@addToOrderById', 'as' => 'orders.add_to_order_by_id']);
+                //
+                // $this->router->get('orders/checkOut/', ['uses' => 'OrdersController@checkOut', 'as' => 'orders.check_out']);
+                //
+                // $this->router->get('orders/checkOut/address/{addressId}', ['uses' => 'OrdersController@checkOutResume', 'as' => 'orders.check_out_address']);
+                //
+                // $this->router->get('orders/placeOrder/{type}', ['uses' => 'OrdersController@placeOrder', 'as' => 'orders.place_order']);
+                //
+                // $this->router->get('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
+                //
+                // //filtered by dates
+                // $this->router->post('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
+                //
+                // $this->router->get('orders/cancel/{orderId}', ['uses' => 'OrdersController@cancel', 'as' => 'orders.cancel']);
+                //
+                // $this->router->get('orders/showSeller/{orderId}', ['uses' => 'OrdersController@showSellerOrder', 'as' => 'orders.show_seller_order']);
+                //
+                // $this->router->get('orders/show/{orderId}', ['uses' => 'OrdersController@showOrder', 'as' => 'orders.show_order']);
+                //
+                // $this->router->get('orders/rate/{orderId}', ['uses' => 'OrdersController@rateOrder', 'as' => 'orders.rate_order']);
+                //
+                // //Route used to login an user and send it back to the product show
+                //
+                // $this->router->get('logAndShow/{productId}', ['uses' => 'ProductsController@show', 'as' => 'products.log_and_show']);
+                //
+                // $this->router->get('orders/close/{order_id}', ['uses' => 'OrdersController@closeOrder', 'as' => 'orders.close']);
+                //
+                // $this->router->get('modalSeeKeysPurchased', ['uses' => 'VirtualProductOrdersController@modalSeeKeysPurchased', 'as' => 'VirtualProductOrders.modalSeeKeysPurchased']);
+                //
+                // $this->router->get('showKeyVirtualProductPurchased/{idProduct}/{idOrder}', ['uses' => 'VirtualProductOrdersController@showKeyVirtualProductPurchased', 'as' => 'VirtualProductOrders.showKeyVirtualProductPurchased']);
+                //
+                // $this->router->get('orders/comment/{order_id}', ['uses' => 'OrdersController@commentOrder', 'as' => 'orders.comment']);
+                //
+                // $this->router->post('orders/storeComment', ['uses' => 'OrdersController@storeComment', 'as' => 'orders.store_comment']);
+                //
+                // $this->router->get('orders/delete/{order_id}/{type}', ['uses' => 'OrdersController@destroy', 'as' => 'orders.delete']);
+                //
+                // //Rates
+                // $this->router->post('rates/seller', ['uses' => 'OrdersController@rateSeller', 'as' => 'orders.rate_seller']);
+                //
+                // $this->router->post('rates/product', ['uses' => 'OrdersController@rateProduct', 'as' => 'orders.rate_product']);
+                //
+                // //Freeproducts
+                // $this->router->put('freeproducts/subscribe/{id}', ['uses' => 'FreeProductsController@subscribe', 'as' => 'freeproducts.subscribe']);
+                //
+                // $this->router->get('myFreeProducts', ['uses' => 'FreeProductsController@myFreeProducts', 'as' => 'freeproducts.my_free_products']);
+            });
+
 
            //
            //  //Wpanel Routes
