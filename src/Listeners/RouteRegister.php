@@ -49,6 +49,54 @@ class RouteRegister extends AbstractRouteRegister
                 // $this->router->post('/store', ['uses' => 'OrdersController@storeWishList', 'as' => 'orders.store_list']);
             });
 
+            // Companies Routes
+            $this->router->group(['middleware' => ['roles']], function () {
+                // $this->router->resource('productsGroup', 'ProductsGroupController');
+
+                // $this->router->get('products/create', ['uses' => 'ProductsController@create', 'as' => 'products.create']);
+
+                // $this->router->get('products/{id}/edit', ['uses' => 'ProductsController@edit', 'as' => 'products.edit']);
+
+                // $this->router->get('products/downloadExample', ['uses' => 'ProductsController@downloadExample', 'as' => 'products.downloadExample']);
+
+                // $this->router->post('products', ['uses' => 'ProductsController@store', 'as' => 'products.store']);
+
+                // $this->router->post('products/upload', ['uses' => 'ProductsController@upload', 'as' => 'products.upload']);
+
+                // $this->router->post('products/upload_key', ['uses' => 'ProductsController@upload_key', 'as' => 'products.upload_key']);
+
+                // $this->router->post('products/upload_software', ['uses' => 'ProductsController@upload_software', 'as' => 'products.upload_software']);
+
+                // $this->router->put('products/{id}', ['uses' => 'ProductsController@update', 'as' => 'products.update']);
+
+                // $this->router->get('modalAllKeys', ['uses' => 'VirtualProductsController@modalAllKeys', 'as' => 'virtualproducts.modalAllKeys']);
+
+                // $this->router->get('showAllKeys/{id}', ['uses' => 'VirtualProductsController@showAllKeys', 'as' => 'virtualproducts.showAllKeys']);
+
+                // $this->router->get('deleteKey/{id}', ['uses' => 'VirtualProductsController@deleteKey', 'as' => 'virtualproducts.deleteKey']);
+
+                // $this->router->post('products/change/status/{id}', ['uses' => 'ProductsController@changeStatus', 'as' => 'products.change_status']);
+
+                // $this->router->get('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
+
+                // filtered by dates
+                // $this->router->post('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
+
+                // $this->router->get('orders/start/{order_id}', ['uses' => 'OrdersController@startOrder', 'as' => 'orders.start']);
+
+                // $this->router->get('orders/send/{order_id}', ['uses' => 'OrdersController@sendOrder', 'as' => 'orders.send']);
+
+                // $this->router->get('virtualDelivery/{orderId}/{productId}', ['uses' => 'OrdersController@deliveryVirtualProduct', 'as' => 'orders.virtualDelivery']);
+
+                // $this->router->get('freeproducts/{OrderId}/create', ['uses' => 'FreeProductsController@create', 'as' => 'freeproducts.create']);
+
+                // $this->router->post('freeproducts', ['uses' => 'FreeProductsController@store', 'as' => 'freeproducts.store']);
+
+                $this->router->get('products/myProducts', ProductsController::class . '@myProducts');
+
+                // $this->router->post('/products/delete_img', ['uses' => 'ProductsController@deleteImg', 'as' => 'products.deleteImg']);
+            });
+
            //  //Orders Reports
            // $this->router->get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
            //
@@ -144,53 +192,7 @@ class RouteRegister extends AbstractRouteRegister
            //     $this->router->get('myFreeProducts', ['uses' => 'FreeProductsController@myFreeProducts', 'as' => 'freeproducts.my_free_products']);
            //  });
            //
-           //  //Companies Routes
-           // $this->router->group(['roles' => ['business', 'nonprofit', 'admin'], 'middleware' => ['auth', 'roles']], function () {
-           //     $this->router->resource('productsGroup', 'ProductsGroupController');
-           //
-           //     $this->router->get('products/create', ['uses' => 'ProductsController@create', 'as' => 'products.create']);
-           //
-           //     $this->router->get('products/{id}/edit', ['uses' => 'ProductsController@edit', 'as' => 'products.edit']);
-           //
-           //     $this->router->get('products/downloadExample', ['uses' => 'ProductsController@downloadExample', 'as' => 'products.downloadExample']);
-           //
-           //     $this->router->post('products', ['uses' => 'ProductsController@store', 'as' => 'products.store']);
-           //
-           //     $this->router->post('products/upload', ['uses' => 'ProductsController@upload', 'as' => 'products.upload']);
-           //
-           //     $this->router->post('products/upload_key', ['uses' => 'ProductsController@upload_key', 'as' => 'products.upload_key']);
-           //
-           //     $this->router->post('products/upload_software', ['uses' => 'ProductsController@upload_software', 'as' => 'products.upload_software']);
-           //
-           //     $this->router->put('products/{id}', ['uses' => 'ProductsController@update', 'as' => 'products.update']);
-           //
-           //     $this->router->get('modalAllKeys', ['uses' => 'VirtualProductsController@modalAllKeys', 'as' => 'virtualproducts.modalAllKeys']);
-           //
-           //     $this->router->get('showAllKeys/{id}', ['uses' => 'VirtualProductsController@showAllKeys', 'as' => 'virtualproducts.showAllKeys']);
-           //
-           //     $this->router->get('deleteKey/{id}', ['uses' => 'VirtualProductsController@deleteKey', 'as' => 'virtualproducts.deleteKey']);
-           //
-           //     $this->router->post('products/change/status/{id}', ['uses' => 'ProductsController@changeStatus', 'as' => 'products.change_status']);
-           //
-           //     $this->router->get('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
-           //
-           //      //filtered by dates
-           //     $this->router->post('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
-           //
-           //     $this->router->get('orders/start/{order_id}', ['uses' => 'OrdersController@startOrder', 'as' => 'orders.start']);
-           //
-           //     $this->router->get('orders/send/{order_id}', ['uses' => 'OrdersController@sendOrder', 'as' => 'orders.send']);
-           //
-           //     $this->router->get('virtualDelivery/{orderId}/{productId}', ['uses' => 'OrdersController@deliveryVirtualProduct', 'as' => 'orders.virtualDelivery']);
-           //
-           //     $this->router->get('freeproducts/{OrderId}/create', ['uses' => 'FreeProductsController@create', 'as' => 'freeproducts.create']);
-           //
-           //     $this->router->post('freeproducts', ['uses' => 'FreeProductsController@store', 'as' => 'freeproducts.store']);
-           //
-           //     $this->router->get('products/myProducts', ['uses' => 'ProductsController@myProducts', 'as' => 'products.myProducts']);
-           //
-           //     $this->router->post('/products/delete_img', ['uses' => 'ProductsController@deleteImg', 'as' => 'products.deleteImg']);
-           //  });
+
            //
            //  //Wpanel Routes
            // $this->router->group(['prefix' => 'wpanel', 'roles' => 'admin', 'middleware' => ['auth', 'roles']], function () {
