@@ -10,6 +10,7 @@ namespace Notadd\Shop\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notadd\Shop\Helpers\File;
+use Notadd\Shop\Http\Handlers\User\ShowHandler;
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Product;
@@ -146,11 +147,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function profile()
+    public function profile(ShowHandler $handler)
     {
-        $user  = Member::findOrFail(Auth::id())->relationsToArray();
-
-        return view('user.profile', compact('panel', 'user'));
+        return $handler->toResponse()->generateHttpResponse();
     }
 
     /**

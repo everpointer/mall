@@ -109,9 +109,9 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->group(['prefix' => 'user'], function () {
                 // $this->router->get('dashboard', 'UserController@dashBoard');
 
-                // $this->router->get('/', 'UserController@profile');
+                $this->router->get('/', 'UserController@profile');
 
-                // $this->router->get('profile', 'UserController@profile');
+                $this->router->get('profile', 'UserController@profile');
 
                 // $this->router->post('profile/save', 'UserController@saveProfile');
                 //
