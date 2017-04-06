@@ -53,7 +53,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->group(['middleware' => ['roles']], function () {
                 // $this->router->resource('productsGroup', 'ProductsGroupController');
 
-                // $this->router->get('products/create', ['uses' => 'ProductsController@create', 'as' => 'products.create']);
+                $this->router->get('products/create', ProductsController::class . '@create');
 
                 // $this->router->get('products/{id}/edit', ['uses' => 'ProductsController@edit', 'as' => 'products.edit']);
 
