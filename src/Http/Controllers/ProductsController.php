@@ -22,6 +22,7 @@ use Notadd\Shop\Helpers\FeaturesHelper;
 use Illuminate\Support\Facades\Validator;
 use Notadd\Shop\Http\Handlers\Product\ShowHandler;
 use Notadd\Shop\Http\Handlers\Product\SearchHandler;
+use Notadd\Shop\Http\Handlers\Product\ShowMyHandler;
 
 class ProductsController extends Controller
 {
@@ -64,22 +65,9 @@ class ProductsController extends Controller
         return $handler->toResponse()->generateHttpResponse();
     }
 
-    public function myProducts(Request $request)
+    public function myProducts(ShowMyHandler $handler)
     {
-        $filter = $request->get('filter');
-        if ($filter && $filter != '') {
-            switch ($filter) {
-                case 'active': $products = Product::auth()->actives()->where('type', '<>', 'freeproduct')->paginate(12); break;
-                case 'inactive': $products = Product::auth()->inactives()->where('type', '<>', 'freeproduct')->paginate(12); break;
-                case 'low': $products = Product::auth()->whereRaw('stock <= low_stock')->where('type', '<>', 'freeproduct')->paginate(12); break;
-                default: $products = Product::auth()->where('type', '<>', 'freeproduct')->paginate(12); break;
-            }
-        } else {
-            $products = Product::auth()->where('type', '<>', 'freeproduct')->paginate(12);
-        }
-        $panel = $this->panel;
-
-        return view('products.myProducts', compact('panel', 'products', 'filter'));
+        return $handler->toResponse()->generateHttpResponse();
     }
 
     /**
