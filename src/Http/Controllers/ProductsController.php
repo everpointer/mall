@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Helpers\FeaturesHelper;
 use Illuminate\Support\Facades\Validator;
 use Notadd\Shop\Http\Handlers\Product\ShowHandler;
+use Notadd\Shop\Http\Handlers\Product\CreateHandler;
 use Notadd\Shop\Http\Handlers\Product\SearchHandler;
 use Notadd\Shop\Http\Handlers\Product\ShowMyHandler;
 
@@ -75,43 +76,9 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(CreateHandler $handler)
     {
-        $product = Product::find(-50);
-        $features = ProductDetail::all()->toArray();
-        $arrayCategories = Category::actives()
-           ->lightSelection()
-           ->get()
-           ->toArray();
-
-        $categories = [
-            '' => trans('shop::product.controller.select_category'),
-        ];
-
-        $condition = [
-            'new'         => trans('shop::product.controller.new'),
-            'refurbished' => trans('shop::product.controller.refurbished'),
-            'used'        => trans('shop::product.controller.used'),
-        ];
-
-        $typesProduct = [
-            'item' => trans('shop::product.controller.item'),
-            'key'  => trans('shop::product.globals.digital_item').' '.trans('shop::product.globals.key'),
-        ];
-
-        $typeItem = 'item';
-
-        //categories drop down formatted
-        ProductsHelper::categoriesDropDownFormat($arrayCategories, $categories);
-
-        $disabled = '';
-        $edit = false;
-        $panel = $this->panel;
-        $oldFeatures = ProductDetail::oldFeatures([]);
-        $productsDetails = new FeaturesHelper();
-
-        return view('products.form',
-                compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'typesProduct', 'disabled', 'edit', 'oldFeatures', 'productsDetails'));
+        return $handler->toResponse()->generateHttpResponse();
     }
 
     /**
