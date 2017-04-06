@@ -59,7 +59,7 @@ class RouteRegister extends AbstractRouteRegister
 
                 // $this->router->get('products/downloadExample', ['uses' => 'ProductsController@downloadExample', 'as' => 'products.downloadExample']);
 
-                // $this->router->post('products', ['uses' => 'ProductsController@store', 'as' => 'products.store']);
+                $this->router->post('products', ProductsController::class . '@store');
 
                 // $this->router->post('products/upload', ['uses' => 'ProductsController@upload', 'as' => 'products.upload']);
 
