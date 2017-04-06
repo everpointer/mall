@@ -36,7 +36,7 @@ class UserController extends Controller
 
         if ($user) {
             // Validacion de campos unique
-            $this->form_rules['email'] .= $user->id;
+            $this->form_rules['email']    .= $user->id;
             $this->form_rules['nickname'] .= $user->id;
 
             // Validaciones segun tipo de user
@@ -219,40 +219,46 @@ class UserController extends Controller
      */
     public function saveProfile(Request $request)
     {
-        $user = Auth::user();
-        $this->filterFormRules();
+        try {
+            $user = Auth::user();
+            $this->filterFormRules();
 
-        $v = Validator::make($request->all(), $this->form_rules);
+            $v = Validator::make($request->all(), $this->form_rules);
 
-        if ($v->fails()) {
-            return redirect()->back()->withErrors($v->errors())->withInput();
+            if ($v->fails()) {
+                return response()->json([
+                    'data' => $v->errors(),
+                ]);
+            }
+
+            //user update
+            \Session::flash('message', trans('shop::user.saved'));
+            $user->fill($request->all());
+            $user->pic_url  = $request->get('pic_url');
+            $user->password = bcrypt($request->get('password'));
+            $user->save();
+
+            //bussiness update
+            if ($request->get('business_name') !== null && trim($request->get('business_name')) != '') {
+                $business                = Business::find($user->id);
+                $business->business_name = $request->get('business_name');
+                $business->save();
+            }
+
+            // person update
+            if ($request->get('first_name') !== null && trim($request->get('first_name')) != '') {
+                $person             = Person::find($user->id);
+                $person->first_name = $request->get('first_name');
+                $person->last_name  = $request->get('last_name');
+                $person->birthday   = $request->get('birthday');
+                $person->sex        = $request->get('sex');
+                $person->save();
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'messages' => 'Errors'
+            ]);
         }
-
-        //user update
-        \Session::flash('message', trans('shop::user.saved'));
-        $user->fill($request->all());
-        $user->pic_url  = $request->get('pic_url');
-        $user->password = bcrypt($request->get('password'));
-        $user->save();
-
-        //bussiness update
-        if ($request->get('business_name') !== null && trim($request->get('business_name')) != '') {
-            $business                = Business::find($user->id);
-            $business->business_name = $request->get('business_name');
-            $business->save();
-        }
-
-        //person update
-        if ($request->get('first_name') !== null && trim($request->get('first_name')) != '') {
-            $person             = Person::find($user->id);
-            $person->first_name = $request->get('first_name');
-            $person->last_name  = $request->get('last_name');
-            $person->birthday   = $request->get('birthday');
-            $person->sex        = $request->get('sex');
-            $person->save();
-        }
-
-        return redirect()->back();
     }
 
     public function getPoints()
