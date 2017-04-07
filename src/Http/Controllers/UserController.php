@@ -10,7 +10,6 @@ namespace Notadd\Shop\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Notadd\Shop\Helpers\File;
-use Notadd\Shop\Http\Handlers\User\ShowHandler;
 use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\Person;
 use Notadd\Shop\Models\Product;
@@ -19,6 +18,7 @@ use Notadd\Member\Models\Member;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Notadd\Shop\Http\Handlers\User\ShowHandler;
 
 class UserController extends Controller
 {
@@ -166,7 +166,7 @@ class UserController extends Controller
             return \Response::json(['success' => true, 'message' => trans('shop::user.profile_disabled')]);
         }
 
-        \Session::flash('message', trans('shop::user.profile_disabled'));
+        Session::flash('message', trans('shop::user.profile_disabled'));
 
         return redirect()->back();
     }
@@ -186,7 +186,7 @@ class UserController extends Controller
             return \Response::json(['success' => true, 'message' => trans('shop::user.profile_disabled'), 'date' => $date->toDateTimeString()]);
         }
 
-        \Session::flash('message', trans('shop::user.profile_disabled'));
+        Session::flash('message', trans('shop::user.profile_disabled'));
 
         return redirect()->back();
     }
@@ -205,7 +205,7 @@ class UserController extends Controller
             return \Response::json(['success' => true, 'message' => trans('shop::user.profile_enabled')]);
         }
 
-        \Session::flash('message', trans('shop::user.profile_enabled'));
+        Session::flash('message', trans('shop::user.profile_enabled'));
 
         return redirect()->back();
     }
@@ -226,19 +226,18 @@ class UserController extends Controller
             $v = Validator::make($request->all(), $this->form_rules);
 
             if ($v->fails()) {
-                return response()->json([
+                return response('Unvalidate', 402)->json([
                     'data' => $v->errors(),
                 ]);
             }
 
-            //user update
-            \Session::flash('message', trans('shop::user.saved'));
+            // user update
             $user->fill($request->all());
             $user->pic_url  = $request->get('pic_url');
             $user->password = bcrypt($request->get('password'));
             $user->save();
 
-            //bussiness update
+            // bussiness update
             if ($request->get('business_name') !== null && trim($request->get('business_name')) != '') {
                 $business                = Business::find($user->id);
                 $business->business_name = $request->get('business_name');
@@ -254,8 +253,13 @@ class UserController extends Controller
                 $person->sex        = $request->get('sex');
                 $person->save();
             }
+
+            return response('No Content', 204)->json([
+                'messages' => 'No Content',
+            ]);
+
         } catch (\Exception $e) {
-            return response()->json([
+            return response('Errors', 500)->json([
                 'messages' => 'Errors'
             ]);
         }
