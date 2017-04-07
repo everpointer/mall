@@ -374,9 +374,6 @@ class OrdersController extends Controller
 
         // saving added to wishlist message (it happens when the product is added to wishlist, and the method call this one)
         Session::forget('suggest-listed');
-        if (Session::has('message')) {
-            Session::push('message', Session::get('message'));
-        }
 
         $user = Auth::user();
 
@@ -492,7 +489,6 @@ class OrdersController extends Controller
         return response()->json(compact(
             'cart',
             'user',
-            'panel',
             'suggestions',
             'cart',
             'laterCart',
