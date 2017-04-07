@@ -10,6 +10,7 @@
 namespace Notadd\Shop\Listeners;
 
 use Notadd\Shop\Http\Controllers\HomeController;
+use Notadd\Shop\Http\Controllers\UserController;
 use Notadd\Shop\Http\Controllers\OrdersController;
 use Notadd\Shop\Http\Controllers\ProductsController;
 use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
@@ -109,11 +110,11 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->group(['prefix' => 'user'], function () {
                 // $this->router->get('dashboard', 'UserController@dashBoard');
 
-                $this->router->get('/', 'UserController@profile');
+                $this->router->get('/', UserController::class . '@profile');
 
-                $this->router->get('profile', 'UserController@profile');
+                $this->router->get('profile', UserController::class . '@profile');
 
-                $this->router->post('profile/save', 'UserController@saveProfile');
+                $this->router->post('profile/save', UserController::class . '@saveProfile');
 
                 // $this->router->post('profile/disable', 'UserController@disableProfile');
                 //
