@@ -113,8 +113,8 @@ class RouteRegister extends AbstractRouteRegister
 
                 $this->router->get('profile', 'UserController@profile');
 
-                // $this->router->post('profile/save', 'UserController@saveProfile');
-                //
+                $this->router->post('profile/save', 'UserController@saveProfile');
+
                 // $this->router->post('profile/disable', 'UserController@disableProfile');
                 //
                 // $this->router->post('profile/enable', 'UserController@activeProfile');
