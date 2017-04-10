@@ -334,10 +334,7 @@ class OrdersController extends Controller
 
             //if the wish list requested is in our records, a error is sent
             if ($newList) {
-                Session::push('messageClass', 'alert-danger');
-                Session::push('message', trans('shop::store.form_create_list_view.message_fail'));
-
-                return \Response::json(['success' => true], 200);
+                return response()->json(['message' => trans('shop::store.form_create_list_view.message_fail')], 200);
             } else {
                 //Creates the new wishlist with the provided description
                 $newList              = new Order();
@@ -347,9 +344,7 @@ class OrdersController extends Controller
                 $newList->status      = 'open';
                 $newList->save();
 
-                Session::push('message', trans('shop::store.form_create_list_view.message_success'));
-
-                return response()->json(['success' => true], 200);
+                return response()->json(['message' => trans('shop::store.form_create_list_view.message_success')], 200);
             }
         }
     }
@@ -882,7 +877,7 @@ class OrdersController extends Controller
             $virtual = VirtualProduct::where('product_id', $orderDetail->product_id)->first();
 
             if ($virtual) {
-                return \Response::json(['success' => false], 404);
+                return response()->json(['success' => false], 404);
             }
 
             if ($orderDetail) {
@@ -890,7 +885,7 @@ class OrdersController extends Controller
                 $orderDetail->quantity = $newValue;
                 $orderDetail->save();
 
-                return \Response::json(
+                return response()->json(
                     [
                         'success'     => true,
                         'oldQuantity' => $oldQuantity,
@@ -898,7 +893,7 @@ class OrdersController extends Controller
                         'price'       => $orderDetail->price,
                     ], 200);
             } else {
-                return \Response::json(['success' => false], 404);
+                return response()->json(['success' => false], 404);
             }
         }
     }
@@ -1702,14 +1697,14 @@ class OrdersController extends Controller
                     $message->to($data['email'])->subject($data['subject']);
                 });
             } else {
-                return \Response::json(['success' => false, 'order_id' => $order_id], 200);
+                return response()->json(['success' => false, 'order_id' => $order_id], 200);
             }
         } else {
-            return \Response::json(['success' => false, 'order_id' => $order_id], 200);
+            return response()->json(['success' => false, 'order_id' => $order_id], 200);
         }
         Session::push('message', trans('shop::store.create_comment_modal.added_order_comment'));
 
-        return \Response::json(['success' => true, 'order_id' => $order_id], 200);
+        return response()->json(['success' => true, 'order_id' => $order_id], 200);
     }
 
     /**
@@ -1818,12 +1813,12 @@ class OrdersController extends Controller
                     'status'         => 'new',
                 ]);
 
-                return \Response::json(['success' => true, 'message' => trans('shop::store.order_rate_view.http_messages.success'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
+                return response()->json(['success' => true, 'message' => trans('shop::store.order_rate_view.http_messages.success'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
             } else {
-                return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_order'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
+                return response()->json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_order'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
             }
         } else {
-            return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
+            return response()->json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'order_id' => $order_id, 'seller_rate' => $seller_rate], 200);
         }
     }
 
@@ -1899,15 +1894,15 @@ class OrdersController extends Controller
                         'status'         => 'new',
                     ]);
 
-                    return \Response::json(['success' => true, 'message' => trans('shop::store.order_rate_view.http_messages.success'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
+                    return response()->json(['success' => true, 'message' => trans('shop::store.order_rate_view.http_messages.success'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
                 } else {
-                    return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_order'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
+                    return response()->json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_order'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
                 }
             } else {
-                return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
+                return response()->json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
             }
         } else {
-            return \Response::json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
+            return response()->json(['success' => false, 'message' => trans('shop::store.order_rate_view.http_messages.no_user'), 'detail_id' => $detail_id, 'product_rate' => $product_rate], 200);
         }
     }
 
