@@ -49,7 +49,7 @@ class ModuleServiceProvider extends Module
 
     public function injectionRelationsToMember()
     {
-        Member::injectionFunction('address', function () {
+        Member::injectionFunction('addresses', function () {
             return $this->hasMany(Address::class, 'user_id', 'id');
         });
 
