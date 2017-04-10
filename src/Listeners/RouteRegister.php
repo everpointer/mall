@@ -47,7 +47,7 @@ class RouteRegister extends AbstractRouteRegister
                 // $this->router->get('/directory', ['uses' => 'OrdersController@wishListDirectory', 'as' => 'orders.show_list_directory']);
 
                 // store
-                // $this->router->post('/store', ['uses' => 'OrdersController@storeWishList', 'as' => 'orders.store_list']);
+                $this->router->post('/store', OrdersController::class . '@storeWishList');
             });
 
             // Companies Routes
