@@ -41,7 +41,7 @@ class RouteRegister extends AbstractRouteRegister
                 $this->router->get('/', OrdersController::class . '@showWishList');
 
                 // user directory
-                // $this->router->get('/directory', ['uses' => 'OrdersController@wishListDirectory', 'as' => 'orders.show_list_directory']);
+                $this->router->get('/directory', OrdersController::class . '@wishListDirectory');
 
                 // store
                 $this->router->post('/store', OrdersController::class . '@storeWishList');
