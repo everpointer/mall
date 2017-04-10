@@ -741,9 +741,8 @@ class OrdersController extends Controller
      * @param int $destination type of the destination order ('cart','later',etc)
      * @param int $productId   of the product
      *
-     * @return Redirects back to de cart
      */
-    public function moveFromOrder($origin, $destination, $productId)
+    public function moveFromOrder(ApiResponse $response, $origin, $destination, $productId)
     {
         /*
          * validating if the product requested is valid.
@@ -752,7 +751,8 @@ class OrdersController extends Controller
         try {
             $product = Product::findOrFail($productId);
         } catch (ModelNotFoundException $e) {
-            throw new NotFoundHttpException();
+            return $response->withParams(['code' => 404, 'message' => 'Not Found', 'data' => []])
+                ->generateHttpResponse();
         }
 
         $user = Auth::user();
@@ -853,7 +853,8 @@ class OrdersController extends Controller
             Session::push('message', trans('shop::store.productAdded'));
         }
 
-        return redirect()->route('orders.show_cart');
+        return $response->withParams(['code' => 204, 'message' => 'No Content', 'data' => []])
+            ->generateHttpResponse();
     }
 
     /**
