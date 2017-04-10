@@ -13,7 +13,6 @@ use Notadd\Shop\Models\Order;
 use Notadd\Shop\Models\FreeProduct;
 use Illuminate\Support\Facades\Auth;
 use Notadd\Shop\Helpers\ProductsHelper;
-use Notadd\Shop\Http\Controllers\ProductsController;
 use Notadd\Foundation\Passport\Abstracts\DataHandler;
 
 class HomeDataHandler extends DataHandler
@@ -68,7 +67,7 @@ class HomeDataHandler extends DataHandler
             ], 4, date('Y-m-d'));
         }
 
-        $tagsCloud = ProductsController::getTopRated(0, 20, true);
+        $tagsCloud = ProductHandler::getTopRated(0, 20, true);
 
         $allWishes = '';
         $user      = Auth::user();

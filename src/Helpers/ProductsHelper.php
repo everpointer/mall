@@ -8,12 +8,10 @@ namespace Notadd\Shop\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Shop\Http\Handlers\ProductHandler;
-use Notadd\Shop\Http\Handlers\UserHandler;
 use Notadd\Shop\Models\Category;
 use Illuminate\Support\Facades\Session;
-use Notadd\Shop\Http\Controllers\UserController;
-use Notadd\Shop\Http\Controllers\ProductsController;
+use Notadd\Shop\Http\Handlers\UserHandler;
+use Notadd\Shop\Http\Handlers\ProductHandler;
 
 class ProductsHelper
 {
