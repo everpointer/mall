@@ -212,9 +212,9 @@ class RouteRegister extends AbstractRouteRegister
            //  // Acceso sin login Cambios para poder crear carrito y listas
            //
            // $this->router->get('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);
-           //
-           // $this->router->get('user/orders/removeFrom/{orderName}/{productId}/{idOrder?}', ['uses' => 'OrdersController@removeFromOrder', 'as' => 'orders.remove_from_order']);
-           //
+
+           $this->router->get('user/orders/removeFrom/{orderName}/{productId}/{idOrder?}', OrdersController::class . '@removeFromOrder');
+
            // $this->router->put('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);
 
            $this->router->get('user/cart', OrdersController::class . '@showCart');
