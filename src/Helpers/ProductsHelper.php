@@ -8,6 +8,7 @@ namespace Notadd\Shop\Helpers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
+use Notadd\Shop\Http\Handlers\ProductHandler;
 use Notadd\Shop\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Http\Controllers\UserController;
@@ -87,7 +88,7 @@ class ProductsHelper
                 $data['limit'] = $limit;
                 $usr_prefe = UserController::getPreferences('', $data['preferences_key']); //look up for user preferences
                 if (count($usr_prefe['tags']) == 0) {
-                    $data['category'] = ProductsController::getRandCategoryId(); //if there is not info, we get a rand category id
+                    $data['category'] = ProductHandler::getRandCategoryId(); //if there is not info, we get a rand category id
                 } else {
                     $data['category'] = $usr_prefe['tags'][mt_rand(0, count($usr_prefe['tags']) - 1)]; //if so, we get a rand user preferences category
                 }
@@ -99,7 +100,7 @@ class ProductsHelper
             break;
 
             case 'carousel':
-                return ProductsController::getTopRated(0, $limit, false);
+                return ProductHandler::getTopRated(0, $limit, false);
             break;
 
             default:
@@ -108,7 +109,7 @@ class ProductsHelper
             break;
         }
 
-        $suggest = ProductsController::getSuggestions($data); //suggestion array
+        $suggest = ProductHandler::getSuggestions($data); //suggestion array
         return $suggest;
     }
 
