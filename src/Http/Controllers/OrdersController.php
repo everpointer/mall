@@ -8,6 +8,7 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
+use Notadd\Foundation\Passport\Responses\ApiResponse;
 use Notadd\Shop\Http\Handlers\ProductHandler;
 use Notadd\Shop\Models\Log;
 use Illuminate\Http\Request;
@@ -679,11 +680,15 @@ class OrdersController extends Controller
      * @param string $orderName type or order ('cart','later',etc)
      * @param int    $productId Product id to be removed from the order
      *
-     * @return Redirects back to de cart
      */
-    public function removeFromOrder($orderName, $productId, $idOrder = '')
+    public function removeFromOrder(ApiResponse $response, $orderName, $productId, $idOrder = '')
     {
-        $product = Product::findOrFail($productId);
+        $product = Product::find($productId);
+        if (! $product || ! $product->exists) {
+            return $response->withParams(['code' => 404, 'message' => 'Not Found', 'data' => []])
+                ->generateHttpResponse();
+        }
+
         $user    = Auth::user();
 
         if (! $user) {
@@ -691,7 +696,8 @@ class OrdersController extends Controller
             unset($cart_content[$productId]);
             Session::put('user.cart_content', $cart_content);
 
-            return redirect()->route('orders.show_cart');
+            return $response->withParams(['code' => 204, 'message' => 'No Content', 'data' => []])
+                ->generateHttpResponse();
         }
 
         $basicCart = Order::ofType($orderName)->where('user_id', $user->id);
@@ -720,9 +726,11 @@ class OrdersController extends Controller
         }
 
         if (($orderName == 'wishlist') || ($orderName == 'later')) {
-            return redirect()->route('orders.show_wish_list');
+            return $response->withParams(['code' => 204, 'message' => 'No Content', 'data' => []])
+                ->generateHttpResponse();
         } else {
-            return redirect()->route('orders.show_cart');
+            return $response->withParams(['code' => 204, 'message' => 'No Content', 'data' => []])
+                ->generateHttpResponse();
         }
     }
 
