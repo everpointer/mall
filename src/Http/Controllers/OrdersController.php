@@ -510,17 +510,13 @@ class OrdersController extends Controller
                 ->orderBy('id', 'ASC')
                 ->get();
         } else {
-            return redirect()->route('/auth/login');
+            return response()->json([]);
         }
 
-        $panel = [
-            'center' => ['width' => '12'],
-        ];
-
-        //suggestionst
+        // suggestionst
         $suggestions = ProductsController::getSuggestions(['limit' => 4]);
 
-        return view('orders.wishListsDirectory', compact('orders', 'panel', 'suggestions'));
+        return response()->json(compact('orders', 'suggestions'));
     }
 
     /**
