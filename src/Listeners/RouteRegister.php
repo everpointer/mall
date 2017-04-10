@@ -216,9 +216,9 @@ class RouteRegister extends AbstractRouteRegister
            // $this->router->get('user/orders/removeFrom/{orderName}/{productId}/{idOrder?}', ['uses' => 'OrdersController@removeFromOrder', 'as' => 'orders.remove_from_order']);
            //
            // $this->router->put('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);
-           //
-           // $this->router->get('user/cart', ['uses' => 'OrdersController@showCart', 'as' => 'orders.show_cart']);
-           //
+
+           $this->router->get('user/cart', OrdersController::class . '@showCart');
+
            // $this->router->put('user/orders/updateQuantity/{detailId}/{newQuantity}', ['uses' => 'OrdersController@updateQuantity', 'as' => 'orders.update_quantity']);
            //
            //  // points push notifications
