@@ -9,6 +9,7 @@ namespace Notadd\Shop\Helpers;
  */
 
 use Notadd\Shop\Http\Handlers\ProductHandler;
+use Notadd\Shop\Http\Handlers\UserHandler;
 use Notadd\Shop\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Notadd\Shop\Http\Controllers\UserController;
@@ -86,7 +87,7 @@ class ProductsHelper
             case 'categories':
                 $data['preferences_key'] = 'product_categories';
                 $data['limit'] = $limit;
-                $usr_prefe = UserController::getPreferences('', $data['preferences_key']); //look up for user preferences
+                $usr_prefe = UserHandler::getPreferences('', $data['preferences_key']); //look up for user preferences
                 if (count($usr_prefe['tags']) == 0) {
                     $data['category'] = ProductHandler::getRandCategoryId(); //if there is not info, we get a rand category id
                 } else {
