@@ -665,16 +665,12 @@ class OrdersController extends Controller
             $laterCart = [];
         }
 
-        $panel = [
-            'center' => ['width' => '12'],
-        ];
-
         //suggestions based on cart content
-        $suggestions = ProductsController::getSuggestions(['preferences_key' => Session::get('suggest-listed'), 'limit' => 4]);
+        $suggestions = ProductHandler::getSuggestions(['preferences_key' => Session::get('suggest-listed'), 'limit' => 4]);
 
         Session::forget('suggest-listed');
 
-        return view('orders.cart', compact('cart', 'user', 'panel', 'laterCart', 'suggestions', 'totalItems', 'totalAmount'));
+        return response()->json(compact('cart', 'user', 'laterCart', 'suggestions', 'totalItems', 'totalAmount'));
     }
 
     /**
