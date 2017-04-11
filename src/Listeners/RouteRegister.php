@@ -152,9 +152,9 @@ class RouteRegister extends AbstractRouteRegister
 
                 $this->router->get('orders', OrdersController::class . '@usersOrders');
 
-                // //filtered by dates
-                // $this->router->post('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
-                //
+                // filtered by dates
+                $this->router->post('orders', OrdersController::class . '@usersOrders');
+
                 // $this->router->get('orders/cancel/{orderId}', ['uses' => 'OrdersController@cancel', 'as' => 'orders.cancel']);
                 //
                 // $this->router->get('orders/showSeller/{orderId}', ['uses' => 'OrdersController@showSellerOrder', 'as' => 'orders.show_seller_order']);
