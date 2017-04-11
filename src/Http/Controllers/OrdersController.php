@@ -8,8 +8,6 @@ namespace Notadd\Shop\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 
-use Notadd\Foundation\Passport\Responses\ApiResponse;
-use Notadd\Shop\Http\Handlers\ProductHandler;
 use Notadd\Shop\Models\Log;
 use Illuminate\Http\Request;
 use Notadd\Shop\Models\Order;
@@ -29,6 +27,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Notadd\Shop\Models\VirtualProductOrder;
 use Notadd\Shop\Repositories\OrderRepository;
+use Notadd\Shop\Http\Handlers\ProductHandler;
+use Notadd\Foundation\Passport\Responses\ApiResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Notadd\Shop\Http\Controllers\ProductsController as ProductsController;
