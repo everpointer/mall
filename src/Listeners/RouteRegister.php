@@ -133,9 +133,9 @@ class RouteRegister extends AbstractRouteRegister
                 // $this->router->put('address/{id}', 'AddressesController@update'); //update
                 //
                 // $this->router->post('address/delete', 'AddressesController@destroy'); //delete
-                //
-                // //Store Cart
-                //
+
+                // Store Cart
+
                 // $this->router->get('user/orders/updateQuantity/{orderId}/{orderDetailId}/{newValue}', ['uses' => 'OrdersController@updateQuantity', 'as' => 'orders.update_order_quantity']);
                 //
                 // $this->router->get('product/save/{product}', ['uses' => 'OrdersController@saveForLater', 'as' => 'orders.save_for_later']);
@@ -149,9 +149,9 @@ class RouteRegister extends AbstractRouteRegister
                 // $this->router->get('orders/checkOut/address/{addressId}', ['uses' => 'OrdersController@checkOutResume', 'as' => 'orders.check_out_address']);
                 //
                 // $this->router->get('orders/placeOrder/{type}', ['uses' => 'OrdersController@placeOrder', 'as' => 'orders.place_order']);
-                //
-                // $this->router->get('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
-                //
+
+                $this->router->get('orders', OrdersController::class . '@usersOrders');
+
                 // //filtered by dates
                 // $this->router->post('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
                 //
