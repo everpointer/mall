@@ -160,9 +160,7 @@ class OrdersController extends Controller
             //
             //     return redirect()->route('orders.show_cart');
             // }
-        }
-
-        // creating the user guest shopping cart
+        } // creating the user guest shopping cart
         else {
 
             /**
@@ -418,9 +416,7 @@ class OrdersController extends Controller
                  * @var string
                  */
                 $wishListName = $cart ? $cart->description : $wishListName;
-            }
-
-            // if the required wish list does not exist, the default one  will beprovided
+            } // if the required wish list does not exist, the default one  will beprovided
             else {
                 $cart = Order::ofType('wishlist')
                     ->with('details')
@@ -689,7 +685,7 @@ class OrdersController extends Controller
                 ->generateHttpResponse();
         }
 
-        $user    = Auth::user();
+        $user = Auth::user();
 
         if (! $user) {
             $cart_content = Session::get('user.cart_content');
@@ -904,9 +900,8 @@ class OrdersController extends Controller
      *
      * @param int $id
      *
-     * @return Response
      */
-    public function checkOut()
+    public function checkOut(ApiResponse $response)
     {
         $user = Auth::user();
 
@@ -919,7 +914,7 @@ class OrdersController extends Controller
         $defaultId = '';
 
         foreach ($addresses as $value) {
-            if ($value->default == '1') {
+            if ('1' == $value->default) {
                 $defaultId = $value->id;
                 break;
             }
@@ -933,15 +928,20 @@ class OrdersController extends Controller
         }
 
         if ($user->current_points < $total_points && config('app.payment_method') == 'Points') {
-            return redirect()->route('orders.show_cart')->withErrors(['main_error' => [trans('shop::store.cart_view.insufficient_funds')]]);
-        } else {
-            $panel = [
-                'center' => ['width' => '12'],
-            ];
+            return $response->withParams([
+                'code'    => 422,
+                'message' => trans('shop::store.cart_view.insufficient_funds'),
+                'data'    => [],
+            ]);
 
+        } else {
             $callBackUrl = 'user/orders/checkOut';
 
-            return view('address.list', compact('user', 'panel', 'cart', 'addresses', 'callBackUrl', 'defaultId'));
+            return $response->withParams([
+                'code'    => 200,
+                'message' => 'ok',
+                'data'    => compact('user', 'cart', 'addresses', 'callBackUrl', 'defaultId'),
+            ]);
         }
     }
 
