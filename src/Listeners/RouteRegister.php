@@ -264,14 +264,6 @@ class RouteRegister extends AbstractRouteRegister
            // $this->router->resource('virtualproductorders', 'VirtualProductOrdersController');
            //
            // $this->router->get('mailTest', 'OrdersController@mailtest');
-           //
-           //  // About Controller
-           // $this->router->get('contact', ['as' => 'contact', 'uses' => 'AboutController@create']);
-           // $this->router->post('contact', ['as' => 'contact_store', 'uses' => 'AboutController@store']);
-           // $this->router->get('about', ['as' => 'about', 'uses' => 'AboutController@about']);
-           // $this->router->get('refunds', ['as' => 'refunds', 'uses' => 'AboutController@refunds']);
-           // $this->router->get('privacy', ['as' => 'privacy', 'uses' => 'AboutController@privacy']);
-           // $this->router->get('terms', ['as' => 'terms', 'uses' => 'AboutController@terms']);
         });
     }
 }

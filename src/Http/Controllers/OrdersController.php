@@ -1318,13 +1318,12 @@ class OrdersController extends Controller
     /**
      * Shows the seller wich orders he/she has pending.
      *
-     * @return view
      */
-    public function usersOrders(Request $request)
+    public function usersOrders(ApiResponse $response, Request $request)
     {
         $user = Auth::user();
 
-        $where_field = $user->role == 'person' ? 'user_id' : 'seller_id';
+        $where_field = $user->isPerson() ? 'user_id' : 'seller_id';
 
         $filter = $request->get('filter') ? explode('*', $request->get('filter')) : [];
 
@@ -1375,14 +1374,13 @@ class OrdersController extends Controller
             ->ofDates($dateFrom, $dateTo)
             ->paginate(20);
 
-        $panel = [
-            'left'   => ['width' => '2', 'class' => 'user-panel'],
-            'center' => ['width' => '10'],
-        ];
-
         $select = $request->get('show') ? $request->get('show') : '';
 
-        return view('orders.sales', compact('panel', 'openOrders', 'closedOrders', 'cancelledOrders', 'select', 'unRate', 'dateFrom', 'dateTo'));
+        return $response->withParams([
+            'code'    => 200,
+            'message' => 'OK',
+            'data'    => compact('panel', 'openOrders', 'closedOrders', 'cancelledOrders', 'select', 'unRate', 'dateFrom', 'dateTo'),
+        ]);
     }
 
     /**
