@@ -143,9 +143,9 @@ class RouteRegister extends AbstractRouteRegister
                 $this->router->get('orders/moveFrom/{origin}/to/{destination}/{productId}', OrdersController::class . '@moveFromOrder');
 
                 // $this->router->get('orders/addToOrder/{orderId}/{productId}', ['uses' => 'OrdersController@addToOrderById', 'as' => 'orders.add_to_order_by_id']);
-                //
-                // $this->router->get('orders/checkOut/', ['uses' => 'OrdersController@checkOut', 'as' => 'orders.check_out']);
-                //
+
+                $this->router->get('orders/checkOut/', OrdersController::class . '@checkOut');
+
                 // $this->router->get('orders/checkOut/address/{addressId}', ['uses' => 'OrdersController@checkOutResume', 'as' => 'orders.check_out_address']);
                 //
                 // $this->router->get('orders/placeOrder/{type}', ['uses' => 'OrdersController@placeOrder', 'as' => 'orders.place_order']);
