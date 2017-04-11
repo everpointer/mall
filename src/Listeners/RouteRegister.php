@@ -75,7 +75,7 @@ class RouteRegister extends AbstractRouteRegister
 
                 // $this->router->post('products/change/status/{id}', ['uses' => 'ProductsController@changeStatus', 'as' => 'products.change_status']);
 
-                // $this->router->get('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
+                $this->router->get('orders/usersOrders', OrdersController::class . '@usersOrders');
 
                 // filtered by dates
                 // $this->router->post('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
