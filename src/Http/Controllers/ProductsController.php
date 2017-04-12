@@ -202,14 +202,16 @@ class ProductsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     *
-     * @return Response
      */
-    public function edit($id)
+    public function edit(ApiResponse $response, $id)
     {
         $product = Product::find($id);
         if (Auth::id() != $product->user_id) {
-            return redirect('products/' . $product->user_id)->withErrors(['not_access' => [trans('shop::globals.not_access')]]);
+            return $response->withParams([
+                'code'    => 403,
+                'message' => trans('shop::globals.not_access'),
+                'data'    => [],
+            ]);
         }
 
         $typeItem = $product->type;
@@ -229,19 +231,22 @@ class ProductsController extends Controller
 
         $categories = ['' => trans('shop::product.controller.select_category')];
 
-        //categories drop down formatted
+        // categories drop down formatted
         ProductsHelper::categoriesDropDownFormat($allCategoriesStore, $categories);
 
         $condition = ['new' => trans('shop::product.controller.new'), 'refurbished' => trans('shop::product.controller.refurbished'), 'used' => trans('shop::product.controller.used')];
 
-        $edit  = true;
-        $panel = $this->panel;
+        $edit = true;
 
         $oldFeatures = ProductDetail::oldFeatures($product->features);
 
         $productsDetails = new FeaturesHelper();
 
-        return view('products.form', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'));
+        return $response->withParams([
+            'code'    => 403,
+            'message' => trans('shop::globals.not_access'),
+            'data'    => compact('product', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'),
+        ]);
     }
 
     /**
@@ -777,9 +782,9 @@ class ProductsController extends Controller
         $response['products']['results_title']     = trans('shop::globals.searchResults');
 
         return $apiResponse->withParams([
-            'code' => 200,
+            'code'    => 200,
             'message' => 'OK',
-            'data' => compact('response'),
+            'data'    => compact('response'),
         ]);
     }
 
