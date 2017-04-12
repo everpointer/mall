@@ -65,7 +65,7 @@ class RouteRegister extends AbstractRouteRegister
 
                 // $this->router->post('products/upload_software', ['uses' => 'ProductsController@upload_software', 'as' => 'products.upload_software']);
 
-                // $this->router->put('products/{id}', ['uses' => 'ProductsController@update', 'as' => 'products.update']);
+                $this->router->put('products/{id}', ProductsController::class . '@update');
 
                 // $this->router->get('modalAllKeys', ['uses' => 'VirtualProductsController@modalAllKeys', 'as' => 'virtualproducts.modalAllKeys']);
 
