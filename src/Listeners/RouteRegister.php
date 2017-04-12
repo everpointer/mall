@@ -73,7 +73,7 @@ class RouteRegister extends AbstractRouteRegister
 
                 // $this->router->get('deleteKey/{id}', ['uses' => 'VirtualProductsController@deleteKey', 'as' => 'virtualproducts.deleteKey']);
 
-                // $this->router->post('products/change/status/{id}', ['uses' => 'ProductsController@changeStatus', 'as' => 'products.change_status']);
+                $this->router->post('products/change/status/{id}', ProductsController::class . '@changeStatus');
 
                 $this->router->get('orders/usersOrders', OrdersController::class . '@usersOrders');
 
