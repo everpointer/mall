@@ -253,15 +253,17 @@ class ProductsController extends Controller
      * Update the specified resource in storage.
      *
      * @param int $id
-     *
-     * @return Response
      */
-    public function update($id, Request $request)
+    public function update($id, Request $request, ApiResponse $response)
     {
         if (! $request->input('type')) {
-            return redirect()->back()
-                ->withErrors(['induced_error' => [trans('shop::globals.error') . ' ' . trans('shop::globals.induced_error')]])->withInput();
+            return $response->withParams([
+                'code'    => 422,
+                'message' => 'Errors',
+                'data'    => ['induced_error' => [trans('shop::globals.error') . ' ' . trans('shop::globals.induced_error')]],
+            ]);
         }
+
         $rules = $this->rulesByTypes($request, true);
         $order = OrderDetail::where('product_id', $id)->join('orders', 'order_details.order_id', '=', 'orders.id')->first();
         if ($order) {
@@ -269,19 +271,31 @@ class ProductsController extends Controller
             unset($rules['category_id']);
             unset($rules['condition']);
         }
+
         $v = Validator::make($request->all(), $rules);
         if ($v->fails()) {
-            return redirect()->back()
-                ->withErrors($v->errors())->withInput();
+            return $response->withParams([
+                'code'    => 422,
+                'message' => 'Errors',
+                'data'    => $v->errors(),
+            ]);
         }
+
         $features = $this->validateFeatures($request->all());
         if (! is_string($features)) {
-            return redirect()->back()
-                ->withErrors($features)->withInput();
+            return $response->withParams([
+                'code'    => 422,
+                'message' => 'Errors',
+                'data'    => $features,
+            ]);
         }
         $product = Product::find($id);
         if (Auth::id() != $product->user_id) {
-            return redirect('products/' . $product->user_id)->withErrors(['feature_images' => [trans('shop::globals.not_access')]]);
+            return $response->withParams([
+                'code'    => 422,
+                'message' => 'Errors',
+                'data'    => ['feature_images' => [trans('shop::globals.not_access')]],
+            ]);
         }
         if (! $order) {
             $product->name        = $request->input('name');
@@ -351,9 +365,12 @@ class ProductsController extends Controller
                     break;
             }
         }
-        Session::flash('message', trans('shop::product.controller.saved_successfully') . $message);
 
-        return redirect('products/' . $product->id);
+        return $response->withParams([
+            'code'    => 204,
+            'message' => 'OK',
+            'data'    => [trans('shop::product.controller.saved_successfully') . $message],
+        ]);
     }
 
     /**
