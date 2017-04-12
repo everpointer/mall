@@ -99,7 +99,7 @@ class RouteRegister extends AbstractRouteRegister
            // $this->router->get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
 
            // Busqueda General
-           // $this->router->get('search/', 'ProductsController@searchAll');
+           $this->router->get('search/', 'ProductsController@searchAll');
 
            // $this->router->get('categories', 'CategoriesController@index');
 
