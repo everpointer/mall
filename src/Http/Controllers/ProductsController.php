@@ -9,10 +9,12 @@ namespace Notadd\Shop\Http\Controllers;
  */
 
 use Illuminate\Http\Request;
+use Notadd\Foundation\Passport\Responses\ApiResponse;
 use Notadd\Shop\Helpers\File;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\Category;
 use Notadd\Shop\Models\OrderDetail;
+use Illuminate\Support\Facades\Auth;
 use Notadd\Shop\Models\ProductDetail;
 use Notadd\Shop\Models\VirtualProduct;
 use Notadd\Shop\Helpers\ProductsHelper;
@@ -110,7 +112,7 @@ class ProductsController extends Controller
             $product              = new Product();
             $product->name        = $request->input('name');
             $product->category_id = $request->input('category_id');
-            $product->user_id     = \Auth::id();
+            $product->user_id     = Auth::id();
             $product->description = $request->input('description');
             $product->bar_code    = $request->input('bar_code');
             $product->brand       = $request->input('brand');
@@ -170,7 +172,7 @@ class ProductsController extends Controller
                         if ($warning) {
                             $message .= ' ' . trans('shop::product.controller.may_invalid_keys');
                         }
-                        Storage::disk('local')->deleteDirectory('key_code/' . \Auth::id());
+                        Storage::disk('local')->deleteDirectory('key_code/' . Auth::id());
                         break;
                     case 'software':
                         break;
@@ -206,7 +208,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        if (\Auth::id() != $product->user_id) {
+        if (Auth::id() != $product->user_id) {
             return redirect('products/' . $product->user_id)->withErrors(['not_access' => [trans('shop::globals.not_access')]]);
         }
 
@@ -273,7 +275,7 @@ class ProductsController extends Controller
                 ->withErrors($features)->withInput();
         }
         $product = Product::find($id);
-        if (\Auth::id() != $product->user_id) {
+        if (Auth::id() != $product->user_id) {
             return redirect('products/' . $product->user_id)->withErrors(['feature_images' => [trans('shop::globals.not_access')]]);
         }
         if (! $order) {
@@ -330,7 +332,7 @@ class ProductsController extends Controller
                         if ($warning) {
                             $message .= ' ' . trans('shop::product.controller.may_invalid_keys');
                         }
-                        Storage::disk('local')->deleteDirectory('key_code/' . \Auth::id());
+                        Storage::disk('local')->deleteDirectory('key_code/' . Auth::id());
                     }
                     break;
                 case 'software':
@@ -359,7 +361,7 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        if (\Auth::id() != $product->user_id) {
+        if (Auth::id() != $product->user_id) {
             return redirect('products/' . $product->user_id)->withErrors(['feature_images' => [trans('shop::globals.not_access')]]);
         }
         $product->status = 0;
@@ -373,20 +375,27 @@ class ProductsController extends Controller
      * Change status a Product.
      *
      * @param int $id
-     *
-     * @return Response
      */
-    public function changeStatus($id)
+    public function changeStatus(ApiResponse $response, $id)
     {
         $product = Product::select('id', 'user_id', 'features', 'status', 'type')->find($id);
-        if (\Auth::id() != $product->user_id) {
-            return redirect('products/' . $product->user_id)->withErrors(['feature_images' => [trans('shop::globals.not_access')]]);
+
+        if (Auth::id() != $product->user_id) {
+            return $response->withParams([
+                'code'    => 403,
+                'message' => trans('shop::globals.not_access'),
+                'data'    => [],
+            ]);
         }
+
         $product->status = ($product->status) ? 0 : 1;
         $product->save();
-        Session::flash('message', trans('shop::product.controller.saved_successfully'));
 
-        return redirect('products/' . $product->id);
+        return $response->withParams([
+            'code'    => 204,
+            'message' => trans('shop::product.controller.saved_successfully'),
+            'data'    => [],
+        ]);
     }
 
     /**
@@ -745,7 +754,7 @@ class ProductsController extends Controller
 
             if ($suggest) {
                 $response['products']['suggestions'] = self::getSuggestions([
-                    'user_id'         => \Auth::id(),
+                    'user_id'         => Auth::id(),
                     'preferences_key' => 'my_searches',
                     'limit'           => 3,
                     'select'          => ['id', 'name', 'features'],

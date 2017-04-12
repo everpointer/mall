@@ -22,7 +22,7 @@ class RouteRegister extends AbstractRouteRegister
         $this->router->group(['middleware' => ['api'], 'prefix' => 'api/shop'], function () {
 
             // home control
-           $this->router->get('/', HomeController::class . '@index');
+            $this->router->get('/', HomeController::class . '@index');
 
             // Product list
             $this->router->get('products', ProductsController::class . '@index');
@@ -95,12 +95,12 @@ class RouteRegister extends AbstractRouteRegister
                 // $this->router->post('/products/delete_img', ['uses' => 'ProductsController@deleteImg', 'as' => 'products.deleteImg']);
             });
 
-           //  //Orders Reports
+           // Orders Reports
            // $this->router->get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
-           //
-           //  //Busqueda General
+
+           // Busqueda General
            // $this->router->get('search/', 'ProductsController@searchAll');
-           //
+
            // $this->router->get('categories', 'CategoriesController@index');
 
             // Acceso Usuario General(Admin,Persona,Empresa)
