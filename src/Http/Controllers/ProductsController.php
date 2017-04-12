@@ -9,7 +9,6 @@ namespace Notadd\Shop\Http\Controllers;
  */
 
 use Illuminate\Http\Request;
-use Notadd\Foundation\Passport\Responses\ApiResponse;
 use Notadd\Shop\Helpers\File;
 use Notadd\Shop\Models\Product;
 use Notadd\Shop\Models\Category;
@@ -26,6 +25,7 @@ use Notadd\Shop\Http\Handlers\Product\ShowHandler;
 use Notadd\Shop\Http\Handlers\Product\CreateHandler;
 use Notadd\Shop\Http\Handlers\Product\SearchHandler;
 use Notadd\Shop\Http\Handlers\Product\ShowMyHandler;
+use Notadd\Foundation\Passport\Responses\ApiResponse;
 
 class ProductsController extends Controller
 {
@@ -690,7 +690,7 @@ class ProductsController extends Controller
      *
      * @return [type] [json array]
      */
-    public function searchAll(Request $request)
+    public function searchAll(Request $request, ApiResponse $apiResponse)
     {
         $crit                 = $request->get('crit');
         $suggest              = $request->get('suggest');
@@ -776,13 +776,11 @@ class ProductsController extends Controller
         $response['products']['suggestions_title'] = trans('shop::globals.suggested_products');
         $response['products']['results_title']     = trans('shop::globals.searchResults');
 
-        if ($request->wantsJson()) {
-            return json_encode($response);
-        } else {
-            if (env('APP_DEBUG', false)) {
-                dd($response);
-            }
-        }
+        return $apiResponse->withParams([
+            'code' => 200,
+            'message' => 'OK',
+            'data' => compact('response'),
+        ]);
     }
 
     /**
