@@ -1055,7 +1055,7 @@ class OrdersController extends Controller
     /**
      * cancels one of the user orders.
      */
-    public function cancel($orderId, Request $request, ApiResponse $response)
+    public function cancel($orderId, ApiResponse $response)
     {
         $user = Auth::user();
 
