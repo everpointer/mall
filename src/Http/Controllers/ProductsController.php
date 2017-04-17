@@ -377,20 +377,25 @@ class ProductsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     *
-     * @return Response
      */
-    public function destroy($id)
+    public function destroy(ApiResponse $response, $id)
     {
         $product = Product::find($id);
         if (Auth::id() != $product->user_id) {
-            return redirect('products/' . $product->user_id)->withErrors(['feature_images' => [trans('shop::globals.not_access')]]);
+            return $response->withParams([
+                'code'    => 422,
+                'message' => 'Errors',
+                'data'    => ['feature_images' => [trans('shop::globals.not_access')]],
+            ]);
         }
         $product->status = 0;
         $product->save();
-        Session::flash('message', trans('shop::product.controller.saved_successfully'));
 
-        return redirect('products/' . $product->id);
+        return $response->withParams([
+            'code'    => 200,
+            'message' => 'Ok',
+            'data'    => ['feature_images' => [trans('shop::product.controller.saved_successfully')]],
+        ]);
     }
 
     /**
