@@ -1200,18 +1200,20 @@ class OrdersController extends Controller
      *
      * @param order_id The order id to be updated
      */
-    public function closeOrder($order_id)
+    public function closeOrder(ApiResponse $response, $order_id)
     {
         $user  = Auth::user();
-        $order = Order::where('id', $order_id)->where('user_id', $user->id)->ofStatus('sent')->select('id', 'user_id', 'status', 'end_date', 'seller_id')->first();
-        //checks if the orders is own by the user and if it is on open status
+        $order = Order::where('id', $order_id)
+            ->where('user_id', $user->id)->ofStatus('sent')
+            ->select('id', 'user_id', 'status', 'end_date', 'seller_id')
+            ->first();
+        // checks if the orders is own by the user and if it is on open status
         if ($order) {
-            //Mails and notifications are now sent in the save method for the order
+            // Mails and notifications are now sent in the save method for the order
             $order->status   = 'closed';
             $order->end_date = DB::raw('NOW()');
             // $order->end_date = Carbon::now(); Esto lo cambie porque no me parece guardar la fecha de php en la bd...
             $order->save();
-            Session::push('message', trans('shop::store.orders_index.order_received') . ' (#' . $order->id . ')');
 
             Notice::create([
                 'user_id'        => $order->seller_id,
@@ -1222,8 +1224,8 @@ class OrdersController extends Controller
             ]);
 
             if (config('app.offering_user_points')) {
-                //The order total points are passed to the seller
-                $seller = Member::findOrFail($order->seller_id);
+                // The order total points are passed to the seller
+                $seller = Member::find($order->seller_id);
                 if ($seller) {
                     $order_content = OrderDetail::where('order_id', $order->id)->get();
                     $total_points  = 0;
@@ -1244,11 +1246,13 @@ class OrdersController extends Controller
                     $seller->modifyPoints($total_points, 8, $order->id);
                 }
             }
-
-            return redirect(route('orders.show_orders'));
-        } else {
-            return redirect(route('orders.show_orders'));
         }
+
+        return $response->withParams([
+            'code'    => 204,
+            'message' => 'No content.',
+            'data'    => [],
+        ]);
     }
 
     public function reports($type, $filter)
