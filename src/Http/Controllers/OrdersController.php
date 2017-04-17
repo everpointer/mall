@@ -1490,10 +1490,8 @@ class OrdersController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     *
-     * @return Response
      */
-    public function showSellerOrder($id)
+    public function showSellerOrder(ApiResponse $response, $id)
     {
         $user = Auth::user();
 
@@ -1515,14 +1513,13 @@ class OrdersController extends Controller
             ->orderBy('created_at', 'asc')
             ->get();
 
-        $panel = [
-            'left'   => ['width' => '2', 'class' => 'user-panel'],
-            'center' => ['width' => '10'],
-        ];
-
         $is_seller = true;
 
-        return view('orders.detail', compact('user', 'is_seller', 'panel', 'orderAddress', 'order', 'order_comments', 'totalItems', 'grandTotal'));
+        return $response->withParams([
+            'code'     => 204,
+            'messages' => 'Ok',
+            'data'     => compact('user', 'is_seller', 'orderAddress', 'order', 'order_comments', 'totalItems', 'grandTotal'),
+        ]);
     }
 
     /**
