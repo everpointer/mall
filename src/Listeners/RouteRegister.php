@@ -159,8 +159,8 @@ class RouteRegister extends AbstractRouteRegister
 
                 $this->router->get('orders/showSeller/{orderId}', OrdersController::class . '@showSellerOrder');
 
-                // $this->router->get('orders/show/{orderId}', ['uses' => 'OrdersController@showOrder', 'as' => 'orders.show_order']);
-                //
+                $this->router->get('orders/show/{orderId}', OrdersController::class . '@showOrder');
+
                 // $this->router->get('orders/rate/{orderId}', ['uses' => 'OrdersController@rateOrder', 'as' => 'orders.rate_order']);
                 //
                 // //Route used to login an user and send it back to the product show
