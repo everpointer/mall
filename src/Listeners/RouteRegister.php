@@ -95,13 +95,13 @@ class RouteRegister extends AbstractRouteRegister
                 // $this->router->post('/products/delete_img', ['uses' => 'ProductsController@deleteImg', 'as' => 'products.deleteImg']);
             });
 
-           // Orders Reports
-           // $this->router->get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
+            // Orders Reports
+            // $this->router->get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
 
-           // Busqueda General
-           $this->router->get('search/', 'ProductsController@searchAll');
+            // Busqueda General
+            $this->router->get('search/', 'ProductsController@searchAll');
 
-           // $this->router->get('categories', 'CategoriesController@index');
+            // $this->router->get('categories', 'CategoriesController@index');
 
             // Acceso Usuario General(Admin,Persona,Empresa)
             $this->router->group(['prefix' => 'user'], function () {
@@ -155,10 +155,10 @@ class RouteRegister extends AbstractRouteRegister
                 // filtered by dates
                 $this->router->post('orders', OrdersController::class . '@usersOrders');
 
-                $this->router->get('orders/cancel/{orderId}', 'OrdersController@cancel');
+                $this->router->get('orders/cancel/{orderId}', OrdersController::class . '@cancel');
 
-                // $this->router->get('orders/showSeller/{orderId}', ['uses' => 'OrdersController@showSellerOrder', 'as' => 'orders.show_seller_order']);
-                //
+                $this->router->get('orders/showSeller/{orderId}', OrdersController::class . '@showSellerOrder');
+
                 // $this->router->get('orders/show/{orderId}', ['uses' => 'OrdersController@showOrder', 'as' => 'orders.show_order']);
                 //
                 // $this->router->get('orders/rate/{orderId}', ['uses' => 'OrdersController@rateOrder', 'as' => 'orders.rate_order']);
@@ -191,79 +191,79 @@ class RouteRegister extends AbstractRouteRegister
             });
 
 
-           //
-           //  //Wpanel Routes
-           // $this->router->group(['prefix' => 'wpanel', 'roles' => 'admin', 'middleware' => ['auth', 'roles']], function () {
-           //     $this->router->resource('/', 'WpanelController');
-           //
-           //     $this->router->resource('category', 'CategoriesController');
-           //
-           //     $this->router->post('category/upload', ['uses' => 'CategoriesController@upload', 'as' => 'category.upload']);
-           //
-           //     $this->router->get('categories', ['uses' => 'CategoriesController@showList', 'as' => 'categories']);
-           //
-           //     $this->router->resource('productsdetails', 'ProductDetailsController');
-           //
-           //     $this->router->get('features', ['uses' => 'ProductDetailsController@index', 'as' => 'features']);
-           //
-           //     $this->router->resource('profile', 'CompanyController');
-           //  });
+            //
+            //  //Wpanel Routes
+            // $this->router->group(['prefix' => 'wpanel', 'roles' => 'admin', 'middleware' => ['auth', 'roles']], function () {
+            //     $this->router->resource('/', 'WpanelController');
+            //
+            //     $this->router->resource('category', 'CategoriesController');
+            //
+            //     $this->router->post('category/upload', ['uses' => 'CategoriesController@upload', 'as' => 'category.upload']);
+            //
+            //     $this->router->get('categories', ['uses' => 'CategoriesController@showList', 'as' => 'categories']);
+            //
+            //     $this->router->resource('productsdetails', 'ProductDetailsController');
+            //
+            //     $this->router->get('features', ['uses' => 'ProductDetailsController@index', 'as' => 'features']);
+            //
+            //     $this->router->resource('profile', 'CompanyController');
+            //  });
 
-           //  // Acceso sin login Cambios para poder crear carrito y listas
-           //
-           // $this->router->get('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);
+            //  // Acceso sin login Cambios para poder crear carrito y listas
+            //
+            // $this->router->get('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);
 
-           $this->router->get('user/orders/removeFrom/{orderName}/{productId}/{idOrder?}', OrdersController::class . '@removeFromOrder');
+            $this->router->get('user/orders/removeFrom/{orderName}/{productId}/{idOrder?}', OrdersController::class . '@removeFromOrder');
 
-           // $this->router->put('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);
+            // $this->router->put('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);
 
-           $this->router->get('user/cart', OrdersController::class . '@showCart');
+            $this->router->get('user/cart', OrdersController::class . '@showCart');
 
-           // $this->router->put('user/orders/updateQuantity/{detailId}/{newQuantity}', ['uses' => 'OrdersController@updateQuantity', 'as' => 'orders.update_quantity']);
-           //
-           //  // points push notifications
-           // $this->router->get('getPoints', 'UserController@getPoints');
-           //
-           // $this->router->get('modalDetailsProductCart/', ['uses' => 'OrdersController@modalDetailsProductCart', 'as' => 'orders.modalDetailsProductCart']);
-           //
-           // $this->router->get('showDetailsProductCart/{id}', ['uses' => 'OrdersController@showDetailsProductCart', 'as' => 'orders.showDetailsProductCart']);
-           //
-           // $this->router->post('editKeyVirtualProductsOrders/{id}', ['uses' => 'VirtualProductOrdersController@editKey', 'as' => 'virtualProductOrdersController.editKey']);
-           //
-           // $this->router->resource('virtualproducts', 'VirtualProductsController');
+            // $this->router->put('user/orders/updateQuantity/{detailId}/{newQuantity}', ['uses' => 'OrdersController@updateQuantity', 'as' => 'orders.update_quantity']);
+            //
+            //  // points push notifications
+            // $this->router->get('getPoints', 'UserController@getPoints');
+            //
+            // $this->router->get('modalDetailsProductCart/', ['uses' => 'OrdersController@modalDetailsProductCart', 'as' => 'orders.modalDetailsProductCart']);
+            //
+            // $this->router->get('showDetailsProductCart/{id}', ['uses' => 'OrdersController@showDetailsProductCart', 'as' => 'orders.showDetailsProductCart']);
+            //
+            // $this->router->post('editKeyVirtualProductsOrders/{id}', ['uses' => 'VirtualProductOrdersController@editKey', 'as' => 'virtualProductOrdersController.editKey']);
+            //
+            // $this->router->resource('virtualproducts', 'VirtualProductsController');
 
-           // $this->router->get('img/{file?}', 'FileController@img')->where('file', '(.*)');
-           //
-           // $this->router->get('freeproducts/{id}', ['uses' => 'FreeProductsController@show', 'as' => 'freeproducts.show']);
-           //
-           // $this->router->get('freeproducts/show/all', ['uses' => 'FreeProductsController@index', 'as' => 'freeproducts.search']);
-           //
-           // $this->router->get('logs', 'LogController@index');
-           //
-           // $this->router->resource('log', 'LogController');
-           //
-           // $this->router->get('user/notices/check/{id?}', 'NoticesController@check');
-           //
-           // $this->router->get('user/notices/list/{num?}', 'NoticesController@index');
-           //
-           // $this->router->get('user/notices/{type?}', 'NoticesController@push');
-           //
-           // $this->router->resource('user/notices', 'NoticesController');
-           //
-           //  // Rutas Resource de los modelos basicos generados
-           // $this->router->resource('freeproductparticipants', 'FreeProductParticipantsController');
-           //
-           // $this->router->resource('orderdetails', 'OrderDetailsController');
-           //
-           // $this->router->resource('orders', 'OrdersController');
-           //
-           // $this->router->resource('productsoffers', 'ProductOffersController');
-           //
-           // $this->router->resource('typepreferences', 'TypePreferencesController');
-           //
-           // $this->router->resource('virtualproductorders', 'VirtualProductOrdersController');
-           //
-           // $this->router->get('mailTest', 'OrdersController@mailtest');
+            // $this->router->get('img/{file?}', 'FileController@img')->where('file', '(.*)');
+            //
+            // $this->router->get('freeproducts/{id}', ['uses' => 'FreeProductsController@show', 'as' => 'freeproducts.show']);
+            //
+            // $this->router->get('freeproducts/show/all', ['uses' => 'FreeProductsController@index', 'as' => 'freeproducts.search']);
+            //
+            // $this->router->get('logs', 'LogController@index');
+            //
+            // $this->router->resource('log', 'LogController');
+            //
+            // $this->router->get('user/notices/check/{id?}', 'NoticesController@check');
+            //
+            // $this->router->get('user/notices/list/{num?}', 'NoticesController@index');
+            //
+            // $this->router->get('user/notices/{type?}', 'NoticesController@push');
+            //
+            // $this->router->resource('user/notices', 'NoticesController');
+            //
+            //  // Rutas Resource de los modelos basicos generados
+            // $this->router->resource('freeproductparticipants', 'FreeProductParticipantsController');
+            //
+            // $this->router->resource('orderdetails', 'OrderDetailsController');
+            //
+            // $this->router->resource('orders', 'OrdersController');
+            //
+            // $this->router->resource('productsoffers', 'ProductOffersController');
+            //
+            // $this->router->resource('typepreferences', 'TypePreferencesController');
+            //
+            // $this->router->resource('virtualproductorders', 'VirtualProductOrdersController');
+            //
+            // $this->router->get('mailTest', 'OrdersController@mailtest');
         });
     }
 }
