@@ -1447,15 +1447,9 @@ class OrdersController extends Controller
     }
 
     /**
-     * @return view
      */
-    public function showOrder($id)
+    public function showOrder(ApiResponse $response, $id)
     {
-        $panel = [
-            'left'   => ['width' => '2', 'class' => 'user-panel'],
-            'center' => ['width' => '10'],
-        ];
-
         $user = Auth::user();
         if ($user) {
             $order = Order::
@@ -1472,17 +1466,34 @@ class OrdersController extends Controller
 
                 $grandTotal = $order->details->sum('price');
 
-                return view('orders.detail', compact('user', 'panel', 'orderAddress', 'is_buyer', 'order', 'orderAddress', 'order_comments', 'totalItems', 'grandTotal'));
+                return $response->withParams([
+                    'code'    => 200,
+                    'message' => 'Ok',
+                    'data'    => compact('user', 'orderAddress', 'is_buyer', 'order', 'orderAddress', 'order_comments', 'totalItems', 'grandTotal'),
+                ]);
             } else {
                 $order = Order::where('id', $id)->where('seller_id', $user->id)->first();
                 if ($order) {
-                    return redirect()->route('orders.show_seller_order', [$id]);
+                    return $response->withParams([
+                        'code'    => 200,
+                        'message' => 'Ok',
+                        'data'    => route('orders.show_seller_order', [$id]),
+                    ]);
+
                 } else {
-                    return redirect()->route('orders.show_orders');
+                    return $response->withParams([
+                        'code'    => 200,
+                        'message' => 'Ok',
+                        'data'    => route('orders.show_orders'),
+                    ]);
                 }
             }
         } else {
-            return redirect()->route('orders.show_orders');
+            return $response->withParams([
+                'code'    => 200,
+                'message' => 'Ok',
+                'data'    => route('orders.show_orders'),
+            ]);
         }
     }
 
