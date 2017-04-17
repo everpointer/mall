@@ -166,9 +166,9 @@ class RouteRegister extends AbstractRouteRegister
                 // //Route used to login an user and send it back to the product show
                 //
                 // $this->router->get('logAndShow/{productId}', ['uses' => 'ProductsController@show', 'as' => 'products.log_and_show']);
-                //
-                // $this->router->get('orders/close/{order_id}', ['uses' => 'OrdersController@closeOrder', 'as' => 'orders.close']);
-                //
+
+                $this->router->get('orders/close/{order_id}', OrdersController::class . '@closeOrder');
+
                 // $this->router->get('modalSeeKeysPurchased', ['uses' => 'VirtualProductOrdersController@modalSeeKeysPurchased', 'as' => 'VirtualProductOrders.modalSeeKeysPurchased']);
                 //
                 // $this->router->get('showKeyVirtualProductPurchased/{idProduct}/{idOrder}', ['uses' => 'VirtualProductOrdersController@showKeyVirtualProductPurchased', 'as' => 'VirtualProductOrders.showKeyVirtualProductPurchased']);
