@@ -1054,28 +1054,10 @@ class OrdersController extends Controller
 
     /**
      * cancels one of the user orders.
-     *
-     * @return Response
      */
-    public function cancel($orderId, Request $request)
+    public function cancel($orderId, Request $request, ApiResponse $response)
     {
         $user = Auth::user();
-
-        /**
-         * $route description
-         * destination route after process the action.
-         *
-         * @var string
-         */
-        $route = 'orders.pendingOrders';
-
-        /*
-         * $message
-         * provide control on the processed message to users
-         * @var array
-         */
-        $message['msg']   = trans('shop::store.cancelled_order');
-        $message['class'] = 'alert alert-success';
 
         /**
          * $order
@@ -1093,7 +1075,6 @@ class OrdersController extends Controller
 
         //checking if the user is a seller
         if (! $order) {
-            $route = '/user/orders';
 
             $order = Order::where('id', $orderId)
                 ->with('details')
@@ -1103,12 +1084,12 @@ class OrdersController extends Controller
                 ->first();
         }
 
-        //checking if it is our order
+        // checking if it is our order
         if ($order) {
             $order->status = 'cancelled';
             $existsVirtual = false;
 
-            //Returning the stock to products
+            // Returning the stock to products
             foreach ($order->details as $detail) {
                 $product        = Product::find($detail->product_id);
                 $product->stock += $detail->quantity;
@@ -1126,16 +1107,13 @@ class OrdersController extends Controller
             }
 
             $order->save();
-        } else {
-            $message['msg']   = trans('shop::store.no_order_message');
-            $message['class'] = 'alert alert-danger';
         }
 
-        Session::push('message', $message['msg']);
-        Session::push('messageClass', $message['class']);
-        Session::save();
-
-        return redirect($route);
+        return $response->withParams([
+            'code'    => 204,
+            'message' => 'Ok',
+            'data'    => [],
+        ]);
     }
 
     /**
