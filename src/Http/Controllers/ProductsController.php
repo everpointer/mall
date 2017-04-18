@@ -449,9 +449,21 @@ class ProductsController extends Controller
      *
      * @return string
      */
-    public function deleteImg(Request $request)
+    public function deleteImg(Request $request, ApiResponse $response)
     {
-        return File::deleteFile($request->get('file'));
+        if (File::deleteFile($request->get('file'))) {
+            return $response->withParams([
+                'code'    => 204,
+                'message' => 'No Content.',
+                'data'    => [],
+            ]);
+        }
+
+        return $response->withParams([
+            'code'    => 500,
+            'message' => 'Deleted img fail.',
+            'data'    => [],
+        ]);
     }
 
     /**
