@@ -227,36 +227,44 @@ class OrdersController extends Controller
      * @param [type]  $productId [product id]
      * @param Request $request [laravel object]
      */
-    public function addToOrderById($orderId, $productId, Request $request)
+    public function addToOrderById($orderId, $productId, Request $request, ApiResponse $response)
     {
         $user     = Auth::user();
         $quantity = $request->get('quantity') ? $request->get('quantity') : 1;
 
-        //checking whether the product required exist or not
+        // checking whether the product required exist or not
         try {
             $product = Product::findOrFail($productId);
         } catch (ModelNotFoundException $e) {
-            throw new NotFoundHttpException();
+            return $response->withParams([
+                'code'    => 404,
+                'message' => 'Not Found',
+                'data'    => '',
+            ]);
         }
 
-        //checking whether the order required exist or not
+        // checking whether the order required exist or not
         try {
             $order = Order::findOrFail($orderId);
         } catch (ModelNotFoundException $e) {
-            throw new NotFoundHttpException();
+            return $response->withParams([
+                'code'    => 404,
+                'message' => 'Not Found',
+                'data'    => '',
+            ]);
         }
 
         if ($order) {
-            //checking the order to make sure whether it needs an added product increase its quantity
+            // checking the order to make sure whether it needs an added product increase its quantity
             $orderDetail = OrderDetail::where('order_id', $order->id)
                 ->where('product_id', $product->id)
                 ->first();
 
-            //if the product exists, its quantity is increased
+            // if the product exists, its quantity is increased
             if ($orderDetail) {
                 $orderDetail->price    = $product->price;
                 $orderDetail->quantity = $orderDetail->quantity + $quantity;
-            } //otherwise, the order details is created from the product received
+            } // otherwise, the order details is created from the product received
             else {
                 $orderDetail             = new OrderDetail();
                 $orderDetail->order_id   = $order->id;
@@ -268,7 +276,7 @@ class OrdersController extends Controller
 
             $orderDetail->save();
 
-            $log = Log::create(
+            Log::create(
                 [
                     'action_type_id' => '4',
                     'details'        => $order->id,
@@ -277,13 +285,18 @@ class OrdersController extends Controller
                 ]
             );
 
-            Session::push('message', trans('shop::store.productAddedToWishList') . ', ' . trans('shop::globals.reference_label') . $order->description);
-        } else {
-            Session::push('messageClass', 'alert-danger');
-            Session::push('message', trans('shop::store.wishlist_no_exists') . ', ' . trans('shop::globals.reference_label') . $order->description);
+            return $response->withParams([
+                'code'    => 204,
+                'message' => trans('shop::store.productAddedToWishList') . ', ' . trans('shop::globals.reference_label') . $order->description,
+                'data'    => [],
+            ]);
         }
 
-        return redirect()->route('orders.show_wish_list_by_id', [$order->id]);
+        return $response->withParams([
+            'code'    => 404,
+            'message' => trans('shop::store.wishlist_no_exists') . ', ' . trans('shop::globals.reference_label') . $order->description,
+            'data'    => [],
+        ]);
     }
 
     /**
