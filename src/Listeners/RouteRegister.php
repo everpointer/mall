@@ -176,9 +176,9 @@ class RouteRegister extends AbstractRouteRegister
                 // $this->router->get('orders/comment/{order_id}', ['uses' => 'OrdersController@commentOrder', 'as' => 'orders.comment']);
                 //
                 // $this->router->post('orders/storeComment', ['uses' => 'OrdersController@storeComment', 'as' => 'orders.store_comment']);
-                //
-                // $this->router->get('orders/delete/{order_id}/{type}', ['uses' => 'OrdersController@destroy', 'as' => 'orders.delete']);
-                //
+
+                $this->router->get('orders/delete/{order_id}/{type}', OrdersController::class . '@destroy');
+
                 // //Rates
                 // $this->router->post('rates/seller', ['uses' => 'OrdersController@rateSeller', 'as' => 'orders.rate_seller']);
                 //
