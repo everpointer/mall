@@ -1383,22 +1383,26 @@ class OrdersController extends Controller
      *
      * @param int    $order_id
      * @param string $type
-     *
-     * @return void
      */
-    public function destroy($order_id, $type)
+    public function destroy(ApiResponse $response, $order_id, $type)
     {
         if ($this->order->belongToUser(auth()->user(), $order_id, $order) && $this->order->canBeDeleted($type)) {
             $order->details()->delete();
 
             $order->delete();
 
-            Session::push('message', trans('shop::store.wish_list_view.success_deleting_msg'));
-        } else {
-            Session::push('message', trans('shop::store.wish_list_view.error_deleting_msg'));
+            return $response->withParams([
+                'code'    => 204,
+                'message' => trans('shop::store.wish_list_view.success_deleting_msg'),
+                'data'    => [],
+            ]);
         }
 
-        return redirect()->back();
+        return $response->withParams([
+            'code'    => 500,
+            'message' => trans('shop::store.wish_list_view.error_deleting_msg'),
+            'data'    => [],
+        ]);
     }
 
     /**
