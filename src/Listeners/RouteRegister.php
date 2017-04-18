@@ -92,7 +92,7 @@ class RouteRegister extends AbstractRouteRegister
 
                 $this->router->get('products/myProducts', ProductsController::class . '@myProducts');
 
-                // $this->router->post('/products/delete_img', ['uses' => 'ProductsController@deleteImg', 'as' => 'products.deleteImg']);
+                $this->router->post('/products/delete_img', ProductsController::class . '@deleteImg');
             });
 
             // Orders Reports
