@@ -191,8 +191,8 @@ class RouteRegister extends AbstractRouteRegister
             });
 
 
-            //
-            //  //Wpanel Routes
+
+            // Wpanel Routes
             // $this->router->group(['prefix' => 'wpanel', 'roles' => 'admin', 'middleware' => ['auth', 'roles']], function () {
             //     $this->router->resource('/', 'WpanelController');
             //
@@ -209,7 +209,7 @@ class RouteRegister extends AbstractRouteRegister
             //     $this->router->resource('profile', 'CompanyController');
             //  });
 
-            //  // Acceso sin login Cambios para poder crear carrito y listas
+            // Acceso sin login Cambios para poder crear carrito y listas
             //
             // $this->router->get('user/orders/addTo/{destination}/{productId}', ['uses' => 'OrdersController@addToOrder', 'as' => 'orders.add_to_order']);
 
