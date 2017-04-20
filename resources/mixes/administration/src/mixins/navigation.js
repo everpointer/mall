@@ -1,3 +1,7 @@
 export default function (injection) {
-    window.console.log(injection);
+    injection.useNavigation({
+        icon: 'ios-cart',
+        path: '/shop',
+        title: '商城',
+    });
 }
