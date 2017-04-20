@@ -40,6 +40,10 @@ class ModuleServiceProvider extends Module
             realpath(__DIR__ . '/../databases/seeds/') => database_path('seeds/'),
         ], 'shop.seeds');
 
+        $this->publishes([
+            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/shop/administration') => public_path('assets/shop/administration'),
+        ], 'public');
+
         // Injection some relations to member model
         $this->injectionRelationsToMember();
 
@@ -140,5 +144,29 @@ class ModuleServiceProvider extends Module
     public static function version()
     {
         return '1.0.0';
+    }
+
+    /**
+     * Get script of extension.
+     *
+     * @return string
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public static function script()
+    {
+        return asset('assets/shop/administration/js/module.min.js');
+    }
+
+    /**
+     * Get stylesheet of extension.
+     *
+     * @return array
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public static function stylesheet()
+    {
+        return [
+            asset('assets/shop/administration/css/module.min.css'),
+        ];
     }
 }
