@@ -1,5 +1,29 @@
+import Configuration from '../pages/Configuration.vue';
+import ConfigurationAdvertisement from '../pages/ConfigurationAdvertisement.vue';
+import ConfigurationImage from '../pages/ConfigurationImage.vue';
+import ConfigurationSearch from '../pages/ConfigurationSearch.vue';
 import Dashboard from '../pages/Dashboard.vue';
+import Goods from '../pages/Goods.vue';
+import GoodsCategory from '../pages/GoodsCategory.vue';
+import GoodsStandard from '../pages/GoodsStandard.vue';
+import GoodsType from '../pages/GoodsType.vue';
 import Layout from '../layouts/Layout.vue';
+import Order from '../pages/Order.vue';
+import OrderComplain from '../pages/OrderComplain.vue';
+import OrderEvaluation from '../pages/OrderEvaluation.vue';
+import OrderRefund from '../pages/OrderRefund.vue';
+import OrderRejected from '../pages/OrderRejected.vue';
+import Statistics from '../pages/Statistics.vue';
+import StatisticsAftersales from '../pages/StatisticsAftersales.vue';
+import StatisticsAnalysis from '../pages/StatisticsAnalysis.vue';
+import StatisticsGoods from '../pages/StatisticsGoods.vue';
+import StatisticsMember from '../pages/StatisticsMember.vue';
+import StatisticsSales from '../pages/StatisticsSales.vue';
+import StatisticsStore from '../pages/StatisticsStore.vue';
+import Store from '../pages/Store.vue';
+import StoreCategory from '../pages/StoreCategory.vue';
+import StoreDynamics from '../pages/StoreDynamics.vue';
+import StoreLevel from '../pages/StoreLevel.vue';
 
 export default function (injection) {
     injection.useModuleRoute([
@@ -9,6 +33,126 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: Dashboard,
                     path: '/',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: Configuration,
+                    path: 'configuration',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: ConfigurationAdvertisement,
+                    path: 'configuration/advertisement',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: ConfigurationImage,
+                    path: 'configuration/image',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: ConfigurationSearch,
+                    path: 'configuration/search',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: Goods,
+                    path: 'goods',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: GoodsCategory,
+                    path: 'goods/category',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: GoodsType,
+                    path: 'goods/type',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: GoodsStandard,
+                    path: 'goods/standard',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: Order,
+                    path: 'order',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: OrderComplain,
+                    path: 'order/complain',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: OrderEvaluation,
+                    path: 'order/evaluation',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: OrderRefund,
+                    path: 'order/refund',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: OrderRejected,
+                    path: 'order/rejected',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: Statistics,
+                    path: 'statistics',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StatisticsAftersales,
+                    path: 'statistics/aftersales',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StatisticsAnalysis,
+                    path: 'statistics/analysis',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StatisticsGoods,
+                    path: 'statistics/goods',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StatisticsMember,
+                    path: 'statistics/member',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StatisticsSales,
+                    path: 'statistics/sales',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StatisticsStore,
+                    path: 'statistics/store',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: Store,
+                    path: 'store',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StoreCategory,
+                    path: 'store/category',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StoreDynamics,
+                    path: 'store/dynamics',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StoreLevel,
+                    path: 'store/level',
                 },
             ],
             component: Layout,
