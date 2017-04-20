@@ -1,5 +1,5 @@
-import Dashboard from '../pages/Dashboard';
-import Layout from '../layouts/Layout';
+import Dashboard from '../pages/Dashboard.vue';
+import Layout from '../layouts/Layout.vue';
 
 export default function (injection) {
     injection.useModuleRoute([
