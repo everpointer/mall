@@ -1,7 +1,7 @@
 {
-	"name": "notadd/shop",
-	"description": "Notadd's Shop Module.",
-	"keywords": ["notadd", "cms", "framework", "ecommerce", "shop"],
+	"name": "notadd/mall",
+	"description": "Notadd's Mall Module.",
+	"keywords": ["notadd", "cms", "framework", "ecommerce", "shop", "mall"],
 	"homepage": "https://notadd.com/",
 	"license": "Apache-2.0",
 	"type": "notadd-module",

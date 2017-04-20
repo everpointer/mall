@@ -1,21 +1,21 @@
 export default function (injection) {
-    injection.useSidebar('shop', [
+    injection.useSidebar('mall', [
         {
             children: [
                 {
-                    path: '/shop/goods',
+                    path: '/mall/goods',
                     title: '信息列表',
                 },
                 {
-                    path: '/shop/goods/category',
+                    path: '/mall/goods/category',
                     title: '分类管理',
                 },
                 {
-                    path: '/shop/goods/type',
+                    path: '/mall/goods/type',
                     title: '类型管理',
                 },
                 {
-                    path: '/shop/goods/standard',
+                    path: '/mall/goods/standard',
                     title: '规格管理',
                 },
             ],
@@ -25,19 +25,19 @@ export default function (injection) {
         {
             children: [
                 {
-                    path: '/shop/store',
+                    path: '/mall/store',
                     title: '店铺管理',
                 },
                 {
-                    path: '/shop/store/level',
+                    path: '/mall/store/level',
                     title: '店铺等级',
                 },
                 {
-                    path: '/shop/store/category',
+                    path: '/mall/store/category',
                     title: '店铺分类',
                 },
                 {
-                    path: '/shop/store/dynamics',
+                    path: '/mall/store/dynamics',
                     title: '店铺动态',
                 },
             ],
@@ -47,23 +47,23 @@ export default function (injection) {
         {
             children: [
                 {
-                    path: '/shop/order',
+                    path: '/mall/order',
                     title: '商品订单',
                 },
                 {
-                    path: '/shop/order/refund',
+                    path: '/mall/order/refund',
                     title: '退款管理',
                 },
                 {
-                    path: '/shop/order/rejected',
+                    path: '/mall/order/rejected',
                     title: '退货管理',
                 },
                 {
-                    path: '/shop/order/evaluation',
+                    path: '/mall/order/evaluation',
                     title: '评价管理',
                 },
                 {
-                    path: '/shop/order/complain',
+                    path: '/mall/order/complain',
                     title: '投诉管理',
                 },
             ],
@@ -78,31 +78,31 @@ export default function (injection) {
         {
             children: [
                 {
-                    path: '/shop/statistics',
+                    path: '/mall/statistics',
                     title: '概述及设置',
                 },
                 {
-                    path: '/shop/statistics/analysis',
+                    path: '/mall/statistics/analysis',
                     title: '行业分析',
                 },
                 {
-                    path: '/shop/statistics/member',
+                    path: '/mall/statistics/member',
                     title: '会员统计',
                 },
                 {
-                    path: '/shop/statistics/store',
+                    path: '/mall/statistics/store',
                     title: '店铺统计',
                 },
                 {
-                    path: '/shop/statistics/sales',
+                    path: '/mall/statistics/sales',
                     title: '销量分析',
                 },
                 {
-                    path: '/shop/statistics/goods',
+                    path: '/mall/statistics/goods',
                     title: '商品分析',
                 },
                 {
-                    path: '/shop/statistics/aftersales',
+                    path: '/mall/statistics/aftersales',
                     title: '售后分析',
                 },
             ],
@@ -117,19 +117,19 @@ export default function (injection) {
         {
             children: [
                 {
-                    path: '/shop/configuration',
+                    path: '/mall/configuration',
                     title: '商城设置',
                 },
                 {
-                    path: '/shop/configuration/search',
+                    path: '/mall/configuration/search',
                     title: '搜索设置',
                 },
                 {
-                    path: '/shop/configuration/advertisement',
+                    path: '/mall/configuration/advertisement',
                     title: '广告设置',
                 },
                 {
-                    path: '/shop/configuration/image',
+                    path: '/mall/configuration/image',
                     title: '图片设置',
                 },
             ],

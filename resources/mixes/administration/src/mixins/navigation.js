@@ -1,7 +1,7 @@
 export default function (injection) {
     injection.useNavigation({
         icon: 'ios-cart',
-        path: '/shop',
+        path: '/mall',
         title: '商城',
     });
 }

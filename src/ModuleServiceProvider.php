@@ -41,7 +41,7 @@ class ModuleServiceProvider extends Module
         ], 'shop.seeds');
 
         $this->publishes([
-            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/shop/administration') => public_path('assets/shop/administration'),
+            realpath(__DIR__ . '/../resources/mixes/administration/dist/assets/mall/administration') => public_path('assets/mall/administration'),
         ], 'public');
 
         // Injection some relations to member model
@@ -154,7 +154,7 @@ class ModuleServiceProvider extends Module
      */
     public static function script()
     {
-        return asset('assets/shop/administration/js/module.min.js');
+        return asset('assets/mall/administration/js/module.min.js');
     }
 
     /**
@@ -166,7 +166,7 @@ class ModuleServiceProvider extends Module
     public static function stylesheet()
     {
         return [
-            asset('assets/shop/administration/css/module.min.css'),
+            asset('assets/mall/administration/css/module.min.css'),
         ];
     }
 }

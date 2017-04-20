@@ -4,7 +4,7 @@
     export default {
         beforeRouteEnter(to, from, next) {
             next(() => {
-                injection.sidebar.active('shop');
+                injection.sidebar.active('mall');
             });
         },
     };

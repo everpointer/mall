@@ -12,7 +12,7 @@ export default function (injection) {
                 },
             ],
             component: Layout,
-            path: '/shop',
+            path: '/mall',
         },
     ]);
 }
