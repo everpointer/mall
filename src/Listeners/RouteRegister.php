@@ -2,11 +2,10 @@
 /**
  * This file is part of Notadd.
  *
- * @author        Qiyueshiyi <qiyueshiyi@outlook.com>
+ * @author Qiyueshiyi <qiyueshiyi@outlook.com>
  * @copyright (c) 2017, iBenchu.org
- * @datetime      2017-03-22 16:50
+ * @datetime 2017-03-22 16:50
  */
-
 namespace Notadd\Shop\Listeners;
 
 use Notadd\Shop\Http\Controllers\HomeController;
@@ -15,6 +14,9 @@ use Notadd\Shop\Http\Controllers\OrdersController;
 use Notadd\Shop\Http\Controllers\ProductsController;
 use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
 
+/**
+ * Class RouteRegister.
+ */
 class RouteRegister extends AbstractRouteRegister
 {
     public function handle()

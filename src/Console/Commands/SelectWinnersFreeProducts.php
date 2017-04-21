@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * Class SelectWinnersFreeProducts.
+ */
 class SelectWinnersFreeProducts extends Command
 {
     /**

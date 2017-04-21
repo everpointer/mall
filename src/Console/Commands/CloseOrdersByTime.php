@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * Class CloseOrdersByTime.
+ */
 class CloseOrdersByTime extends Command
 {
     /**
@@ -28,9 +31,7 @@ class CloseOrdersByTime extends Command
     protected $description = '(AntVel) This command is used to close orders that has been marked as SENT, but the receiving user has not marked as closed.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * CloseOrdersByTime constructor.
      */
     public function __construct()
     {

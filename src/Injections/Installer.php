@@ -2,9 +2,9 @@
 /**
  * This file is part of Notadd.
  *
- * @author        Qiyueshiyi <qiyueshiyi@outlook.com>
+ * @author Qiyueshiyi <qiyueshiyi@outlook.com>
  * @copyright (c) 2017, iBenchu.org
- * @datetime      2017-03-22 16:10
+ * @datetime 2017-03-22 16:10
  */
 
 namespace Notadd\Shop\Injections;

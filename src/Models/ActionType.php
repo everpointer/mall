@@ -10,6 +10,9 @@ namespace Notadd\Shop\Models;
 
 use Notadd\Shop\Eloquent\Model;
 
+/**
+ * Class ActionType.
+ */
 class ActionType extends Model
 {
     /**
