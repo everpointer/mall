@@ -28,6 +28,7 @@ module.exports = {
         'arrow-parens': [2, "as-needed", {
             "requireForBlockBody": false
         }],
+        'guard-for-in': 0,
         'indent': ['error', 4, {
             'SwitchCase': 1
         }],
