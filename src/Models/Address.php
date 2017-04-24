@@ -32,6 +32,11 @@ class Address extends Model
     ];
 
     /**
+     * @var string
+     */
+    protected $table = 'mall_addresses';
+
+    /**
      * Get the user who owns the address.
      */
     public function user() {

@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
      */
     public function up()
     {
-        $this->schema->create('addresses', function (Blueprint $table) {
+        $this->schema->create('mall_addresses', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->nullable();
             $table->boolean('default')->default(1);
             $table->string('line1', 250);
