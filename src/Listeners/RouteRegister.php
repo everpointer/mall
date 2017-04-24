@@ -11,6 +11,7 @@ namespace Notadd\Mall\Listeners;
 use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
 use Notadd\Mall\Controllers\Api\Configuration\ConfigurationController;
 use Notadd\Mall\Controllers\Api\Configuration\SearchController;
+use Notadd\Mall\Controllers\Api\UploadController;
 
 /**
  * Class RouteRegister.
@@ -27,6 +28,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('configuration/set', ConfigurationController::class . '@set');
             $this->router->post('configuration/search/get', SearchController::class . '@set');
             $this->router->post('configuration/search/set', SearchController::class . '@set');
+            $this->router->post('upload', UploadController::class . '@handle');
         });
     }
 }
