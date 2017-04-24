@@ -4,20 +4,21 @@
  *
  * @author TwilRoad <269044570@qq.com>
  * @copyright (c) 2017, iBenchu.org
- * @datetime 2017-04-24 12:42
+ * @datetime 2017-04-24 14:05
  */
-namespace Notadd\Mall\Controllers\Api;
+namespace Notadd\Mall\Controllers\Api\Configuration;
 
-use Notadd\Mall\Handlers\Configuration\GetHandler;
-use Notadd\Mall\Handlers\Configuration\SetHandler;
+use Notadd\Foundation\Routing\Abstracts\Controller;
+use Notadd\Mall\Handlers\Configuration\Search\GetHandler;
+use Notadd\Mall\Handlers\Configuration\Search\SetHandler;
 
 /**
- * Class ConfigurationController.
+ * Class SearchController.
  */
-class ConfigurationController
+class SearchController extends Controller
 {
     /**
-     * @param \Notadd\Mall\Handlers\Configuration\GetHandler $handler
+     * @param \Notadd\Mall\Handlers\Configuration\Search\GetHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -27,7 +28,7 @@ class ConfigurationController
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Configuration\SetHandler $handler
+     * @param \Notadd\Mall\Handlers\Configuration\Search\SetHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */

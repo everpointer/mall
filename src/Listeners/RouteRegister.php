@@ -9,7 +9,8 @@
 namespace Notadd\Mall\Listeners;
 
 use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
-use Notadd\Mall\Controllers\Api\ConfigurationController;
+use Notadd\Mall\Controllers\Api\Configuration\ConfigurationController;
+use Notadd\Mall\Controllers\Api\Configuration\SearchController;
 
 /**
  * Class RouteRegister.
@@ -24,6 +25,8 @@ class RouteRegister extends AbstractRouteRegister
         $this->router->group(['middleware' => ['auth:api', 'cross', 'web'], 'prefix' => 'api/mall'], function () {
             $this->router->post('configuration/get', ConfigurationController::class . '@get');
             $this->router->post('configuration/set', ConfigurationController::class . '@set');
+            $this->router->post('configuration/search/get', SearchController::class . '@set');
+            $this->router->post('configuration/search/set', SearchController::class . '@set');
         });
     }
 }
