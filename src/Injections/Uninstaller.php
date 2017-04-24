@@ -6,11 +6,13 @@
  * @copyright (c) 2017, iBenchu.org
  * @datetime 2017-03-22 16:13
  */
-
-namespace Notadd\Shop\Injections;
+namespace Notadd\Mall\Injections;
 
 use Notadd\Foundation\Module\Abstracts\Uninstaller as AbstractUninstaller;
 
+/**
+ * Class Uninstaller.
+ */
 class Uninstaller extends AbstractUninstaller
 {
     /**
