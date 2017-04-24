@@ -37,10 +37,6 @@ class ModuleServiceProvider extends Module
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            realpath(__DIR__ . '/../config/shop.php'),
-            'shop'
-        );
     }
 
     /**
