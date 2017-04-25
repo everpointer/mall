@@ -35,34 +35,34 @@
                 ],
                 data1: [
                     {
-                        rank: '王小明',
-                        name: 18,
+                        rank: '1',
+                        name: '服装鞋帽',
                         number: 100,
-                        operate: 100,
+                        operate: '',
                     },
                     {
-                        rank: '张小刚',
-                        name: 25,
+                        rank: '2',
+                        name: '服装鞋帽',
                         number: 1000,
-                        operate: 1000,
+                        operate: '',
                     },
                     {
-                        rank: '张小刚',
-                        name: 25,
+                        rank: '3',
+                        name: '服装鞋帽',
                         number: 10000,
-                        operate: 10000,
+                        operate: '',
                     },
                     {
-                        rank: '张小刚',
-                        name: 25,
+                        rank: '4',
+                        name: '服装鞋帽',
                         number: 30000,
-                        operate: 30000,
+                        operate: '',
                     },
                     {
-                        rank: '张小刚',
-                        name: 25,
+                        rank: '5',
+                        name: '服装鞋帽',
                         number: 50000,
-                        operate: 50000,
+                        operate: '',
                     },
                 ],
             };
@@ -80,10 +80,31 @@
                     </div>
                 </div>
                 <!--button新增数据-->
-                <Button type="ghost" class="btn">新增数据</Button>
+                <!--<iButton type="ghost" class="btn">新增模块</iButton>-->
+                <button>
+                    <router-link to="/" class="text-left">新增数据</router-link>
+                </button>
                 <!--table模块-->
                 <!--<i-table border :columns="columns4" :data="data1" width="1524" height="345"></i-table>-->
-                <i-table border :columns="columns4" :data="data1"></i-table>
+                <i-table border :columns="columns4" :data="data1" class="my-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td class="list2">服装鞋帽</td>
+                            <td></td>
+                            <td class="ivu-table-cell">
+                                <button>删除</button>
+                                <button>设置</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </i-table>
             </card>
         </div>
     </div>
