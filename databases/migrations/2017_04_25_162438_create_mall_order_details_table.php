@@ -20,7 +20,7 @@ class CreateMallOrderDetailsTable extends Migration
      */
     public function up()
     {
-        $this->schema->create('order_details', function (Blueprint $table) {
+        $this->schema->create('mall_order_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->integer('product_id')->unsigned();
@@ -43,6 +43,6 @@ class CreateMallOrderDetailsTable extends Migration
      */
     public function down()
     {
-        $this->schema->drop('order_details');
+        $this->schema->drop('mall_order_details');
     }
 }
