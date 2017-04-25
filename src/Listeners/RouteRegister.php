@@ -29,6 +29,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('address', AddressController::class . '@address');
             $this->router->post('address/edit', AddressController::class . '@edit');
             $this->router->post('address/list', AddressController::class . '@list');
+            $this->router->post('category/create', CategoryController::class . '@create');
             $this->router->post('category/list', CategoryController::class . '@list');
             $this->router->post('configuration/get', ConfigurationController::class . '@get');
             $this->router->post('configuration/set', ConfigurationController::class . '@set');

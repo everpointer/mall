@@ -9,6 +9,7 @@
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
+use Notadd\Mall\Handlers\Category\CreateHandler;
 use Notadd\Mall\Handlers\Category\ListHandler;
 
 /**
@@ -16,6 +17,16 @@ use Notadd\Mall\Handlers\Category\ListHandler;
  */
 class CategoryController extends Controller
 {
+    /**
+     * @param \Notadd\Mall\Handlers\Category\CreateHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function create(CreateHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
     /**
      * @param \Notadd\Mall\Handlers\Category\ListHandler $handler
      *
