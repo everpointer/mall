@@ -30,12 +30,59 @@
                                 </row>
                             </form-item>
 							<form-item label="所在地区">
-								<i-select v-model="storeDetail.province" placeholder="请选择">
-									<i-option value="beijing">北京市</i-option>
-									<i-option value="shanghai">上海市</i-option>
-									<i-option value="shenzhen">深圳市</i-option>
-								</i-select>
+                                <row>
+                                    <i-col span="2">
+                                        <i-select v-model="storeDetail.province" placeholder="请选择">
+                                            <i-option value="beijing">北京市</i-option>
+                                            <i-option value="shanghai">上海市</i-option>
+                                            <i-option value="shenzhen">深圳市</i-option>
+                                        </i-select>
+                                    </i-col>
+                                </row>
 							</form-item>
+                            <form-item label="店铺地址">
+                                <row>
+                                    <i-col span="9">
+                                        <i-input v-model="storeDetail.storeAddress"></i-input>
+                                    </i-col>
+                                </row>
+                            </form-item>
+                            <form-item label="开店时间">
+                                {{storeDetail.createTime}}
+                            </form-item>
+                            <form-item label="所属分类">
+                                <row>
+                                    <i-col span="2">
+                                        <i-select v-model="storeDetail.province" placeholder="请选择">
+                                            <i-option value="beijing">北京市</i-option>
+                                            <i-option value="shanghai">上海市</i-option>
+                                            <i-option value="shenzhen">深圳市</i-option>
+                                        </i-select>
+                                    </i-col>
+                                </row>
+                            </form-item>
+                            <form-item label="所属等级">
+                                <row>
+                                    <i-col span="2">
+                                        <i-select v-model="storeDetail.province" placeholder="请选择">
+                                            <i-option value="beijing">北京市</i-option>
+                                            <i-option value="shanghai">上海市</i-option>
+                                            <i-option value="shenzhen">深圳市</i-option>
+                                        </i-select>
+                                    </i-col>
+                                </row>
+                            </form-item>
+                            <form-item label="有效期至">
+                                <row>
+                                    <i-col span="2">
+                                        <i-select v-model="storeDetail.province" placeholder="请选择">
+                                            <i-option value="beijing">北京市</i-option>
+                                            <i-option value="shanghai">上海市</i-option>
+                                            <i-option value="shenzhen">深圳市</i-option>
+                                        </i-select>
+                                    </i-col>
+                                </row>
+                            </form-item>
 						</i-form>
 					</card>
 				</div>
@@ -55,6 +102,8 @@ export default {
                 province: '',
                 storeName: '',
                 companyName: '',
+                storeAddress: '',
+                createTime: '2016-12-23',
             },
         };
     },
