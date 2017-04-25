@@ -10,6 +10,7 @@ namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Address\AddressHandler;
+use Notadd\Mall\Handlers\Address\EditHandler;
 use Notadd\Mall\Handlers\Address\ListHandler;
 
 /**
@@ -23,6 +24,16 @@ class AddressController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function address(AddressHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Address\EditHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function edit(EditHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
