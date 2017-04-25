@@ -62,13 +62,14 @@
                 self.$notice.open({
                     title: data.message,
                 });
-                self.form.avatar = data.data.path;
+                self.form.logo = data.data.path;
             },
             submit() {
                 const self = this;
                 self.loading = true;
                 self.$refs.form.validate(valid => {
                     if (valid) {
+                        window.console.log(valid);
                     } else {
                         self.loading = false;
                         self.$notice.error({
@@ -96,6 +97,9 @@
                                 <upload :action="action"
                                         :before-upload="uploadBefore"
                                         :format="['jpg','jpeg','png']"
+                                        :headers="{
+                                            Authorization: `Bearer ${$store.state.token.access_token}`
+                                        }"
                                         :max-size="2048"
                                         :on-error="uploadError"
                                         :on-format-error="uploadFormatError"
