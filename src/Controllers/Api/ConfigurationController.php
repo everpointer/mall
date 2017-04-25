@@ -6,7 +6,7 @@
  * @copyright (c) 2017, iBenchu.org
  * @datetime 2017-04-24 12:42
  */
-namespace Notadd\Mall\Controllers\Api\Configuration;
+namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Configuration\GetHandler;
