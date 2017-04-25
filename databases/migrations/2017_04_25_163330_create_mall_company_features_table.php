@@ -22,7 +22,10 @@ class CreateMallCompanyFeaturesTable extends Migration
     {
         $this->schema->create('mall_company_features', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id')->unsigned();
+            $table->string('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
