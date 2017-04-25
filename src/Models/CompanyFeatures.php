@@ -1,35 +1,30 @@
 <?php
-
-namespace Notadd\Shop\Models;
-
-/*
- * Antvel - Company Features Model
+/**
+ * This file is part of Notadd.
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author TwilRoad <269044570@qq.com>
+ * @copyright (c) 2017, iBenchu.org
+ * @datetime 2017-04-25 16:49
  */
+namespace Notadd\Mall\Models;
 
-use Notadd\Shop\Eloquent\Model;
+use Notadd\Foundation\Database\Model;
 
+/**
+ * Class CompanyFeatures.
+ */
 class CompanyFeatures extends Model
 {
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'shop_company_features';
-
-    public $primaryKey = 'id';
-
-    public $company_id = 'company_id';
-
-    /**
-     * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
         'company_id',
         'description',
     ];
+
+    /**
+     * @var string
+     */
+    protected $table = 'mall_company_features';
 }

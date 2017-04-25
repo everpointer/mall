@@ -1,27 +1,21 @@
 <?php
-
-namespace Notadd\Shop\Models;
-
-/*
- * Antvel - Order Detail Model
+/**
+ * This file is part of Notadd.
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author TwilRoad <269044570@qq.com>
+ * @copyright (c) 2017, iBenchu.org
+ * @datetime 2017-04-25 16:36
  */
+namespace Notadd\Mall\Models;
 
-use Notadd\Shop\Eloquent\Model;
+use Notadd\Foundation\Database\Model;
 
+/**
+ * Class OrderDetail.
+ */
 class OrderDetail extends Model
 {
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'shop_order_details';
-
-    /**
-     * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -35,15 +29,8 @@ class OrderDetail extends Model
         'rate_comment',
     ];
 
-    protected $appends = ['product'];
-
-    public function order()
-    {
-        return $this->belongsTo(Order::class, 'order_id', 'id');
-    }
-
-    public function getProductAttribute()
-    {
-        return $this->hasOne(Product::class, 'id', 'product_id')->first();
-    }
+    /**
+     * @var string
+     */
+    protected $table = 'mall_order_details';
 }

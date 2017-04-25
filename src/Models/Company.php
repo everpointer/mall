@@ -1,29 +1,21 @@
 <?php
-
-namespace Notadd\Shop\Models;
-
-/*
- * Antvel - Company Model
+/**
+ * This file is part of Notadd.
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author TwilRoad <269044570@qq.com>
+ * @copyright (c) 2017, iBenchu.org
+ * @datetime 2017-04-25 16:46
  */
+namespace Notadd\Mall\Models;
 
-use Notadd\Shop\Eloquent\Model;
+use Notadd\Foundation\Database\Model;
 
+/**
+ * Class Company.
+ */
 class Company extends Model
 {
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'shop_company';
-
-    public $primaryKey = 'id';
-
-    /**
-     * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -53,11 +45,10 @@ class Company extends Model
         'refund_policy',
         'privacy_policy',
         'terms_of_service',
-
     ];
 
-    public function features()
-    {
-        return $this->hasMany(CompanyFeatures::class, 'company_id', 'id');
-    }
+    /**
+     * @var string
+     */
+    protected $table = 'mall_companies';
 }
