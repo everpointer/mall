@@ -9,13 +9,19 @@
         },
     };
 </script>
+
 <template>
-	<div class="store-edit">
-		<div class="edit-link-title">
-
-		</div>
-		<div class="store-information">
-
+	<div class="mall-wrap">
+		<div class="store-edit">
+			<div class="edit-link-title">
+				<i-button type="text">
+					<icon type="chevron-left"></icon>
+				</i-button>
+				<span>店铺管理—店铺编辑</span>
+			</div>
+			<div class="store-information title-line">
+				<h5>店铺信息</h5>
+			</div>
 		</div>
 	</div>
 </template>
