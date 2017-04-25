@@ -1,42 +1,45 @@
 <?php
-
-namespace Notadd\Shop\Models;
-
-/*
- * Antvel - Address Model
+/**
+ * This file is part of Notadd.
  *
- * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ * @author TwilRoad <269044570@qq.com>
+ * @copyright (c) 2017, iBenchu.org
+ * @datetime 2017-04-24 16:54
  */
+namespace Notadd\Mall\Models;
 
-use Notadd\Shop\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Notadd\Foundation\Database\Model;
+use Notadd\Foundation\Member\Member;
 
+/**
+ * Class Address.
+ */
 class Address extends Model
 {
-    use SoftDeletes;
-
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'shop_addresses';
-
-    /**
-     * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
         'line1',
         'line2',
         'phone',
+        'country',
+        'state',
+        'user_id',
         'name_contact',
         'zipcode',
         'city',
-        'country',
-        'state',
     ];
 
-    protected $hidden = ['id'];
+    /**
+     * @var string
+     */
+    protected $table = 'mall_addresses';
+
+    /**
+     * Get the user who owns the address.
+     */
+    public function user() {
+        $this->belongsTo(Member::class);
+    }
 }

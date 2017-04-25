@@ -12,17 +12,14 @@
 		}
 	],
 	"require": {
-		"php": ">=7.0",
-		"intervention/image": "2.*",
-		"barryvdh/laravel-dompdf": "0.*",
-		"milon/barcode": "5.*"
+		"php": ">=7.0"
 	},
 	"require-dev": {
 		"notadd/installers": "0.5.*"
 	},
 	"autoload": {
 		"psr-4": {
-			"Notadd\\Shop\\": "src/"
+			"Notadd\\Mall\\": "src/"
 		}
 	}
 }
