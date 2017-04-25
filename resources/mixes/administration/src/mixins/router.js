@@ -21,6 +21,7 @@ import StatisticsMember from '../pages/StatisticsMember.vue';
 import StatisticsSales from '../pages/StatisticsSales.vue';
 import StatisticsStore from '../pages/StatisticsStore.vue';
 import Store from '../pages/Store.vue';
+import StoreEdit from '../pages/StoreEdit.vue';
 import StoreCategory from '../pages/StoreCategory.vue';
 import StoreDynamics from '../pages/StoreDynamics.vue';
 import StoreLevel from '../pages/StoreLevel.vue';
@@ -138,6 +139,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: Store,
                     path: 'store',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StoreEdit,
+                    path: 'store/edit',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
