@@ -438,15 +438,16 @@
     };
 </script>
 <template>
-    <div class="mall-wrap">
+    <div class="mall-wrap store-category">
         <div class="store">
             <div class="order-rejected">
-                <div class="prompt-box">
+                <div class="prompt-box promptBox">
                     <h6>提示</h6>
                     <p>卖家提交申请，商家同意并经平台确认后，退款金额以买家付款方式返回给买家</p>
                 </div>
                 <div class="store-body">
                       <div class="store-body-header">
+                          <i-button class="export-btn" type="ghost">导出数据</i-button>
                           <div class="store-body-header-right">
                               <i-input v-model="searchWord">
                                   <i-select v-model="searchCategory" slot="prepend">
