@@ -54,7 +54,7 @@
                     {
                         title: '店铺头像',
                         key: 'shopImg',
-                        width: 120,
+                        width: 100,
                         align: 'center',
                         render() {
                             return '<Icon type="image"></Icon>';
@@ -63,7 +63,7 @@
                     {
                         title: '店铺LOGO',
                         key: 'shopLogo',
-                        width: 120,
+                        width: 100,
                         align: 'center',
                         render() {
                             return '<Icon type="image"></Icon>';
@@ -432,7 +432,7 @@
                         <div class="store-body-header">
                             <i-button class="export-btn" type="ghost">导出数据</i-button>
                             <div class="store-body-header-right">
-                                <i-input v-model="searchWord">
+                                <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
                                     <i-select v-model="searchCategory" slot="prepend">
                                         <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
@@ -454,7 +454,7 @@
                     <div class="store-body">
                         <div class="store-body-header">
                             <div class="store-body-header-right">
-                                <i-input v-model="searchWord">
+                                <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
                                     <i-select v-model="searchCategory" slot="prepend">
                                       <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
