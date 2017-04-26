@@ -1,8 +1,49 @@
 .store {
   .ivu-tabs-nav-scroll {
       background: #ffffff;
+      padding-left: 20px;
   }
   .ivu-tabs-nav .ivu-tabs-tab {
-      padding: 12px 16px;
+      padding: 12px 22px;
+  }
+  .ivu-tabs .ivu-tabs-tabpane {
+      background: #ffffff;
+      padding: 20px;
+  }
+  .prompt_box {
+      height: 74px;
+      background-color: #f5f7f9;
+      padding: 20px 0 20px 40px;
+      font-size: 12px;
+      h6 {
+          font-size: 12px;
+          font-weight: 300;
+      }
+  }
+  .store_body {
+      margin-top: 20px;
+      .store_body_header {
+          overflow: hidden;
+          .export_btn {
+            padding: 8px 22px;
+            float: left;
+          }
+          .store_body_header_right {
+              float: right;
+              .ivu-input-group-append .ivu-btn, .ivu-input-group-prepend .ivu-btn {
+                  background-color: #39f;
+                  color: #ffffff;
+                  border-top-left-radius: 0;
+                  border-bottom-left-radius: 0;
+              }
+              .ivu-input-group .ivu-input {
+                  height: 36px;
+                  width: 203px;
+              }
+              .ivu-btn {
+                  padding: 8px 19px;
+              }
+          }
+      }
   }
 }
