@@ -124,8 +124,21 @@
                                             padding: 14px 0;
                                             margin-bottom: 0;
                                         }
+                                        .company-name {
+                                            .ivu-input {
+                                                width: 480px;
+                                            }
+                                        }
                                         .ivu-input {
                                             width: 268px;
+                                            &.input-param {
+                                                position: relative;
+                                                &:after {
+                                                    position: absolute;
+                                                    display: block;
+                                                    content: '人';
+                                                }
+                                            }
                                         }
                                     }
                                 }

@@ -137,27 +137,50 @@
                                                 <li>
                                                     <row>
                                                         <i-col span="18">
-                                                            <form-item label="公司详细地址">
+                                                            <form-item label="公司详细地址" class="company-name">
                                                                 <i-input v-model="storeDetail.company_detail_name"></i-input>
                                                             </form-item>
                                                         </i-col>
                                                     </row>
                                                 </li>
                                                 <li>
-                                                    <row :gutter="16">
-                                                        <i-col span="8">
+                                                    <row>
+                                                        <i-col span="12">
                                                             <form-item label="公司电话">
                                                                 <i-input v-model="storeDetail.company_phone"></i-input>
                                                             </form-item>
                                                         </i-col>
-                                                        <i-col span="8">
-                                                            <form-item label="员工总数">
-                                                                <i-input v-model="storeDetail.company_person_num"></i-input>
+                                                        <i-col span="12">
+                                                            <form-item label="电子邮箱">
+                                                                <i-input v-model="storeDetail.company_email"></i-input>
                                                             </form-item>
                                                         </i-col>
-                                                        <i-col span="8">
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="12">
+                                                            <form-item label="员工总数">
+                                                                <i-input v-model="storeDetail.company_person_num" class="input-param"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                        <i-col span="12">
                                                             <form-item label="注册资金">
-                                                                <i-input v-model="storeDetail.register_money"></i-input>
+                                                                <i-input v-model="storeDetail.register_money"  class="input-param"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="12">
+                                                            <form-item label="联系人姓名">
+                                                                <i-input v-model="storeDetail.contact_name"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                        <i-col span="12">
+                                                            <form-item label="联系人电话">
+                                                                <i-input v-model="storeDetail.contact_phone"></i-input>
                                                             </form-item>
                                                         </i-col>
                                                     </row>
@@ -200,6 +223,9 @@ export default {
                 company_phone: '',
                 company_person_num: '',
                 register_money: '',
+                company_email: '',
+                contact_name: '',
+                contact_phone: '',
             },
         };
     },
