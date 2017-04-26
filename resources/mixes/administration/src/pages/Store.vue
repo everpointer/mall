@@ -36,49 +36,55 @@
                     {
                         title: '店铺名称',
                         key: 'shopName',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '店主账号',
                         key: 'ownerId',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '商家账号',
                         key: 'businessNumber',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '店铺头像',
                         key: 'shopImg',
-                        width: 100,
+                        width: 120,
                         align: 'center',
+                        render() {
+                            return '<Icon type="image"></Icon>';
+                        },
                     },
                     {
                         title: '店铺LOGO',
                         key: 'shopLogo',
-                        width: 100,
+                        width: 120,
                         align: 'center',
+                        render() {
+                            return '<Icon type="image"></Icon>';
+                        },
                     },
                     {
                         title: '店铺等级',
                         key: 'shopLevel',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '开店时间',
                         key: 'shopTime',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '到期时间',
                         key: 'endTime',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
@@ -220,55 +226,55 @@
                     {
                         title: '会员账号',
                         key: 'memberAccount',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '申请状态',
                         key: 'applicationStatus',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '开店时长',
                         key: 'shopLength',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '联系人姓名',
                         key: 'contactName',
-                        width: 100,
+                        width: 120,
                         align: 'center',
                     },
                     {
                         title: '联系人电话',
                         key: 'contactPhone',
-                        width: 100,
+                        width: 120,
                         align: 'center',
                     },
                     {
                         title: '联系邮箱',
                         key: 'contactEmail',
-                        width: 150,
+                        width: 120,
                         align: 'center',
                     },
                     {
                         title: '公司名称',
                         key: 'companyName',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '公司地址',
                         key: 'companyAddress',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
                         title: '公司电话',
                         key: 'companyPhone',
-                        width: 150,
+                        width: 170,
                         align: 'center',
                     },
                     {
@@ -436,7 +442,9 @@
                         </div>
                         <i-table highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
                     </div>
-                    <page :total="100" show-elevator></page>
+                    <div class="page">
+                        <page :total="100" show-elevator></page>
+                    </div>
                 </tab-pane>
                 <tab-pane label="开店申请" name="name2">
                     <div class="prompt-box">
@@ -456,7 +464,9 @@
                         </div>
                         <i-table highlight-row class="shop-table" :columns="applicationColumns" :data="applicationData"></i-table>
                     </div>
-                    <page :total="100" show-elevator></page>
+                    <div class="page">
+                        <page :total="100" show-elevator></page>
+                    </div>
                 </tab-pane>
             </tabs>
         </div>
