@@ -241,8 +241,40 @@
                                                 <li>
                                                     <row>
                                                         <i-col span="18">
-                                                            <form-item label="营业执照电子版">
-                                                                <i-input v-model="storeDetail.license"></i-input>
+                                                            <form-item label="营业执照电子版" class="upload-picture">
+                                                                <div class="demo-upload-list" v-for="item in uploadList">
+                                                                    <template v-if="item.status === 'finished'">
+                                                                        <img :src="item.url">
+                                                                        <div class="demo-upload-list-cover">
+                                                                            <icon type="ios-eye-outline" @click.native="handleView(item.name)"></icon>
+                                                                            <icon type="ios-trash-outline" @click.native="handleRemove(item)"></icon>
+                                                                        </div>
+                                                                    </template>
+                                                                    <template v-else>
+                                                                        <i-progress v-if="item.showProgress" :percent="item.percentage" hide-info></i-progress>
+                                                                    </template>
+                                                                </div>
+                                                                <upload
+                                                                    ref="upload"
+                                                                    :show-upload-list="false"
+                                                                    :default-file-list="defaultList"
+                                                                    :on-success="handleSuccess"
+                                                                    :format="['jpg','jpeg','png']"
+                                                                    :max-size="2048"
+                                                                    :on-format-error="handleFormatError"
+                                                                    :on-exceeded-size="handleMaxSize"
+                                                                    :before-upload="handleBeforeUpload"
+                                                                    multiple
+                                                                    type="drag"
+                                                                    action="//jsonplaceholder.typicode.com/posts/"
+                                                                    style="display: inline-block;">
+                                                                    <div class="upload-input">
+                                                                        <icon type="plus-round"></icon>
+                                                                    </div>
+                                                                </upload>
+                                                                <modal title="查看图片" v-model="visible">
+                                                                    <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+                                                                </modal>
                                                             </form-item>
                                                         </i-col>
                                                     </row>
@@ -286,12 +318,56 @@ export default {
                     return date && date.valueOf() < Date.now();
                 },
             },
+            defaultList: [],
+            imgName: '',
+            visible: false,
+            uploadList: [],
         };
     },
     beforeRouteEnter(to, from, next) {
         next(() => {
             injection.sidebar.active('mall');
         });
+    },
+    methods: {
+        handleView(name) {
+            this.imgName = name;
+            this.visible = true;
+        },
+        handleRemove(file) {
+            // 从 upload 实例删除数据
+            const fileList = this.$refs.upload.fileList;
+            this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+        },
+        handleSuccess(res, file) {
+            // 因为上传过程为实例，这里模拟添加 url
+            file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar';
+            file.name = '7eb99afb9d5f317c912f08b5212fd69a';
+        },
+        handleFormatError(file) {
+            this.$Notice.warning({
+                title: '文件格式不正确',
+                desc: `文件${file.name}格式不正确，请上传 jpg 或 png 格式的图片。`,
+            });
+        },
+        handleMaxSize(file) {
+            this.$Notice.warning({
+                title: '超出文件大小限制',
+                desc: `文件${file.name}太大，不能超过 2M。`,
+            });
+        },
+        handleBeforeUpload() {
+            const check = this.uploadList.length < 5;
+            if (!check) {
+                this.$Notice.warning({
+                    title: '最多只能上传 5 张图片。',
+                });
+            }
+            return check;
+        },
+    },
+    mounted() {
+        this.uploadList = this.$refs.upload.fileList;
     },
 };
 </script>
