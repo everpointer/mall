@@ -82,13 +82,10 @@
                                     </i-col>
                                 </row>
                                 <row>
-                                    <i-col span="10">
+                                    <i-col span="8" class="data-picker-input picker-input">
                                         <form-item label="有效期至">
-                                            <i-select v-model="storeDetail.province" placeholder="请选择">
-                                                <i-option value="beijing">北京市</i-option>
-                                                <i-option value="shanghai">上海市</i-option>
-                                                <i-option value="shenzhen">深圳市</i-option>
-                                            </i-select>
+                                            <date-picker type="date" :options="options2"
+                                                 placeholder="选择日期"></date-picker>
                                         </form-item>
                                     </i-col>
                                 </row>
@@ -220,13 +217,13 @@
                                                     <row>
                                                         <i-col span="8" class="data-picker-input">
                                                             <form-item label="营业执照有效期">
-                                                                <date-picker type="date" :options="options3"
+                                                                <date-picker type="date" :options="options1"
                                                                      placeholder="选择日期"></date-picker>
                                                             </form-item>
                                                         </i-col>
                                                         <i-col span="8" class="data-picker-input picker-input">
                                                             <form-item label="-">
-                                                                <date-picker type="date" :options="options3"
+                                                                <date-picker type="date" :options="options2"
                                                                      placeholder="选择日期"></date-picker>
                                                             </form-item>
                                                         </i-col>
@@ -283,6 +280,11 @@ export default {
                 company_email: '',
                 contact_name: '',
                 contact_phone: '',
+            },
+            options2: {
+                disabledDate(date) {
+                    return date && date.valueOf() < Date.now();
+                },
             },
         };
     },
