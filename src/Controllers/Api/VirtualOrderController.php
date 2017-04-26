@@ -9,6 +9,7 @@
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Mall\Handlers\VirtualOrder\CreateHandler;
+use Notadd\Mall\Handlers\VirtualOrder\EditHandler;
 use Notadd\Mall\Handlers\VirtualOrder\ListHandler;
 
 /**
@@ -22,6 +23,16 @@ class VirtualOrderController
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function create(CreateHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\VirtualOrder\EditHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function edit(EditHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
