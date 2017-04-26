@@ -80,31 +80,11 @@
                     </div>
                 </div>
                 <!--button新增数据-->
-                <!--<iButton type="ghost" class="btn">新增模块</iButton>-->
                 <button>
                     <router-link to="/" class="text-left">新增数据</router-link>
                 </button>
                 <!--table模块-->
-                <!--<i-table border :columns="columns4" :data="data1" width="1524" height="345"></i-table>-->
-                <i-table border :columns="columns4" :data="data1" class="my-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td class="list2">服装鞋帽</td>
-                            <td></td>
-                            <td class="ivu-table-cell">
-                               <i-button type="ghost">删除</i-button>
-                               <i-button type="ghost">设置</i-button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </i-table>
+                <i-table border :columns="columns4" :data="data1" class="my-table"></i-table>
             </card>
         </div>
     </div>
