@@ -104,6 +104,9 @@
                                 </row>
                             </div>
                         </div>
+                        <div class="register-information">
+                            <h5>注册信息</h5>
+                        </div>
                     </i-form>
                 </card>
 			</div>
