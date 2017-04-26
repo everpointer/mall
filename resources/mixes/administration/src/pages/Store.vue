@@ -4,8 +4,8 @@
     export default {
         data() {
             return {
-                search_category: '',
-                search_word: '',
+                searchCategory: '',
+                searchWord: '',
                 searchList: [
                     {
                         value: '店铺名称',
@@ -42,8 +42,8 @@
                         <div class="store-body-header">
                             <i-button class="export-btn" type="ghost">导出数据</i-button>
                             <div class="store-body-header-right">
-                                <i-input v-model="search-word">
-                                    <i-select v-model="search-category" slot="prepend">
+                                <i-input v-model="searchWord">
+                                    <i-select v-model="searchCategory" slot="prepend">
                                         <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                     <i-button slot="append" type="primary">搜索</i-button>
