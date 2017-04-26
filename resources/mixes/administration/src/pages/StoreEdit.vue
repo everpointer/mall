@@ -193,7 +193,64 @@
                                     <div>
                                         <h5>营业执照信息（副本）</h5>
                                         <div class="license-content">
-
+                                            <ul>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="18">
+                                                            <form-item label="营业执照号">
+                                                                <i-input v-model="storeDetail.license"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="10">
+                                                            <form-item label="营业执照所在地">
+                                                                <i-select v-model="storeDetail.province" placeholder="请选择">
+                                                                    <i-option value="beijing">北京市</i-option>
+                                                                    <i-option value="shanghai">上海市</i-option>
+                                                                    <i-option value="shenzhen">深圳市</i-option>
+                                                                </i-select>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="8" class="data-picker-input">
+                                                            <form-item label="营业执照有效期">
+                                                                <date-picker type="date" :options="options3"
+                                                                     placeholder="选择日期"></date-picker>
+                                                            </form-item>
+                                                        </i-col>
+                                                        <i-col span="8" class="data-picker-input picker-input">
+                                                            <form-item label="-">
+                                                                <date-picker type="date" :options="options3"
+                                                                     placeholder="选择日期"></date-picker>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="18">
+                                                            <form-item label="法定经营范围">
+                                                                <i-input v-model="storeDetail.license"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="18">
+                                                            <form-item label="营业执照电子版">
+                                                                <i-input v-model="storeDetail.license"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
