@@ -9,6 +9,7 @@
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
+use Notadd\Mall\Handlers\Product\CreateHandler;
 use Notadd\Mall\Handlers\Product\ListHandler;
 
 /**
@@ -16,6 +17,16 @@ use Notadd\Mall\Handlers\Product\ListHandler;
  */
 class ProductController extends Controller
 {
+    /**
+     * @param \Notadd\Mall\Handlers\Product\CreateHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function create(CreateHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
     /**
      * @param \Notadd\Mall\Handlers\Product\ListHandler $handler
      *
