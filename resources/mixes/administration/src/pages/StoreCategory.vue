@@ -9,60 +9,61 @@
         },
         data() {
             return {
-                columns4: [
+                managementColumns: [
                     {
                         type: 'selection',
-                        width: 0,
+                        width: 100,
                         align: 'center',
+                        fixed: 'left',
                     },
                     {
                         title: '排序',
-                        key: 'rank',
+                        width: 200,
+                        align: 'center',
+                        render() {
+                            return '<i-input type="ghost" placeholder="1" style="width: 48px;">1</i-input>';
+                        },
                     },
                     {
-                        title: '等级名称',
-                        key: 'name',
+                        title: '分类名称',
+                        width: 500,
+                        align: 'center',
+                        render() {
+                            return '<i-input type="ghost" placeholder="服装鞋帽" style="width: 268px;"></i-input>';
+                        },
                     },
                     {
-                        title: '保证金额',
+                        title: '保证金属额',
                         key: 'number',
+                        width: 500,
+                        align: 'center',
                     },
                     {
                         title: '操作',
-                        key: 'operate',
+                        key: 'action',
+                        fixed: 'right',
+                        width: 200,
+                        align: 'center',
+                        render() {
+                            return '<i-button type="ghost" size="small">删除</i-button><i-button type="ghost" size="small">设置</i-button>';
+                        },
                     },
-
                 ],
-                data1: [
+                managementData: [
                     {
-                        rank: '1',
-                        name: '服装鞋帽',
                         number: 100,
-                        operate: '',
                     },
                     {
-                        rank: '2',
-                        name: '服装鞋帽',
                         number: 1000,
-                        operate: '',
                     },
                     {
-                        rank: '3',
-                        name: '服装鞋帽',
                         number: 10000,
-                        operate: '',
                     },
                     {
-                        rank: '4',
-                        name: '服装鞋帽',
                         number: 30000,
-                        operate: '',
                     },
                     {
-                        rank: '5',
-                        name: '服装鞋帽',
                         number: 50000,
-                        operate: '',
                     },
                 ],
             };
@@ -70,22 +71,19 @@
     };
 </script>
 <template>
-    <div class="mall-wrap">
-        <div class="store-category">
-            <card>
-                <!--提示模块-->
-                <div class="prompt">
-                    <div>
-                        <p>提示<br>商家入驻时可指定此处设置店铺分类,<br>对分类作任何更改后，都需要到 设置 -> 清理缓存 清理店铺分类，新的设置才会生效</p>
-                    </div>
+    <div class="mall-wrap store-category">
+        <div class="store">
+            <div class="prompt-box promptBox">
+                <h6>提示</h6>
+                <p>商家入驻时可指定此处设置店铺分类</p>
+                <p>对分类作任何更改后，都需要到 设置 -> 清理缓存 清理店铺分类，新的设置才会生效</p>
+            </div>
+            <div class="store-body">
+                <div class="store-body-header">
+                    <i-button class="export-btn" type="ghost">新增数据</i-button>
                 </div>
-                <!--button新增数据-->
-                <button>
-                    <router-link to="/" class="text-left">新增数据</router-link>
-                </button>
-                <!--table模块-->
-                <i-table border :columns="columns4" :data="data1" class="my-table"></i-table>
-            </card>
+            <i-table highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
+            </div>
         </div>
     </div>
 </template>
