@@ -37,6 +37,10 @@ export default function (injection) {
                     title: '店铺分类',
                 },
                 {
+                    path: '/mall/store/category/set',
+                    title: '店铺分类-设置',
+                },
+                {
                     path: '/mall/store/dynamics',
                     title: '店铺动态',
                 },
