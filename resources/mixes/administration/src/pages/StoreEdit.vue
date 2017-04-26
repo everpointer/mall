@@ -9,10 +9,10 @@
 			</div>
 			<div class="store-information title-line">
                 <card>
-                    <i-form ref="storeDetail" :model="storeDetail" :rules="ruleValidate" :label-width="204">
+                    <i-form ref="storeDetail" :model="storeDetail" :rules="ruleValidate" :label-width="197">
                         <div class="basic-information">
                             <h5>店铺信息</h5>
-                            <div>
+                            <div class="common-padding">
                                 <row>
                                     <i-col span="18">
                                         <form-item label="店主账号" class="input-default">
@@ -106,6 +106,75 @@
                         </div>
                         <div class="register-information">
                             <h5>注册信息</h5>
+                            <div class="register-content">
+                                <div class="company-information border-color">
+                                    <div>
+                                        <h5>公司及联系人信息</h5>
+                                        <div class="company-content">
+                                            <ul>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="18">
+                                                            <form-item label="公司名称">
+                                                                <i-input v-model="storeDetail.companyName"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="10">
+                                                            <form-item label="公司所在地">
+                                                                <i-select v-model="storeDetail.province" placeholder="请选择">
+                                                                    <i-option value="beijing">北京市</i-option>
+                                                                    <i-option value="shanghai">上海市</i-option>
+                                                                    <i-option value="shenzhen">深圳市</i-option>
+                                                                </i-select>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row>
+                                                        <i-col span="18">
+                                                            <form-item label="公司详细地址">
+                                                                <i-input v-model="storeDetail.company_detail_name"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                                <li>
+                                                    <row :gutter="16">
+                                                        <i-col span="8">
+                                                            <form-item label="公司电话">
+                                                                <i-input v-model="storeDetail.company_phone"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                        <i-col span="8">
+                                                            <form-item label="员工总数">
+                                                                <i-input v-model="storeDetail.company_person_num"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                        <i-col span="8">
+                                                            <form-item label="注册资金">
+                                                                <i-input v-model="storeDetail.register_money"></i-input>
+                                                            </form-item>
+                                                        </i-col>
+                                                    </row>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="license-information border-color">
+                                    <div>
+                                        <h5>营业执照信息（副本）</h5>
+                                        <div class="license-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </i-form>
                 </card>
@@ -127,6 +196,10 @@ export default {
                 companyName: '',
                 storeAddress: '',
                 createTime: '2016-18-23',
+                company_detail_name: '',
+                company_phone: '',
+                company_person_num: '',
+                register_money: '',
             },
         };
     },

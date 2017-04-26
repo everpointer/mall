@@ -36,7 +36,7 @@
                         margin-bottom: 20px;
                         box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.05);
                         > div {
-                            padding-top: 28px;
+                            padding: 28px 20px 0;
                             .ivu-form-item {
                                 margin-bottom: 32px;
                                 &.input-default {
@@ -84,6 +84,7 @@
                             font-size: 14px;
                             height: 36px;
                             width: 480px;
+                            -border: solid 1px #e3e8ee;
                         }
                         .ivu-select {
                             .ivu-select-selection {
@@ -103,6 +104,40 @@
 
                     .register-information {
                         background-color: #fff;
+                        .register-content {
+                            padding: 20px;
+                            h5 {
+                                height: 40px;
+                                line-height: 40px;
+                                background-color: #f5f7f9;
+                                border-bottom: solid 1px #e3e8ee;
+                            }
+                            .border-color {
+                                > div {
+                                    border: solid 1px #e3e8ee;
+                                    li {
+                                        border-bottom: solid 1px #e3e8ee;
+                                        &:last-child {
+                                            border-bottom: 0;
+                                        }
+                                        .ivu-form-item {
+                                            padding: 14px 0;
+                                            margin-bottom: 0;
+                                        }
+                                        .ivu-input {
+                                            width: 268px;
+                                        }
+                                    }
+                                }
+                            }
+                            .company-information {
+                                padding-bottom: 20px;
+                            }
+
+                            .license-information {
+
+                            }
+                        }
                     }
 
                 }
