@@ -23,6 +23,7 @@ import StatisticsStore from '../pages/StatisticsStore.vue';
 import Store from '../pages/Store.vue';
 import StoreEdit from '../pages/StoreEdit.vue';
 import StoreCategory from '../pages/StoreCategory.vue';
+import StoreCategorySet from '../pages/StoreCategorySet.vue';
 import StoreDynamics from '../pages/StoreDynamics.vue';
 import StoreLevel from '../pages/StoreLevel.vue';
 
@@ -149,6 +150,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: StoreCategory,
                     path: 'store/category',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: StoreCategorySet,
+                    path: 'store/category/set',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
