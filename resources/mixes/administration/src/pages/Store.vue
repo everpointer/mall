@@ -38,7 +38,7 @@
                         <h6>提示</h6>
                         <p>如果当前时间超过店铺有效期或店铺处于关闭状态，前台将不能继续浏览该店铺，但是店主仍然可以编辑该店铺</p>
                     </div>
-                    <div class="store_body">
+                    <div class="store-body">
                         <div class="store-body-header">
                             <i-button class="export-btn" type="ghost">导出数据</i-button>
                             <div class="store-body-header-right">
