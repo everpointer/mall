@@ -22,6 +22,12 @@ class CreateMallVirtualProductsTable extends Migration
     {
         $this->schema->create('mall_virtual_products', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('product_id')->unsigned();
+            $table->string('key')->nullable();
+            $table->string('url')->nullable();
+            $table->integer('amount')->nullable();
+            $table->dateTime('expiration_date')->nullable();
+            $table->enum('status', array_keys(trans('globals.order_status')));
             $table->timestamps();
         });
     }
