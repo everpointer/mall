@@ -59,6 +59,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('virtual-product/edit', VirtualProductController::class . '@edit');
             $this->router->post('virtual-product/list', VirtualProductController::class . '@list');
             $this->router->post('virtual-product/remove', VirtualProductController::class . '@remove');
+            $this->router->post('virtual-product/restore', VirtualProductController::class . '@restore');
         });
     }
 }

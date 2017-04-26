@@ -13,6 +13,7 @@ use Notadd\Mall\Handlers\VirtualProduct\CreateHandler;
 use Notadd\Mall\Handlers\VirtualProduct\EditHandler;
 use Notadd\Mall\Handlers\VirtualProduct\ListHandler;
 use Notadd\Mall\Handlers\VirtualProduct\RemoveHandler;
+use Notadd\Mall\Handlers\VirtualProduct\RestoreHandler;
 
 /**
  * Class VirtualProductController.
@@ -55,6 +56,16 @@ class VirtualProductController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function remove(RemoveHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\VirtualProduct\RestoreHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function restore(RestoreHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
