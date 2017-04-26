@@ -23,6 +23,7 @@
         .store-information {
             .ivu-card-bordered {
                 border: 0 none;
+                background-color: inherit;
                 &:hover {
                     box-shadow: 0 0 0 rgba(0,0,0,.2);
                 }
@@ -31,10 +32,20 @@
                 }
                 .ivu-form {
                     .basic-information {
+                        background-color: #fff;
                         margin-bottom: 20px;
                         box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.05);
                         > div {
-                            padding-top: 28px;
+                            padding: 28px 20px 0;
+                            .data-picker-input {
+                                .ivu-input {
+                                    width: 124px;
+                                }
+                                .ivu-input-icon {
+                                    left: 94px;
+                                    top: 2px;
+                                }
+                            }
                             .ivu-form-item {
                                 margin-bottom: 32px;
                                 &.input-default {
@@ -42,6 +53,8 @@
                                     margin-top: -10px;
                                 }
                                 &.switch-status {
+                                    margin-top: -8px;
+                                    margin-bottom: 27px;
                                     .ivu-switch-large {
                                         width: 48px;
                                     }
@@ -67,9 +80,11 @@
                             }
                         }
                     }
+
                     .ivu-form-item {
                         .ivu-form-item-label {
-                            padding: 12px 30px 12px 0;
+                            padding: 10px 30px 10px 0;
+                            font-size: 14px;
                         }
                         .ivu-form-item-content {
                             font-size: 14px;
@@ -78,6 +93,7 @@
                             font-size: 14px;
                             height: 36px;
                             width: 480px;
+                            -border: solid 1px #e3e8ee;
                         }
                         .ivu-select {
                             .ivu-select-selection {
@@ -94,6 +110,124 @@
                             }
                         }
                     }
+
+                    .register-information {
+                        background-color: #fff;
+                        .register-content {
+                            padding: 20px;
+                            h5 {
+                                height: 40px;
+                                line-height: 40px;
+                                background-color: #f5f7f9;
+                                border-bottom: solid 1px #e3e8ee;
+                            }
+                            .border-color {
+                                > div {
+                                    border: solid 1px #e3e8ee;
+                                    li {
+                                        border-bottom: solid 1px #e3e8ee;
+                                        &:last-child {
+                                            border-bottom: 0;
+                                        }
+                                        .ivu-form-item {
+                                            padding: 14px 0;
+                                            margin-bottom: 0;
+                                        }
+                                        .company-name {
+                                            .ivu-input {
+                                                width: 480px;
+                                            }
+                                        }
+                                        .picker-input {
+                                            .ivu-form-item-label {
+                                                width: 44px !important;
+                                                padding-right: 10px;
+                                            }
+                                            .ivu-form-item-content {
+                                                margin-left: 44px !important;
+                                            }
+                                        }
+                                        .data-picker-input {
+                                            .ivu-input {
+                                                width: 124px;
+                                            }
+                                            .ivu-input-icon {
+                                                left: 94px;
+                                                top: 2px;
+                                            }
+                                        }
+                                        .ivu-input {
+                                            width: 268px;
+                                            &.input-param {
+                                                position: relative;
+                                                &:after {
+                                                    position: absolute;
+                                                    display: block;
+                                                    content: '人';
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .company-information {
+                                padding-bottom: 20px;
+                            }
+
+                            .license-information {
+                                > div {
+                                    li:last-child {
+                                        height: 122px;
+                                    }
+                                    .upload-picture {
+                                        .demo-upload-list{
+                                            display: inline-block;
+                                            width: 94px;
+                                            height: 94px;
+                                            line-height: 94px;
+                                            text-align: center;
+                                            border: 1px solid transparent;
+                                            border-radius: 4px;
+                                            overflow: hidden;
+                                            background: #fff;
+                                            position: relative;
+                                            box-shadow: 0 1px 1px rgba(0,0,0,.2);
+                                            margin-right: 4px;
+                                        }
+                                        .demo-upload-list img{
+                                            width: 100%;
+                                            height: 100%;
+                                        }
+                                        .demo-upload-list-cover{
+                                            display: none;
+                                            position: absolute;
+                                            top: 0;
+                                            bottom: 0;
+                                            left: 0;
+                                            right: 0;
+                                            background: rgba(0,0,0,.6);
+                                        }
+                                        .demo-upload-list:hover .demo-upload-list-cover{
+                                            display: block;
+                                        }
+                                        .demo-upload-list-cover i{
+                                            color: #fff;
+                                            font-size: 20px;
+                                            cursor: pointer;
+                                            margin: 0 2px;
+                                        }
+                                        .upload-input {
+                                            width: 94px;
+                                            height: 94px;
+                                            line-height: 94px;
+                                            background-color: #f5f7f9;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                 }
             }
         }
