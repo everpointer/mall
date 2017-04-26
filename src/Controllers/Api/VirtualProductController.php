@@ -4,24 +4,24 @@
  *
  * @author TwilRoad <269044570@qq.com>
  * @copyright (c) 2017, iBenchu.org
- * @datetime 2017-04-25 16:39
+ * @datetime 2017-04-26 14:32
  */
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
-use Notadd\Mall\Handlers\Category\CreateHandler;
-use Notadd\Mall\Handlers\Category\EditHandler;
-use Notadd\Mall\Handlers\Category\ListHandler;
-use Notadd\Mall\Handlers\Category\RemoveHandler;
-use Notadd\Mall\Handlers\Category\RestoreHandler;
+use Notadd\Mall\Handlers\VirtualProduct\CreateHandler;
+use Notadd\Mall\Handlers\VirtualProduct\EditHandler;
+use Notadd\Mall\Handlers\VirtualProduct\ListHandler;
+use Notadd\Mall\Handlers\VirtualProduct\RemoveHandler;
+use Notadd\Mall\Handlers\VirtualProduct\RestoreHandler;
 
 /**
- * Class CategoryController.
+ * Class VirtualProductController.
  */
-class CategoryController extends Controller
+class VirtualProductController extends Controller
 {
     /**
-     * @param \Notadd\Mall\Handlers\Category\CreateHandler $handler
+     * @param \Notadd\Mall\Handlers\VirtualProduct\CreateHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -31,7 +31,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Category\EditHandler $handler
+     * @param \Notadd\Mall\Handlers\VirtualProduct\EditHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Category\ListHandler $handler
+     * @param \Notadd\Mall\Handlers\VirtualProduct\ListHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -51,7 +51,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Category\RemoveHandler $handler
+     * @param \Notadd\Mall\Handlers\VirtualProduct\RemoveHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -61,7 +61,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Category\RestoreHandler $handler
+     * @param \Notadd\Mall\Handlers\VirtualProduct\RestoreHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
