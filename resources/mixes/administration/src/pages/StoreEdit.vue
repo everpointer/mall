@@ -285,6 +285,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="submit-btn">
+                            <i-button type="primary" @click="handleSubmit('storeDetail')">确认提交</i-button>
+                        </div>
                     </i-form>
                 </card>
 			</div>
@@ -313,6 +316,11 @@ export default {
                 contact_name: '',
                 contact_phone: '',
             },
+            ruleValidate: {
+                storeName: [
+                    { required: true, message: '名称不能为空', trigger: 'blur' },
+                ],
+            },
             options2: {
                 disabledDate(date) {
                     return date && date.valueOf() < Date.now();
@@ -330,6 +338,15 @@ export default {
         });
     },
     methods: {
+        handleSubmit(name) {
+            this.$refs[name].validate(valid => {
+                if (valid) {
+                    this.$Message.success('提交成功!');
+                } else {
+                    this.$Message.error('表单验证失败!');
+                }
+            });
+        },
         handleView(name) {
             this.imgName = name;
             this.visible = true;
