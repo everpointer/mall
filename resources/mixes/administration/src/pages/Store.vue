@@ -236,6 +236,7 @@
                         </div>
                         <i-table highlight-row class="shop-table" :columns="columns" :data="shopData"></i-table>
                     </div>
+                    <page :total="100" show-elevator></page>
                 </tab-pane>
                 <tab-pane label="开店申请" name="name2">标签二的内容</tab-pane>
             </tabs>
