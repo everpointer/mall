@@ -99,8 +99,8 @@
                             <td class="list2">服装鞋帽</td>
                             <td></td>
                             <td class="ivu-table-cell">
-                                <button>删除</button>
-                                <button>设置</button>
+                               <i-button type="ghost">删除</i-button>
+                               <i-button type="ghost">设置</i-button>
                             </td>
                         </tr>
                     </tbody>

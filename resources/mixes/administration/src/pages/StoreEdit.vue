@@ -92,6 +92,16 @@
                                         </form-item>
                                     </i-col>
                                 </row>
+                                <row>
+                                    <i-col span="10">
+                                        <form-item label="状态"  class="switch-status">
+                                            <i-switch size="large">
+                                                <span slot="open">开启</span>
+                                                <span slot="close">关闭</span>
+                                            </i-switch>
+                                        </form-item>
+                                    </i-col>
+                                </row>
                             </div>
                         </div>
                     </i-form>
