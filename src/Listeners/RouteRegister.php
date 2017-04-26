@@ -14,6 +14,7 @@ use Notadd\Mall\Controllers\Api\CategoryController;
 use Notadd\Mall\Controllers\Api\ConfigurationController;
 use Notadd\Mall\Controllers\Api\ConfigurationSearchController;
 use Notadd\Mall\Controllers\Api\OrderController;
+use Notadd\Mall\Controllers\Api\ProductController;
 use Notadd\Mall\Controllers\Api\UploadController;
 
 /**
@@ -40,6 +41,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('configuration/search/set', ConfigurationSearchController::class . '@set');
             $this->router->post('order/create', OrderController::class . '@create');
             $this->router->post('order/list', OrderController::class . '@list');
+            $this->router->post('product/list', ProductController::class . '@list');
             $this->router->post('upload', UploadController::class . '@handle');
         });
     }
