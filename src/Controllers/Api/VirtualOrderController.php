@@ -12,6 +12,7 @@ use Notadd\Mall\Handlers\VirtualOrder\CreateHandler;
 use Notadd\Mall\Handlers\VirtualOrder\EditHandler;
 use Notadd\Mall\Handlers\VirtualOrder\ListHandler;
 use Notadd\Mall\Handlers\VirtualOrder\RemoveHandler;
+use Notadd\Mall\Handlers\VirtualOrder\RestoreHandler;
 
 /**
  * Class VirtualOrderController.
@@ -54,6 +55,16 @@ class VirtualOrderController
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function remove(RemoveHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\VirtualOrder\RestoreHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function restore(RestoreHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
