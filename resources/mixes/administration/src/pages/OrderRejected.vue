@@ -506,7 +506,7 @@
                       </div>
                       <i-table highlight-row class="shop-table" :columns="pendingColumns" :data="pendingData"></i-table>
                   </div>
-                  <div>
+                  <div class="page">
                       <page :total="100" show-elevator></page>
                   </div>
               </tab-pane>
@@ -524,7 +524,7 @@
                             </div>
                         </div>
                         <i-table highlight-row class="shop-table" :columns="allRecordsColumns" :data="allRecordsData"></i-table>
-                        <div>
+                        <div class="page">
                             <page :total="100" show-elevator></page>
                         </div>
                   </div>
