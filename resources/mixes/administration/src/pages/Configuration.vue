@@ -106,7 +106,7 @@
                                         :on-success="uploadSuccess"
                                         ref="upload"
                                         :show-upload-list="false"
-                                        v-if="form.logo === ''">
+                                        v-if="form.logo === '' || form.logo === null">
                                 </upload>
                             </form-item>
                         </i-col>
