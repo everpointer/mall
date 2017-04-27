@@ -21,7 +21,7 @@
                         width: 200,
                         align: 'center',
                         render() {
-                            return '<i-input type="ghost" placeholder="1" style="width: 48px;">1</i-input>';
+                            return '<i-input type="ghost" style="width: 48px;"></i-input>';
                         },
                     },
                     {
@@ -29,7 +29,7 @@
                         width: 500,
                         align: 'center',
                         render() {
-                            return '<i-input type="ghost" placeholder="服装鞋帽" style="width: 268px;"></i-input>';
+                            return '<i-input type="ghost" style="width: 268px;"></i-input>';
                         },
                     },
                     {
@@ -81,6 +81,7 @@
             <div class="store-body">
                 <div class="store-body-header">
                     <i-button class="export-btn" type="ghost">新增数据</i-button>
+                    <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                 </div>
             <i-table highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
             </div>
