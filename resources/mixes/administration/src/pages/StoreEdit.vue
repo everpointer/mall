@@ -91,7 +91,7 @@
                             <row>
                                 <i-col span="10">
                                     <form-item label="状态"  class="switch-status">
-                                        <i-switch size="large">
+                                        <i-switch size="large" v-model="storeDetail.switch1">
                                             <span slot="open">开启</span>
                                             <span slot="close">关闭</span>
                                         </i-switch>
@@ -317,6 +317,7 @@ export default {
                 company_email: '',
                 contact_name: '',
                 contact_phone: '',
+                switch1: true,
             },
             ruleValidate: {
                 storeName: [
