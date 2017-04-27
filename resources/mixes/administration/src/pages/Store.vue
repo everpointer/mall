@@ -95,8 +95,8 @@
                         fixed: 'right',
                         width: 140,
                         align: 'center',
-                        render() {
-                            return '<i-button type="ghost" class="first-btn" size="small">删除</i-button><i-button type="ghost" size="small">查看</i-button>';
+                        render(row, column, index) {
+                            return '<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">删除</i-button><i-button type="ghost" size="small">查看</i-button>';
                         },
                     },
                 ],
@@ -419,6 +419,9 @@
                 this.$refs.managementTable.exportCsv({
                     filename: '店铺管理数据'
                 });
+            },
+            remove (index) {
+                this.managementData.splice(index, 1);
             },
         },
         beforeRouteEnter(to, from, next) {
