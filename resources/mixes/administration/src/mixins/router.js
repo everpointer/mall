@@ -16,6 +16,7 @@ import OrderRefundProcess from '../pages/OrderRefundProcess.vue';
 import OrderRefundReedit from '../pages/OrderRefundReedit.vue';
 import OrderRejected from '../pages/OrderRejected.vue';
 import OrderRejectedLook from '../pages/OrderRejectedLook.vue';
+import OrderRejectedHandel from '../pages/OrderRejectedHandel.vue';
 import Statistics from '../pages/Statistics.vue';
 import StatisticsAftersales from '../pages/StatisticsAftersales.vue';
 import StatisticsAnalysis from '../pages/StatisticsAnalysis.vue';
@@ -122,6 +123,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: OrderRejectedLook,
                     path: 'order/rejected/look',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: OrderRejectedHandel,
+                    path: 'order/rejected/handel',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
