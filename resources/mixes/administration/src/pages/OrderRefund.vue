@@ -394,6 +394,40 @@
                         buyerID: '455646544',
                     },
                 ],
+                reasonColumns: [
+                    {
+                        type: 'selection',
+                        width: 60,
+                        align: 'center',
+                    },
+                    {
+                        title: '排序',
+                        key: 'sort',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '原因',
+                        key: 'reason',
+                        align: 'left',
+                    },
+                    {
+                        title: '操作',
+                        key: 'action',
+                        fixed: 'right',
+                        width: 140,
+                        align: 'center',
+                        render() {
+                            return '<i-button type="ghost" size="small">编辑</i-button>';
+                        },
+                    },
+                ],
+                reasonData: [
+                    {
+                        sort: 1,
+                        reason: '不能按时发货',
+                    },
+                ],
             };
         },
         methods: {
@@ -485,10 +519,7 @@
                                 </i-input>
                             </div>
                         </div>
-                        <i-table highlight-row class="shop-table" :columns="applicationColumns" :data="applicationData"></i-table>
-                    </div>
-                    <div class="page">
-                        <page :total="100" show-elevator></page>
+                        <i-table highlight-row class="shop-table" :columns="reasonColumns" :data="reasonData"></i-table>
                     </div>
                 </tab-pane>
             </tabs>
