@@ -13,6 +13,7 @@ import OrderComplain from '../pages/OrderComplain.vue';
 import OrderEvaluation from '../pages/OrderEvaluation.vue';
 import OrderRefund from '../pages/OrderRefund.vue';
 import OrderRefundProcess from '../pages/OrderRefundProcess.vue';
+import OrderRefundReedit from '../pages/OrderRefundReedit.vue';
 import OrderRejected from '../pages/OrderRejected.vue';
 import Statistics from '../pages/Statistics.vue';
 import StatisticsAftersales from '../pages/StatisticsAftersales.vue';
@@ -105,6 +106,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: OrderRefundProcess,
                     path: 'order/refund/process',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: OrderRefundReedit,
+                    path: 'order/refund/reedit',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
