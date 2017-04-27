@@ -85,10 +85,43 @@
                                 </div>
                             </div>
                             <div class="order-information">
-
+                                <h5>订单支付信息</h5>
+                                <div class="order-pay-content refund-module">
+                                    <row>
+                                        <i-col span="18">
+                                            <form-item label="支付方式">
+                                                {{refundDetail.payStyle}}
+                                            </form-item>
+                                        </i-col>
+                                    </row>
+                                    <row>
+                                        <i-col span="18">
+                                            <form-item label="订单总额">
+                                                ￥{{refundDetail.orderCounts}}
+                                            </form-item>
+                                        </i-col>
+                                    </row>
+                                    <row>
+                                        <i-col span="18">
+                                            <form-item label="在线支付金额">
+                                                ￥{{refundDetail.linePay}}
+                                            </form-item>
+                                        </i-col>
+                                    </row>
+                                </div>
                             </div>
                             <div class="refund-review">
-
+                                <h5>平台退款审核</h5>
+                                <div class="review-content refund-module">
+                                    <row>
+                                        <i-col span="18">
+                                            <form-item label="备注信息" prop="remarks" class="remark-input">
+                                                <i-input v-model="refundDetail.remarks" type="textarea"
+                                                     :autosize="{minRows: 3,maxRows: 5}"></i-input>
+                                            </form-item>
+                                        </i-col>
+                                    </row>
+                                </div>
                             </div>
                         </i-form>
                     </card>
@@ -114,6 +147,10 @@
                     handelResult: '同意',
                     handelText: 'jahwuiha',
                     handelTime: '2016-12-21  10:31:59',
+                    payStyle: '在线支付',
+                    orderCounts: '99.00',
+                    linePay: '99.00',
+                    remarks: '',
                 },
             };
         },
