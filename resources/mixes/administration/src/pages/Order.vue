@@ -174,9 +174,9 @@
             };
         },
         methods: {
-            exportData () {
+            exportData() {
                 this.$refs.orderTable.exportCsv({
-                    filename: '商品订单数据'
+                    filename: '商品订单数据',
                 });
             },
         },
