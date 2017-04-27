@@ -75,7 +75,7 @@
                         width: 140,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">查看</i-button><i-button type="ghost" size="small">设置</i-button>';
+                            return '<i-button type="ghost" class="first-btn" size="small">查看</i-button><i-button type="ghost" size="small">设置</i-button>';
                         },
                     },
                 ],
@@ -178,6 +178,9 @@
                 this.$refs.orderTable.exportCsv({
                     filename: '商品订单数据',
                 });
+            },
+            toView() {
+                this.$router.push('order/view');
             },
         },
         beforeRouteEnter(to, from, next) {
