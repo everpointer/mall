@@ -171,7 +171,7 @@
                         paymentMethod: '钻石店铺',
                     },
                 ],
-            }
+            };
         },
         beforeRouteEnter(to, from, next) {
             next(() => {
