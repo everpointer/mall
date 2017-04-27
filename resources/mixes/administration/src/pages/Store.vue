@@ -4,8 +4,10 @@
     export default {
         data() {
             return {
-                searchCategory: '',
-                searchWord: '',
+                managementSearch: '',
+                managementWord: '',
+                applicationSearch: '',
+                applicationWord: '',
                 searchList: [
                     {
                         value: '店铺名称',
@@ -94,7 +96,7 @@
                         width: 140,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">删除</i-button><i-button type="ghost" size="small">查看</i-button>';
+                            return '<i-button type="ghost" class="first-btn" size="small">删除</i-button><i-button type="ghost" size="small">查看</i-button>';
                         },
                     },
                 ],
@@ -412,6 +414,13 @@
                 ],
             };
         },
+        methods: {
+            exportData () {
+                this.$refs.managementTable.exportCsv({
+                    filename: '店铺管理数据'
+                });
+            },
+        },
         beforeRouteEnter(to, from, next) {
             next(() => {
                 injection.sidebar.active('mall');
@@ -430,18 +439,18 @@
                     </div>
                     <div class="store-body">
                         <div class="store-body-header">
-                            <i-button class="export-btn" type="ghost">导出数据</i-button>
+                            <i-button class="export-btn" @click="exportData()" type="ghost">导出数据</i-button>
                             <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                             <div class="store-body-header-right">
-                                <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
-                                    <i-select v-model="searchCategory" slot="prepend">
+                                <i-input v-model="managementWord" placeholder="请输入关键词进行搜索">
+                                    <i-select v-model="managementSearch" slot="prepend">
                                         <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                     <i-button slot="append" type="primary">搜索</i-button>
                                 </i-input>
                             </div>
                         </div>
-                        <i-table highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
+                        <i-table ref="managementTable" highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
                     </div>
                     <div class="page">
                         <page :total="100" show-elevator></page>
@@ -455,15 +464,15 @@
                     <div class="store-body">
                         <div class="store-body-header">
                             <div class="store-body-header-right">
-                                <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
-                                    <i-select v-model="searchCategory" slot="prepend">
+                                <i-input v-model="applicationWord" placeholder="请输入关键词进行搜索">
+                                    <i-select v-model="applicationSearch" slot="prepend">
                                       <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                     <i-button slot="append" type="primary">搜索</i-button>
                                 </i-input>
                             </div>
                         </div>
-                        <i-table highlight-row class="shop-table" :columns="applicationColumns" :data="applicationData"></i-table>
+                        <i-table highlight-row ref="applicationTable" class="shop-table" :columns="applicationColumns" :data="applicationData"></i-table>
                     </div>
                     <div class="page">
                         <page :total="100" show-elevator></page>
