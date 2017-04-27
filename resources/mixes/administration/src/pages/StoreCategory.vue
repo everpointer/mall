@@ -21,7 +21,7 @@
                         width: 200,
                         align: 'center',
                         render() {
-                            return '<i-input type="ghost" placeholder="1" style="width: 48px;">1</i-input>';
+                            return '<i-input type="ghost" style="width: 48px;"></i-input>';
                         },
                     },
                     {
@@ -29,7 +29,7 @@
                         width: 500,
                         align: 'center',
                         render() {
-                            return '<i-input type="ghost" placeholder="服装鞋帽" style="width: 268px;"></i-input>';
+                            return '<i-input type="ghost" style="width: 268px;"></i-input>';
                         },
                     },
                     {
