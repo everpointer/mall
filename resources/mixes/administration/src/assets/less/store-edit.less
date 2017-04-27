@@ -9,100 +9,57 @@
                 padding: 6px 8px 6px 20px;
             }
         }
-        .ivu-card-bordered {
-            border: 0 none;
-            background-color: inherit;
-            &:hover {
-                box-shadow: 0 0 0 rgba(0, 0, 0, .2);
-            }
-            .ivu-card-body {
-                padding: 0;
-            }
-        }
-        .title-line {
-            h5 {
-                font-size: 14px;
-                height: 54px;
-                line-height: 54px;
-                padding: 0 20px;
-                border-bottom: 1px solid #e3e8ee;
-            }
-        }
         .store-information {
+            .ivu-card-bordered {
+                margin-bottom: 20px;
+            }
             .ivu-form {
                 .basic-information {
-                    background-color: #fff;
-                    margin-bottom: 20px;
-                    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.05);
-                    > div {
-                        padding: 28px 20px 0;
-                        .data-picker-input {
-                            .ivu-input {
-                                width: 124px;
-                            }
-                            .ivu-input-icon {
-                                left: 94px;
-                                top: 2px;
-                            }
+                    .data-picker-input {
+                        .ivu-input {
+                            width: 124px;
                         }
-                        .ivu-form-item {
-                            margin-bottom: 32px;
-                            &.input-default {
-                                margin-bottom: 20px;
-                                margin-top: -10px;
+                        .ivu-input-icon {
+                            left: 94px;
+                            top: 2px;
+                        }
+                    }
+                    .ivu-form-item {
+                        &.switch-status {
+                            margin-top: -8px;
+                            margin-bottom: 27px;
+                            .ivu-switch-large {
+                                width: 48px;
                             }
-                            &.switch-status {
-                                margin-top: -8px;
-                                margin-bottom: 27px;
-                                .ivu-switch-large {
-                                    width: 48px;
+                            .ivu-switch-large.ivu-switch-checked:after {
+                                left: 29px;
+                            }
+                            .ivu-switch {
+                                height: 22px;
+                                line-height: 21px;
+                                &:after {
+                                    width: 18px;
+                                    height: 18px;
                                 }
-                                .ivu-switch-large.ivu-switch-checked:after {
-                                    left: 29px;
-                                }
-                                .ivu-switch {
-                                    height: 22px;
-                                    line-height: 21px;
-                                    &:after {
-                                        width: 18px;
-                                        height: 18px;
-                                    }
-                                }
-                                .ivu-switch-checked
-                                .ivu-switch-inner {
-                                    left: 4px;
-                                }
-                                .ivu-switch-inner {
-                                    left: 19px;
-                                }
+                            }
+                            .ivu-switch-checked
+                            .ivu-switch-inner {
+                                left: 4px;
+                            }
+                            .ivu-switch-inner {
+                                left: 19px;
                             }
                         }
                     }
                 }
 
                 .ivu-form-item {
-                    .ivu-form-item-label {
-                        padding: 10px 30px 10px 0;
-                        font-size: 14px;
-                    }
-                    .ivu-form-item-content {
-                        font-size: 14px;
-                    }
                     .ivu-input {
-                        font-size: 14px;
-                        height: 36px;
                         width: 480px;
-                        -border: solid 1px #e3e8ee;
                     }
                     .ivu-select {
                         .ivu-select-selection {
-                            height: 36px;
                             width: 124px;
-                            .ivu-select-placeholder {
-                                height: 36px;
-                                line-height: 36px;
-                                font-size: 14px;
-                            }
                         }
                         .ivu-select-dropdown {
                             width: 124px !important;
@@ -113,12 +70,12 @@
                 .register-information {
                     background-color: #fff;
                     .register-content {
-                        padding: 20px;
                         h5 {
                             height: 40px;
                             line-height: 40px;
                             background-color: #f5f7f9;
                             border-bottom: solid 1px #e3e8ee;
+                            padding: 0 20px;
                         }
                         .border-color {
                             > div {
@@ -139,11 +96,11 @@
                                     }
                                     .picker-input {
                                         .ivu-form-item-label {
-                                            width: 44px !important;
-                                            padding-right: 10px;
+                                            width: 46px !important;
+                                            padding-right: 8px;
                                         }
                                         .ivu-form-item-content {
-                                            margin-left: 44px !important;
+                                            margin-left: 46px !important;
                                         }
                                     }
                                     .data-picker-input {
@@ -175,9 +132,6 @@
 
                         .license-information {
                             > div {
-                                li:last-child {
-                                    height: 122px;
-                                }
                                 li {
                                     .data-picker-input {
                                         width: 302px;
@@ -186,9 +140,9 @@
                                 .upload-picture {
                                     .demo-upload-list{
                                         display: inline-block;
-                                        width: 94px;
-                                        height: 94px;
-                                        line-height: 94px;
+                                        width: 60px;
+                                        height: 60px;
+                                        line-height: 60px;
                                         text-align: center;
                                         border: 1px solid transparent;
                                         border-radius: 4px;
@@ -221,9 +175,9 @@
                                         margin: 0 2px;
                                     }
                                     .upload-input {
-                                        width: 94px;
-                                        height: 94px;
-                                        line-height: 94px;
+                                        width: 60px;
+                                        height: 60px;
+                                        line-height: 60px;
                                         background-color: #f5f7f9;
                                     }
                                 }
@@ -232,13 +186,8 @@
                     }
                 }
                 .submit-btn {
-                    background-color: #fff;
-                    padding-left: 20px;
-                    padding-bottom: 40px;
-                    .ivu-btn-primary {
-                        width: 94px;
-                        height: 36px;
-                    }
+                    width: 80px;
+                    padding: 20px 0;
                 }
             }
         }
