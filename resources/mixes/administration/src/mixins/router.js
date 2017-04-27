@@ -27,6 +27,9 @@ import StoreCategory from '../pages/StoreCategory.vue';
 import StoreCategorySet from '../pages/StoreCategorySet.vue';
 import StoreDynamics from '../pages/StoreDynamics.vue';
 import StoreLevel from '../pages/StoreLevel.vue';
+import SalesActivity from '../pages/SalesActivity.vue';
+import SalesActivitySetAdd from '../pages/SalesActivitySetAdd.vue';
+import SalesActivitySet from '../pages/SalesActivitySet.vue';
 
 export default function (injection) {
     injection.useModuleRoute([
@@ -171,6 +174,21 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: StoreLevel,
                     path: 'store/level',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: SalesActivity,
+                    path: 'sales/activity',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: SalesActivitySetAdd,
+                    path: 'sales/activity/set/add',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: SalesActivitySet,
+                    path: 'sales/activity/set',
                 },
             ],
             component: Layout,

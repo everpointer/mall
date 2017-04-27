@@ -110,7 +110,12 @@ export default function (injection) {
             title: '统计',
         },
         {
-            children: [],
+            children: [
+                {
+                    path: '/mall/sales/activity',
+                    title: '秒杀活动',
+                },
+            ],
             icon: 'plus',
             title: '促销',
         },
