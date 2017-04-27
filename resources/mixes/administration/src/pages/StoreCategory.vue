@@ -81,6 +81,7 @@
             <div class="store-body">
                 <div class="store-body-header">
                     <i-button class="export-btn" type="ghost">新增数据</i-button>
+                    <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                 </div>
             <i-table highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
             </div>

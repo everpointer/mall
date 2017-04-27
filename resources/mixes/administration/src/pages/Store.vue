@@ -431,6 +431,7 @@
                     <div class="store-body">
                         <div class="store-body-header">
                             <i-button class="export-btn" type="ghost">导出数据</i-button>
+                            <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                             <div class="store-body-header-right">
                                 <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
                                     <i-select v-model="searchCategory" slot="prepend">
