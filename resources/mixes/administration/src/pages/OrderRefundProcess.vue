@@ -1,7 +1,7 @@
 <template>
     <div class="mall-wrap">
-        <div class="order-refund-process">
-            <div class="store-refund-process store-edit">
+        <div class="order-refund-process store-edit">
+            <div class="store-refund-process">
                 <div class="edit-link-title">
                     <i-button type="text">
                         <icon type="chevron-left"></icon>
@@ -9,8 +9,8 @@
                     <span>退款管理—处理</span>
                 </div>
                 <div class="refund-process-content store-information">
-                    <card>
-                        <i-form ref="refundDetail" :model="refundDetail" :rules="ruleValidate" :label-width="197">
+                    <card :bordered="false">
+                        <i-form ref="refundDetail" :model="refundDetail" :rules="ruleValidate" :label-width="200">
                             <div class="refund-application">
                                 <h5>买家退款申请</h5>
                                 <div class="application-content refund-module">
@@ -114,10 +114,21 @@
                                 <h5>平台退款审核</h5>
                                 <div class="review-content refund-module">
                                     <row>
-                                        <i-col span="18">
+                                        <i-col span="20">
                                             <form-item label="备注信息" prop="remarks" class="remark-input">
                                                 <i-input v-model="refundDetail.remarks" type="textarea"
                                                      :autosize="{minRows: 3,maxRows: 5}"></i-input>
+                                                <span class="tip">
+                                                    系统默认退款到“站内余额”，如果“在线退款”到原支付账号，建议在备注里说明，方便核对。
+                                                </span>
+                                            </form-item>
+                                            <p></p>
+                                        </i-col>
+                                    </row>
+                                    <row>
+                                        <i-col span="18">
+                                            <form-item label="">
+                                                <i-button type="primary" @click="handleSubmit('refundDetail')">确认提交</i-button>
                                             </form-item>
                                         </i-col>
                                     </row>
@@ -152,12 +163,28 @@
                     linePay: '99.00',
                     remarks: '',
                 },
+                ruleValidate: {
+                    remarks: [
+                        { required: true, message: '信息不能为空', trigger: 'blur' },
+                    ],
+                },
             };
         },
         beforeRouteEnter(to, from, next) {
             next(() => {
                 injection.sidebar.active('mall');
             });
+        },
+        methods: {
+            handleSubmit(name) {
+                this.$refs[name].validate(valid => {
+                    if (valid) {
+                        this.$Message.success('提交成功!');
+                    } else {
+                        this.$Message.error('表单验证失败!');
+                    }
+                });
+            },
         },
     };
 </script>
