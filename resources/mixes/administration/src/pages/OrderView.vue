@@ -86,6 +86,12 @@
                     expressDelivery: '顺丰速递',
                     shipmentNumber: '54654654545454786',
                 },
+                refundsData: {
+                    orderNumber: '5465454542',
+                    money: '99.99',
+                    occurrenceTime: '2015-06-12 10:42:40',
+                    remarks: '不合适',
+                },
             };
         },
         beforeRouteEnter(to, from, next) {
@@ -220,7 +226,33 @@
                             <p class="price">(含运费：￥{{ orderInfo[0].freight }})</p>
                         </i-form>
                     </tab-pane>
-                    <tab-pane label="退货记录">标签二的内容</tab-pane>
+                    <tab-pane label="退货信息">
+                        <i-form :label-width="110">
+                            <h4>退货信息</h4>
+                            <row>
+                                <i-col span="8">
+                                    <form-item label="退货单号：">
+                                        {{　refundsData.orderNumber　}}
+                                    </form-item>
+                                </i-col>
+                                <i-col span="8">
+                                    <form-item label="退款金额：">
+                                        ￥{{　refundsData.money　}}
+                                    </form-item>
+                                </i-col>
+                                <i-col span="8">
+                                    <form-item label="发生时间：">
+                                        {{　refundsData.occurrenceTime　}}
+                                    </form-item>
+                                </i-col>
+                                <i-col span="8">
+                                    <form-item label="备注：">
+                                        {{　refundsData.remarks　}}
+                                    </form-item>
+                                </i-col>
+                            </row>
+                        </i-form>
+                    </tab-pane>
                 </tabs>
             </div>
         </div>
