@@ -481,11 +481,21 @@
                 ],
             };
         },
+        methods: {
+            exportData() {
+                this.$refs.pendingTable.exportCsv({
+                    filename: '退货管理数据',
+                });
+            },
+            remove(index) {
+                this.pendingData.splice(index, 1);
+            },
+        },
     };
 </script>
 <template>
   <div class="mall-wrap">
-      <div class="store">
+      <div class="order-rejected">
           <tabs value="name1">
               <tab-pane label="待处理" name="name1">
                   <div class="prompt-box">
@@ -494,7 +504,7 @@
                   </div>
                   <div class="store-body">
                       <div class="store-body-header">
-                          <i-button class="export-btn" type="ghost">导出数据</i-button>
+                          <i-button class="export-btn" type="ghost" @click="exportData()">导出数据</i-button>
                           <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                           <div class="store-body-header-right">
                               <i-input v-model="searchWord">
@@ -505,7 +515,7 @@
                               </i-input>
                           </div>
                       </div>
-                      <i-table highlight-row class="shop-table" :columns="pendingColumns" :data="pendingData"></i-table>
+                      <i-table ref="pendingTable" highlight-row class="shop-table" :columns="pendingColumns" :data="pendingData"></i-table>
                   </div>
                   <div class="page">
                       <page :total="100" show-elevator></page>
@@ -514,7 +524,7 @@
               <tab-pane label="所有记录" name="name2">
                   <div class="store-body">
                         <div class="store-body-header">
-                            <i-button class="export-btn" type="ghost">导出数据</i-button>
+                            <i-button class="export-btn" type="ghost"  @click="exportData()" >导出数据</i-button>
                             <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                             <div class="store-body-header-right">
                                 <i-input v-model="searchWord">
@@ -525,7 +535,7 @@
                               </i-input>
                             </div>
                         </div>
-                        <i-table highlight-row class="shop-table" :columns="allRecordsColumns" :data="allRecordsData"></i-table>
+                        <i-table  ref="pendingTable"  highlight-row class="shop-table" :columns="allRecordsColumns" :data="allRecordsData"></i-table>
                         <div class="page">
                             <page :total="100" show-elevator></page>
                         </div>

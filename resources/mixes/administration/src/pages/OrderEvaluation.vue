@@ -148,11 +148,21 @@
                 ],
             };
         },
+        methods: {
+            exportData() {
+                this.$refs.evaluationListTable.exportCsv({
+                    filename: '评价管理数据',
+                });
+            },
+            remove(index) {
+                this.evaluationListData.splice(index, 1);
+            },
+        },
     };
 </script>
 <template>
     <div class="mall-wrap">
-        <div class="store">
+        <div class="order-evaluation">
             <tabs value="name1">
                 <tab-pane label="评价列表" name="name1">
                     <div class="prompt-box">
@@ -161,7 +171,7 @@
                     </div>
                     <div class="store-body">
                         <div class="store-body-header">
-                            <i-button class="export-btn" type="ghost">批量删除</i-button>
+                            <i-button class="export-btn" type="ghost" @click="exportData()">批量删除</i-button>
                             <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                             <div class="store-body-header-right">
                                 <i-input v-model="searchWord">
@@ -172,7 +182,7 @@
                                 </i-input>
                             </div>
                         </div>
-                        <i-table highlight-row class="shop-table" :columns="evaluationListColumns" :data="evaluationListData"></i-table>
+                        <i-table  ref="evaluationListTable" highlight-row class="shop-table" :columns="evaluationListColumns" :data="evaluationListData"></i-table>
                     </div>
                     <div class="page">
                         <page :total="100" show-elevator></page>
