@@ -166,7 +166,7 @@
                         <i-col span="12">
                             <form-item label="广告位默认图片上传" prop="logo">
                                 <div class="image-preview" v-if="addAdPosition.logo">
-                                    <img :src="form.logo">
+                                    <img :src="addAdPosition.logo">
                                     <icon type="close" @click.native="removeLogo"></icon>
                                 </div>
                                 <upload :action="action"
@@ -183,6 +183,7 @@
                                         :show-upload-list="false"
                                         v-if="addAdPosition.logo === '' || addAdPosition.logo === null">
                                 </upload>
+                                <p>系统支持的图片格式为：gif、jpg、jpeg、png</p>
                             </form-item>
                         </i-col>
                     </row>
