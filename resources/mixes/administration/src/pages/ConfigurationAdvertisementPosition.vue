@@ -6,26 +6,30 @@
             return {
                 action: `${window.api}/mall/upload`,
                 addAdPosition: {
-                    adname: '',
-                    position: '',
-                    linkAddress: '',
+                    name: '',
+                    province: '',
+                    widthNum: '',
+                    heightNum: '',
+                    showStyle: 'style1',
                     logo: '',
-                    starttime: '',
-                    endtime: '',
+                    switchStatus: true,
                 },
                 ruleValidate: {
-                    adname: [
-                        { required: true, message: '广告名称不能为空', trigger: 'blur' },
+                    name: [
+                        { required: true, message: '名称不能为空', trigger: 'blur' },
                     ],
-                    position: [
-                        { required: true, message: '广告位不能为空', trigger: 'blur' },
+                    widthNum: [
+                        { required: true, message: '宽度不能为空', trigger: 'blur' },
+                    ],
+                    heightNum: [
+                        { required: true, message: '高度不能为空', trigger: 'blur' },
                     ],
                     logo: [
-                        { required: true, message: '图片上传不能为空', trigger: 'blur' },
+                        { required: true, message: '广告位默认图片不能为空', trigger: 'blur' },
                     ],
                 },
                 loading: false,
-                position: [
+                province: [
                     {
                         value: '1',
                         label: '图片',
@@ -97,43 +101,64 @@
 </script>
 <template>
     <div class="mall-wrap">
-        <div class="configuration-advertisement-add">
+        <div class="configuration-advertisement-add-position">
             <div class="edit-link-title">
                 <i-button type="text">
                     <icon type="chevron-left"></icon>
                 </i-button>
-                <span>广告管理—新增广告</span>
+                <span>广告管理—新增广告位</span>
             </div>
             <card :bordered="false">
                 <i-form ref="addAdPosition" :model="addAdPosition" :rules="ruleValidate" :label-width="200">
                     <row>
                         <i-col span="12">
-                            <form-item label="广告名称" prop="adname">
-                                <i-input v-model="addAdPosition.adname"></i-input>
+                            <form-item label="名称" prop="name">
+                                <i-input v-model="addAdPosition.name"></i-input>
                             </form-item>
                         </i-col>
                     </row>
                     <row>
                         <i-col span="12">
-                            <form-item label="选择广告位">
-                                <i-select v-model="addAdPosition.position" placeholder="请选择">
-                                    <i-option v-for="item in position" :value="item.value" :key="item">{{ item.label }}
+                            <form-item label="类别">
+                                <i-select v-model="addAdPosition.province" placeholder="请选择">
+                                    <i-option v-for="item in province" :value="item.value" :key="item">{{ item.label }}
                                     </i-option>
                                 </i-select>
                             </form-item>
                         </i-col>
                     </row>
                     <row>
-                        <i-col span="12">
-                            <form-item label="开始时间" prop="starttime">
-                                <time-picker type="time" placeholder="选择时间" v-model="addAdPosition.starttime" ></time-picker>
+                        <i-col span="18">
+                            <form-item label="展示方式">
+                                <radio-group v-model="addAdPosition.showStyle">
+                                    <radio label="style1">
+                                        <span>可以发布多条广告并随机展示</span>
+                                    </radio>
+                                    <radio label="style2">
+                                        <span>只允许发布并展示一条广告</span>
+                                    </radio>
+                                </radio-group>
                             </form-item>
                         </i-col>
                     </row>
                     <row>
                         <i-col span="12">
-                            <form-item label="结束时间" prop="endtime">
-                                <time-picker type="time" placeholder="选择时间" v-model="addAdPosition.endtime" ></time-picker>
+                            <form-item label="宽度" prop="widthNum">
+                                <i-input v-model="addAdPosition.widthNum"></i-input>
+                            </form-item>
+                        </i-col>
+                    </row>
+                    <row>
+                        <i-col span="12">
+                            <form-item label="高度" prop="heightNum">
+                                <i-input v-model="addAdPosition.heightNum"></i-input>
+                            </form-item>
+                        </i-col>
+                    </row>
+                    <row>
+                        <i-col span="12">
+                            <form-item label="高度" prop="heightNum">
+                                <i-input v-model="addAdPosition.heightNum"></i-input>
                             </form-item>
                         </i-col>
                     </row>
@@ -164,8 +189,11 @@
                     </row>
                     <row>
                         <i-col span="12">
-                            <form-item label="链接地址" prop="linkAddress">
-                                <i-input v-model="addAdPosition.linkAddress"></i-input>
+                            <form-item label="状态">
+                                <i-switch size="large" v-model="addAdPosition.switchStatus">
+                                    <span slot="open">开启</span>
+                                    <span slot="close">关闭</span>
+                                </i-switch>
                             </form-item>
                         </i-col>
                     </row>

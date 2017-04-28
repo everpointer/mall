@@ -1,5 +1,12 @@
 <script>
+    import injection from '../helpers/injection';
+
     export default {
+        beforeRouteEnter(to, from, next) {
+            next(() => {
+                injection.sidebar.active('mall');
+            });
+        },
         data() {
             return {
                 merchantColumns: [
@@ -167,7 +174,7 @@
                         <p> 编辑完成后请清理“商家消息模板”缓存。</p>
                     </div>
                     <div class="store-body">
-                        <i-table class="shop-table" :columns="merchantColumns" :data="merchantData"></i-table>
+                        <i-table class="shop-table" :columns="merchantColumns" :data="merchantData" class="my-btn"></i-table>
                     </div>
                 </tab-pane>
                 <tab-pane label="用户消息模板" name="name2">
