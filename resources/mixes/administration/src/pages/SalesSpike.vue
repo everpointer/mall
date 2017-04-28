@@ -35,6 +35,10 @@
                         title: '状态',
                         key: 'isstatus',
                         width: 500,
+                        render(row) {
+                            return `<span v-if="${row.status} === true" class="status-check"><icon type="checkmark-circled"></icon>开启</span>
+                                <span v-if="${row.status} === false"><icon type="close-circled"></icon>关闭</span>`;
+                        },
                     },
                     {
                         title: '操作',
@@ -55,28 +59,28 @@
                         title: '时尚但不易过时，高上大，还配有眼睛盒，发货速度',
                         startTime: '2016-12-23',
                         endTime: '2016-12-23',
-                        isstatus: '开启',
+                        status: false,
                     },
                     {
                         num: '00333',
                         title: '时尚但不易过时，高上大，还配有眼睛盒，发货速度',
                         startTime: '2016-12-23',
                         endTime: '2016-12-23',
-                        isstatus: '开启',
+                        status: false,
                     },
                     {
                         num: '00333',
                         title: '时尚但不易过时，高上大，还配有眼睛盒，发货速度',
                         startTime: '2016-12-23',
                         endTime: '2016-12-23',
-                        isstatus: '开启',
+                        status: true,
                     },
                     {
                         num: '00333',
                         title: '时尚但不易过时，高上大，还配有眼睛盒，发货速度',
                         startTime: '2016-12-23',
                         endTime: '2016-12-23',
-                        isstatus: '开启',
+                        status: false,
                     },
                 ],
             };
