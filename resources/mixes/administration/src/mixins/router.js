@@ -1,6 +1,7 @@
 import Configuration from '../pages/Configuration.vue';
 import ConfigurationAdvertisement from '../pages/ConfigurationAdvertisement.vue';
 import ConfigurationAdvertisementAdd from '../pages/ConfigurationAdvertisementAdd.vue';
+import ConfigurationAdvertisementPosition from '../pages/ConfigurationAdvertisementPosition.vue';
 import ConfigurationImage from '../pages/ConfigurationImage.vue';
 import ConfigurationMessage from '../pages/ConfigurationMessage.vue';
 import ConfigurationSearch from '../pages/ConfigurationSearch.vue';
@@ -63,6 +64,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: ConfigurationAdvertisementAdd,
                     path: 'configuration/advertisement/add',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: ConfigurationAdvertisementPosition,
+                    path: 'configuration/advertisement/position',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,

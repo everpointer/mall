@@ -101,12 +101,12 @@
 </script>
 <template>
     <div class="mall-wrap">
-        <div class="configuration-advertisement-add">
+        <div class="configuration-advertisement-add-position">
             <div class="edit-link-title">
                 <i-button type="text">
                     <icon type="chevron-left"></icon>
                 </i-button>
-                <span>广告管理—新增广告</span>
+                <span>广告管理—新增广告位</span>
             </div>
             <card :bordered="false">
                 <i-form ref="addAdPosition" :model="addAdPosition" :rules="ruleValidate" :label-width="200">
