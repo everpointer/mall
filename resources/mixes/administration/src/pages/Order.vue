@@ -75,7 +75,7 @@
                         width: 140,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">查看</i-button><i-button type="ghost" size="small">设置</i-button>';
+                            return '<i-button type="ghost" class="first-btn" size="small">查看</i-button><i-button type="ghost" size="small">设置</i-button>';
                         },
                     },
                 ],
@@ -173,6 +173,16 @@
                 ],
             };
         },
+        methods: {
+            exportData() {
+                this.$refs.orderTable.exportCsv({
+                    filename: '商品订单数据',
+                });
+            },
+            toView() {
+                this.$router.push('order/view');
+            },
+        },
         beforeRouteEnter(to, from, next) {
             next(() => {
                 injection.sidebar.active('mall');
@@ -193,7 +203,7 @@
                     </div>
                     <div class="store-body">
                         <div class="store-body-header">
-                            <i-button class="export-btn" type="ghost">导出数据</i-button>
+                            <i-button class="export-btn" @click="exportData" type="ghost">导出数据</i-button>
                             <div class="store-body-header-right">
                                 <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
                                     <i-select v-model="searchCategory" slot="prepend">
@@ -203,7 +213,7 @@
                                 </i-input>
                             </div>
                         </div>
-                        <i-table highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
+                        <i-table ref="orderTable" highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
                     </div>
                     <div class="page">
                         <page :total="100" show-elevator></page>

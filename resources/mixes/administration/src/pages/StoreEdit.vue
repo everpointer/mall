@@ -7,102 +7,104 @@
 				</i-button>
 				<span>店铺管理—店铺编辑</span>
 			</div>
-			<div class="store-information title-line">
+			<div class="store-information">
                 <card>
-                    <i-form ref="storeDetail" :model="storeDetail" :rules="ruleValidate" :label-width="197">
+                    <p slot="title">店铺信息</p>
+                    <i-form ref="storeDetail" :model="storeDetail" :rules="ruleValidate" :label-width="200">
                         <div class="basic-information">
-                            <h5>店铺信息</h5>
-                            <div class="common-padding">
-                                <row>
-                                    <i-col span="18">
-                                        <form-item label="店主账号" class="input-default">
-                                            {{storeDetail.account}}
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="18">
-                                        <form-item label="店铺名称" prop="storeName">
-                                            <i-input v-model="storeDetail.storeName"></i-input>
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="18">
-                                        <form-item label="公司名称">
-                                            <i-input v-model="storeDetail.companyName"></i-input>
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="10">
-                                        <form-item label="所在地区">
-                                            <i-select v-model="storeDetail.province" placeholder="请选择">
-                                                <i-option value="beijing">北京市</i-option>
-                                                <i-option value="shanghai">上海市</i-option>
-                                                <i-option value="shenzhen">深圳市</i-option>
-                                            </i-select>
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="18">
-                                        <form-item label="店铺地址">
-                                            <i-input v-model="storeDetail.storeAddress"></i-input>
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="18">
-                                        <form-item label="开店时间"  class="input-default">
-                                            {{storeDetail.createTime}}
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="10">
-                                        <form-item label="所属分类">
-                                            <i-select v-model="storeDetail.province" placeholder="请选择">
-                                                <i-option value="beijing">北京市</i-option>
-                                                <i-option value="shanghai">上海市</i-option>
-                                                <i-option value="shenzhen">深圳市</i-option>
-                                            </i-select>
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="10">
-                                        <form-item label="所属等级">
-                                            <i-select v-model="storeDetail.province" placeholder="请选择">
-                                                <i-option value="beijing">北京市</i-option>
-                                                <i-option value="shanghai">上海市</i-option>
-                                                <i-option value="shenzhen">深圳市</i-option>
-                                            </i-select>
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="8" class="data-picker-input picker-input">
-                                        <form-item label="有效期至">
-                                            <date-picker type="date" :options="options2"
-                                                 placeholder="选择日期"></date-picker>
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                                <row>
-                                    <i-col span="10">
-                                        <form-item label="状态"  class="switch-status">
-                                            <i-switch size="large">
-                                                <span slot="open">开启</span>
-                                                <span slot="close">关闭</span>
-                                            </i-switch>
-                                        </form-item>
-                                    </i-col>
-                                </row>
-                            </div>
+                            <row>
+                                <i-col span="18">
+                                    <form-item label="店主账号">
+                                        {{storeDetail.account}}
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="18">
+                                    <form-item label="店铺名称" prop="storeName">
+                                        <i-input v-model="storeDetail.storeName"></i-input>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="18">
+                                    <form-item label="公司名称">
+                                        <i-input v-model="storeDetail.companyName"></i-input>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="10">
+                                    <form-item label="所在地区">
+                                        <i-select v-model="storeDetail.province" placeholder="请选择">
+                                            <i-option value="beijing">北京市</i-option>
+                                            <i-option value="shanghai">上海市</i-option>
+                                            <i-option value="shenzhen">深圳市</i-option>
+                                        </i-select>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="18">
+                                    <form-item label="店铺地址">
+                                        <i-input v-model="storeDetail.storeAddress"></i-input>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="18">
+                                    <form-item label="开店时间">
+                                        {{storeDetail.createTime}}
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="10">
+                                    <form-item label="所属分类">
+                                        <i-select v-model="storeDetail.province" placeholder="请选择">
+                                            <i-option value="beijing">北京市</i-option>
+                                            <i-option value="shanghai">上海市</i-option>
+                                            <i-option value="shenzhen">深圳市</i-option>
+                                        </i-select>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="10">
+                                    <form-item label="所属等级">
+                                        <i-select v-model="storeDetail.province" placeholder="请选择">
+                                            <i-option value="beijing">北京市</i-option>
+                                            <i-option value="shanghai">上海市</i-option>
+                                            <i-option value="shenzhen">深圳市</i-option>
+                                        </i-select>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="8" class="data-picker-input picker-input">
+                                    <form-item label="有效期至">
+                                        <date-picker type="date" :options="options2"
+                                                     placeholder="选择日期"></date-picker>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="10">
+                                    <form-item label="状态"  class="switch-status">
+                                        <i-switch size="large" v-model="storeDetail.switch1">
+                                            <span slot="open">开启</span>
+                                            <span slot="close">关闭</span>
+                                        </i-switch>
+                                    </form-item>
+                                </i-col>
+                            </row>
                         </div>
+                    </i-form>
+                </card>
+                <card>
+                    <p slot="title">注册信息</p>
+                    <i-form ref="storeDetail" :model="storeDetail" :rules="ruleValidate" :label-width="204">
                         <div class="register-information">
-                            <h5>注册信息</h5>
                             <div class="register-content">
                                 <div class="company-information border-color">
                                     <div>
@@ -218,13 +220,13 @@
                                                         <i-col span="8" class="data-picker-input">
                                                             <form-item label="营业执照有效期">
                                                                 <date-picker type="date" :options="options1"
-                                                                     placeholder="选择日期"></date-picker>
+                                                                             placeholder="选择日期"></date-picker>
                                                             </form-item>
                                                         </i-col>
                                                         <i-col span="8" class="data-picker-input picker-input">
                                                             <form-item label="-">
                                                                 <date-picker type="date" :options="options2"
-                                                                     placeholder="选择日期"></date-picker>
+                                                                             placeholder="选择日期"></date-picker>
                                                             </form-item>
                                                         </i-col>
                                                     </row>
@@ -255,19 +257,19 @@
                                                                     </template>
                                                                 </div>
                                                                 <upload
-                                                                    ref="upload"
-                                                                    :show-upload-list="false"
-                                                                    :default-file-list="defaultList"
-                                                                    :on-success="handleSuccess"
-                                                                    :format="['jpg','jpeg','png']"
-                                                                    :max-size="2048"
-                                                                    :on-format-error="handleFormatError"
-                                                                    :on-exceeded-size="handleMaxSize"
-                                                                    :before-upload="handleBeforeUpload"
-                                                                    multiple
-                                                                    type="drag"
-                                                                    action="//jsonplaceholder.typicode.com/posts/"
-                                                                    style="display: inline-block;">
+                                                                        ref="upload"
+                                                                        :show-upload-list="false"
+                                                                        :default-file-list="defaultList"
+                                                                        :on-success="handleSuccess"
+                                                                        :format="['jpg','jpeg','png']"
+                                                                        :max-size="2048"
+                                                                        :on-format-error="handleFormatError"
+                                                                        :on-exceeded-size="handleMaxSize"
+                                                                        :before-upload="handleBeforeUpload"
+                                                                        multiple
+                                                                        type="drag"
+                                                                        action="//jsonplaceholder.typicode.com/posts/"
+                                                                        style="display: inline-block;">
                                                                     <div class="upload-input">
                                                                         <icon type="plus-round"></icon>
                                                                     </div>
@@ -315,6 +317,7 @@ export default {
                 company_email: '',
                 contact_name: '',
                 contact_phone: '',
+                switch1: true,
             },
             ruleValidate: {
                 storeName: [

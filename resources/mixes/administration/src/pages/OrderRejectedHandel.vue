@@ -1,22 +1,22 @@
 <template>
     <div class="mall-wrap">
-        <div class="order-refund-process store-edit">
+        <div class="order-rejected-handel store-edit">
             <div class="store-refund-process">
                 <div class="edit-link-title">
                     <i-button type="text">
                         <icon type="chevron-left"></icon>
                     </i-button>
-                    <span>退款管理—处理</span>
+                    <span>所有记录—处理</span>
                 </div>
                 <div class="refund-process-content store-information">
                     <card :bordered="false">
                         <i-form ref="refundDetail" :model="refundDetail" :rules="ruleValidate" :label-width="200">
                             <div class="refund-application">
-                                <h5>买家退款申请</h5>
+                                <h5>买家退货退款申请</h5>
                                 <div class="application-content refund-module">
                                     <row>
                                         <i-col span="18">
-                                            <form-item label="店主账号">
+                                            <form-item label="申请时间">
                                                 {{refundDetail.applyTime}}
                                             </form-item>
                                         </i-col>
@@ -37,14 +37,14 @@
                                     </row>
                                     <row>
                                         <i-col span="18">
-                                            <form-item label="退款原因">
+                                            <form-item label="退货原因">
                                                 {{refundDetail.refundReason}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
-                                            <form-item label="退款说明">
+                                            <form-item label="退货说明">
                                                 {{refundDetail.refundDescription}}
                                             </form-item>
                                         </i-col>
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="refund-handel">
-                                <h5>商家退款处理</h5>
+                                <h5>商家退款退货处理</h5>
                                 <div class="handel-content refund-module">
                                     <row>
                                         <i-col span="18">
@@ -117,7 +117,7 @@
                                         <i-col span="20">
                                             <form-item label="备注信息" prop="remarks" class="remark-input">
                                                 <i-input v-model="refundDetail.remarks" type="textarea"
-                                                     :autosize="{minRows: 3,maxRows: 5}"></i-input>
+                                                         :autosize="{minRows: 3,maxRows: 5}"></i-input>
                                                 <span class="tip">
                                                     系统默认退款到“站内余额”，如果“在线退款”到原支付账号，建议在备注里说明，方便核对。
                                                 </span>
