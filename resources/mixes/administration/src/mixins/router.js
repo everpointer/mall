@@ -9,6 +9,7 @@ import GoodsStandard from '../pages/GoodsStandard.vue';
 import GoodsType from '../pages/GoodsType.vue';
 import Layout from '../layouts/Layout.vue';
 import Order from '../pages/Order.vue';
+import OrderView from '../pages/OrderView.vue';
 import OrderComplain from '../pages/OrderComplain.vue';
 import OrderEvaluation from '../pages/OrderEvaluation.vue';
 import OrderRefund from '../pages/OrderRefund.vue';
@@ -88,6 +89,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: Order,
                     path: 'order',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: OrderView,
+                    path: 'order/view',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
