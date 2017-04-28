@@ -8,7 +8,7 @@
 				<span>店铺管理—店铺编辑</span>
 			</div>
 			<div class="store-information">
-                <card>
+                <card :bordered="false">
                     <p slot="title">店铺信息</p>
                     <i-form ref="storeDetail" :model="storeDetail" :rules="ruleValidate" :label-width="200">
                         <div class="basic-information">
