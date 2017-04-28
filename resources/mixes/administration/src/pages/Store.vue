@@ -86,8 +86,7 @@
                     {
                         title: '到期时间',
                         key: 'endTime',
-                        width: 170,
-                        align: 'center',
+                        align: 'left',
                     },
                     {
                         title: '操作',
@@ -276,8 +275,7 @@
                     {
                         title: '公司电话',
                         key: 'companyPhone',
-                        width: 170,
-                        align: 'center',
+                        align: 'left',
                     },
                     {
                         title: '操作',

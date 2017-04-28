@@ -29,8 +29,8 @@
                     {
                         title: '订单编号',
                         key: 'orderID',
-                        width: 190,
                         align: 'center',
+                        width: 200,
                     },
                     {
                         title: '订单来源',
@@ -65,8 +65,7 @@
                     {
                         title: '支付方式',
                         key: 'paymentMethod',
-                        width: 200,
-                        align: 'center',
+                        align: 'left',
                     },
                     {
                         title: '操作',
