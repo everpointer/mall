@@ -1,7 +1,7 @@
 <template>
     <div class="mall-wrap">
         <div class="configuration-search-editor">
-            <div class="setBox">热门搜索-编辑</div>
+            <div class="setBox"><icon type="chevron-left" style="margin-right: 10px"></icon>热门搜索-编辑</div>
             <card>
                 <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="200">
                     <form-item label="搜索默认词" prop="search">

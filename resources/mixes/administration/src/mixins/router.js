@@ -1,6 +1,7 @@
 import Configuration from '../pages/Configuration.vue';
 import ConfigurationAdvertisement from '../pages/ConfigurationAdvertisement.vue';
 import ConfigurationImage from '../pages/ConfigurationImage.vue';
+import ConfigurationMessage from '../pages/ConfigurationMessage.vue';
 import ConfigurationSearch from '../pages/ConfigurationSearch.vue';
 import ConfigurationSearchEditor from '../pages/ConfigurationSearchEditor.vue';
 import Dashboard from '../pages/Dashboard.vue';
@@ -60,6 +61,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: ConfigurationImage,
                     path: 'configuration/image',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: ConfigurationMessage,
+                    path: 'configuration/message',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,

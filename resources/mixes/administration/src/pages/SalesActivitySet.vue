@@ -4,11 +4,15 @@
     export default {
         data() {
             return {
-                columns5: [
+                killColumns: [
+                    {
+                        type: 'selection',
+                        width: 60,
+                        align: 'center',
+                    },
                     {
                         title: '编号',
                         key: 'num',
-                        width: 130,
                         align: 'center',
                     },
                     {
@@ -26,14 +30,14 @@
                     {
                         title: '操作',
                         key: 'action',
-                        width: 150,
+                        width: 140,
                         align: 'center',
                         render() {
                             return '<i-button type="ghost" size="small">+设置商品</i-button>';
                         },
                     },
                 ],
-                salesSet: [
+                killDate: [
                     {
                         num: '001',
                         spike: '午夜场',
@@ -89,8 +93,7 @@
                 <span>秒杀活动—设置商品</span>
             </div>
            <card :bordered="false">
-               <i-table highlight-row :columns="columns5"
-                    :data="salesSet"></i-table>
+               <i-table highlight-row :columns="killColumns" :data="killDate"></i-table>
            </card>
         </div>
     </div>

@@ -8,4 +8,65 @@
             padding: 6px 8px 6px 20px;
         }
     }
+    .view-body {
+        padding: 20px 20px 40px 20px;
+        background-color: #ffffff;
+        .view-step {
+            background-color: #f5f7f9;
+            padding-left: 70px;
+            padding-top: 24px;
+            padding-bottom: 20px;
+            .ivu-steps .ivu-steps-title {
+                background: #f5f7f9;
+            }
+            .ivu-steps .ivu-steps-head
+            ,.ivu-steps-item.ivu-steps-status-wait .ivu-steps-head-inner {
+                background: #f5f7f9;
+            }
+            .ivu-steps .ivu-steps-tail {
+                padding: 0;
+            }
+
+        }
+        .ivu-tabs {
+            margin-top: 20px;
+        }
+        .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab{
+            margin-right: 10px;
+        }
+        .ivu-tabs-no-animation .ivu-tabs-content {
+            padding: 0 20px;
+            border: solid 1px #d7dde4;
+            border-top: 0;
+        }
+        .ivu-tabs-bar {
+            margin-bottom: 0;
+        }
+        .ivu-form {
+            padding: 22px 0 32px 0;
+            border-bottom: 1px solid #e3e8ee;
+            &:last-child {
+                border-bottom: 0;
+            }
+            h4 {
+                line-height: 2.5;
+            }
+            .ivu-form-item {
+                margin-bottom: 0;
+            }
+            .ivu-table-wrapper {
+                margin-bottom: 10px;
+            }
+        }
+        .price {
+            font-size: 12px;
+            line-height: 2;
+            text-align: end;
+            .totalAmount {
+                color: #ef5151;
+                font-weight: bold;
+            }
+        }
+
+    }
 }
