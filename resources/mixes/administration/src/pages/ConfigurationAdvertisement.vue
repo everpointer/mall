@@ -73,7 +73,7 @@
                         heightNum: 206,
                         adverNum: 0,
                         showNum: 4,
-                        isshow: 'cccccccccc',
+                        isshow: '是',
                     },
                     {
                         name: '商品列表左侧广告位',
@@ -83,7 +83,7 @@
                         heightNum: 206,
                         adverNum: 0,
                         showNum: 4,
-                        isshow: 'cccccccccc',
+                        isshow: '是',
                     },
                     {
                         name: '商品列表左侧广告位',
@@ -93,7 +93,7 @@
                         heightNum: 206,
                         adverNum: 0,
                         showNum: 4,
-                        isshow: 'cccccccccc',
+                        isshow: '是',
                     },
                 ],
             };
