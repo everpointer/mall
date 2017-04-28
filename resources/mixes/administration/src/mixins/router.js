@@ -34,6 +34,7 @@ import StoreCategorySet from '../pages/StoreCategorySet.vue';
 import StoreDynamics from '../pages/StoreDynamics.vue';
 import StoreLevel from '../pages/StoreLevel.vue';
 import SalesSpike from '../pages/SalesSpike.vue';
+import SalesSpikeAdjunction from '../pages/SalesSpikeAdjunction.vue';
 import SalesSpikeSetAdd from '../pages/SalesSpikeSetAdd.vue';
 import SalesSpikeSet from '../pages/SalesSpikeSet.vue';
 import SalesSpikeTime from '../pages/SalesSpikeTime.vue';
@@ -216,6 +217,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: SalesSpike,
                     path: 'sales/spike',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: SalesSpikeAdjunction,
+                    path: 'sales/spike/add',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
