@@ -72,46 +72,138 @@
     };
 </script>
 <template>
+    <!--<div class="mall-wrap">-->
+        <!--<div class="store">-->
+            <!--<tabs value="name1">-->
+                <!--<tab-pane icon="chevron-left" label="秒杀活动-设置商品-添加商品" name="name1" class="activity-title">-->
+                <!--&lt;!&ndash;<tab-pane>&ndash;&gt;-->
+                    <!--<div class="prompt-box">-->
+                        <!--<h6>提示</h6>-->
+                        <!--<p>搜索完商品后请在下方添加商品数量、限购、价格。如未填写则默认为0</p>-->
+                        <!--<p>可批量添加商品（仅相同数量、限购、价格）</p>-->
+                    <!--</div>-->
+                    <!--<div class="sales-body">-->
+                        <!--<div class="sales-body-header">-->
+                            <!--<ul class="sales-body-header-left">-->
+                                <!--<li>-->
+                                    <!--<i-select v-model="searchCategory" slot="prepend">-->
+                                        <!--<i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>-->
+                                    <!--</i-select>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<i-select v-model="searchCategory" slot="prepend">-->
+                                        <!--<i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>-->
+                                    <!--</i-select>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<i-input v-model="searchProduct" placeholder="商品关键词"></i-input>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<i-button slot="append" type="primary">搜索</i-button>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<ul class="sales-list-add">-->
+                        <!--<li class="sales-list">-->
+                            <!--<p>可选商品</p>-->
+                            <!--<div class="my-card">-->
+                                <!--<card>-->
+                                    <!--<ul>-->
+                                        <!--<li v-for="sale in sales">-->
+                                            <!--<checkbox>-->
+                                                <!--<span>{{sale.content}}</span>-->
+                                            <!--</checkbox>-->
+                                            <!--<hr>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</card>-->
+                            <!--</div>-->
+                            <!--<div class="all-select">-->
+                                <!--<div>-->
+                                    <!--<button>全选</button>-->
+                                <!--</div>-->
+                                <!--<div>数量: <input type="text">&nbsp;件</div>-->
+                                <!--<div>限购: <input type="text">&nbsp;件</div>-->
+                                <!--<div>价格: <input type="text">&nbsp;元</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <!--<li class="sales-list">-->
+                            <!--<i-button slot="append" type="primary">添加至秒杀列表 ></i-button>-->
+                            <!--<div class="my-submit">-->
+                                <!--<i-button slot="append" type="primary" class="last-btn">确认提交</i-button>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <!--<li class="sales-list">-->
+                            <!--<p>参与秒杀商品</p>-->
+                            <!--<div class="my-card">-->
+                                <!--<card>-->
+                                    <!--<ul>-->
+                                        <!--<li v-for="sale in sales">-->
+                                            <!--<checkbox>-->
+                                                <!--<span>{{sale.content}}</span>-->
+                                            <!--</checkbox>-->
+                                            <!--<hr>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</card>-->
+                            <!--</div>-->
+                            <!--<div class="all-select">-->
+                                <!--<div>-->
+                                    <!--<button>全选</button>-->
+                                    <!--<button>移除</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</tab-pane>-->
+            <!--</tabs>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="mall-wrap">
-        <div class="store">
-            <tabs value="name1">
-                <tab-pane icon="chevron-left" label="秒杀活动-设置商品-添加商品" name="name1" class="activity-title">
-                <!--<tab-pane>-->
-                    <div class="prompt-box">
-                        <h6>提示</h6>
-                        <p>搜索完商品后请在下方添加商品数量、限购、价格。如未填写则默认为0</p>
-                        <p>可批量添加商品（仅相同数量、限购、价格）</p>
+        <div class="sales-activity-set-add activity-title">
+            <div class="edit-link-title">
+                <i-button type="text">
+                    <icon type="chevron-left"></icon>
+                </i-button>
+                <span>秒杀活动—设置商品-添加商品</span>
+            </div>
+            <div class="store storeBox">
+                <div class="prompt-box">
+                    <h6>提示</h6>
+                    <p>建议设置四至五个时间段（前台显示）</p>
+                </div>
+                <div class="sales-body">
+                    <div class="sales-body-header">
+                        <ul class="sales-body-header-left">
+                            <li>
+                                <i-select v-model="searchCategory" slot="prepend">
+                                    <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                </i-select>
+                            </li>
+                            <li>
+                                <i-select v-model="searchCategory" slot="prepend">
+                                    <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                </i-select>
+                            </li>
+                            <li>
+                                <i-input v-model="searchProduct" placeholder="商品关键词"></i-input>
+                            </li>
+                            <li>
+                                <i-button slot="append" type="primary">搜索</i-button>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="sales-body">
-                        <div class="sales-body-header">
-                            <ul class="sales-body-header-left">
-                                <li>
-                                    <i-select v-model="searchCategory" slot="prepend">
-                                        <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                    </i-select>
-                                </li>
-                                <li>
-                                    <i-select v-model="searchCategory" slot="prepend">
-                                        <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                    </i-select>
-                                </li>
-                                <li>
-                                    <i-input v-model="searchProduct" placeholder="商品关键词"></i-input>
-                                </li>
-                                <li>
-                                    <i-button slot="append" type="primary">搜索</i-button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <ul class="sales-list-add">
-                        <li class="sales-list">
+                </div>
+                <div class="sales-list-add">
+                    <row>
+                        <i-col span="11" class="sales-list">
                             <p>可选商品</p>
                             <div class="my-card">
                                 <card>
                                     <ul>
                                         <li v-for="sale in sales">
-                                            <checkbox>
+                                            <checkbox">
                                                 <span>{{sale.content}}</span>
                                             </checkbox>
                                             <hr>
@@ -127,14 +219,15 @@
                                 <div>限购: <input type="text">&nbsp;件</div>
                                 <div>价格: <input type="text">&nbsp;元</div>
                             </div>
-                        </li>
-                        <li class="sales-list">
-                            <i-button slot="append" type="primary">添加至秒杀列表 ></i-button>
+                        </i-col>
+                        <i-col span="2" class="sales-list">
                             <div class="my-submit">
-                                <i-button slot="append" type="primary" class="last-btn">确认提交</i-button>
+                                <i-button slot="append" type="primary" size="small">添加至秒杀列表
+                                    <icon type="chevron-right"></icon>
+                                </i-button>
                             </div>
-                        </li>
-                        <li class="sales-list">
+                        </i-col>
+                        <i-col span="11" class="sales-list">
                             <p>参与秒杀商品</p>
                             <div class="my-card">
                                 <card>
@@ -154,47 +247,9 @@
                                     <button>移除</button>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </tab-pane>
-            </tabs>
-        </div>
-    </div>
-    <!--<div class="mall-wrap">-->
-        <!--<div class="sales-activity-set-add activity-title">-->
-            <!--<div class="edit-link-title">-->
-                <!--<i-button type="text">-->
-                    <!--<icon type="chevron-left"></icon>-->
-                <!--</i-button>-->
-                <!--<span>秒杀活动—设置商品-添加商品</span>-->
-            <!--</div>-->
-            <!--<div class="store storeBox">-->
-                <!--<div class="prompt-box">-->
-                    <!--<h6>提示</h6>-->
-                    <!--<p>建议设置四至五个时间段（前台显示）</p>-->
-                <!--</div>-->
-                <!--<div class="sales-body">-->
-                    <!--<div class="sales-body-header">-->
-                        <!--<ul class="sales-body-header-left">-->
-                            <!--<li>-->
-                                <!--<i-select v-model="searchCategory" slot="prepend">-->
-                                    <!--<i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>-->
-                                <!--</i-select>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<i-select v-model="searchCategory" slot="prepend">-->
-                                    <!--<i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>-->
-                                <!--</i-select>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<i-input v-model="searchProduct" placeholder="商品关键词"></i-input>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<i-button slot="append" type="primary">搜索</i-button>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                <!--</div>-->
+                        </i-col>
+                    </row>
+                </div>
                 <!--<ul class="sales-list-add">-->
                         <!--<li class="sales-list">-->
                             <!--<p>可选商品</p>-->
@@ -247,7 +302,7 @@
                             <!--</div>-->
                         <!--</li>-->
                     <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+            </div>
+        </div>
+    </div>
 </template>
