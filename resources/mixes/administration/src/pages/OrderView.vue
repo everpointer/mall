@@ -1,5 +1,6 @@
 <script>
     import injection from '../helpers/injection';
+    import goods from '../assets/images/adv.jpg';
 
     export default {
         data() {
@@ -32,6 +33,9 @@
                         key: 'orderName',
                         align: 'center',
                         width: 650,
+                        render(row) {
+                            return `<img class="orderImg" :src="${row.img}"><span>${row.orderName}</span>`;
+                        },
                     },
                     {
                         title: '单价',
@@ -56,6 +60,7 @@
                         orderNumber: 5,
                         totalAmount: '99.99',
                         freight: 10.00,
+                        img: goods,
                     },
                 ],
                 orderData: {

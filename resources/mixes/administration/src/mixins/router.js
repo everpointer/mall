@@ -33,10 +33,10 @@ import StoreCategory from '../pages/StoreCategory.vue';
 import StoreCategorySet from '../pages/StoreCategorySet.vue';
 import StoreDynamics from '../pages/StoreDynamics.vue';
 import StoreLevel from '../pages/StoreLevel.vue';
-import SalesActivity from '../pages/SalesActivity.vue';
-import SalesActivitySetAdd from '../pages/SalesActivitySetAdd.vue';
-import SalesActivitySet from '../pages/SalesActivitySet.vue';
-import SalesActivityTime from '../pages/SalesActivityTime.vue';
+import SalesSpike from '../pages/SalesSpike.vue';
+import SalesSpikeSetAdd from '../pages/SalesSpikeSetAdd.vue';
+import SalesSpikeSet from '../pages/SalesSpikeSet.vue';
+import SalesSpikeTime from '../pages/SalesSpikeTime.vue';
 
 export default function (injection) {
     injection.useModuleRoute([
@@ -214,23 +214,23 @@ export default function (injection) {
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
-                    component: SalesActivity,
-                    path: 'sales/activity',
+                    component: SalesSpike,
+                    path: 'sales/spike',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
-                    component: SalesActivitySetAdd,
-                    path: 'sales/activity/set/add',
+                    component: SalesSpikeSetAdd,
+                    path: 'sales/spike/set/add',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
-                    component: SalesActivitySet,
-                    path: 'sales/activity/set',
+                    component: SalesSpikeSet,
+                    path: 'sales/spike/set',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
-                    component: SalesActivityTime,
-                    path: 'sales/activity/time',
+                    component: SalesSpikeTime,
+                    path: 'sales/spike/time',
                 },
             ],
             component: Layout,
