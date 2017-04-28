@@ -1,6 +1,6 @@
 <template>
     <div class="mall-wrap">
-        <div class="order-rejected-look store-edit">
+        <div class="order-rejected-look">
             <div class="store-refund-process">
                 <div class="edit-link-title">
                     <i-button type="text">

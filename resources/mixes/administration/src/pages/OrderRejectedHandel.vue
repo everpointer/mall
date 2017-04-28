@@ -1,6 +1,6 @@
 <template>
     <div class="mall-wrap">
-        <div class="order-rejected-handel store-edit">
+        <div class="order-rejected-handel">
             <div class="store-refund-process">
                 <div class="edit-link-title">
                     <i-button type="text">
@@ -10,49 +10,49 @@
                 </div>
                 <div class="refund-process-content store-information">
                     <card :bordered="false">
-                        <i-form ref="refundDetail" :model="refundDetail" :rules="ruleValidate" :label-width="200">
+                        <i-form ref="rejectedDetail" :model="rejectedDetail" :rules="ruleValidate" :label-width="200">
                             <div class="refund-application">
                                 <h5>买家退货退款申请</h5>
                                 <div class="application-content refund-module">
                                     <row>
                                         <i-col span="18">
                                             <form-item label="申请时间">
-                                                {{refundDetail.applyTime}}
+                                                {{rejectedDetail.applyTime}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="商品名称">
-                                                {{refundDetail.goodsname}}
+                                                {{rejectedDetail.goodsname}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="退款金额">
-                                                ￥{{refundDetail.refundMoney}}
+                                                ￥{{rejectedDetail.refundMoney}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="退货原因">
-                                                {{refundDetail.refundReason}}
+                                                {{rejectedDetail.refundReason}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="退货说明">
-                                                {{refundDetail.refundDescription}}
+                                                {{rejectedDetail.refundDescription}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="凭证上传">
-                                                {{refundDetail.refundImg}}
+                                                {{rejectedDetail.refundImg}}
                                             </form-item>
                                         </i-col>
                                     </row>
@@ -64,21 +64,21 @@
                                     <row>
                                         <i-col span="18">
                                             <form-item label="审核结果">
-                                                {{refundDetail.handelResult}}
+                                                {{rejectedDetail.handelResult}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="处理备注">
-                                                {{refundDetail.handelText}}
+                                                {{rejectedDetail.handelText}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="处理时间">
-                                                {{refundDetail.handelTime}}
+                                                {{rejectedDetail.handelTime}}
                                             </form-item>
                                         </i-col>
                                     </row>
@@ -90,21 +90,21 @@
                                     <row>
                                         <i-col span="18">
                                             <form-item label="支付方式">
-                                                {{refundDetail.payStyle}}
+                                                {{rejectedDetail.payStyle}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="订单总额">
-                                                ￥{{refundDetail.orderCounts}}
+                                                ￥{{rejectedDetail.orderCounts}}
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
                                         <i-col span="18">
                                             <form-item label="在线支付金额">
-                                                ￥{{refundDetail.linePay}}
+                                                ￥{{rejectedDetail.linePay}}
                                             </form-item>
                                         </i-col>
                                     </row>
@@ -116,7 +116,7 @@
                                     <row>
                                         <i-col span="20">
                                             <form-item label="备注信息" prop="remarks" class="remark-input">
-                                                <i-input v-model="refundDetail.remarks" type="textarea"
+                                                <i-input v-model="rejectedDetail.remarks" type="textarea"
                                                          :autosize="{minRows: 3,maxRows: 5}"></i-input>
                                                 <span class="tip">
                                                     系统默认退款到“站内余额”，如果“在线退款”到原支付账号，建议在备注里说明，方便核对。
@@ -128,7 +128,7 @@
                                     <row>
                                         <i-col span="18">
                                             <form-item label="">
-                                                <i-button type="primary" @click="handleSubmit('refundDetail')">确认提交</i-button>
+                                                <i-button type="primary" @click="handleSubmit('rejectedDetail')">确认提交</i-button>
                                             </form-item>
                                         </i-col>
                                     </row>
@@ -148,7 +148,7 @@
     export default {
         data() {
             return {
-                refundDetail: {
+                rejectedDetail: {
                     applyTime: '2016-12-21  10:31:59',
                     goodsname: '****',
                     refundMoney: '99.00',
