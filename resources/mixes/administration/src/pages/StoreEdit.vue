@@ -2,9 +2,9 @@
 	<div class="mall-wrap">
 		<div class="store-edit">
 			<div class="edit-link-title">
-				<i-button type="text">
-					<icon type="chevron-left"></icon>
-				</i-button>
+                <i-button type="text">
+                    <icon type="chevron-left"></icon>
+                </i-button>
 				<span>店铺管理—店铺编辑</span>
 			</div>
 			<div class="store-information">

@@ -227,7 +227,7 @@ export default function (injection) {
                 {
                     beforeEnter: injection.middleware.requireAuth,
                     component: SalesSpikeAdjunction,
-                    path: 'sales/spike/add',
+                    path: 'sales/spike/adjunction',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,

@@ -112,7 +112,7 @@ export default function (injection) {
         {
             children: [
                 {
-                    path: '/mall/sales/activity',
+                    path: '/mall/sales/spike',
                     title: '秒杀活动',
                 },
             ],

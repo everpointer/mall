@@ -47,6 +47,8 @@
     }
     .sales-list-add {
         height: 100%;
+        width: 100%;
+        margin: 0;
         background-color: #fff;
         p {
             text-align: center;
@@ -55,21 +57,15 @@
             margin-bottom: 10px;
         }
         .sales-list {
-            float: left;
             height: 100%;
             &:nth-child(2) {
-                margin-top: 150px;
-                margin-left: 13px;
                 .my-submit {
-                    margin-top: 189px;
-                    margin-left:10px ;
+                    margin-top: 150px;
+                    margin-left: 10px;
                 }
             }
-            &:last-child {
-                float: right;
-            }
             .my-card {
-                width: 692px ;
+                //width: 692px ;
                 ul {
                     li {
                         font-weight: 300;
@@ -82,7 +78,7 @@
                             list-style: none;
                             margin: 16px 0;
                             border: none;
-                            width: 652px;
+                            padding: 0 10px;
                             height: 1px;
                             background-color: #e3e8ee;
                         }
@@ -125,63 +121,62 @@
     }
 }
 
-//.sales-activity-set-add {
-//    background-color: #fff;
-//    height: 100%;
-//    .edit-link-title {
-//        background-color: #fff;
-//        height: 44px;
-//        line-height: 44px;
-//        margin-bottom: 10px;
-//        .ivu-btn {
-//            padding: 6px 8px 6px 20px;
-//        }
-//    }
-//    .storeBox {
-//        height: 100%;
-//        padding: 20px 20px 0 20px;
-//        background-color: #fff;
-//    }
-//    .prompt-box {
-//        background-color: #f5f7f9;
-//        padding: 20px 0 20px 40px;
-//        font-size: 12px;
-//        h6 {
-//            font-size: 12px;
-//            font-weight: 300;
-//        }
-//    }
-//    .first-btn {
-//        margin-right: 10px;
-//    }
-//    .store-body {
-//        margin-top: 20px;
-//        .refresh {
-//            margin-left: 20px;
-//            text-align: left;
-//            padding-left: 0;
-//            font-weight: 300;
-//            color: #657180;
-//            i {
-//                font-size: 16px ;
-//            }
-//        }
-//        .store-body-header {
-//            overflow: hidden;
-//            .export-btn {
-//                float: left;
-//            }
-//        }
-//        .shop-table {
-//            margin-top: 10px;
-//            .ivu-btn-small {
-//                padding: 3px 19px;
-//                border-radius: 4px;
-//            }
-//            .ivu-table-cell {
-//                padding-left: 0;
-//                padding-right: 0;
-//            }
-//        }
-//    }
-//}
+.sales-activity-set-add {
+    height: 100%;
+    .edit-link-title {
+        background-color: #fff;
+        height: 44px;
+        line-height: 44px;
+        margin-bottom: 10px;
+        .ivu-btn {
+            padding: 6px 8px 6px 20px;
+        }
+    }
+    .storeBox {
+        height: 100%;
+        padding: 20px 20px 0 20px;
+        background-color: #fff;
+    }
+    .prompt-box {
+        background-color: #f5f7f9;
+        padding: 20px 0 20px 40px;
+        font-size: 12px;
+        h6 {
+            font-size: 12px;
+            font-weight: 300;
+        }
+    }
+    .first-btn {
+        margin-right: 10px;
+    }
+    .store-body {
+        margin-top: 20px;
+        .refresh {
+            margin-left: 20px;
+            text-align: left;
+            padding-left: 0;
+            font-weight: 300;
+            color: #657180;
+            i {
+                font-size: 16px ;
+            }
+        }
+        .store-body-header {
+            overflow: hidden;
+            .export-btn {
+                float: left;
+            }
+        }
+        .shop-table {
+            margin-top: 10px;
+            .ivu-btn-small {
+                padding: 3px 19px;
+                border-radius: 4px;
+            }
+            .ivu-table-cell {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+}
