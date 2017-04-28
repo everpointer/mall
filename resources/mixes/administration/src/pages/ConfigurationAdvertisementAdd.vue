@@ -4,13 +4,31 @@
     export default {
         data() {
             return {
+                action: `${window.api}/mall/upload`,
                 addAdPosition: {
                     name: '',
                     province: '',
                     widthNum: '',
                     heightNum: '',
                     showStyle: 'style1',
+                    logo: '',
+                    switchStatus: true,
                 },
+                ruleValidate: {
+                    name: [
+                        { required: true, message: '名称不能为空', trigger: 'blur' },
+                    ],
+                    widthNum: [
+                        { required: true, message: '宽度不能为空', trigger: 'blur' },
+                    ],
+                    heightNum: [
+                        { required: true, message: '高度不能为空', trigger: 'blur' },
+                    ],
+                    logo: [
+                        { required: true, message: '广告位默认图片不能为空', trigger: 'blur' },
+                    ],
+                },
+                loading: false,
                 province: [
                     {
                         value: '1',
@@ -27,6 +45,57 @@
             next(() => {
                 injection.sidebar.active('mall');
             });
+        },
+        methods: {
+            removeLogo() {
+                this.addAdPosition.logo = '';
+            },
+            uploadBefore() {
+                injection.loading.start();
+            },
+            uploadError(error, data) {
+                const self = this;
+                injection.loading.error();
+                if (typeof data.message === 'object') {
+                    for (const p in data.message) {
+                        self.$notice.error({
+                            title: data.message[p],
+                        });
+                    }
+                } else {
+                    self.$notice.error({
+                        title: data.message,
+                    });
+                }
+            },
+            uploadFormatError(file) {
+                this.$notice.warning({
+                    title: '文件格式不正确',
+                    desc: `文件 ${file.name} 格式不正确`,
+                });
+            },
+            uploadSuccess(data) {
+                const self = this;
+                injection.loading.finish();
+                self.$notice.open({
+                    title: data.message,
+                });
+                self.addAdPosition.logo = data.data.path;
+            },
+            submit() {
+                const self = this;
+                self.loading = true;
+                self.$refs.addAdPosition.validate(valid => {
+                    if (valid) {
+                        window.console.log(valid);
+                    } else {
+                        self.loading = false;
+                        self.$notice.error({
+                            title: '请正确填写设置信息！',
+                        });
+                    }
+                });
+            },
         },
     };
 </script>
@@ -83,6 +152,57 @@
                         <i-col span="12">
                             <form-item label="高度" prop="heightNum">
                                 <i-input v-model="addAdPosition.heightNum"></i-input>
+                            </form-item>
+                        </i-col>
+                    </row>
+                    <row>
+                        <i-col span="12">
+                            <form-item label="高度" prop="heightNum">
+                                <i-input v-model="addAdPosition.heightNum"></i-input>
+                            </form-item>
+                        </i-col>
+                    </row>
+                    <row>
+                        <i-col span="12">
+                            <form-item label="广告位默认图片上传" prop="logo">
+                                <div class="image-preview" v-if="addAdPosition.logo">
+                                    <img :src="form.logo">
+                                    <icon type="close" @click.native="removeLogo"></icon>
+                                </div>
+                                <upload :action="action"
+                                        :before-upload="uploadBefore"
+                                        :format="['jpg','jpeg','png']"
+                                        :headers="{
+                                            Authorization: `Bearer ${$store.state.token.access_token}`
+                                        }"
+                                        :max-size="2048"
+                                        :on-error="uploadError"
+                                        :on-format-error="uploadFormatError"
+                                        :on-success="uploadSuccess"
+                                        ref="upload"
+                                        :show-upload-list="false"
+                                        v-if="addAdPosition.logo === '' || addAdPosition.logo === null">
+                                </upload>
+                            </form-item>
+                        </i-col>
+                    </row>
+                    <row>
+                        <i-col span="12">
+                            <form-item label="状态">
+                                <i-switch size="large" v-model="addAdPosition.switchStatus">
+                                    <span slot="open">开启</span>
+                                    <span slot="close">关闭</span>
+                                </i-switch>
+                            </form-item>
+                        </i-col>
+                    </row>
+                    <row>
+                        <i-col span="12">
+                            <form-item>
+                                <i-button :loading="loading" type="primary" @click.native="submit">
+                                    <span v-if="!loading">确认提交</span>
+                                    <span v-else>正在提交…</span>
+                                </i-button>
                             </form-item>
                         </i-col>
                     </row>
