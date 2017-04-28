@@ -49,18 +49,18 @@
                     {
                         title: '是否启用',
                         key: 'isshow',
-                        width: 150,
+                        width: 200,
                     },
                     {
                         title: '操作',
                         key: 'action',
-                        width: 150,
+                        width: 200,
                         align: 'center',
                         fixed: 'right',
-                        render() {
-                            return `<i-select  placeholder="设置">
-                                <i-option value="beijing">设置</i-option>
-                                </i-select><i-button type="ghost" size="small">删除</i-button>`;
+                        render(row, column, index) {
+                            return `<dropdown><i-button type="ghost">设置<icon type="arrow-down-b"></icon></i-button>
+                                <dropdown-menu slot="list"><dropdown-item>设置设置</dropdown-item></dropdown-menu></dropdown>
+                                <i-button type="ghost" class="delete-ad" @click="removeAd(${index})">删除</i-button>`;
                         },
                     },
                 ],
@@ -73,7 +73,7 @@
                         heightNum: 206,
                         adverNum: 0,
                         showNum: 4,
-                        isshow: 'cccccccccc',
+                        isshow: '是',
                     },
                     {
                         name: '商品列表左侧广告位',
@@ -83,7 +83,7 @@
                         heightNum: 206,
                         adverNum: 0,
                         showNum: 4,
-                        isshow: 'cccccccccc',
+                        isshow: '是',
                     },
                     {
                         name: '商品列表左侧广告位',
@@ -93,7 +93,7 @@
                         heightNum: 206,
                         adverNum: 0,
                         showNum: 4,
-                        isshow: 'cccccccccc',
+                        isshow: '是',
                     },
                 ],
             };
@@ -102,6 +102,12 @@
             next(() => {
                 injection.sidebar.active('mall');
             });
+        },
+        methods: {
+            removeAd(index) {
+                console.log(index);
+                this.advertisementData.splice(index, 1);
+            },
         },
     };
 </script>
