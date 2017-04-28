@@ -6,66 +6,95 @@
             return {
                 advertisement: [
                     {
-                        title: '编号',
-                        key: 'num',
-                        width: 130,
+                        type: 'selection',
+                        width: 60,
                         align: 'center',
+                        fixed: 'left',
                     },
                     {
-                        title: '秒杀时段名称',
-                        key: 'spike',
+                        title: '名称',
+                        key: 'name',
+                        width: 200,
                     },
                     {
-                        title: '每日开始时间',
-                        key: 'startTime',
+                        title: '类型',
+                        key: 'type',
+                        width: 100,
                     },
                     {
-                        title: '每日结束时间',
-                        key: 'endTime',
+                        title: '展示方式',
+                        key: 'showStyle',
+                        width: 200,
+                    },
+                    {
+                        title: '宽度/字数',
+                        key: 'wordNum',
+                        width: 150,
+                    },
+                    {
+                        title: '高度',
+                        key: 'heightNum',
+                        width: 150,
+                    },
+                    {
+                        title: '广告数',
+                        key: 'adverNum',
+                        width: 150,
+                    },
+                    {
+                        title: '正在展示',
+                        key: 'showNum',
+                        width: 150,
+                    },
+                    {
+                        title: '是否启用',
+                        key: 'isshow',
+                        width: 150,
                     },
                     {
                         title: '操作',
                         key: 'action',
                         width: 150,
                         align: 'center',
+                        fixed: 'right',
                         render() {
-                            return '<i-button type="ghost" size="small">+设置商品</i-button>';
+                            return `<i-select  placeholder="设置">
+                                <i-option value="beijing">设置</i-option>
+                                </i-select><i-button type="ghost" size="small">删除</i-button>`;
                         },
                     },
                 ],
                 advertisementData: [
                     {
-                        num: '001',
-                        spike: '午夜场',
-                        startTime: '2016-02-15',
-                        endTime: '2017-12-27',
-                        action: '',
+                        name: '商品列表左侧广告位',
+                        type: '图片',
+                        showStyle: '多广告展示',
+                        wordNum: 206,
+                        heightNum: 206,
+                        adverNum: 0,
+                        showNum: 4,
+                        isshow: 'cccccccccc',
                     },
                     {
-                        num: '002',
-                        spike: '午夜场',
-                        startTime: '2016-02-15',
-                        endTime: '2017-12-27',
+                        name: '商品列表左侧广告位',
+                        type: '图片',
+                        showStyle: '多广告展示',
+                        wordNum: 206,
+                        heightNum: 206,
+                        adverNum: 0,
+                        showNum: 4,
+                        isshow: 'cccccccccc',
                     },
                     {
-                        num: '003',
-                        spike: '午夜场',
-                        startTime: '2016-02-15',
-                        endTime: '2017-12-27',
+                        name: '商品列表左侧广告位',
+                        type: '图片',
+                        showStyle: '多广告展示',
+                        wordNum: 206,
+                        heightNum: 206,
+                        adverNum: 0,
+                        showNum: 4,
+                        isshow: 'cccccccccc',
                     },
-                    {
-                        num: '004',
-                        spike: '午夜场',
-                        startTime: '2016-02-15',
-                        endTime: '2017-12-27',
-                    },
-                    {
-                        num: '005',
-                        spike: '午夜场',
-                        startTime: '2016-02-15',
-                        endTime: '2017-12-27',
-                    },
-
                 ],
             };
         },
