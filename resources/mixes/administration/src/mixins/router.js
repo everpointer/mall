@@ -2,6 +2,7 @@ import Configuration from '../pages/Configuration.vue';
 import ConfigurationAdvertisement from '../pages/ConfigurationAdvertisement.vue';
 import ConfigurationImage from '../pages/ConfigurationImage.vue';
 import ConfigurationSearch from '../pages/ConfigurationSearch.vue';
+import ConfigurationSearchEditor from '../pages/ConfigurationSearchEditor.vue';
 import Dashboard from '../pages/Dashboard.vue';
 import Goods from '../pages/Goods.vue';
 import GoodsCategory from '../pages/GoodsCategory.vue';
@@ -64,6 +65,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: ConfigurationSearch,
                     path: 'configuration/search',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: ConfigurationSearchEditor,
+                    path: 'configuration/search/editor',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
