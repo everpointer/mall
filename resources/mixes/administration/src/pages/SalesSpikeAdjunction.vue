@@ -32,6 +32,20 @@
                     }
                 });
             },
+            submit() {
+                const self = this;
+                self.loading = true;
+                self.$refs.form.validate(valid => {
+                    if (valid) {
+                        window.console.log(valid);
+                    } else {
+                        self.loading = false;
+                        self.$notice.error({
+                            title: '请正确填写设置信息！',
+                        });
+                    }
+                });
+            },
         },
         beforeRouteEnter(to, from, next) {
             next(() => {
@@ -87,7 +101,7 @@
                         </i-col>
                     </row>
                     <form-item>
-                        <i-button @click.native="handleSubmit('activityValidate')" type="primary">
+                        <i-button @click.native="submit('activityValidate')" type="primary">
                             <span v-if="!loading">确认提交</span>
                             <span v-else>正在提交…</span>
                         </i-button>
