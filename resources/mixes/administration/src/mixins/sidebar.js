@@ -137,6 +137,10 @@ export default function (injection) {
                     path: '/mall/configuration/image',
                     title: '图片设置',
                 },
+                {
+                    path: '/mall/configuration/message',
+                    title: '消息通知',
+                },
             ],
             icon: 'plus',
             title: '设置',

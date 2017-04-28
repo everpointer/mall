@@ -1,7 +1,7 @@
 <template>
     <div class="mall-wrap">
         <div class="store-category-set">
-            <div class="setBox">店铺名称-设置</div>
+            <div class="setBox"><icon type="chevron-left" style="margin-right: 10px"></icon>店铺名称-设置</div>
                 <card>
                     <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="200">
                         <form-item label="分类名称" prop="name">
@@ -19,7 +19,6 @@
                         </form-item>
                     </i-form>
                 </card>
-
         </div>
     </div>
 </template>
