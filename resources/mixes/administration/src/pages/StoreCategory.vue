@@ -12,13 +12,11 @@
                 storeCategoryColumns: [
                     {
                         type: 'selection',
-                        width: 100,
+                        width: 60,
                         align: 'center',
-                        fixed: 'left',
                     },
                     {
                         title: '排序',
-                        width: 200,
                         align: 'center',
                         render() {
                             return '<i-input type="ghost" style="width: 48px;"></i-input>';
@@ -26,26 +24,23 @@
                     },
                     {
                         title: '分类名称',
-                        width: 500,
                         align: 'center',
                         render() {
                             return '<i-input type="ghost" style="width: 268px;"></i-input>';
                         },
                     },
                     {
-                        title: '保证金属额',
+                        title: '保证金数额',
                         key: 'number',
-                        width: 500,
                         align: 'center',
                     },
                     {
                         title: '操作',
                         key: 'action',
-                        fixed: 'right',
-                        width: 200,
+                        width: 140,
                         align: 'center',
-                        render() {
-                            return '<i-button type="ghost" size="small">删除</i-button><i-button type="ghost" size="small">设置</i-button>';
+                        render(row, column, index) {
+                            return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">删除</i-button><i-button type="ghost" size="small">设置</i-button>`;
                         },
                     },
                 ],
