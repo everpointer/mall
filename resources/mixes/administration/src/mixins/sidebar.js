@@ -115,6 +115,10 @@ export default function (injection) {
                     path: '/mall/sales/spike',
                     title: '秒杀活动',
                 },
+                {
+                    path: '/mall/sales/fulldown',
+                    title: '满减（暂空）',
+                },
             ],
             icon: 'plus',
             title: '促销',

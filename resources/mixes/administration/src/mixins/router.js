@@ -36,10 +36,12 @@ import StoreCategorySet from '../pages/StoreCategorySet.vue';
 import StoreDynamics from '../pages/StoreDynamics.vue';
 import StoreLevel from '../pages/StoreLevel.vue';
 import SalesSpike from '../pages/SalesSpike.vue';
+import SalesFullDown from '../pages/SalesFullDown.vue';
 import SalesSpikeAdjunction from '../pages/SalesSpikeAdjunction.vue';
 import SalesSpikeSetAdd from '../pages/SalesSpikeSetAdd.vue';
 import SalesSpikeSet from '../pages/SalesSpikeSet.vue';
 import SalesSpikeTime from '../pages/SalesSpikeTime.vue';
+import SalesSpikeTimeAddtime from '../pages/SalesSpikeTimeAddtime.vue';
 
 export default function (injection) {
     injection.useModuleRoute([
@@ -232,6 +234,11 @@ export default function (injection) {
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
+                    component: SalesFullDown,
+                    path: 'sales/fulldown',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
                     component: SalesSpikeAdjunction,
                     path: 'sales/spike/adjunction',
                 },
@@ -249,6 +256,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: SalesSpikeTime,
                     path: 'sales/spike/time',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: SalesSpikeTimeAddtime,
+                    path: 'sales/spike/time/addtime',
                 },
             ],
             component: Layout,
