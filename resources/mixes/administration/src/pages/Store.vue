@@ -87,12 +87,13 @@
                         title: '到期时间',
                         key: 'endTime',
                         align: 'left',
+                        width: 170,
                     },
                     {
                         title: '操作',
                         key: 'action',
                         fixed: 'right',
-                        width: 140,
+                        width: 180,
                         align: 'center',
                         render(row, column, index) {
                             return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">删除</i-button><i-button type="ghost" size="small">查看</i-button>`;
@@ -276,12 +277,13 @@
                         title: '公司电话',
                         key: 'companyPhone',
                         align: 'left',
+                        width: 170,
                     },
                     {
                         title: '操作',
                         key: 'action',
                         fixed: 'right',
-                        width: 140,
+                        width: 90,
                         align: 'center',
                         render() {
                             return '<i-button type="ghost" size="small">查看</i-button>';

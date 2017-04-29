@@ -49,7 +49,7 @@
                     {
                         title: '评价内容',
                         key: 'evaluationContent',
-                        width: 350,
+                        width: 400,
                         align: 'center',
                     },
                     {

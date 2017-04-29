@@ -97,6 +97,7 @@
                         title: '买家ID',
                         key: 'buyerID',
                         align: 'left',
+                        width: 200,
                     },
                     {
                         title: '操作',

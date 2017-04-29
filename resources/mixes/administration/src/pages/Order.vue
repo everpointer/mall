@@ -59,19 +59,20 @@
                     {
                         title: '支付单号',
                         key: 'payNumber',
-                        width: 200,
+                        width: 250,
                         align: 'center',
                     },
                     {
                         title: '支付方式',
                         key: 'paymentMethod',
                         align: 'left',
+                        width: 150,
                     },
                     {
                         title: '操作',
                         key: 'action',
                         fixed: 'right',
-                        width: 140,
+                        width: 180,
                         align: 'center',
                         render() {
                             return '<i-button type="ghost" class="first-btn" size="small">查看</i-button><i-button type="ghost" size="small">设置</i-button>';
