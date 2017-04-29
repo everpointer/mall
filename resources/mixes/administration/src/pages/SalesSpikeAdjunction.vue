@@ -4,6 +4,7 @@
     export default {
         data() {
             return {
+                self: this,
                 loading: false,
                 activityData: {
                     title: '',
@@ -20,9 +21,27 @@
                         },
                     ],
                 },
+                startOptions: {
+                    disabledDate(date) {
+                        return date && date.valueOf() < Date.now() - 86400000;
+                    },
+                },
+                endOptions: {
+                    disabledDate(date) {
+                        return date && date.valueOf() < this.getStartTime;
+                    },
+                },
             };
         },
+        computed: {
+            getStartTime() {
+                return Date.parse(this.activityData.startTime);
+            },
+        },
         methods: {
+            shuchu() {
+                console.log(Date.parse(this.activityData.startTime));
+            },
             submit() {
                 const self = this;
                 self.loading = true;
@@ -74,6 +93,7 @@
                             <i-col span="12">
                                 <form-item label="开始时间：">
                                     <date-picker type="date" placeholder="选择日期"
+                                                 :options="startOptions"
                                                  v-model="activityData.startTime"></date-picker>
                                 </form-item>
                             </i-col>
@@ -82,6 +102,8 @@
                             <i-col span="12">
                                 <form-item label="结束时间：">
                                     <date-picker type="date" placeholder="选择日期"
+                                                 :options="endOptions"
+                                                 @on-change="shuchu"
                                                  v-model="activityData.endTime"></date-picker>
                                 </form-item>
                             </i-col>
