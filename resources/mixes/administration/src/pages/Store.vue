@@ -413,6 +413,7 @@
                         companyPhone: '029-5554544',
                     },
                 ],
+                self: this,
             };
         },
         methods: {
@@ -460,7 +461,7 @@
                                 </i-input>
                             </div>
                         </div>
-                        <i-table ref="managementTable" highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
+                        <i-table ref="managementTable" highlight-row class="shop-table" :columns="managementColumns" :context="self" :data="managementData"></i-table>
                     </div>
                     <div class="page">
                         <page :total="100" show-elevator></page>
@@ -482,7 +483,12 @@
                                 </i-input>
                             </div>
                         </div>
-                        <i-table highlight-row ref="applicationTable" class="shop-table" :columns="applicationColumns" :data="applicationData"></i-table>
+                        <i-table highlight-row class="shop-table"
+                                 :columns="applicationColumns"
+                                 :context="self"
+                                 :data="applicationData"
+                                 ref="applicationTable" >
+                        </i-table>
                     </div>
                     <div class="page">
                         <page :total="100" show-elevator></page>

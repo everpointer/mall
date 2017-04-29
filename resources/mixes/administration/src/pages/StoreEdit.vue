@@ -2,7 +2,7 @@
 	<div class="mall-wrap">
 		<div class="store-edit">
 			<div class="edit-link-title">
-                <i-button type="text">
+                <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
 				<span>店铺管理—店铺编辑</span>
@@ -341,6 +341,10 @@ export default {
         });
     },
     methods: {
+        goBack() {
+            const self = this;
+            self.$router.go(-1);
+        },
         handleSubmit(name) {
             this.$refs[name].validate(valid => {
                 if (valid) {
