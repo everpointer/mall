@@ -9,9 +9,16 @@
         },
         data() {
             return {
+                action: `${window.api}/mall/upload`,
                 loading: false,
+                imageLoading: false,
                 parameter: {
                     imageType: '',
+                },
+                defaultImage: {
+                    goodsImage: '',
+                    shopLogo: '',
+                    shopImage: '',
                 },
                 validate: {
                     imageType: [
@@ -57,6 +64,75 @@
                     }
                 });
             },
+            submitImage() {
+                const self = this;
+                self.imageLoading = true;
+//                if (valid) {
+//                    self.$Message.success('提交成功!');
+//                } else {
+//                    self.imageLoading = false;
+//                    self.$notice.error({
+//                        title: '请正确填写设置信息！',
+//                    });
+//                }
+            },
+            removeGoodsImage() {
+                this.defaultImage.goodsImage = '';
+            },
+            removeShopLogo() {
+                this.defaultImage.shopLogo = '';
+            },
+            removeShopImage() {
+                this.defaultImage.shopImage = '';
+            },
+            uploadBefore() {
+                injection.loading.start();
+            },
+            uploadError(error, data) {
+                const self = this;
+                injection.loading.error();
+                if (typeof data.message === 'object') {
+                    for (const p in data.message) {
+                        self.$notice.error({
+                            title: data.message[p],
+                        });
+                    }
+                } else {
+                    self.$notice.error({
+                        title: data.message,
+                    });
+                }
+            },
+            uploadFormatError(file) {
+                this.$notice.warning({
+                    title: '文件格式不正确',
+                    desc: `文件 ${file.name} 格式不正确，请上传 jpg 或 png 格式的图片。`,
+                });
+            },
+            uploadGoodsImageSuccess(data) {
+                const self = this;
+                injection.loading.finish();
+                self.$notice.open({
+                    title: data.message,
+                });
+                self.defaultImage.goodsImage = data.data.path;
+            },
+            uploadShopLogoSuccess(data) {
+                const self = this;
+                injection.loading.finish();
+                self.$notice.open({
+                    title: data.message,
+                });
+                self.defaultImage.shopLogo = data.data.path;
+            },
+            uploadShopImageSuccess(data) {
+                const self = this;
+                injection.loading.finish();
+                self.$notice.open({
+                    title: data.message,
+                });
+                self.defaultImage.shopImage = data.data.path;
+            },
         },
     };
 </script>
@@ -71,7 +147,9 @@
                                 <i-col span="12">
                                     <form-item label="图片存放类型：" prop="imageType">
                                         <radio-group v-model="parameter.imageType">
-                                            <radio v-for="item in radioList" :label="item.label">{{ item.content }}</radio>
+                                            <i-col v-for="item in radioList" span="24">
+                                                <radio :label="item.label">{{ item.content }}</radio>
+                                            </i-col>
                                         </radio-group>
                                     </form-item>
                                 </i-col>
@@ -87,7 +165,89 @@
                 </tab-pane>
                 <tab-pane label="默认图片" name="defaultImage">
                     <card>
-                        fwfew
+                        <i-form :label-width="200" ref="defaultImage" :model="defaultImage">
+                            <row>
+                                <i-col span="12">
+                                    <form-item label="默认商品图片">
+                                        <div class="image-preview" v-if="defaultImage.goodsImage">
+                                            <img :src="defaultImage.goodsImage">
+                                            <icon type="close" @click.native="removeGoodsImage"></icon>
+                                        </div>
+                                        <upload :action="action"
+                                                :before-upload="uploadBefore"
+                                                :format="['jpg','jpeg','png']"
+                                                :headers="{
+                                                    Authorization: `Bearer ${$store.state.token.access_token}`
+                                                }"
+                                                :max-size="2048"
+                                                :on-error="uploadError"
+                                                :on-format-error="uploadFormatError"
+                                                :on-success="uploadGoodsImageSuccess"
+                                                ref="upload"
+                                                :show-upload-list="false"
+                                                v-if="defaultImage.goodsImage === '' || defaultImage.goodsImage === null">
+                                        </upload>
+                                        <p class="prompt">图片大小为300*300px</p>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="12">
+                                    <form-item label="默认店铺LOGO">
+                                        <div class="image-preview" v-if="defaultImage.shopLogo">
+                                            <img :src="defaultImage.shopLogo">
+                                            <icon type="close" @click.native="removeShopLogo"></icon>
+                                        </div>
+                                        <upload :action="action"
+                                                :before-upload="uploadBefore"
+                                                :format="['jpg','jpeg','png']"
+                                                :headers="{
+                                                    Authorization: `Bearer ${$store.state.token.access_token}`
+                                                }"
+                                                :max-size="2048"
+                                                :on-error="uploadError"
+                                                :on-format-error="uploadFormatError"
+                                                :on-success="uploadShopLogoSuccess"
+                                                ref="upload"
+                                                :show-upload-list="false"
+                                                v-if="defaultImage.shopLogo === '' || defaultImage.shopLogo === null">
+                                        </upload>
+                                        <p class="prompt">图片大小为200*60px</p>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="12">
+                                    <form-item label="默认店铺头像">
+                                        <div class="image-preview" v-if="defaultImage.shopImage">
+                                            <img :src="defaultImage.shopImage">
+                                            <icon type="close" @click.native="removeShopImage"></icon>
+                                        </div>
+                                        <upload :action="action"
+                                                :before-upload="uploadBefore"
+                                                :format="['jpg','jpeg','png']"
+                                                :headers="{
+                                                    Authorization: `Bearer ${$store.state.token.access_token}`
+                                                }"
+                                                :max-size="2048"
+                                                :on-error="uploadError"
+                                                :on-format-error="uploadFormatError"
+                                                :on-success="uploadShopImageSuccess"
+                                                ref="upload"
+                                                :show-upload-list="false"
+                                                v-if="defaultImage.shopImage === '' || defaultImage.shopImage === null">
+                                        </upload>
+                                        <p class="prompt">图片大小为100*100px</p>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <form-item>
+                                <i-button @click.native="submitImage" type="primary">
+                                    <span v-if="!imageLoading">确认提交</span>
+                                    <span v-else>正在提交…</span>
+                                </i-button>
+                            </form-item>
+                        </i-form>
                     </card>
                 </tab-pane>
             </tabs>
