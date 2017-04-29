@@ -88,7 +88,7 @@
                 <p slot="title">商城设置</p>
                 <i-form :label-width="200" :model="form" ref="form" :rules="rules">
                     <row>
-                        <i-col span="14">
+                        <i-col span="12">
                             <form-item label="网站logo" prop="logo">
                                 <div class="image-preview" v-if="form.logo">
                                     <img :src="form.logo">
@@ -112,21 +112,21 @@
                         </i-col>
                     </row>
                     <row>
-                        <i-col span="14">
+                        <i-col span="12">
                             <form-item label="平台客服联系电话" prop="phone">
                                 <i-input placeholder="请输入平台客服联系电话" v-model="form.phone"></i-input>
                             </form-item>
                         </i-col>
                     </row>
                     <row>
-                        <i-col span="14">
+                        <i-col span="12">
                             <form-item label="平台客服电子邮件" prop="email">
                                 <i-input placeholder="请输入平台客服电子邮件" v-model="form.email"></i-input>
                             </form-item>
                         </i-col>
                     </row>
                     <row>
-                        <i-col span="14">
+                        <i-col span="12">
                             <form-item>
                                 <i-button :loading="loading" type="primary" @click.native="submit">
                                     <span v-if="!loading">确认提交</span>
