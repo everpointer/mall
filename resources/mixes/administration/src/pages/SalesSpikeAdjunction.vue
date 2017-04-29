@@ -50,10 +50,10 @@
         <div class="sales-spike-add">
                 <div class="add-title">
                     <card>
-                    <i-button type="text">
-                        <icon type="chevron-left"></icon>
-                    </i-button>
-                    <span>秒杀活动—添加秒杀活动</span>
+                        <i-button type="text">
+                            <icon type="chevron-left"></icon>
+                        </i-button>
+                        <span>秒杀活动—添加秒杀活动</span>
                     </card>
                 </div>
             <card>
