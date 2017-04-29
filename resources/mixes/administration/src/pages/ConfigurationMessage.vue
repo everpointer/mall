@@ -24,21 +24,21 @@
                         title: '站内信',
                         align: 'center',
                         render() {
-                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
                         title: '手机短信',
                         align: 'center',
                         render() {
-                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
                         title: '邮件',
                         align: 'center',
                         render() {
-                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
