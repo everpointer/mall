@@ -96,7 +96,8 @@
                         width: 180,
                         align: 'center',
                         render(row, column, index) {
-                            return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">删除</i-button><i-button type="ghost" size="small">查看</i-button>`;
+                            return `<i-button class="first-btn" @click.native="remove(${index})" type="ghost" size="small">删除</i-button>
+                                    <i-button @click.native="toEdit" type="ghost" size="small">编辑</i-button>`;
                         },
                     },
                 ],
@@ -423,6 +424,12 @@
             remove(index) {
                 this.managementData.splice(index, 1);
             },
+            toEdit() {
+                const self = this;
+                self.$router.push({
+                    path: 'store/edit',
+                });
+            },
         },
         beforeRouteEnter(to, from, next) {
             next(() => {
@@ -442,12 +449,12 @@
                     </div>
                     <div class="store-body">
                         <div class="store-body-header">
-                            <i-button class="export-btn" @click="exportData()" type="ghost">导出数据</i-button>
+                            <i-button class="export-btn" @click="exportData" type="ghost">导出数据</i-button>
                             <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                             <div class="store-body-header-right">
                                 <i-input v-model="managementWord" placeholder="请输入关键词进行搜索">
-                                    <i-select v-model="managementSearch" slot="prepend">
-                                        <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                    <i-select v-model="managementSearch" slot="prepend" style="width: 100px;">
+                                        <i-option v-for="item in searchList" :value="item.value">{{ item.label }}</i-option>
                                     </i-select>
                                     <i-button slot="append" type="primary">搜索</i-button>
                                 </i-input>
@@ -468,7 +475,7 @@
                         <div class="store-body-header">
                             <div class="store-body-header-right">
                                 <i-input v-model="applicationWord" placeholder="请输入关键词进行搜索">
-                                    <i-select v-model="applicationSearch" slot="prepend">
+                                    <i-select v-model="applicationSearch" slot="prepend" style="width: 100px;">
                                       <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                     <i-button slot="append" type="primary">搜索</i-button>

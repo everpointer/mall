@@ -206,7 +206,7 @@
                             <i-button class="export-btn" @click="exportData" type="ghost">导出数据</i-button>
                             <div class="store-body-header-right">
                                 <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
-                                    <i-select v-model="searchCategory" slot="prepend">
+                                    <i-select v-model="searchCategory" slot="prepend" style="width: 100px">
                                         <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                     <i-button slot="append" type="primary">搜索</i-button>

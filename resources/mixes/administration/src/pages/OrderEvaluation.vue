@@ -171,11 +171,11 @@
                     </div>
                     <div class="store-body">
                         <div class="store-body-header">
-                            <i-button class="export-btn" type="ghost" @click="exportData()">批量删除</i-button>
+                            <i-button class="export-btn" type="ghost" @click="exportData">批量删除</i-button>
                             <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                             <div class="store-body-header-right">
                                 <i-input v-model="searchWord">
-                                    <i-select v-model="searchCategory" slot="prepend">
+                                    <i-select v-model="searchCategory" slot="prepend" style="width: 100px">
                                         <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                     <i-button slot="append" type="primary">搜索</i-button>

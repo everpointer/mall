@@ -32,7 +32,13 @@
           }
       }
       .store-body-header {
-          overflow: hidden;
+          &:after {
+              clear: both;
+              content: " ";
+              display: table;
+              font-size: 0;
+              height: 0;
+          }
           .export-btn {
             float: left;
           }
