@@ -49,7 +49,7 @@
                         render(row, column, index) {
                             return `<dropdown><i-button type="ghost">设置<icon type="arrow-down-b"></icon></i-button>
                                 <dropdown-menu slot="list"><dropdown-item>活动设置</dropdown-item><dropdown-item>商品设置</dropdown-item></dropdown-menu></dropdown>
-                                <i-button type="ghost" class="delete-ad" @click="removeAd(${index})">删除</i-button>`;
+                                <i-button type="ghost" class="delete-ad" @click.native="removeAd(${index})">删除</i-button>`;
                         },
                     },
                 ],
@@ -94,6 +94,12 @@
             removeAd(index) {
                 this.spikeData.splice(index, 1);
             },
+            toSalesSpikeTime() {
+                this.$router.push('spike/time');
+            },
+            toSaleSpikeAdjunction() {
+                this.$router.push('spike/adjunction');
+            },
         },
     };
 </script>
@@ -109,8 +115,8 @@
                         <p>秒杀截止时间内多个活动可同时进行</p>
                     </div>
                     <div class="advertisement-action">
-                        <i-button class="add-data" type="ghost">+添加活动</i-button>
-                        <i-button class="delete-data" type="ghost">时间段列表</i-button>
+                        <i-button class="add-data" @click.native="toSaleSpikeAdjunction" type="ghost">+添加活动</i-button>
+                        <i-button class="delete-data" @click.native="toSalesSpikeTime" type="ghost">时间段列表</i-button>
                         <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                     </div>
                     <i-table highlight-row :columns="spikeActivity"
