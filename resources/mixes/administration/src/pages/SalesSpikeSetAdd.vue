@@ -13,54 +13,26 @@
                 searchProduct: '',
                 searchLists: [
                     {
-                        value: '商品分类',
-                        label: '商品分类',
+                        value: '北京',
+                        label: '北京',
+                    },
+                    {
+                        value: '上海',
+                        label: '上海',
+                    },
+                    {
+                        value: '西安',
+                        label: '西安',
                     },
                 ],
                 searchProducts: [
                     {
-                        value: '商品名称',
-                        label: '商品名称',
+                        value: '苹果',
+                        label: '苹果',
                     },
                     {
-                        value: '商品分类',
-                        label: '商品分类',
-                    },
-                ],
-                columns1: [
-                    {
-                        title: '姓名',
-                        key: 'name',
-                    },
-                    {
-                        title: '年龄',
-                        key: 'age',
-                    },
-                    {
-                        title: '地址',
-                        key: 'address',
-                    },
-                ],
-                data1: [
-                    {
-                        name: '王小明',
-                        age: 18,
-                        address: '北京市朝阳区芍药居',
-                    },
-                    {
-                        name: '张小刚',
-                        age: 25,
-                        address: '北京市海淀区西二旗',
-                    },
-                    {
-                        name: '李小红',
-                        age: 30,
-                        address: '上海市浦东新区世纪大道',
-                    },
-                    {
-                        name: '周小伟',
-                        age: 26,
-                        address: '深圳市南山区深南大道',
+                        value: '香蕉',
+                        label: '香蕉',
                     },
                 ],
                 sales: [
@@ -92,16 +64,23 @@
                 <div class="sales-body">
                     <div class="sales-body-header">
                         <row>
+                            <!--<i-col span="5">-->
+                                <!--<div class="p-change">-->
+                                    <!--<i-select v-model="searchCategory" placeholder="请选择分类">-->
+                                        <!--<i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>-->
+                                    <!--</i-select>-->
+                                <!--</div>-->
+                            <!--</i-col>-->
                             <i-col span="5">
                                 <div class="p-change">
-                                    <i-select v-model="searchCategory" slot="prepend"  placeholder="请选择分类">
+                                    <i-select v-model="searchCategory" placeholder="请选择分类">
                                         <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                 </div>
                             </i-col>
                             <i-col span="3">
                                 <div class="p-change">
-                                    <i-select v-model="searchProduct" slot="prepend"  placeholder="请选择品牌">
+                                    <i-select v-model="searchProduct" placeholder="请选择品牌">
                                         <i-option v-for="item in searchProducts" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                 </div>
@@ -139,6 +118,7 @@
                                         </ul>
                                     </card>
                                 </div>
+                                <!--全选模块-->
                                 <div class="all-select">
                                     <row>
                                         <i-col span="3">
