@@ -177,7 +177,7 @@
                     <div class="sales-body-header">
                         <ul class="sales-body-header-left">
                             <li>
-                                <i-select v-model="searchCategory" slot="prepend">
+                                <i-select v-model="searchCategory" slot="prepend" placeholder="请选择分类">
                                     <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
                                 </i-select>
                             </li>
