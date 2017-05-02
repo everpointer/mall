@@ -144,14 +144,14 @@
                                         <i-col span="3">
                                             <div class="p-list"><i-button type="ghost">全选</i-button></div>
                                         </i-col>
-                                        <i-col span="3">
-                                            <div class="p-list"><i-input type="text"></i-input></div>
-                                        </i-col>
-                                        <i-col span="3">
-                                            <div class="p-list"><i-input type="text"></i-input></div>
-                                        </i-col>
-                                        <i-col span="3">
-                                            <div class="p-list"><i-input type="text"></i-input></div>
+                                        <i-col span="20">
+                                            <div class="p-list">
+                                                <ul>
+                                                    <li>数量: <input type="text">&nbsp;件</li>
+                                                    <li>数量: <input type="text">&nbsp;件</li>
+                                                    <li>数量: <input type="text">&nbsp;件</li>
+                                                </ul>
+                                            </div>
                                         </i-col>
                                     </row>
                                 </div>
