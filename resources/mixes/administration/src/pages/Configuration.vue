@@ -3,8 +3,18 @@
 
     export default {
         beforeRouteEnter(to, from, next) {
-            next(() => {
-                injection.sidebar.active('mall');
+            injection.loading.start();
+            injection.http.post(`${window.api}/mall/configuration/get`).then(response => {
+                const data = response.data.data;
+                next(vm => {
+                    injection.loading.finish();
+                    injection.sidebar.active('mall');
+                    vm.form.email = data.email;
+                    vm.form.logo = data.logo;
+                    vm.form.phone = data.phone;
+                });
+            }).catch(() => {
+                injection.loading.error();
             });
         },
         data() {
@@ -25,12 +35,30 @@
                             trigger: 'change',
                         },
                     ],
+                    logo: [
+                        {
+                            required: true,
+                            type: 'string',
+                            message: '请上传网站 Logo',
+                            trigger: 'change',
+                        },
+                    ],
+                    phone: [
+                        {
+                            required: true,
+                            pattern: /^0\d{2,3}-?\d{7,8}$/,
+                            message: '请输入正确的电话号码',
+                            trigger: 'change',
+                        },
+                    ],
                 },
             };
         },
         methods: {
             removeLogo() {
-                this.form.logo = '';
+                const self = this;
+                self.form.logo = '';
+                self.$refs.form.validateField('logo');
             },
             uploadBefore() {
                 injection.loading.start();
@@ -63,13 +91,20 @@
                     title: data.message,
                 });
                 self.form.logo = data.data.path;
+                self.$refs.form.validateField('logo');
             },
             submit() {
                 const self = this;
                 self.loading = true;
                 self.$refs.form.validate(valid => {
                     if (valid) {
-                        window.console.log(valid);
+                        self.$http.post(`${window.api}/mall/configuration/set`, self.form).then(() => {
+                            self.$notice.open({
+                                title: '更新商城配置成功！',
+                            });
+                        }).finally(() => {
+                            self.loading = false;
+                        });
                     } else {
                         self.loading = false;
                         self.$notice.error({

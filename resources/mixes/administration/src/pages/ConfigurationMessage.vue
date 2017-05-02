@@ -18,7 +18,7 @@
                     {
                         title: '模板描述',
                         key: 'describe',
-                        align: 'center',
+                        align: 'left',
                     },
                     {
                         title: '站内信',
