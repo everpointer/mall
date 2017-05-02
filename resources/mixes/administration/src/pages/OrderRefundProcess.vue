@@ -141,7 +141,6 @@
         </div>
     </div>
 </template>
-
 <script>
     import injection from '../helpers/injection';
 

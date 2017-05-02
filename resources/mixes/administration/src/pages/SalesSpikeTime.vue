@@ -79,6 +79,14 @@
                 ],
             };
         },
+        methods: {
+            addSpikePeriod() {
+                const self = this;
+                self.$router.push({
+                    path: 'time/addtime',
+                });
+            },
+        },
     };
 </script>
 <template>
@@ -88,7 +96,7 @@
                 <i-button type="text">
                     <icon type="chevron-left"></icon>
                 </i-button>
-                <span>秒杀活动—设置商品</span>
+                <span>秒杀活动—时间段列表</span>
             </div>
             <div class="store storeBox">
                 <div class="prompt-box">
@@ -97,7 +105,7 @@
                 </div>
                 <div class="store-body">
                     <div class="store-body-header">
-                        <i-button class="export-btn" type="ghost">+添加秒杀时段</i-button>
+                        <i-button class="export-btn" @click.natice="addSpikePeriod" type="ghost">+添加秒杀时段</i-button>
                         <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                     </div>
                     <i-table highlight-row class="shop-table" :columns="timeListColumns" :data="timeListData"></i-table>

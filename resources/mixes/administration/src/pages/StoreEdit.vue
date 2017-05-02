@@ -2,13 +2,13 @@
 	<div class="mall-wrap">
 		<div class="store-edit">
 			<div class="edit-link-title">
-                <i-button type="text">
+                <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
 				<span>店铺管理—店铺编辑</span>
 			</div>
 			<div class="store-information">
-                <card>
+                <card :bordered="false">
                     <p slot="title">店铺信息</p>
                     <i-form ref="storeDetail" :model="storeDetail" :rules="ruleValidate" :label-width="200">
                         <div class="basic-information">
@@ -341,6 +341,10 @@ export default {
         });
     },
     methods: {
+        goBack() {
+            const self = this;
+            self.$router.go(-1);
+        },
         handleSubmit(name) {
             this.$refs[name].validate(valid => {
                 if (valid) {
@@ -391,4 +395,3 @@ export default {
     },
 };
 </script>
-

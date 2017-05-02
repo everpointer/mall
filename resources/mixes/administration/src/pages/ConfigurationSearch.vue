@@ -66,7 +66,7 @@
         methods: {
             exportData() {
                 this.$refs.searchTable.exportCsv({
-                    filename: '新增搜索词',
+                    filename: '搜索数据',
                 });
             },
             remove(index) {

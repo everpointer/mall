@@ -34,7 +34,7 @@
                         align: 'center',
                         width: 650,
                         render(row) {
-                            return `<img class="orderImg" :src="${row.img}"><span>${row.orderName}</span>`;
+                            return `<img class="orderImg" src="${row.img}"><span class="orderName">${row.orderName}</span>`;
                         },
                     },
                     {
