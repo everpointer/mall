@@ -1,128 +1,4 @@
-.activity-title {
-    .sales-body {
-        margin-top: 20px;
-        .sales-body-header {
-            overflow: hidden;
-            .export-btn {
-                padding: 8px 22px;
-                float: left;
-            }
-            .sales-body-header-left {
-                margin-bottom: 30px;
-                li {
-                    height: 36px;
-                    float: left;
-                    margin-right: 10px;
-                    margin-bottom: 30px;
-                    &:first-child {
-                        width: 268px;
-                    }
-                    &:nth-child(2){
-                        width: 178px ;
-                    }
-                    &:nth-child(3) {
-                        width: 178px;
-                    }
-                    &:last-child {
-                        width: 64px;
-                    }
-                }
-                .ivu-input-group-append .ivu-btn, .ivu-input-group-prepend .ivu-btn {
-                    background-color: #39f;
-                    color: #ffffff;
-                    border-top-left-radius: 0;
-                    border-bottom-left-radius: 0;
-                    font-size: 14px;
-                    padding: 6px 17px;
-                }
-                .ivu-input-group {
-                    top: 0;
-                    .ivu-input {
-                        height: 36px;
-                        width: 203px;
-                    }
-                }
-            }
-        }
-    }
-    .sales-list-add {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        background-color: #fff;
-        p {
-            text-align: center;
-            font-weight: bold;
-            color: #657180;
-            margin-bottom: 10px;
-        }
-        .sales-list {
-            height: 100%;
-            &:nth-child(2) {
-                .my-submit {
-                    margin-top: 150px;
-                    margin-left: 10px;
-                }
-            }
-            .my-card {
-                //width: 692px ;
-                ul {
-                    li {
-                        font-weight: 300;
-                        text-align: left;
-                        color: #657180;
-                        span {
-                            margin-right: 10px;
-                        }
-                        hr {
-                            list-style: none;
-                            margin: 16px 0;
-                            border: none;
-                            padding: 0 10px;
-                            height: 1px;
-                            background-color: #e3e8ee;
-                        }
-                    }
-                }
-            }
-            .all-select {
-                color: #657180;
-                padding-top: 10px;
-                font-weight: 300;
-                text-align: left;
-                input {
-                    width: 64px;
-                    height: 26px;
-                    border-radius: 4px;
-                    border: solid 1px #e3e8ee;
-                }
-                div {
-                    button {
-                        width: 48px;
-                        height: 26px;
-                        font-weight: 300;
-                        color: #657180;
-                        border-radius: 4px;
-                        background-color: #fff;
-                        border: solid 1px #e3e8ee;
-                    }
-                    float: left;
-                    margin-right: 20px;
-                }
-            }
-            .last-btn {
-                margin-top: 32px;
-                width: 94px;
-                height: 36px;
-                border-radius: 4px;
-                background-color: #3399ff;
-            }
-        }
-    }
-}
-
-.sales-activity-set-add {
-    height: 100%;
+.sales-activity-set-add, .activity-title{
     .edit-link-title {
         background-color: #fff;
         height: 44px;
@@ -132,50 +8,137 @@
             padding: 6px 8px 6px 20px;
         }
     }
-    .storeBox {
+    .storeBox, .store{
         height: 100%;
         padding: 20px 20px 0 20px;
         background-color: #fff;
-    }
-    .prompt-box {
-        background-color: #f5f7f9;
-        padding: 20px 0 20px 40px;
-        font-size: 12px;
-        h6 {
+        .prompt-box {
+            background-color: #f5f7f9;
+            padding: 20px 0 20px 40px;
             font-size: 12px;
-            font-weight: 300;
-        }
-    }
-    .first-btn {
-        margin-right: 10px;
-    }
-    .store-body {
-        margin-top: 20px;
-        .refresh {
-            margin-left: 20px;
-            text-align: left;
-            padding-left: 0;
-            font-weight: 300;
-            color: #657180;
-            i {
-                font-size: 16px ;
+            h6 {
+                font-size: 12px;
+                font-weight: 300;
             }
         }
-        .store-body-header {
-            overflow: hidden;
-            .export-btn {
-                float: left;
-            }
-        }
-        .shop-table {
-            margin-top: 10px;
-            .ivu-btn-small {
-                padding: 3px 19px;
-                border-radius: 4px;
-            }
-            .ivu-table-cell {
+        //搜索模块
+        .sales-body {
+            margin-top: 20px;
+            .refresh {
+                margin-left: 20px;
+                text-align: left;
                 padding-left: 0;
-                padding-right: 0;
+                font-weight: 300;
+                color: #657180;
+                i {
+                    font-size: 16px ;
+                }
+            }
+            .sales-body-header {
+                overflow: hidden;
+                .export-btn {
+                    padding: 8px 22px;
+                    float: left;
+                }
+                .ivu-row{
+                    height: 100%;
+                    margin-bottom: 30px;
+                    .p-change {
+                        margin-right: 10px;
+                    }
+                    .ivu-input-group-append .ivu-btn, .ivu-input-group-prepend .ivu-btn {
+                        background-color: #39f;
+                        color: #ffffff;
+                        border-top-left-radius: 0;
+                        border-bottom-left-radius: 0;
+                        font-size: 14px;
+                        padding: 6px 17px;
+                    }
+                    .ivu-input-group {
+                        top: 0;
+                        .ivu-input {
+                            height: 36px;
+                            width: 203px;
+                        }
+                    }
+                }
+            }
+        }
+        //可选商品模块
+        .sales-list-add {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            background-color: #fff;
+            p {
+                text-align: center;
+                font-weight: bold;
+                color: #657180;
+                margin-bottom: 10px;
+            }
+            .sales-list {
+                height: 100%;
+                div {
+                    .my-btn {
+                        margin: 150px 8px 0 8px ;
+                    }
+
+                }
+                .my-card {
+                    ul {
+                        li {
+                            font-weight: 300;
+                            text-align: left;
+                            color: #657180;
+                            padding-right: 1px;
+                            span {
+                                margin-right: 10px;
+                            }
+                            hr {
+                                list-style: none;
+                                margin: 16px 0;
+                                border: none;
+                                padding: 0 10px;
+                                height: 1px;
+                                background-color: #e3e8ee;
+                            }
+                        }
+                    }
+                }
+                .all-select {
+                    color: #657180;
+                    padding-top: 10px;
+                    font-weight: 300;
+                    .ivu-row{
+                        .p-list {
+                            //height: 26px;
+                            display: inline-block;
+                            margin-right: 3px;
+                            .ivu-btn .ivu-btn-ghost:hover {
+                                width: 64px;
+                                height: 26px;
+                                span {
+                                    color: #ef5151
+                                }
+                            }
+                            li {
+                                input {
+                                    color: #657180;
+                                    height:26px ;
+                                    width: 64px;
+                                }
+                                float: right;
+                                list-style: none;
+                            }
+                    }   }
+                }
+                .last-btn {
+                    margin-top: 32px;
+                    width: 94px;
+                    height: 36px;
+                    border-radius: 4px;
+                    background-color: #3399ff;
+                }
             }
         }
     }
