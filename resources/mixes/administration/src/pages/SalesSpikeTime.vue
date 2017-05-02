@@ -96,7 +96,7 @@
                 <i-button type="text">
                     <icon type="chevron-left"></icon>
                 </i-button>
-                <span>秒杀活动—设置商品</span>
+                <span>秒杀活动—时间段列表</span>
             </div>
             <div class="store storeBox">
                 <div class="prompt-box">

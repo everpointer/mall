@@ -147,9 +147,8 @@
                                 <i-col span="12">
                                     <form-item label="图片存放类型：" prop="imageType">
                                         <radio-group v-model="parameter.imageType">
-                                            <i-col v-for="item in radioList" span="24">
-                                                <radio :label="item.label">{{ item.content }}</radio>
-                                            </i-col>
+                                            <radio v-for="item in radioList" :label="item.label">{{ item.content }}
+                                            </radio>
                                         </radio-group>
                                     </form-item>
                                 </i-col>

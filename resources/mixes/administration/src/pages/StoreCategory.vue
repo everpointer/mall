@@ -9,6 +9,7 @@
         },
         data() {
             return {
+                self: this,
                 storeCategoryColumns: [
                     {
                         type: 'selection',
@@ -40,7 +41,8 @@
                         width: 140,
                         align: 'center',
                         render(row, column, index) {
-                            return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">删除</i-button><i-button type="ghost" size="small">设置</i-button>`;
+                            return `<i-button type="ghost" class="first-btn" size="small" @click.native="remove(${index})">删除</i-button>
+                                    <i-button type="ghost" @click.native="toSet" size="small">设置</i-button>`;
                         },
                     },
                 ],
@@ -72,6 +74,12 @@
             remove(index) {
                 this.storeCategoryData.splice(index, 1);
             },
+            toSet() {
+                const self = this;
+                self.$router.push({
+                    path: 'category/set',
+                });
+            },
         },
     };
 </script>
@@ -87,10 +95,16 @@
                     </div>
                     <div class="store-body">
                         <div class="store-body-header">
-                            <i-button class="export-btn" type="ghost" @click="exportData()">新增数据</i-button>
+                            <i-button class="export-btn" type="ghost" @click="exportData">新增数据</i-button>
                             <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                         </div>
-                        <i-table ref="storeCategoryTable"  highlight-row class="shop-table" :columns="storeCategoryColumns" :data="storeCategoryData"></i-table>
+                        <i-table class="shop-table"
+                                 :columns="storeCategoryColumns"
+                                 :data="storeCategoryData"
+                                 :context="self"
+                                 highlight-row
+                                 ref="storeCategoryTable">
+                        </i-table>
                     </div>
                 </tab-pane>
             </tabs>

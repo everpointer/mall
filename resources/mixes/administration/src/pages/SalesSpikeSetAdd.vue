@@ -203,7 +203,7 @@
                                 <card>
                                     <ul>
                                         <li v-for="sale in sales">
-                                            <checkbox">
+                                            <checkbox>
                                                 <span>{{sale.content}}</span>
                                             </checkbox>
                                             <hr>

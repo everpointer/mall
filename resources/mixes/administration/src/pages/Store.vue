@@ -87,15 +87,17 @@
                         title: '到期时间',
                         key: 'endTime',
                         align: 'left',
+                        width: 170,
                     },
                     {
                         title: '操作',
                         key: 'action',
                         fixed: 'right',
-                        width: 140,
+                        width: 180,
                         align: 'center',
                         render(row, column, index) {
-                            return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">删除</i-button><i-button type="ghost" size="small">查看</i-button>`;
+                            return `<i-button class="first-btn" @click.native="remove(${index})" type="ghost" size="small">删除</i-button>
+                                    <i-button @click.native="toEdit" type="ghost" size="small">编辑</i-button>`;
                         },
                     },
                 ],
@@ -276,12 +278,13 @@
                         title: '公司电话',
                         key: 'companyPhone',
                         align: 'left',
+                        width: 170,
                     },
                     {
                         title: '操作',
                         key: 'action',
                         fixed: 'right',
-                        width: 140,
+                        width: 90,
                         align: 'center',
                         render() {
                             return '<i-button type="ghost" size="small">查看</i-button>';
@@ -410,6 +413,7 @@
                         companyPhone: '029-5554544',
                     },
                 ],
+                self: this,
             };
         },
         methods: {
@@ -420,6 +424,12 @@
             },
             remove(index) {
                 this.managementData.splice(index, 1);
+            },
+            toEdit() {
+                const self = this;
+                self.$router.push({
+                    path: 'store/edit',
+                });
             },
         },
         beforeRouteEnter(to, from, next) {
@@ -434,50 +444,59 @@
         <div class="store">
             <tabs value="name1">
                 <tab-pane label="店铺管理" name="name1">
-                    <div class="prompt-box">
-                        <h6>提示</h6>
-                        <p>如果当前时间超过店铺有效期或店铺处于关闭状态，前台将不能继续浏览该店铺，但是店主仍然可以编辑该店铺</p>
-                    </div>
-                    <div class="store-body">
-                        <div class="store-body-header">
-                            <i-button class="export-btn" @click="exportData()" type="ghost">导出数据</i-button>
-                            <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
-                            <div class="store-body-header-right">
-                                <i-input v-model="managementWord" placeholder="请输入关键词进行搜索">
-                                    <i-select v-model="managementSearch" slot="prepend">
-                                        <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                    </i-select>
-                                    <i-button slot="append" type="primary">搜索</i-button>
-                                </i-input>
-                            </div>
+                    <card>
+                        <div class="prompt-box">
+                            <h6>提示</h6>
+                            <p>如果当前时间超过店铺有效期或店铺处于关闭状态，前台将不能继续浏览该店铺，但是店主仍然可以编辑该店铺</p>
                         </div>
-                        <i-table ref="managementTable" highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
-                    </div>
-                    <div class="page">
-                        <page :total="100" show-elevator></page>
-                    </div>
+                        <div class="store-body">
+                            <div class="store-body-header">
+                                <i-button class="export-btn" @click="exportData" type="ghost">导出数据</i-button>
+                                <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
+                                <div class="store-body-header-right">
+                                    <i-input v-model="managementWord" placeholder="请输入关键词进行搜索">
+                                        <i-select v-model="managementSearch" slot="prepend" style="width: 100px;">
+                                            <i-option v-for="item in searchList" :value="item.value">{{ item.label }}</i-option>
+                                        </i-select>
+                                        <i-button slot="append" type="primary">搜索</i-button>
+                                    </i-input>
+                                </div>
+                            </div>
+                            <i-table ref="managementTable" highlight-row class="shop-table" :columns="managementColumns" :context="self" :data="managementData"></i-table>
+                        </div>
+                        <div class="page">
+                            <page :total="100" show-elevator></page>
+                        </div>
+                    </card>
                 </tab-pane>
                 <tab-pane label="开店申请" name="name2">
-                    <div class="prompt-box">
-                        <h6>提示</h6>
-                        <p>如果当前时间超过店铺有效期或店铺处于关闭状态，前台将不能继续浏览该店铺，但是店主仍然可以编辑该店铺</p>
-                    </div>
-                    <div class="store-body">
-                        <div class="store-body-header">
-                            <div class="store-body-header-right">
-                                <i-input v-model="applicationWord" placeholder="请输入关键词进行搜索">
-                                    <i-select v-model="applicationSearch" slot="prepend">
-                                      <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                    </i-select>
-                                    <i-button slot="append" type="primary">搜索</i-button>
-                                </i-input>
-                            </div>
+                    <card>
+                        <div class="prompt-box">
+                            <h6>提示</h6>
+                            <p>如果当前时间超过店铺有效期或店铺处于关闭状态，前台将不能继续浏览该店铺，但是店主仍然可以编辑该店铺</p>
                         </div>
-                        <i-table highlight-row ref="applicationTable" class="shop-table" :columns="applicationColumns" :data="applicationData"></i-table>
-                    </div>
-                    <div class="page">
-                        <page :total="100" show-elevator></page>
-                    </div>
+                        <div class="store-body">
+                            <div class="store-body-header">
+                                <div class="store-body-header-right">
+                                    <i-input v-model="applicationWord" placeholder="请输入关键词进行搜索">
+                                        <i-select v-model="applicationSearch" slot="prepend" style="width: 100px;">
+                                            <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                        </i-select>
+                                        <i-button slot="append" type="primary">搜索</i-button>
+                                    </i-input>
+                                </div>
+                            </div>
+                            <i-table highlight-row class="shop-table"
+                                     :columns="applicationColumns"
+                                     :context="self"
+                                     :data="applicationData"
+                                     ref="applicationTable" >
+                            </i-table>
+                        </div>
+                        <div class="page">
+                            <page :total="100" show-elevator></page>
+                        </div>
+                    </card>
                 </tab-pane>
             </tabs>
         </div>

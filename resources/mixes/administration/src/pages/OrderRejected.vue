@@ -504,18 +504,18 @@
                   </div>
                   <div class="store-body">
                       <div class="store-body-header">
-                          <i-button class="export-btn" type="ghost" @click="exportData()">导出数据</i-button>
+                          <i-button class="export-btn" type="ghost" @click="exportData">导出数据</i-button>
                           <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                           <div class="store-body-header-right">
                               <i-input v-model="searchWord">
-                                  <i-select v-model="searchCategory" slot="prepend">
+                                  <i-select v-model="searchCategory" slot="prepend" style="width: 100px">
                                       <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                   </i-select>
                                   <i-button slot="append" type="primary">搜索</i-button>
                               </i-input>
                           </div>
                       </div>
-                      <i-table ref="pendingTable" highlight-row class="shop-table" :columns="pendingColumns" :data="pendingData"></i-table>
+                      <i-table class="shop-table" :columns="pendingColumns" :data="pendingData" highlight-row ref="pendingTable"></i-table>
                   </div>
                   <div class="page">
                       <page :total="100" show-elevator></page>
@@ -524,11 +524,11 @@
               <tab-pane label="所有记录" name="name2">
                   <div class="store-body">
                         <div class="store-body-header">
-                            <i-button class="export-btn" type="ghost"  @click="exportData()" >导出数据</i-button>
+                            <i-button class="export-btn" type="ghost"  @click="exportData" >导出数据</i-button>
                             <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                             <div class="store-body-header-right">
                                 <i-input v-model="searchWord">
-                                    <i-select v-model="searchCategory" slot="prepend">
+                                    <i-select v-model="searchCategory" slot="prepend" style="width: 100px">
                                         <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                 <i-button slot="append" type="primary">搜索</i-button>
