@@ -75,7 +75,7 @@
                         width: 180,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" class="first-btn" size="small">查看</i-button><i-button type="ghost" size="small">设置</i-button>';
+                            return '<i-button type="ghost" @click.native="toView" class="first-btn" size="small">查看</i-button><i-button type="ghost" size="small">设置</i-button>';
                         },
                     },
                 ],
@@ -171,6 +171,7 @@
                         paymentMethod: '钻石店铺',
                     },
                 ],
+                self: this,
             };
         },
         methods: {
@@ -180,7 +181,12 @@
                 });
             },
             toView() {
-                this.$router.push('order/view');
+                const self = this;
+                self.$router.push(
+                    {
+                        path: 'order/view',
+                    },
+                );
             },
         },
         beforeRouteEnter(to, from, next) {
@@ -214,7 +220,7 @@
                                     </i-input>
                                 </div>
                             </div>
-                            <i-table ref="orderTable" highlight-row class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
+                            <i-table ref="orderTable" highlight-row :context="self" class="shop-table" :columns="managementColumns" :data="managementData"></i-table>
                         </div>
                         <div class="page">
                             <page :total="100" show-elevator></page>
