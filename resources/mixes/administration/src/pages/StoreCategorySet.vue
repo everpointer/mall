@@ -1,9 +1,15 @@
 <template>
     <div class="mall-wrap">
         <div class="store-category-set">
-            <div class="setBox">
-                <icon type="chevron-left" style="margin-right: 10px"></icon>
-                店铺名称-设置
+            <!--<div class="setBox">-->
+                <!--<icon type="chevron-left" style="margin-right: 10px"></icon>-->
+                <!--店铺名称-设置-->
+            <!--</div>-->
+            <div class="edit-link-title">
+                <i-button type="text" @click.native="goBack">
+                    <icon type="chevron-left"></icon>
+                </i-button>
+                <span>店铺名称—设置</span>
             </div>
             <card>
                 <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="200">
@@ -44,6 +50,12 @@
                     ],
                 },
             };
+        },
+        methods: {
+            goBack() {
+                const self = this;
+                self.$router.go(-1);
+            },
         },
         /*methods: {
          handleSubmit(name) {

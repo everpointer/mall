@@ -46,8 +46,8 @@
                         key: 'action',
                         align: 'center',
                         width: '140',
-                        render() {
-                            return '<i-button type="ghost" size="small">编辑</i-button>';
+                        render(row, column, index) {
+                            return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">编辑</i-button>`;
                         },
                     },
                 ],
@@ -119,7 +119,6 @@
                         title: '操作',
                         key: 'action',
                         align: 'center',
-                        fixed: 'right',
                         width: 140,
                         render(row, column, index) {
                             return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">编辑</i-button>`;

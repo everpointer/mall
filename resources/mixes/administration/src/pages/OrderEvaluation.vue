@@ -57,6 +57,9 @@
                         key: 'baskImage',
                         width: 300,
                         align: 'center',
+                        render() {
+                            return '<Icon type="image"></Icon>';
+                        },
                     },
                     {
                         title: '评价时间',
@@ -149,11 +152,6 @@
             };
         },
         methods: {
-            exportData() {
-                this.$refs.evaluationListTable.exportCsv({
-                    filename: '评价管理数据',
-                });
-            },
             remove(index) {
                 this.evaluationListData.splice(index, 1);
             },
