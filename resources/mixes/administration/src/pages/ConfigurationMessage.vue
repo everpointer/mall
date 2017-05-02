@@ -12,33 +12,33 @@
                 merchantColumns: [
                     {
                         type: 'selection',
-                        width: '60',
+                        width: 60,
                         align: 'center',
                     },
                     {
                         title: '模板描述',
                         key: 'describe',
-                        align: 'center',
+                        align: 'left',
                     },
                     {
                         title: '站内信',
                         align: 'center',
                         render() {
-                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
                         title: '手机短信',
                         align: 'center',
                         render() {
-                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
                         title: '邮件',
                         align: 'center',
                         render() {
-                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
@@ -92,7 +92,7 @@
                     {
                         title: '模板描述',
                         key: 'describe',
-                        align: 'center',
+                        align: 'left',
                     },
                     {
                         title: '站内信',
