@@ -86,6 +86,10 @@
                     path: 'time/addtime',
                 });
             },
+            goBack() {
+                const self = this;
+                self.$router.go(-1);
+            },
         },
     };
 </script>
@@ -93,7 +97,7 @@
     <div class="mall-wrap">
         <div class="sales-activity-time">
             <div class="edit-link-title">
-                <i-button type="text">
+                <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
                 <span>秒杀活动—时间段列表</span>
