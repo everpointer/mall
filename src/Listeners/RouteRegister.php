@@ -45,6 +45,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('configuration/advertisement/create', ConfigurationAdvertisementController::class . '@create');
             $this->router->post('configuration/advertisement/edit', ConfigurationAdvertisementController::class . '@edit');
             $this->router->post('configuration/advertisement/list', ConfigurationAdvertisementController::class . '@list');
+            $this->router->post('configuration/advertisement/remove', ConfigurationAdvertisementController::class . '@remove');
             $this->router->post('configuration/search/get', ConfigurationSearchController::class . '@set');
             $this->router->post('configuration/search/set', ConfigurationSearchController::class . '@set');
             $this->router->post('configuration/search/hot/create', ConfigurationSearchHotController::class . '@create');

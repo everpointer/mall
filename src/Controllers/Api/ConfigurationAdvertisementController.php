@@ -10,7 +10,9 @@ namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Configuration\Advertisement\CreateHandler;
+use Notadd\Mall\Handlers\Configuration\Advertisement\EditHandler;
 use Notadd\Mall\Handlers\Configuration\Advertisement\ListHandler;
+use Notadd\Mall\Handlers\Configuration\Advertisement\RemoveHandler;
 
 /**
  * Class ConfigurationAdvertisementController.
@@ -27,9 +29,14 @@ class ConfigurationAdvertisementController extends Controller
         return $handler->toResponse()->generateHttpResponse();
     }
 
-    public function edit()
+    /**
+     * @param \Notadd\Mall\Handlers\Configuration\Advertisement\EditHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function edit(EditHandler $handler)
     {
-        
+        return $handler->toResponse()->generateHttpResponse();
     }
 
     /**
@@ -38,6 +45,16 @@ class ConfigurationAdvertisementController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function list(ListHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Configuration\Advertisement\RemoveHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function remove(RemoveHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
