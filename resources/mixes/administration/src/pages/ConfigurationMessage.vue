@@ -9,6 +9,7 @@
         },
         data() {
             return {
+                self: this,
                 merchantColumns: [
                     {
                         type: 'selection',
@@ -46,8 +47,8 @@
                         key: 'action',
                         align: 'center',
                         width: '140',
-                        render(row, column, index) {
-                            return `<i-button type="ghost" class="editor-btn" size="small" @click="remove(${index})">编辑</i-button>`;
+                        render() {
+                            return '<i-button type="ghost" class="editor-btn" size="small" @click.native="toEdit">编辑</i-button>';
                         },
                     },
                 ],
@@ -159,6 +160,14 @@
                 ],
             };
         },
+        methods: {
+            toEdit() {
+                const self = this;
+                self.$router.push({
+                    path: 'message/editor',
+                });
+            },
+        },
     };
 </script>
 <template>
@@ -174,7 +183,7 @@
                         <p> 编辑完成后请清理“商家消息模板”缓存。</p>
                     </div>
                     <div class="store-body">
-                        <i-table class="shop-table" :columns="merchantColumns" :data="merchantData" class="my-btn"></i-table>
+                        <i-table class="shop-table" :columns="merchantColumns"  :context="self"  :data="merchantData" class="my-btn"></i-table>
                     </div>
                 </tab-pane>
                 <tab-pane label="用户消息模板" name="name2">
