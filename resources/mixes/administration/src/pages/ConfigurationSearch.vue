@@ -111,7 +111,7 @@
                             <i-form :label-width="200" ref="form" :model="form" :rules="rules">
                                 <row>
                                     <i-col span="12">
-                                        <form-item label="默认搜索条">
+                                        <form-item label="默认搜索词">
                                             <i-input v-model="form.default" placeholder=""></i-input>
                                             <span class="range">默认词设置将显示在前台搜索框下面，前台点击时直接作为关键词进行搜索，多个请用半角逗号","隔开</span>
                                         </form-item>
