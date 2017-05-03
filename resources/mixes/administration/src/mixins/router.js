@@ -9,6 +9,7 @@ import ConfigurationSearch from '../pages/ConfigurationSearch.vue';
 import ConfigurationSearchEditor from '../pages/ConfigurationSearchEditor.vue';
 import Dashboard from '../pages/Dashboard.vue';
 import Goods from '../pages/Goods.vue';
+import GoodsLibrary from '../pages/GoodsLibrary.vue';
 import GoodsCategory from '../pages/GoodsCategory.vue';
 import GoodsStandard from '../pages/GoodsStandard.vue';
 import GoodsType from '../pages/GoodsType.vue';
@@ -102,6 +103,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: Goods,
                     path: 'goods',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: GoodsLibrary,
+                    path: 'goods/library',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,

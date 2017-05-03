@@ -4,7 +4,11 @@ export default function (injection) {
             children: [
                 {
                     path: '/mall/goods',
-                    title: '信息列表',
+                    title: '商品管理',
+                },
+                {
+                    path: '/mall/goods/library',
+                    title: '商品库管理',
                 },
                 {
                     path: '/mall/goods/category',

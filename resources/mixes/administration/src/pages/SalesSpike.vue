@@ -37,8 +37,9 @@
                         key: 'isstatus',
                         width: 500,
                         render(row) {
-                            return `<span v-if="${row.status} === true" class="status-check"><icon type="checkmark-circled"></icon>开启</span>
-                                <span v-if="${row.status} === false"><icon type="close-circled"></icon>关闭</span>`;
+                            return `<span v-if="${row.status} === true" class="status-check">
+                                    <icon type="checkmark-circled"></icon>开启</span>
+                                    <span v-if="${row.status} === false"><icon type="close-circled"></icon>关闭</span>`;
                         },
                     },
                     {
@@ -49,15 +50,13 @@
                         fixed: 'right',
                         render(row, column, index) {
                             return `<dropdown>
-                                        <i-button type="ghost">
-                                            设置
-                                            <icon type="arrow-down-b">
-                                            </icon>
-                                        </i-button>
-                                        <dropdown-menu slot="list">
-                                            <dropdown-item>活动设置</dropdown-item>
-                                            <dropdown-item @click.native="toGoodsSet">商品设置</dropdown-item>
-                                        </dropdown-menu>
+                                    <i-button type="ghost">设置
+                                        <icon type="arrow-down-b"></icon>
+                                    </i-button>
+                                    <dropdown-menu slot="list">
+                                        <dropdown-item>活动设置</dropdown-item>
+                                        <dropdown-item @click.native="toGoodsSet">商品设置</dropdown-item>
+                                    </dropdown-menu>
                                     </dropdown>
                                     <i-button type="ghost" class="delete-ad" @click.native="removeAd(${index})">删除</i-button>`;
                         },
