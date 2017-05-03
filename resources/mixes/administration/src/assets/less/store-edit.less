@@ -47,54 +47,7 @@
                             > div {
                                 .picker-input {
                                     .ivu-form-item-label {
-                                        width: 30px !important;
-                                    }
-                                    .ivu-form-item-content {
-                                        margin-left: 30px !important;
-                                    }
-                                }
-                                .upload-picture {
-                                    .demo-upload-list{
-                                        display: inline-block;
-                                        width: 60px;
-                                        height: 60px;
-                                        line-height: 60px;
-                                        text-align: center;
-                                        border: 1px solid transparent;
-                                        border-radius: 4px;
-                                        overflow: hidden;
-                                        background: #fff;
-                                        position: relative;
-                                        box-shadow: 0 1px 1px rgba(0,0,0,.2);
-                                        margin-right: 4px;
-                                    }
-                                    .demo-upload-list img{
-                                        width: 100%;
-                                        height: 100%;
-                                    }
-                                    .demo-upload-list-cover{
-                                        display: none;
-                                        position: absolute;
-                                        top: 0;
-                                        bottom: 0;
-                                        left: 0;
-                                        right: 0;
-                                        background: rgba(0,0,0,.6);
-                                    }
-                                    .demo-upload-list:hover .demo-upload-list-cover{
-                                        display: block;
-                                    }
-                                    .demo-upload-list-cover i{
-                                        color: #fff;
-                                        font-size: 20px;
-                                        cursor: pointer;
-                                        margin: 0 2px;
-                                    }
-                                    .upload-input {
-                                        width: 60px;
-                                        height: 60px;
-                                        line-height: 60px;
-                                        background-color: #f5f7f9;
+                                        width: 118px !important;
                                     }
                                 }
                             }
@@ -103,6 +56,33 @@
                 }
                 .submit-btn {
                     padding: 20px 0;
+                }
+            }
+        }
+
+        .ivu-form-item {
+            .image-preview {
+                border: 2px solid #ccc;
+                position: relative;
+                width: 204px;
+                > i {
+                    bottom: 0;
+                    font-size: 30px;
+                    position: absolute;
+                    right: 0;
+                }
+                > img {
+                    display: block;
+                    max-width: 200px;
+                }
+            }
+            .ivu-upload {
+                background: #f5f7f9;
+                height: 90px;
+                width: 90px;
+                > .ivu-upload-select {
+                    background: url("../images/plus.svg") center no-repeat;
+                    height: 90px;
                 }
             }
         }

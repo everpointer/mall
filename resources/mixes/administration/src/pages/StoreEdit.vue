@@ -1,3 +1,161 @@
+<script>
+    import injection from '../helpers/injection';
+
+    export default {
+        data() {
+            return {
+                action: `${window.api}/mall/upload`,
+                defaultList: [],
+                storeDetail: {
+                    account: 'hjhjkhjk',
+                    companyPlace: '',
+                    classification: '',
+                    province: '',
+                    storeName: '',
+                    companyName: '',
+                    storeAddress: '',
+                    createTime: '2016-12-23',
+                    company_detail_name: '',
+                    company_phone: '',
+                    company_person_num: '',
+                    register_money: '',
+                    company_email: '',
+                    contact_name: '',
+                    contact_phone: '',
+                    switch1: true,
+                    level: '',
+                    logo: '',
+                    licensePlace: '',
+                },
+                ruleValidate: {
+                    storeName: [
+                        { required: true, message: '名称不能为空', trigger: 'blur' },
+                    ],
+                },
+                options2: {
+                    disabledDate(date) {
+                        return date && date.valueOf() < Date.now();
+                    },
+                },
+                companyPlace: [
+                    {
+                        value: '1',
+                        label: '上海市',
+                    },
+                    {
+                        value: '2',
+                        label: '北京市',
+                    },
+                ],
+                classification: [
+                    {
+                        value: '1',
+                        label: '分类1',
+                    },
+                    {
+                        value: '2',
+                        label: '分类2',
+                    },
+                ],
+                province: [
+                    {
+                        value: '1',
+                        label: '上海市',
+                    },
+                    {
+                        value: '2',
+                        label: '北京市',
+                    },
+                ],
+                licensePlace: [
+                    {
+                        value: '1',
+                        label: '上海市',
+                    },
+                    {
+                        value: '2',
+                        label: '北京市',
+                    },
+                ],
+                imgName: '',
+                visible: false,
+                uploadList: [],
+                self: this,
+                loading: false,
+                level: [
+                    {
+                        value: '1',
+                        label: '等级1',
+                    },
+                    {
+                        value: '2',
+                        label: '等级2',
+                    },
+                ],
+            };
+        },
+        beforeRouteEnter(to, from, next) {
+            next(() => {
+                injection.sidebar.active('mall');
+            });
+        },
+        methods: {
+            goBack() {
+                const self = this;
+                self.$router.go(-1);
+            },
+            removeLogo() {
+                this.storeDetail.logo = '';
+            },
+            uploadBefore() {
+                injection.loading.start();
+            },
+            uploadError(error, data) {
+                const self = this;
+                injection.loading.error();
+                if (typeof data.message === 'object') {
+                    for (const p in data.message) {
+                        self.$notice.error({
+                            title: data.message[p],
+                        });
+                    }
+                } else {
+                    self.$notice.error({
+                        title: data.message,
+                    });
+                }
+            },
+            uploadFormatError(file) {
+                this.$notice.warning({
+                    title: '文件格式不正确',
+                    desc: `文件 ${file.name} 格式不正确`,
+                });
+            },
+            uploadSuccess(data) {
+                const self = this;
+                injection.loading.finish();
+                self.$notice.open({
+                    title: data.message,
+                });
+                self.storeDetail.logo = data.data.path;
+            },
+            submit() {
+                const self = this;
+                self.loading = true;
+                self.$refs.storeDetail.validate(valid => {
+                    if (valid) {
+                        window.console.log(valid);
+                    } else {
+                        self.loading = false;
+                        self.$notice.error({
+                            title: '请正确填写设置信息！',
+                        });
+                    }
+                });
+            },
+        },
+    };
+</script>
 <template>
 	<div class="mall-wrap">
 		<div class="store-edit">
@@ -36,10 +194,9 @@
                             <row>
                                 <i-col span="12">
                                     <form-item label="所在地区">
-                                        <i-select v-model="storeDetail.province" placeholder="请选择">
-                                            <i-option value="beijing">北京市</i-option>
-                                            <i-option value="shanghai">上海市</i-option>
-                                            <i-option value="shenzhen">深圳市</i-option>
+                                        <i-select placeholder="请选择" v-model="storeDetail.province">
+                                            <i-option v-for="item in province" :value="item.value"
+                                                      :key="item">{{ item.label }}</i-option>
                                         </i-select>
                                     </form-item>
                                 </i-col>
@@ -61,10 +218,9 @@
                             <row>
                                 <i-col span="12">
                                     <form-item label="所属分类">
-                                        <i-select v-model="storeDetail.province" placeholder="请选择">
-                                            <i-option value="beijing">北京市</i-option>
-                                            <i-option value="shanghai">上海市</i-option>
-                                            <i-option value="shenzhen">深圳市</i-option>
+                                        <i-select v-model="storeDetail.classification" placeholder="请选择">
+                                            <i-option v-for="item in classification" :value="item.value"
+                                                      :key="item">{{ item.label }}</i-option>
                                         </i-select>
                                     </form-item>
                                 </i-col>
@@ -72,10 +228,9 @@
                             <row>
                                 <i-col span="12">
                                     <form-item label="所属等级">
-                                        <i-select v-model="storeDetail.province" placeholder="请选择">
-                                            <i-option value="beijing">北京市</i-option>
-                                            <i-option value="shanghai">上海市</i-option>
-                                            <i-option value="shenzhen">深圳市</i-option>
+                                        <i-select v-model="storeDetail.level" placeholder="请选择">
+                                            <i-option v-for="item in level" :value="item.value"
+                                                      :key="item">{{ item.label }}</i-option>
                                         </i-select>
                                     </form-item>
                                 </i-col>
@@ -124,10 +279,9 @@
                                                     <row>
                                                         <i-col span="12">
                                                             <form-item label="公司所在地">
-                                                                <i-select v-model="storeDetail.province" placeholder="请选择">
-                                                                    <i-option value="beijing">北京市</i-option>
-                                                                    <i-option value="shanghai">上海市</i-option>
-                                                                    <i-option value="shenzhen">深圳市</i-option>
+                                                                <i-select v-model="storeDetail.companyPlace" placeholder="请选择">
+                                                                    <i-option v-for="item in companyPlace" :value="item.value"
+                                                                              :key="item">{{ item.label }}</i-option>
                                                                 </i-select>
                                                             </form-item>
                                                         </i-col>
@@ -206,10 +360,9 @@
                                                     <row>
                                                         <i-col span="12">
                                                             <form-item label="营业执照所在地">
-                                                                <i-select v-model="storeDetail.province" placeholder="请选择">
-                                                                    <i-option value="beijing">北京市</i-option>
-                                                                    <i-option value="shanghai">上海市</i-option>
-                                                                    <i-option value="shenzhen">深圳市</i-option>
+                                                                <i-select v-model="storeDetail.licensePlace" placeholder="请选择">
+                                                                    <i-option v-for="item in licensePlace" :value="item.value"
+                                                                              :key="item">{{ item.label }}</i-option>
                                                                 </i-select>
                                                             </form-item>
                                                         </i-col>
@@ -243,40 +396,25 @@
                                                 <li>
                                                     <row>
                                                         <i-col span="12">
-                                                            <form-item label="营业执照电子版" class="upload-picture">
-                                                                <div class="demo-upload-list" v-for="item in uploadList">
-                                                                    <template v-if="item.status === 'finished'">
-                                                                        <img :src="item.url">
-                                                                        <div class="demo-upload-list-cover">
-                                                                            <icon type="ios-eye-outline" @click.native="handleView(item.name)"></icon>
-                                                                            <icon type="ios-trash-outline" @click.native="handleRemove(item)"></icon>
-                                                                        </div>
-                                                                    </template>
-                                                                    <template v-else>
-                                                                        <i-progress v-if="item.showProgress" :percent="item.percentage" hide-info></i-progress>
-                                                                    </template>
+                                                            <form-item label="营业执照电子版" prop="logo">
+                                                                <div class="image-preview" v-if="storeDetail.logo">
+                                                                    <img :src="storeDetail.logo">
+                                                                    <icon type="close" @click.native="removeLogo"></icon>
                                                                 </div>
-                                                                <upload
+                                                                <upload :action="action"
+                                                                        :before-upload="uploadBefore"
+                                                                        :format="['jpg','jpeg','png']"
+                                                                        :headers="{
+                                                                            Authorization: `Bearer ${$store.state.token.access_token}`
+                                                                        }"
+                                                                        :max-size="2048"
+                                                                        :on-error="uploadError"
+                                                                        :on-format-error="uploadFormatError"
+                                                                        :on-success="uploadSuccess"
                                                                         ref="upload"
                                                                         :show-upload-list="false"
-                                                                        :default-file-list="defaultList"
-                                                                        :on-success="handleSuccess"
-                                                                        :format="['jpg','jpeg','png']"
-                                                                        :max-size="2048"
-                                                                        :on-format-error="handleFormatError"
-                                                                        :on-exceeded-size="handleMaxSize"
-                                                                        :before-upload="handleBeforeUpload"
-                                                                        multiple
-                                                                        type="drag"
-                                                                        action="//jsonplaceholder.typicode.com/posts/"
-                                                                        style="display: inline-block;">
-                                                                    <div class="upload-input">
-                                                                        <icon type="plus-round"></icon>
-                                                                    </div>
+                                                                        v-if="storeDetail.logo === '' || storeDetail.logo === null">
                                                                 </upload>
-                                                                <modal title="查看图片" v-model="visible">
-                                                                    <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
-                                                                </modal>
                                                             </form-item>
                                                         </i-col>
                                                     </row>
@@ -299,118 +437,3 @@
 		</div>
 	</div>
 </template>
-
-<script>
-import injection from '../helpers/injection';
-
-export default {
-    data() {
-        return {
-            storeDetail: {
-                account: 'hjhjkhjk',
-                province: '',
-                storeName: '',
-                companyName: '',
-                storeAddress: '',
-                createTime: '2016-12-23',
-                company_detail_name: '',
-                company_phone: '',
-                company_person_num: '',
-                register_money: '',
-                company_email: '',
-                contact_name: '',
-                contact_phone: '',
-                switch1: true,
-            },
-            ruleValidate: {
-                storeName: [
-                    { required: true, message: '名称不能为空', trigger: 'blur' },
-                ],
-            },
-            options2: {
-                disabledDate(date) {
-                    return date && date.valueOf() < Date.now();
-                },
-            },
-            defaultList: [],
-            imgName: '',
-            visible: false,
-            uploadList: [],
-            self: this,
-            loading: false,
-        };
-    },
-    beforeRouteEnter(to, from, next) {
-        next(() => {
-            injection.sidebar.active('mall');
-        });
-    },
-    methods: {
-        goBack() {
-            const self = this;
-            self.$router.go(-1);
-        },
-        handleSubmit(name) {
-            this.$refs[name].validate(valid => {
-                if (valid) {
-                    this.$Message.success('提交成功!');
-                } else {
-                    this.$Message.error('表单验证失败!');
-                }
-            });
-        },
-        handleView(name) {
-            this.imgName = name;
-            this.visible = true;
-        },
-        handleRemove(file) {
-            // 从 upload 实例删除数据
-            const fileList = this.$refs.upload.fileList;
-            this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
-        },
-        handleSuccess(res, file) {
-            // 因为上传过程为实例，这里模拟添加 url
-            file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar';
-            file.name = '7eb99afb9d5f317c912f08b5212fd69a';
-        },
-        handleFormatError(file) {
-            this.$Notice.warning({
-                title: '文件格式不正确',
-                desc: `文件${file.name}格式不正确，请上传 jpg 或 png 格式的图片。`,
-            });
-        },
-        handleMaxSize(file) {
-            this.$Notice.warning({
-                title: '超出文件大小限制',
-                desc: `文件${file.name}太大，不能超过 2M。`,
-            });
-        },
-        handleBeforeUpload() {
-            const check = this.uploadList.length < 5;
-            if (!check) {
-                this.$Notice.warning({
-                    title: '最多只能上传 5 张图片。',
-                });
-            }
-            return check;
-        },
-        submit() {
-            const self = this;
-            self.loading = true;
-            self.$refs.storeDetail.validate(valid => {
-                if (valid) {
-                    window.console.log(valid);
-                } else {
-                    self.loading = false;
-                    self.$notice.error({
-                        title: '请正确填写设置信息！',
-                    });
-                }
-            });
-        },
-    },
-    mounted() {
-        this.uploadList = this.$refs.upload.fileList;
-    },
-};
-</script>
