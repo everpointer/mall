@@ -11,6 +11,7 @@ namespace Notadd\Mall\Listeners;
 use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
 use Notadd\Mall\Controllers\Api\AddressController;
 use Notadd\Mall\Controllers\Api\CategoryController;
+use Notadd\Mall\Controllers\Api\ConfigurationAdvertisementController;
 use Notadd\Mall\Controllers\Api\ConfigurationController;
 use Notadd\Mall\Controllers\Api\ConfigurationSearchController;
 use Notadd\Mall\Controllers\Api\ConfigurationSearchHotController;
@@ -41,6 +42,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('category/restore', CategoryController::class . '@restore');
             $this->router->post('configuration/get', ConfigurationController::class . '@get');
             $this->router->post('configuration/set', ConfigurationController::class . '@set');
+            $this->router->post('configuration/advertisement/list', ConfigurationAdvertisementController::class . '@list');
             $this->router->post('configuration/search/get', ConfigurationSearchController::class . '@set');
             $this->router->post('configuration/search/set', ConfigurationSearchController::class . '@set');
             $this->router->post('configuration/search/hot/create', ConfigurationSearchHotController::class . '@create');
