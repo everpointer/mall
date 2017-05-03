@@ -1,3 +1,49 @@
+<script>
+    import injection from '../helpers/injection';
+
+    export default {
+        data() {
+            return {
+                refundDetail: {
+                    applyTime: '2016-12-21  10:31:59',
+                    goodsname: '****',
+                    refundMoney: '99.00',
+                    refundReason: '不要',
+                    refundDescription: 'mm',
+                    refundImg: '',
+                    handelResult: '同意',
+                    handelText: 'jahwuiha',
+                    handelTime: '2016-12-21  10:31:59',
+                    payStyle: '在线支付',
+                    orderCounts: '99.00',
+                    linePay: '99.00',
+                    remarks: '',
+                },
+                ruleValidate: {
+                    remarks: [
+                        { required: true, message: '信息不能为空', trigger: 'blur' },
+                    ],
+                },
+            };
+        },
+        beforeRouteEnter(to, from, next) {
+            next(() => {
+                injection.sidebar.active('mall');
+            });
+        },
+        methods: {
+            handleSubmit(name) {
+                this.$refs[name].validate(valid => {
+                    if (valid) {
+                        this.$Message.success('提交成功!');
+                    } else {
+                        this.$Message.error('表单验证失败!');
+                    }
+                });
+            },
+        },
+    };
+</script>
 <template>
     <div class="mall-wrap">
         <div class="order-refund-process">
@@ -141,49 +187,3 @@
         </div>
     </div>
 </template>
-<script>
-    import injection from '../helpers/injection';
-
-    export default {
-        data() {
-            return {
-                refundDetail: {
-                    applyTime: '2016-12-21  10:31:59',
-                    goodsname: '****',
-                    refundMoney: '99.00',
-                    refundReason: '不要',
-                    refundDescription: 'mm',
-                    refundImg: '',
-                    handelResult: '同意',
-                    handelText: 'jahwuiha',
-                    handelTime: '2016-12-21  10:31:59',
-                    payStyle: '在线支付',
-                    orderCounts: '99.00',
-                    linePay: '99.00',
-                    remarks: '',
-                },
-                ruleValidate: {
-                    remarks: [
-                        { required: true, message: '信息不能为空', trigger: 'blur' },
-                    ],
-                },
-            };
-        },
-        beforeRouteEnter(to, from, next) {
-            next(() => {
-                injection.sidebar.active('mall');
-            });
-        },
-        methods: {
-            handleSubmit(name) {
-                this.$refs[name].validate(valid => {
-                    if (valid) {
-                        this.$Message.success('提交成功!');
-                    } else {
-                        this.$Message.error('表单验证失败!');
-                    }
-                });
-            },
-        },
-    };
-</script>

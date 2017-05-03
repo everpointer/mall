@@ -100,13 +100,13 @@
                         width: 200,
                     },
                     {
+                        align: 'center',
+                        fixed: 'right',
                         title: '操作',
                         key: 'action',
-                        fixed: 'right',
                         width: 140,
-                        align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">处理</i-button>';
+                            return '<i-button @click.native="refundHandel" type="ghost" size="small">处理</i-button>';
                         },
                     },
                 ],
@@ -418,7 +418,7 @@
                         width: 140,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">编辑</i-button>';
+                            return '<i-button type="ghost" size="small" @click.native="reasonEdit">编辑</i-button>';
                         },
                     },
                 ],
@@ -428,7 +428,13 @@
                         reason: '不能按时发货',
                     },
                 ],
+                self: this,
             };
+        },
+        beforeRouteEnter(to, from, next) {
+            next(() => {
+                injection.sidebar.active('mall');
+            });
         },
         methods: {
             exportData(table) {
@@ -442,11 +448,18 @@
                     });
                 }
             },
-        },
-        beforeRouteEnter(to, from, next) {
-            next(() => {
-                injection.sidebar.active('mall');
-            });
+            refundHandel() {
+                const self = this;
+                self.$router.push({
+                    path: 'refund/process',
+                });
+            },
+            reasonEdit() {
+                const self = this;
+                self.$router.push({
+                    path: 'refund/reedit',
+                });
+            },
         },
     };
 </script>
@@ -467,13 +480,15 @@
                                 <div class="store-body-header-right">
                                     <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
                                         <i-select v-model="searchCategory" slot="prepend" style="width: 100px">
-                                            <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                            <i-option v-for="item in searchList" :value="item.value"
+                                                      :key="item">{{ item.label }}</i-option>
                                         </i-select>
                                         <i-button slot="append" type="primary">搜索</i-button>
                                     </i-input>
                                 </div>
                             </div>
-                            <i-table highlight-row ref="pendingTable" class="shop-table" :columns="managementColumns" :data="pendingData"></i-table>
+                            <i-table highlight-row ref="pendingTable" class="shop-table"
+                                     :columns="managementColumns" :context="self" :data="pendingData"></i-table>
                         </div>
                         <div class="page">
                             <page :total="100" show-elevator></page>
@@ -518,13 +533,15 @@
                                 <div class="store-body-header-right">
                                     <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
                                         <i-select v-model="searchCategory" slot="prepend" style="width: 100px">
-                                            <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                            <i-option v-for="item in searchList" :value="item.value"
+                                                      :key="item">{{ item.label }}</i-option>
                                         </i-select>
                                         <i-button slot="append" type="primary">搜索</i-button>
                                     </i-input>
                                 </div>
                             </div>
-                            <i-table highlight-row class="shop-table" :columns="reasonColumns" :data="reasonData"></i-table>
+                            <i-table highlight-row class="shop-table" :columns="reasonColumns"
+                                     :context="self" :data="reasonData" ></i-table>
                         </div>
                     </card>
                 </tab-pane>
