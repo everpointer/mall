@@ -12,6 +12,7 @@ use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
 use Notadd\Mall\Controllers\Api\AddressController;
 use Notadd\Mall\Controllers\Api\CategoryController;
 use Notadd\Mall\Controllers\Api\ConfigurationAdvertisementController;
+use Notadd\Mall\Controllers\Api\ConfigurationAdvertisementPositionController;
 use Notadd\Mall\Controllers\Api\ConfigurationController;
 use Notadd\Mall\Controllers\Api\ConfigurationSearchController;
 use Notadd\Mall\Controllers\Api\ConfigurationSearchHotController;
@@ -46,6 +47,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('configuration/advertisement/edit', ConfigurationAdvertisementController::class . '@edit');
             $this->router->post('configuration/advertisement/list', ConfigurationAdvertisementController::class . '@list');
             $this->router->post('configuration/advertisement/remove', ConfigurationAdvertisementController::class . '@remove');
+            $this->router->post('configuration/advertisement/position/list', ConfigurationAdvertisementPositionController::class . '@list');
             $this->router->post('configuration/search/get', ConfigurationSearchController::class . '@set');
             $this->router->post('configuration/search/set', ConfigurationSearchController::class . '@set');
             $this->router->post('configuration/search/hot/create', ConfigurationSearchHotController::class . '@create');

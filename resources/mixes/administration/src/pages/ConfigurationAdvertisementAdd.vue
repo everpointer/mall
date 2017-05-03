@@ -117,8 +117,7 @@
                         <i-col span="12">
                             <form-item label="选择广告位">
                                 <i-select placeholder="请选择" v-model="addAdPosition.position">
-                                    <i-option v-for="item in position" :value="item.value"
-                                              :key="item">{{ item.label }}</i-option>
+                                    <i-option v-for="item in position" :value="item.value" :key="item">{{ item.label }}</i-option>
                                 </i-select>
                             </form-item>
                         </i-col>
@@ -126,8 +125,7 @@
                     <row>
                         <i-col span="12">
                             <form-item label="开始时间" prop="starttime">
-                                <time-picker placeholder="选择时间" type="time"
-                                             v-model="addAdPosition.starttime"></time-picker>
+                                <time-picker placeholder="选择时间" type="time" v-model="addAdPosition.starttime"></time-picker>
                             </form-item>
                         </i-col>
                     </row>
