@@ -2,27 +2,21 @@
     import injection from '../helpers/injection';
 
     export default {
+        beforeRouteEnter(to, from, next) {
+            next(() => {
+                injection.sidebar.active('mall');
+            });
+        },
         data() {
             return {
                 action: `${window.api}/mall/upload`,
                 addAdPosition: {
                     adname: '',
-                    position: '',
+                    endtime: '',
                     linkAddress: '',
                     logo: '',
+                    position: '',
                     starttime: '',
-                    endtime: '',
-                },
-                ruleValidate: {
-                    adname: [
-                        { required: true, message: '广告名称不能为空', trigger: 'blur' },
-                    ],
-                    position: [
-                        { required: true, message: '广告位不能为空', trigger: 'blur' },
-                    ],
-                    logo: [
-                        { required: true, message: '图片上传不能为空', trigger: 'blur' },
-                    ],
                 },
                 loading: false,
                 position: [
@@ -35,12 +29,18 @@
                         label: '图片1',
                     },
                 ],
+                ruleValidate: {
+                    adname: [
+                        { required: true, message: '广告名称不能为空', trigger: 'blur' },
+                    ],
+                    position: [
+                        { required: true, message: '广告位不能为空', trigger: 'blur' },
+                    ],
+                    logo: [
+                        { required: true, message: '图片上传不能为空', trigger: 'blur' },
+                    ],
+                },
             };
-        },
-        beforeRouteEnter(to, from, next) {
-            next(() => {
-                injection.sidebar.active('mall');
-            });
         },
         methods: {
             removeLogo() {
@@ -105,7 +105,7 @@
                 <span>广告管理—新增广告</span>
             </div>
             <card :bordered="false">
-                <i-form ref="addAdPosition" :model="addAdPosition" :rules="ruleValidate" :label-width="200">
+                <i-form :label-width="200" ref="addAdPosition" :model="addAdPosition" :rules="ruleValidate">
                     <row>
                         <i-col span="12">
                             <form-item label="广告名称" prop="adname">
@@ -116,9 +116,9 @@
                     <row>
                         <i-col span="12">
                             <form-item label="选择广告位">
-                                <i-select v-model="addAdPosition.position" placeholder="请选择">
-                                    <i-option v-for="item in position" :value="item.value" :key="item">{{ item.label }}
-                                    </i-option>
+                                <i-select placeholder="请选择" v-model="addAdPosition.position">
+                                    <i-option v-for="item in position" :value="item.value"
+                                              :key="item">{{ item.label }}</i-option>
                                 </i-select>
                             </form-item>
                         </i-col>
@@ -126,14 +126,16 @@
                     <row>
                         <i-col span="12">
                             <form-item label="开始时间" prop="starttime">
-                                <time-picker type="time" placeholder="选择时间" v-model="addAdPosition.starttime" ></time-picker>
+                                <time-picker placeholder="选择时间" type="time"
+                                             v-model="addAdPosition.starttime"></time-picker>
                             </form-item>
                         </i-col>
                     </row>
                     <row>
                         <i-col span="12">
                             <form-item label="结束时间" prop="endtime">
-                                <time-picker type="time" placeholder="选择时间" v-model="addAdPosition.endtime" ></time-picker>
+                                <time-picker type="time" placeholder="选择时间"
+                                             v-model="addAdPosition.endtime" ></time-picker>
                             </form-item>
                         </i-col>
                     </row>
