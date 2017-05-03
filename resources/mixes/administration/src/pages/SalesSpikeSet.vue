@@ -33,7 +33,7 @@
                         width: 140,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">+设置商品</i-button>';
+                            return '<i-button  @click.native="toEdit"  type="ghost" size="small">+设置商品</i-button>';
                         },
                     },
                 ],
@@ -71,6 +71,7 @@
                     },
 
                 ],
+                self: this,
             };
         },
         beforeRouteEnter(to, from, next) {
@@ -80,6 +81,16 @@
         },
         methods: {
             addGoods() {},
+            toEdit() {
+                const self = this;
+                self.$router.push({
+                    path: 'set/add',
+                });
+            },
+            goBack() {
+                const self = this;
+                self.$router.go(-1);
+            },
         },
     };
 </script>
@@ -87,13 +98,13 @@
     <div class="mall-wrap">
         <div class="sales-activity-set">
             <div class="edit-link-title">
-                <i-button type="text">
+                <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
                 <span>秒杀活动—设置商品</span>
             </div>
            <card :bordered="false">
-               <i-table highlight-row :columns="killColumns" :data="killDate"></i-table>
+               <i-table highlight-row :columns="killColumns"  :context="self"  :data="killDate"></i-table>
            </card>
         </div>
     </div>
