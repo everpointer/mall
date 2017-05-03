@@ -46,8 +46,12 @@
                 div {
                     .my-btn {
                         margin: 150px 8px 0 8px ;
+                        position: relative;
                     }
-
+                    .my-submit {
+                        position: absolute;
+                        margin: 150px 30px 0 30px ;
+                    }
                 }
                 .my-card {
                     ul {
@@ -75,35 +79,22 @@
                     color: #657180;
                     padding-top: 10px;
                     font-weight: 300;
-                    .ivu-row{
+                    .ivu-row {
                         .p-list {
-                            //height: 26px;
+                            font-size: 14px;
                             display: inline-block;
                             margin-right: 3px;
-                            .ivu-btn .ivu-btn-ghost:hover {
-                                width: 64px;
-                                height: 26px;
-                                span {
-                                    color: #ef5151
-                                }
+                            .ivu-btn {
+                                font-size: 14px;
                             }
-                            li {
-                                input {
-                                    color: #657180;
-                                    height:26px ;
-                                    width: 64px;
-                                }
-                                float: right;
-                                list-style: none;
+                        }
+                        .remove {
+                            .ivu-btn:hover {
+                                color: #ef5151;
+                                border-color: #ef5151;
                             }
-                    }   }
-                }
-                .last-btn {
-                    margin-top: 32px;
-                    width: 94px;
-                    height: 36px;
-                    border-radius: 4px;
-                    background-color: #3399ff;
+                        }
+                    }
                 }
             }
         }

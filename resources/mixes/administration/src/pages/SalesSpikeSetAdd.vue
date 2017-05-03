@@ -64,13 +64,6 @@
                 <div class="sales-body">
                     <div class="sales-body-header">
                         <row>
-                            <!--<i-col span="5">-->
-                                <!--<div class="p-change">-->
-                                    <!--<i-select v-model="searchCategory" placeholder="请选择分类">-->
-                                        <!--<i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>-->
-                                    <!--</i-select>-->
-                                <!--</div>-->
-                            <!--</i-col>-->
                             <i-col span="5">
                                 <div class="p-change">
                                     <i-select v-model="searchCategory" placeholder="请选择分类">
@@ -122,15 +115,21 @@
                                 <div class="all-select">
                                     <row>
                                         <i-col span="3">
-                                            <div class="p-list"><i-button type="ghost">全选</i-button></div>
+                                            <div class="p-list"><i-button type="ghost" style="width:64px">全选</i-button></div>
                                         </i-col>
-                                        <i-col span="20">
+                                        <i-col span="4">
                                             <div class="p-list">
-                                                <ul>
-                                                    <li>数量: <input type="text">&nbsp;件</li>
-                                                    <li>数量: <input type="text">&nbsp;件</li>
-                                                    <li>数量: <input type="text">&nbsp;件</li>
-                                                </ul>
+                                                数量:<i-input style="width:64px;height: 26px"></i-input>件
+                                            </div>
+                                        </i-col>
+                                        <i-col span="4">
+                                            <div class="p-list">
+                                                限购:<i-input style="width:64px;height: 26px"></i-input>件
+                                            </div>
+                                        </i-col>
+                                        <i-col span="4">
+                                            <div class="p-list">
+                                                价格:<i-input style="width:64px;height: 26px"></i-input>元
                                             </div>
                                         </i-col>
                                     </row>
@@ -142,6 +141,7 @@
                                 <i-button slot="append" type="primary" size="small" class="my-btn">添加至秒杀列表
                                     <icon type="chevron-right"></icon>
                                 </i-button>
+                                <i-button  type="primary" size="small" class="my-submit">确认提交</i-button>
                             </div>
                         </i-col>
                         <i-col span="11" class="sales-list">
@@ -162,10 +162,10 @@
                                 <div class="all-select">
                                     <row>
                                         <i-col span="3">
-                                            <div class="p-list"><i-button type="ghost">全选</i-button></div>
+                                            <div class="p-list"><i-button type="ghost" style="width: 64px">全选</i-button></div>
                                         </i-col>
                                         <i-col span="3">
-                                            <div class="p-list"><i-button type="ghost">移除</i-button></div>
+                                            <div class="p-list remove"><i-button type="ghost" style="width: 64px">移除</i-button></div>
                                         </i-col>
                                     </row>
                                 </div>
