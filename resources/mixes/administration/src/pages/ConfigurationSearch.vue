@@ -10,15 +10,16 @@
         data() {
             return {
                 loading: false,
-                defaultSearchData: {
-                    name: '',
+                form: {
+                    default: '',
                 },
-                validate: {
-                    name: [
+                rules: {
+                    default: [
                         {
+                            message: '请输入默认关键词',
                             required: true,
-                            message: '默认搜索词格式不正确',
-                            trigger: 'blur',
+                            trigger: 'change',
+                            type: 'string',
                         },
                     ],
                 },
@@ -86,7 +87,7 @@
             submit() {
                 const self = this;
                 self.loading = true;
-                self.$refs.activityValidate.validate(valid => {
+                self.$refs.form.validate(valid => {
                     if (valid) {
                         self.$Message.success('提交成功!');
                     } else {
@@ -103,28 +104,30 @@
 <template>
     <div class="mall-wrap">
         <div class="configuration-search">
-            <tabs value="name1">
-                <tab-pane label="默认搜索" name="name1">
-                    <div class="store-body">
-                        <i-form :label-width="200" ref="activityValidate" :model="defaultSearchData" :rules="validate">
-                            <row>
-                                <i-col span="12">
-                                    <form-item label="默认搜索条">
-                                        <i-input v-model="defaultSearchData.name" placeholder=""></i-input>
-                                        <span class="range">默认词设置将显示在前台搜索框下面，前台点击时直接作为关键词进行搜索，多个请用半角逗号“，”隔开</span>
-                                    </form-item>
-                                </i-col>
-                            </row>
-                            <form-item>
-                                <i-button @click.native="submit" type="primary">
-                                    <span v-if="!loading">确认提交</span>
-                                    <span v-else>正在提交…</span>
-                                </i-button>
-                            </form-item>
-                        </i-form>
-                    </div>
+            <tabs value="default">
+                <tab-pane label="默认搜索" name="default">
+                    <card>
+                        <div class="store-body">
+                            <i-form :label-width="200" ref="form" :model="form" :rules="rules">
+                                <row>
+                                    <i-col span="12">
+                                        <form-item label="默认搜索条">
+                                            <i-input v-model="form.default" placeholder=""></i-input>
+                                            <span class="range">默认词设置将显示在前台搜索框下面，前台点击时直接作为关键词进行搜索，多个请用半角逗号","隔开</span>
+                                        </form-item>
+                                    </i-col>
+                                </row>
+                                <form-item>
+                                    <i-button type="primary" @click.native="submit">
+                                        <span v-if="!loading">确认提交</span>
+                                        <span v-else>正在提交…</span>
+                                    </i-button>
+                                </form-item>
+                            </i-form>
+                        </div>
+                    </card>
                 </tab-pane>
-                <tab-pane label="热门搜索" name="name2">
+                <tab-pane label="热门搜索" name="hot">
                     <div class="prompt-box">
                         <h6>提示</h6>
                         <p>热门搜索词设置后，将显示在前台搜索框作为默认值随机出现，最多可设置10个热搜词</p>

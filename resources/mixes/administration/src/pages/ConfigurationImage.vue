@@ -139,9 +139,9 @@
 <template>
     <div class="mall-wrap">
         <div class="configuration-image">
-            <tabs value="configurationImage">
-                <card>
+            <tabs value="uploadParameters">
                 <tab-pane label="上传参数" name="uploadParameters">
+                    <card :bordered="false">
                         <i-form :label-width="200" ref="configurationImage" :model="parameter" :rules="validate">
                             <row>
                                 <i-col span="24">
@@ -159,8 +159,10 @@
                                 </i-button>
                             </form-item>
                         </i-form>
+                    </card>
                 </tab-pane>
                 <tab-pane label="默认图片" name="defaultImage">
+                    <card :bordered="false">
                         <i-form :label-width="200" ref="defaultImage" :model="defaultImage">
                             <row>
                                 <i-col span="12">
@@ -244,8 +246,8 @@
                                 </i-button>
                             </form-item>
                         </i-form>
+                    </card>
                 </tab-pane>
-                </card>
             </tabs>
         </div>
     </div>

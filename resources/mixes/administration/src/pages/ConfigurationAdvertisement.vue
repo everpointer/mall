@@ -132,8 +132,7 @@
                         <i-button class="delete-data" type="ghost">批量删除</i-button>
                         <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                     </div>
-                    <i-table highlight-row :columns="advertisement"
-                             :data="advertisementData"></i-table>
+                    <i-table highlight-row :columns="advertisement" :data="advertisementData"></i-table>
                 </tab-pane>
             </tabs>
         </div>
