@@ -8,6 +8,7 @@
  */
 namespace Notadd\Mall\Controllers\Api;
 
+use Notadd\Mall\Handlers\Configuration\Message\CreateHandler;
 use Notadd\Mall\Handlers\Configuration\Message\ListHandler;
 
 /**
@@ -15,6 +16,16 @@ use Notadd\Mall\Handlers\Configuration\Message\ListHandler;
  */
 class ConfigurationMessageController
 {
+    /**
+     * @param \Notadd\Mall\Handlers\Configuration\Message\CreateHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function create(CreateHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
     /**
      * @param \Notadd\Mall\Handlers\Configuration\Message\ListHandler $handler
      *
