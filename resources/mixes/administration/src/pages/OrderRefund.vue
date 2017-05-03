@@ -418,7 +418,7 @@
                         width: 140,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">编辑</i-button>';
+                            return '<i-button type="ghost" size="small" @click.native="reasonEdit">编辑</i-button>';
                         },
                     },
                 ],
@@ -452,6 +452,12 @@
                 const self = this;
                 self.$router.push({
                     path: 'refund/process',
+                });
+            },
+            reasonEdit() {
+                const self = this;
+                self.$router.push({
+                    path: 'refund/reedit',
                 });
             },
         },
@@ -527,13 +533,15 @@
                                 <div class="store-body-header-right">
                                     <i-input v-model="searchWord" placeholder="请输入关键词进行搜索">
                                         <i-select v-model="searchCategory" slot="prepend" style="width: 100px">
-                                            <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                            <i-option v-for="item in searchList" :value="item.value"
+                                                      :key="item">{{ item.label }}</i-option>
                                         </i-select>
                                         <i-button slot="append" type="primary">搜索</i-button>
                                     </i-input>
                                 </div>
                             </div>
-                            <i-table highlight-row class="shop-table" :columns="reasonColumns" :data="reasonData"></i-table>
+                            <i-table highlight-row class="shop-table" :columns="reasonColumns"
+                                     :context="self" :data="reasonData" ></i-table>
                         </div>
                     </card>
                 </tab-pane>
