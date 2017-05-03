@@ -9,6 +9,7 @@
         },
         data() {
             return {
+                loading: false,
                 searchCategory: '',
                 searchProduct: '',
                 searchLists: [
@@ -41,7 +42,32 @@
                     { content: '  iphone8 plus星空蓝全新发布 信用卡12期分期免息' },
                     { content: '  iphone8 plus星空蓝全新发布 信用卡12期分期免息' },
                 ],
+                ruleValidate: {
+                    remarks: [
+                        { required: true, message: '信息不能为空', trigger: 'blur' },
+                    ],
+                },
             };
+        },
+        methods: {
+            submit() {
+                const self = this;
+                self.loading = true;
+                self.$refs.activityValidate.validate(valid => {
+                    if (valid) {
+                        self.$Message.success('提交成功!');
+                    } else {
+                        self.loading = false;
+                        self.$notice.error({
+                            title: '请正确填写设置信息！',
+                        });
+                    }
+                });
+            },
+            goBack() {
+                const self = this;
+                self.$router.go(-1);
+            },
         },
     };
 </script>
@@ -49,7 +75,7 @@
     <div class="mall-wrap">
         <div class="sales-activity-set-add activity-title">
             <div class="edit-link-title">
-                <i-button type="text">
+                <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
                 <span>秒杀活动—设置商品-添加商品</span>
@@ -141,7 +167,10 @@
                                 <i-button slot="append" type="primary" size="small" class="my-btn">添加至秒杀列表
                                     <icon type="chevron-right"></icon>
                                 </i-button>
-                                <i-button  type="primary" size="small" class="my-submit">确认提交</i-button>
+                                <i-button @click.native="submit" type="primary" size="small" class="my-submit">
+                                    <span v-if="!loading">确认提交</span>
+                                    <span v-else>正在提交…</span>
+                                </i-button>
                             </div>
                         </i-col>
                         <i-col span="11" class="sales-list">
