@@ -140,15 +140,14 @@
     <div class="mall-wrap">
         <div class="configuration-image">
             <tabs value="configurationImage">
+                <card>
                 <tab-pane label="上传参数" name="uploadParameters">
-                    <card>
                         <i-form :label-width="200" ref="configurationImage" :model="parameter" :rules="validate">
                             <row>
-                                <i-col span="12">
+                                <i-col span="24">
                                     <form-item label="图片存放类型：" prop="imageType">
                                         <radio-group v-model="parameter.imageType">
-                                            <radio v-for="item in radioList" :label="item.label">{{ item.content }}
-                                            </radio>
+                                            <radio v-for="item in radioList" :label="item.label">{{ item.content }}</radio>
                                         </radio-group>
                                     </form-item>
                                 </i-col>
@@ -160,10 +159,8 @@
                                 </i-button>
                             </form-item>
                         </i-form>
-                    </card>
                 </tab-pane>
                 <tab-pane label="默认图片" name="defaultImage">
-                    <card>
                         <i-form :label-width="200" ref="defaultImage" :model="defaultImage">
                             <row>
                                 <i-col span="12">
@@ -247,8 +244,8 @@
                                 </i-button>
                             </form-item>
                         </i-form>
-                    </card>
                 </tab-pane>
+                </card>
             </tabs>
         </div>
     </div>

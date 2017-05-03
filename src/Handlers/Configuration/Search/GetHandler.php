@@ -42,7 +42,7 @@ class GetHandler extends DataHandler
     public function data()
     {
         return [
-            'keyword' => $this->settings->get('mall.configuration.search.keyword', ''),
+            'default' => $this->settings->get('mall.configuration.search.default', ''),
         ];
     }
 }

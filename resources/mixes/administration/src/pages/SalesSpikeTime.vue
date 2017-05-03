@@ -38,7 +38,7 @@
                     {
                         title: '操作',
                         key: 'action',
-                        width: 140,
+                        width: 180,
                         align: 'center',
                         render(row, column, index) {
                             return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">编辑</i-button><i-button type="ghost" size="small">删除</i-button>`;
@@ -86,6 +86,10 @@
                     path: 'time/addtime',
                 });
             },
+            goBack() {
+                const self = this;
+                self.$router.go(-1);
+            },
         },
     };
 </script>
@@ -93,7 +97,7 @@
     <div class="mall-wrap">
         <div class="sales-activity-time">
             <div class="edit-link-title">
-                <i-button type="text">
+                <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
                 <span>秒杀活动—时间段列表</span>

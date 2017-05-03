@@ -12,33 +12,33 @@
                 merchantColumns: [
                     {
                         type: 'selection',
-                        width: '60',
+                        width: 60,
                         align: 'center',
                     },
                     {
                         title: '模板描述',
                         key: 'describe',
-                        align: 'center',
+                        align: 'left',
                     },
                     {
                         title: '站内信',
                         align: 'center',
                         render() {
-                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
                         title: '手机短信',
                         align: 'center',
                         render() {
-                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
                         title: '邮件',
                         align: 'center',
                         render() {
-                            return '<i-switch size="large"><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
+                            return '<i-switch><span slot="open">开启</span> <span slot="close">关闭</span> </i-switch>';
                         },
                     },
                     {
@@ -46,8 +46,8 @@
                         key: 'action',
                         align: 'center',
                         width: '140',
-                        render() {
-                            return '<i-button type="ghost" size="small">编辑</i-button>';
+                        render(row, column, index) {
+                            return `<i-button type="ghost" class="editor-btn" size="small" @click="remove(${index})">编辑</i-button>`;
                         },
                     },
                 ],
@@ -92,7 +92,7 @@
                     {
                         title: '模板描述',
                         key: 'describe',
-                        align: 'center',
+                        align: 'left',
                     },
                     {
                         title: '站内信',
@@ -119,10 +119,9 @@
                         title: '操作',
                         key: 'action',
                         align: 'center',
-                        fixed: 'right',
                         width: 140,
                         render(row, column, index) {
-                            return `<i-button type="ghost" class="first-btn" size="small" @click="remove(${index})">编辑</i-button>`;
+                            return `<i-button type="ghost" class="editor-btn" size="small" @click="remove(${index})">编辑</i-button>`;
                         },
                     },
                 ],

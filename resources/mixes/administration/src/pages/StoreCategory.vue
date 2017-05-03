@@ -38,11 +38,11 @@
                     {
                         title: '操作',
                         key: 'action',
-                        width: 140,
+                        width: 180,
                         align: 'center',
                         render(row, column, index) {
-                            return `<i-button type="ghost" class="first-btn" size="small" @click.native="remove(${index})">删除</i-button>
-                                    <i-button type="ghost" @click.native="toSet" size="small">设置</i-button>`;
+                            return `<i-button class="first-btn" @click.native="remove(${index})" type="ghost" size="small">删除</i-button>
+                                    <i-button @click.native="toSet" type="ghost" size="small">设置</i-button>`;
                         },
                     },
                 ],
@@ -66,11 +66,6 @@
             };
         },
         methods: {
-            exportData() {
-                this.$refs.storeCategoryTable.exportCsv({
-                    filename: '店铺分类数据',
-                });
-            },
             remove(index) {
                 this.storeCategoryData.splice(index, 1);
             },

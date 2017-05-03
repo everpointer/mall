@@ -13,52 +13,26 @@
                 searchProduct: '',
                 searchLists: [
                     {
-                        value: '请选择分类',
-                        label: '请选择分类',
+                        value: '北京',
+                        label: '北京',
                     },
                     {
-                        value: '商品名称',
-                        label: '商品名称',
+                        value: '上海',
+                        label: '上海',
                     },
                     {
-                        value: '商品分类',
-                        label: '商品分类',
-                    },
-                ],
-                columns1: [
-                    {
-                        title: '姓名',
-                        key: 'name',
-                    },
-                    {
-                        title: '年龄',
-                        key: 'age',
-                    },
-                    {
-                        title: '地址',
-                        key: 'address',
+                        value: '西安',
+                        label: '西安',
                     },
                 ],
-                data1: [
+                searchProducts: [
                     {
-                        name: '王小明',
-                        age: 18,
-                        address: '北京市朝阳区芍药居',
+                        value: '苹果',
+                        label: '苹果',
                     },
                     {
-                        name: '张小刚',
-                        age: 25,
-                        address: '北京市海淀区西二旗',
-                    },
-                    {
-                        name: '李小红',
-                        age: 30,
-                        address: '上海市浦东新区世纪大道',
-                    },
-                    {
-                        name: '周小伟',
-                        age: 26,
-                        address: '深圳市南山区深南大道',
+                        value: '香蕉',
+                        label: '香蕉',
                     },
                 ],
                 sales: [
@@ -72,94 +46,6 @@
     };
 </script>
 <template>
-    <!--<div class="mall-wrap">-->
-        <!--<div class="store">-->
-            <!--<tabs value="name1">-->
-                <!--<tab-pane icon="chevron-left" label="秒杀活动-设置商品-添加商品" name="name1" class="activity-title">-->
-                <!--&lt;!&ndash;<tab-pane>&ndash;&gt;-->
-                    <!--<div class="prompt-box">-->
-                        <!--<h6>提示</h6>-->
-                        <!--<p>搜索完商品后请在下方添加商品数量、限购、价格。如未填写则默认为0</p>-->
-                        <!--<p>可批量添加商品（仅相同数量、限购、价格）</p>-->
-                    <!--</div>-->
-                    <!--<div class="sales-body">-->
-                        <!--<div class="sales-body-header">-->
-                            <!--<ul class="sales-body-header-left">-->
-                                <!--<li>-->
-                                    <!--<i-select v-model="searchCategory" slot="prepend">-->
-                                        <!--<i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>-->
-                                    <!--</i-select>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<i-select v-model="searchCategory" slot="prepend">-->
-                                        <!--<i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>-->
-                                    <!--</i-select>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<i-input v-model="searchProduct" placeholder="商品关键词"></i-input>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<i-button slot="append" type="primary">搜索</i-button>-->
-                                <!--</li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<ul class="sales-list-add">-->
-                        <!--<li class="sales-list">-->
-                            <!--<p>可选商品</p>-->
-                            <!--<div class="my-card">-->
-                                <!--<card>-->
-                                    <!--<ul>-->
-                                        <!--<li v-for="sale in sales">-->
-                                            <!--<checkbox>-->
-                                                <!--<span>{{sale.content}}</span>-->
-                                            <!--</checkbox>-->
-                                            <!--<hr>-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
-                                <!--</card>-->
-                            <!--</div>-->
-                            <!--<div class="all-select">-->
-                                <!--<div>-->
-                                    <!--<button>全选</button>-->
-                                <!--</div>-->
-                                <!--<div>数量: <input type="text">&nbsp;件</div>-->
-                                <!--<div>限购: <input type="text">&nbsp;件</div>-->
-                                <!--<div>价格: <input type="text">&nbsp;元</div>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                        <!--<li class="sales-list">-->
-                            <!--<i-button slot="append" type="primary">添加至秒杀列表 ></i-button>-->
-                            <!--<div class="my-submit">-->
-                                <!--<i-button slot="append" type="primary" class="last-btn">确认提交</i-button>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                        <!--<li class="sales-list">-->
-                            <!--<p>参与秒杀商品</p>-->
-                            <!--<div class="my-card">-->
-                                <!--<card>-->
-                                    <!--<ul>-->
-                                        <!--<li v-for="sale in sales">-->
-                                            <!--<checkbox>-->
-                                                <!--<span>{{sale.content}}</span>-->
-                                            <!--</checkbox>-->
-                                            <!--<hr>-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
-                                <!--</card>-->
-                            <!--</div>-->
-                            <!--<div class="all-select">-->
-                                <!--<div>-->
-                                    <!--<button>全选</button>-->
-                                    <!--<button>移除</button>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</tab-pane>-->
-            <!--</tabs>-->
-        <!--</div>-->
-    <!--</div>-->
     <div class="mall-wrap">
         <div class="sales-activity-set-add activity-title">
             <div class="edit-link-title">
@@ -171,137 +57,122 @@
             <div class="store storeBox">
                 <div class="prompt-box">
                     <h6>提示</h6>
-                    <p>建议设置四至五个时间段（前台显示）</p>
+                    <p>搜索完商品后请在下方添加商品数量、限购、价格。如未填写则默认为0</p>
+                    <p>可批量添加商品（仅相同数量、限购、价格）</p>
                 </div>
+                <!--搜索模块-->
                 <div class="sales-body">
                     <div class="sales-body-header">
-                        <ul class="sales-body-header-left">
-                            <li>
-                                <i-select v-model="searchCategory" slot="prepend">
-                                    <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                </i-select>
-                            </li>
-                            <li>
-                                <i-select v-model="searchCategory" slot="prepend">
-                                    <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                </i-select>
-                            </li>
-                            <li>
-                                <i-input v-model="searchProduct" placeholder="商品关键词"></i-input>
-                            </li>
-                            <li>
-                                <i-button slot="append" type="primary">搜索</i-button>
-                            </li>
-                        </ul>
+                        <row>
+                            <i-col span="5">
+                                <div class="p-change">
+                                    <i-select v-model="searchCategory" placeholder="请选择分类">
+                                        <i-option v-for="item in searchLists" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                    </i-select>
+                                </div>
+                            </i-col>
+                            <i-col span="3">
+                                <div class="p-change">
+                                    <i-select v-model="searchProduct" placeholder="请选择品牌">
+                                        <i-option v-for="item in searchProducts" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                    </i-select>
+                                </div>
+                            </i-col>
+                            <i-col span="3">
+                                <div class="p-change">
+                                    <i-input placeholder="商品关键词"></i-input>
+                                </div>
+                            </i-col>
+                            <i-col span="1">
+                                <div class="p-change">
+                                    <i-button slot="append" type="primary">搜索</i-button>
+                                </div>
+                            </i-col>
+                            <i-col span="12">
+                            </i-col>
+                        </row>
                     </div>
                 </div>
+                <!--可选商品模块-->
                 <div class="sales-list-add">
                     <row>
                         <i-col span="11" class="sales-list">
-                            <p>可选商品</p>
-                            <div class="my-card">
-                                <card>
-                                    <ul>
-                                        <li v-for="sale in sales">
-                                            <checkbox>
-                                                <span>{{sale.content}}</span>
-                                            </checkbox>
-                                            <hr>
-                                        </li>
-                                    </ul>
-                                </card>
-                            </div>
-                            <div class="all-select">
-                                <div>
-                                    <button>全选</button>
+                            <div>
+                                <p>可选商品</p>
+                                <div class="my-card">
+                                    <card>
+                                        <ul>
+                                            <li v-for="sale in sales">
+                                                <checkbox>
+                                                    <span>{{sale.content}}</span>
+                                                </checkbox>
+                                                <hr>
+                                            </li>
+                                        </ul>
+                                    </card>
                                 </div>
-                                <div>数量: <input type="text">&nbsp;件</div>
-                                <div>限购: <input type="text">&nbsp;件</div>
-                                <div>价格: <input type="text">&nbsp;元</div>
+                                <!--全选模块-->
+                                <div class="all-select">
+                                    <row>
+                                        <i-col span="3">
+                                            <div class="p-list"><i-button type="ghost" style="width:64px">全选</i-button></div>
+                                        </i-col>
+                                        <i-col span="4">
+                                            <div class="p-list">
+                                                数量:<i-input style="width:64px;height: 26px"></i-input>件
+                                            </div>
+                                        </i-col>
+                                        <i-col span="4">
+                                            <div class="p-list">
+                                                限购:<i-input style="width:64px;height: 26px"></i-input>件
+                                            </div>
+                                        </i-col>
+                                        <i-col span="4">
+                                            <div class="p-list">
+                                                价格:<i-input style="width:64px;height: 26px"></i-input>元
+                                            </div>
+                                        </i-col>
+                                    </row>
+                                </div>
                             </div>
                         </i-col>
                         <i-col span="2" class="sales-list">
-                            <div class="my-submit">
-                                <i-button slot="append" type="primary" size="small">添加至秒杀列表
+                            <div>
+                                <i-button slot="append" type="primary" size="small" class="my-btn">添加至秒杀列表
                                     <icon type="chevron-right"></icon>
                                 </i-button>
+                                <i-button  type="primary" size="small" class="my-submit">确认提交</i-button>
                             </div>
                         </i-col>
                         <i-col span="11" class="sales-list">
-                            <p>参与秒杀商品</p>
-                            <div class="my-card">
-                                <card>
-                                    <ul>
-                                        <li v-for="sale in sales">
-                                            <checkbox>
-                                                <span>{{sale.content}}</span>
-                                            </checkbox>
-                                            <hr>
-                                        </li>
-                                    </ul>
-                                </card>
-                            </div>
-                            <div class="all-select">
-                                <div>
-                                    <button>全选</button>
-                                    <button>移除</button>
+                            <div>
+                                <p>参与秒杀商品</p>
+                                <div class="my-card">
+                                    <card>
+                                        <ul>
+                                            <li v-for="sale in sales">
+                                                <checkbox>
+                                                    <span>{{sale.content}}</span>
+                                                </checkbox>
+                                                <hr>
+                                            </li>
+                                        </ul>
+                                    </card>
+                                </div>
+                                <div class="all-select">
+                                    <row>
+                                        <i-col span="3">
+                                            <div class="p-list"><i-button type="ghost" style="width: 64px">全选</i-button></div>
+                                        </i-col>
+                                        <i-col span="3">
+                                            <div class="p-list remove"><i-button type="ghost" style="width: 64px">移除</i-button></div>
+                                        </i-col>
+                                    </row>
                                 </div>
                             </div>
                         </i-col>
                     </row>
                 </div>
-                <!--<ul class="sales-list-add">-->
-                        <!--<li class="sales-list">-->
-                            <!--<p>可选商品</p>-->
-                            <!--<div class="my-card">-->
-                                <!--<card>-->
-                                    <!--<ul>-->
-                                        <!--<li v-for="sale in sales">-->
-                                            <!--<checkbox>-->
-                                                <!--<span>{{sale.content}}</span>-->
-                                            <!--</checkbox>-->
-                                            <!--<hr>-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
-                                <!--</card>-->
-                            <!--</div>-->
-                            <!--<div class="all-select">-->
-                                <!--<div>-->
-                                    <!--<button>全选</button>-->
-                                <!--</div>-->
-                                <!--<div>数量: <input type="text">&nbsp;件</div>-->
-                                <!--<div>限购: <input type="text">&nbsp;件</div>-->
-                                <!--<div>价格: <input type="text">&nbsp;元</div>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                        <!--<li class="sales-list">-->
-                            <!--<i-button slot="append" type="primary">添加至秒杀列表 ></i-button>-->
-                            <!--<div class="my-submit">-->
-                                <!--<i-button slot="append" type="primary" class="last-btn">确认提交</i-button>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                        <!--<li class="sales-list">-->
-                            <!--<p>参与秒杀商品</p>-->
-                            <!--<div class="my-card">-->
-                                <!--<card>-->
-                                    <!--<ul>-->
-                                        <!--<li v-for="sale in sales">-->
-                                            <!--<checkbox>-->
-                                                <!--<span>{{sale.content}}</span>-->
-                                            <!--</checkbox>-->
-                                            <!--<hr>-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
-                                <!--</card>-->
-                            <!--</div>-->
-                            <!--<div class="all-select">-->
-                                <!--<div>-->
-                                    <!--<button>全选</button>-->
-                                    <!--<button>移除</button>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                    <!--</ul>-->
             </div>
         </div>
     </div>
