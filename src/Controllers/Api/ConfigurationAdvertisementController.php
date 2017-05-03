@@ -27,6 +27,11 @@ class ConfigurationAdvertisementController extends Controller
         return $handler->toResponse()->generateHttpResponse();
     }
 
+    public function edit()
+    {
+        
+    }
+
     /**
      * @param \Notadd\Mall\Handlers\Configuration\Advertisement\ListHandler $handler
      *
