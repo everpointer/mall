@@ -12,6 +12,7 @@ use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Configuration\Advertisement\Position\CreateHandler;
 use Notadd\Mall\Handlers\Configuration\Advertisement\Position\EditHandler;
 use Notadd\Mall\Handlers\Configuration\Advertisement\Position\ListHandler;
+use Notadd\Mall\Handlers\Configuration\Advertisement\Position\RemoveHandler;
 
 /**
  * Class ConfigurationAdvertisementPositionController.
@@ -44,6 +45,16 @@ class ConfigurationAdvertisementPositionController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function list(ListHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Configuration\Advertisement\Position\RemoveHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function remove(RemoveHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
