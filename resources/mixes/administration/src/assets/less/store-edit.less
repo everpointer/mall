@@ -10,63 +10,10 @@
             }
         }
         .store-information {
-            .ivu-card-bordered {
+            .ivu-card {
                 margin-bottom: 20px;
             }
             .ivu-form {
-                .basic-information {
-                    .data-picker-input {
-                        .ivu-input {
-                            width: 124px;
-                        }
-                        .ivu-input-icon {
-                            left: 94px;
-                            top: 2px;
-                        }
-                    }
-                    .ivu-form-item {
-                        &.switch-status {
-                            margin-top: -8px;
-                            margin-bottom: 27px;
-                            .ivu-switch-large {
-                                width: 48px;
-                            }
-                            .ivu-switch-large.ivu-switch-checked:after {
-                                left: 29px;
-                            }
-                            .ivu-switch {
-                                height: 22px;
-                                line-height: 21px;
-                                &:after {
-                                    width: 18px;
-                                    height: 18px;
-                                }
-                            }
-                            .ivu-switch-checked
-                            .ivu-switch-inner {
-                                left: 4px;
-                            }
-                            .ivu-switch-inner {
-                                left: 19px;
-                            }
-                        }
-                    }
-                }
-
-                .ivu-form-item {
-                    .ivu-input {
-                        width: 480px;
-                    }
-                    .ivu-select {
-                        .ivu-select-selection {
-                            width: 124px;
-                        }
-                        .ivu-select-dropdown {
-                            width: 124px !important;
-                        }
-                    }
-                }
-
                 .register-information {
                     background-color: #fff;
                     .register-content {
@@ -89,40 +36,6 @@
                                         padding: 14px 0;
                                         margin-bottom: 0;
                                     }
-                                    .company-name {
-                                        .ivu-input {
-                                            width: 480px;
-                                        }
-                                    }
-                                    .picker-input {
-                                        .ivu-form-item-label {
-                                            width: 46px !important;
-                                            padding-right: 8px;
-                                        }
-                                        .ivu-form-item-content {
-                                            margin-left: 46px !important;
-                                        }
-                                    }
-                                    .data-picker-input {
-                                        .ivu-input {
-                                            width: 124px;
-                                        }
-                                        .ivu-input-icon {
-                                            left: 94px;
-                                            top: 2px;
-                                        }
-                                    }
-                                    .ivu-input {
-                                        width: 268px;
-                                        &.input-param {
-                                            position: relative;
-                                            &:after {
-                                                position: absolute;
-                                                display: block;
-                                                content: '人';
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -132,9 +45,12 @@
 
                         .license-information {
                             > div {
-                                li {
-                                    .data-picker-input {
-                                        width: 302px;
+                                .picker-input {
+                                    .ivu-form-item-label {
+                                        width: 30px !important;
+                                    }
+                                    .ivu-form-item-content {
+                                        margin-left: 30px !important;
                                     }
                                 }
                                 .upload-picture {
@@ -186,7 +102,6 @@
                     }
                 }
                 .submit-btn {
-                    width: 80px;
                     padding: 20px 0;
                 }
             }

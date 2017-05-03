@@ -64,7 +64,7 @@
                         render(row, column, index) {
                             return `<dropdown><i-button type="ghost">设置<icon type="arrow-down-b"></icon></i-button>
                                 <dropdown-menu slot="list"><dropdown-item>设置设置</dropdown-item></dropdown-menu></dropdown>
-                                <i-button type="ghost" class="delete-ad" @click="removeAd(${index})">删除</i-button>`;
+                                <i-button type="ghost" class="delete-ad" @click.native="removeAd(${index})">删除</i-button>`;
                         },
                     },
                 ],
@@ -103,6 +103,7 @@
                         status: false,
                     },
                 ],
+                self: this,
             };
         },
         beforeRouteEnter(to, from, next) {
@@ -112,8 +113,13 @@
         },
         methods: {
             removeAd(index) {
-                console.log(index);
                 this.advertisementData.splice(index, 1);
+            },
+            newAddData() {
+                const self = this;
+                self.$router.push({
+                    path: 'advertisement/add',
+                });
             },
         },
     };
@@ -128,11 +134,12 @@
                         <p>将广告位调用代码放入前台页面，将显示该广告位的广告</p>
                     </div>
                     <div class="advertisement-action">
-                        <i-button class="add-data" type="ghost">+新增数据</i-button>
+                        <i-button class="add-data" type="ghost" @click.native="newAddData">+新增数据</i-button>
                         <i-button class="delete-data" type="ghost">批量删除</i-button>
                         <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                     </div>
-                    <i-table highlight-row :columns="advertisement" :data="advertisementData"></i-table>
+                    <i-table highlight-row :columns="advertisement" :context="self"
+                             :data="advertisementData"></i-table>
                 </tab-pane>
             </tabs>
         </div>
