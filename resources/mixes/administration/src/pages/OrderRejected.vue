@@ -123,7 +123,7 @@
                         width: 140,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">处理</i-button>';
+                            return '<i-button type="ghost" size="small" @click.native="recordHandel">处理</i-button>';
                         },
                     },
                 ],
@@ -353,7 +353,7 @@
                         width: 140,
                         align: 'center',
                         render() {
-                            return '<i-button type="ghost" size="small">查看</i-button>';
+                            return '<i-button @click.native="recordLook" type="ghost" size="small">查看</i-button>';
                         },
                     },
                 ],
@@ -479,6 +479,7 @@
                         companyPhone: '029-5554544',
                     },
                 ],
+                self: this,
             };
         },
         methods: {
@@ -489,6 +490,18 @@
             },
             remove(index) {
                 this.pendingData.splice(index, 1);
+            },
+            recordHandel() {
+                const self = this;
+                self.$router.push({
+                    path: 'rejected/handel',
+                });
+            },
+            recordLook() {
+                const self = this;
+                self.$router.push({
+                    path: 'rejected/look',
+                });
             },
         },
     };
@@ -515,7 +528,8 @@
                               </i-input>
                           </div>
                       </div>
-                      <i-table class="shop-table" :columns="pendingColumns" :data="pendingData" highlight-row ref="pendingTable"></i-table>
+                      <i-table class="shop-table" :columns="pendingColumns" :data="pendingData"
+                               :context="self" highlight-row ref="pendingTable"></i-table>
                   </div>
                   <div class="page">
                       <page :total="100" show-elevator></page>
@@ -529,13 +543,15 @@
                             <div class="store-body-header-right">
                                 <i-input v-model="searchWord">
                                     <i-select v-model="searchCategory" slot="prepend" style="width: 100px">
-                                        <i-option v-for="item in searchList" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                        <i-option v-for="item in searchList" :value="item.value"
+                                                  :key="item">{{ item.label }}</i-option>
                                     </i-select>
                                 <i-button slot="append" type="primary">搜索</i-button>
                               </i-input>
                             </div>
                         </div>
-                        <i-table  ref="pendingTable"  highlight-row class="shop-table" :columns="allRecordsColumns" :data="allRecordsData"></i-table>
+                        <i-table  ref="pendingTable"  highlight-row class="shop-table" :columns="allRecordsColumns"
+                                  :context="self" :data="allRecordsData"></i-table>
                         <div class="page">
                             <page :total="100" show-elevator></page>
                         </div>
