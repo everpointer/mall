@@ -38,10 +38,12 @@
                 ],
                 sales: [
                     { content: '  iphone8 plus星空蓝全新发布 信用卡12期分期免息' },
-                    { content: '  iphone8 plus星空蓝全新发布 信用卡12期分期免息' },
-                    { content: '  iphone8 plus星空蓝全新发布 信用卡12期分期免息' },
-                    { content: '  iphone8 plus星空蓝全新发布 信用卡12期分期免息' },
+                    { content: '  iphone8 plus星空蓝全新发布' },
+                    { content: '  iphone8 plus星空蓝全新发布分期免息' },
+                    { content: '  iphone8 plus星空蓝全新发布12期分期免息' },
                 ],
+                indeterminate: true,
+                checkAll: false,
                 ruleValidate: {
                     remarks: [
                         { required: true, message: '信息不能为空', trigger: 'blur' },
@@ -50,6 +52,58 @@
             };
         },
         methods: {
+            handleCheckAll() {
+                if (this.indeterminate) {
+                    this.checkAll = false;
+                } else {
+                    this.checkAll = !this.checkAll;
+                }
+                this.indeterminate = false;
+
+                if (this.checkAll) {
+                    this.checkAllGroup = 'iphone8 plus星空蓝全新发布 信用卡12期分期免息';
+                } else {
+                    this.checkAllGroup = [];
+                }
+            },
+            checkAllGroupChange(data) {
+                if (data.length === 4) {
+                    this.indeterminate = false;
+                    this.checkAll = true;
+                } else if (data.length > 0) {
+                    this.indeterminate = true;
+                    this.checkAll = false;
+                } else {
+                    this.indeterminate = false;
+                    this.checkAll = false;
+                }
+            },
+            handleCheckAll2() {
+                if (this.indeterminate) {
+                    this.checkAll = false;
+                } else {
+                    this.checkAll = !this.checkAll;
+                }
+                this.indeterminate = false;
+
+                if (this.checkAll) {
+                    this.checkAllGroup = 'iphone8 plus星空蓝全新发布 信用卡12期分期免息';
+                } else {
+                    this.checkAllGroup = [];
+                }
+            },
+            checkAllGroupChange2(data) {
+                if (data.length === 4) {
+                    this.indeterminate = false;
+                    this.checkAll = true;
+                } else if (data.length > 0) {
+                    this.indeterminate = true;
+                    this.checkAll = false;
+                } else {
+                    this.indeterminate = false;
+                    this.checkAll = false;
+                }
+            },
             submit() {
                 const self = this;
                 self.loading = true;
@@ -129,9 +183,9 @@
                                     <card>
                                         <ul>
                                             <li v-for="sale in sales">
-                                                <checkbox>
-                                                    <span>{{sale.content}}</span>
-                                                </checkbox>
+                                                <checkbox-group v-model="checkAllGroup" @on-change="checkAllGroupChange">
+                                                    <checkbox :label="sale.content"></checkbox>
+                                                </checkbox-group>
                                                 <hr>
                                             </li>
                                         </ul>
@@ -141,7 +195,10 @@
                                 <div class="all-select">
                                     <row>
                                         <i-col span="3">
-                                            <div class="p-list"><i-button type="ghost" style="width:64px">全选</i-button></div>
+                                            <div class="p-list">
+                                                <i-button type="ghost" style="width:64px" :indeterminate="indeterminate"
+                                                          :value="checkAll" @click.prevent.native="handleCheckAll">全选</i-button>
+                                            </div>
                                         </i-col>
                                         <i-col span="4">
                                             <div class="p-list">
@@ -180,9 +237,9 @@
                                     <card>
                                         <ul>
                                             <li v-for="sale in sales">
-                                                <checkbox>
-                                                    <span>{{sale.content}}</span>
-                                                </checkbox>
+                                                <checkbox-group v-model="checkAllGroup2" @on-change="checkAllGroupChange2">
+                                                    <checkbox label="iphone8 plus星空蓝全新发布 信用卡12期分期免息"></checkbox>
+                                                </checkbox-group>
                                                 <hr>
                                             </li>
                                         </ul>
@@ -191,7 +248,10 @@
                                 <div class="all-select">
                                     <row>
                                         <i-col span="3">
-                                            <div class="p-list"><i-button type="ghost" style="width: 64px">全选</i-button></div>
+                                            <div class="p-list">
+                                                <i-button type="ghost" style="width:64px" :indeterminate="indeterminate"
+                                                          :value="checkAll" @click.prevent.native="handleCheckAll2">全选</i-button>
+                                            </div>
                                         </i-col>
                                         <i-col span="3">
                                             <div class="p-list remove"><i-button type="ghost" style="width: 64px">移除</i-button></div>
