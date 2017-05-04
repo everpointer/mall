@@ -198,11 +198,11 @@
             remove(index) {
                 this.libraryData.splice(index, 1);
             },
-            toView() {
+            toEdit() {
                 const self = this;
                 self.$router.push(
                     {
-                        path: 'order/view',
+                        path: 'library/editor',
                     },
                 );
             },
