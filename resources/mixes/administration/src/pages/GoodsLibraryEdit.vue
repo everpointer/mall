@@ -70,6 +70,7 @@
                 loading: false,
                 isEditText: false,
                 isEditPicture: false,
+                isPcPicture: false,
                 ruleValidate: {
                     remarks: [
                         { required: true, message: '信息不能为空', trigger: 'blur' },
@@ -105,9 +106,17 @@
                 const self = this;
                 self.isEditPicture = !self.isEditPicture;
             },
+            addAlbumPicture() {
+                const self = this;
+                self.isPcPicture = !self.isPcPicture;
+            },
             closeAlbum() {
                 const self = this;
                 self.isEditPicture = false;
+            },
+            closePcAlbum() {
+                const self = this;
+                self.isPcPicture = false;
             },
             goBack() {
                 const self = this;
@@ -302,20 +311,31 @@
                                                         <div>
                                                             <tabs type="card">
                                                                 <tab-pane label="电脑端" class="pc-module-content">
-                                                                    <div class="pro-des">
-                                                                        <div class="pro-bg">
-                                                                            <span>图片总数不得超过20张，文字不得超过500字</span>
-                                                                        </div>
-                                                                        <div class="pro-bg2">
-                                                                            <i-button type="gory" size="small">插入图片</i-button>
-                                                                            <i-button type="gory" size="small">添加文字</i-button>
+                                                                    <row>
+                                                                        <i-col span="18">
+                                                                            <div class="edit-content-area">
+
+                                                                            </div>
+                                                                        </i-col>
+                                                                        <i-col span="6"></i-col>
+                                                                    </row>
+                                                                    <i-button type="ghost" class="close-album"
+                                                                              @click.native="addAlbumPicture">插入相册图片</i-button>
+                                                                    <div class="picture-edit-area" v-if="isPcPicture">
+                                                                        <i-button type="ghost" class="close-album"
+                                                                                  @click.native="closePcAlbum">关闭相册</i-button>
+                                                                        <p>用户相册>全部图片</p>
+                                                                        <div class="picture-content">
+                                                                            <row>
+                                                                                <i-col span="4" v-for="img in [1,2,3,4,5,6,7,8,9]">
+                                                                                    <img src="../assets/images/adv.jpg" alt="">
+                                                                                </i-col>
+                                                                            </row>
+                                                                            <div class="page">
+                                                                                <page :total="100" show-elevator></page>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <span>还可以输入500字</span><br>
-                                                                    <i-input v-model="goodsEdit.remarks" type="textarea"
-                                                                             :autosize="{minRows: 3,maxRows: 5}" style="width: 480px"></i-input><br>
-                                                                    <i-button type="gory" size="small">确认</i-button>
-                                                                    <i-button type="gory" size="small">提交</i-button>
                                                                 </tab-pane>
                                                                 <tab-pane label="手机端" class="mobile-module-content">
                                                                     <row>
