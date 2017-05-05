@@ -68,6 +68,8 @@
                     },
                 ],
                 loading: false,
+                isEditText: false,
+                isEditPicture: false,
                 ruleValidate: {
                     remarks: [
                         { required: true, message: '信息不能为空', trigger: 'blur' },
@@ -95,6 +97,18 @@
             });
         },
         methods: {
+            addText() {
+                const self = this;
+                self.isEditText = !self.isEditText;
+            },
+            addPicture() {
+                const self = this;
+                self.isEditPicture = !self.isEditPicture;
+            },
+            closeAlbum() {
+                const self = this;
+                self.isEditPicture = false;
+            },
             goBack() {
                 const self = this;
                 self.$router.go(-1);
@@ -311,17 +325,31 @@
                                                                                     <span>图片总数不得超过20张，文字不得超过500字</span>
                                                                                 </div>
                                                                                 <div class="pro-bg2">
-                                                                                    <i-button type="ghost">插入图片</i-button>
-                                                                                    <i-button type="ghost">添加文字</i-button>
+                                                                                    <i-button type="ghost" @click.native="addPicture">插入图片</i-button>
+                                                                                    <i-button type="ghost" @click.native="addText">添加文字</i-button>
                                                                                 </div>
                                                                                 <div class="pro-content"></div>
                                                                             </div>
-                                                                            <div class="text-edit-area">
+                                                                            <div class="text-edit-area" v-if="isEditText">
                                                                                 <span>还可以输入500字</span><br>
                                                                                 <i-input v-model="goodsEdit.remarks" type="textarea"
-                                                                                         :autosize="{minRows: 5,maxRows: 10}"></i-input><br>
+                                                                                         :rows="6"></i-input>
                                                                                 <i-button type="ghost">确认</i-button>
                                                                                 <i-button type="ghost">提交</i-button>
+                                                                            </div>
+                                                                            <div class="picture-edit-area" v-if="isEditPicture">
+                                                                                <i-button type="ghost" class="close-album" @click.native="closeAlbum">关闭相册</i-button>
+                                                                                <p>用户相册>全部图片</p>
+                                                                                <div class="picture-content">
+                                                                                     <row>
+                                                                                         <i-col span="4" v-for="img in [1,2,3,4,5,6,7,8,9]">
+                                                                                             <img src="../assets/images/adv.jpg" alt="">
+                                                                                         </i-col>
+                                                                                     </row>
+                                                                                    <div class="page">
+                                                                                        <page :total="100" show-elevator></page>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </i-col>
                                                                         <i-col span="14" class="request-col-line">
