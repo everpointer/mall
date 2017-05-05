@@ -43,6 +43,10 @@
             };
         },
         methods: {
+            goBack() {
+                const self = this;
+                self.$router.go(-1);
+            },
             removeLogo() {
                 this.addAdPosition.logo = '';
             },
@@ -99,7 +103,7 @@
     <div class="mall-wrap">
         <div class="configuration-advertisement-add">
             <div class="edit-link-title">
-                <i-button type="text">
+                <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
                 <span>广告管理—新增广告</span>

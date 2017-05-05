@@ -219,9 +219,9 @@
         <div class="goods-library">
             <tabs value="name1">
                 <tab-pane label="商品库管理" name="name1">
-                    <card>
+                    <card :bordered="false">
                         <div class="prompt-box">
-                            <h6>提示</h6>
+                            <p>提示</p>
                             <p>商品库中该数据的删除不影响店铺已经认领的商品</p>
                         </div>
                         <div class="store-body">
