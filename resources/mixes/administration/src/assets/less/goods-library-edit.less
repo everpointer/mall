@@ -77,51 +77,67 @@
                 margin-bottom:3px ;
                 margin-right: 20px;
             }
-            .ivu-tabs-bar {
-                width: 480px;
-            }
             .ivu-row {
                 border-bottom: 1px solid #e3e8ee;
                 &:last-child {
                     border-bottom: none;
                 }
             }
-            .pro-des {
-                width: 480px;
-                height: 640px;
-                border-bottom: 1px solid #e3e8ee;
-                border-left: 1px solid #e3e8ee;
-                border-right: 1px solid #e3e8ee;
-                padding: 10px;
-                .pro-bg {
-                    width: 460px;
-                    height: 40px;
-                    background-color: #f5f7f9;
-                    padding-left: 11px;
-                    padding-top: 5px;
-                    span {
-                        font-size: 12px;
-                        text-align: center;
-                        color: #657180;
-                    }
-                }
-                .pro-bg2 {
-                    margin-top: 10px;
-                    width: 460px;
-                    height: 60px;
-                    border: solid 1px #e3e8ee;
-                    padding-top: 10px;
-                    .ivu-btn {
-                        margin-left: 100px;
-                    }
-                }
+            .pc-module-content {
+
             }
-            .request {
-                margin-top: 100px;
-                padding: 0;
-                //margin-left: 30px;
-                li {
-                    margin-bottom: 50px;
+            .mobile-module-content {
+                .request-col-border {
+                    .pro-des {
+                        border: 1px solid #e3e8ee;
+                        border-top: 0;
+                        height: 640px;
+                        padding: 10px;
+                        .pro-bg {
+                            height: 40px;
+                            background-color: #f5f7f9;
+                            padding-left: 11px;
+                            padding-top: 5px;
+                            span {
+                                font-size: 12px;
+                                text-align: center;
+                                color: #657180;
+                            }
+                        }
+                        .pro-bg2 {
+                            margin-top: 10px;
+                            border: solid 1px #e3e8ee;
+                            padding-top: 10px;
+                            padding-bottom: 10px;
+                            margin-bottom: 10px;
+                            .ivu-btn {
+                                margin-left: 100px;
+                            }
+                        }
+                        .pro-content {
+                            height: auto;
+                        }
+                    }
+                    .text-edit-area {
+                        textarea {
+                            margin-bottom: 6px;
+                        }
+                    }
+                }
+                .request-col-line {
+                    background-color: #fff;
+                    margin-top: -1px;
+                    .request {
+                        padding-top: 100px;
+                        padding-left: 30px;
+                        li {
+                            margin-bottom: 40px;
+                            p {
+                                font-weight: 600;
+                                font-size: 14px;
+                            }
+                        }
+                    }
                 }
             }
             .ivu-tabs-bar {

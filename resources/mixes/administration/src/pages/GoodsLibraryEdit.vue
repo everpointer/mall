@@ -281,13 +281,13 @@
                                         </i-col>
                                     </row>
                                     <row>
-                                        <i-col span="18">
+                                        <i-col span="24">
                                             <form-item label="商品描述" class="remark-input">
                                                 <row>
-                                                    <i-col span="14">
+                                                    <i-col span="24">
                                                         <div>
                                                             <tabs type="card">
-                                                                <tab-pane label="电脑端">
+                                                                <tab-pane label="电脑端" class="pc-module-content">
                                                                     <div class="pro-des">
                                                                         <div class="pro-bg">
                                                                             <span>图片总数不得超过20张，文字不得超过500字</span>
@@ -303,32 +303,45 @@
                                                                     <i-button type="gory" size="small">确认</i-button>
                                                                     <i-button type="gory" size="small">提交</i-button>
                                                                 </tab-pane>
-                                                                <tab-pane label="手机端">
-                                                                    <div class="pro-des">
-                                                                        <div class="pro-bg">
-                                                                            <span>图片总数不得超过20张，文字不得超过500字</span>
-                                                                        </div>
-                                                                        <div class="pro-bg2">
-                                                                            <i-button type="gory" size="small">插入图片</i-button>
-                                                                            <i-button type="gory" size="small">添加文字</i-button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <span>还可以输入500字</span><br>
-                                                                    <i-input v-model="goodsEdit.remarks" type="textarea"
-                                                                             :autosize="{minRows: 3,maxRows: 5}" style="width: 480px"></i-input><br>
-                                                                    <i-button type="gory" size="small">确认</i-button>
-                                                                    <i-button type="gory" size="small">提交</i-button>
+                                                                <tab-pane label="手机端" class="mobile-module-content">
+                                                                    <row>
+                                                                        <i-col span="10" class="request-col-border">
+                                                                            <div class="pro-des">
+                                                                                <div class="pro-bg">
+                                                                                    <span>图片总数不得超过20张，文字不得超过500字</span>
+                                                                                </div>
+                                                                                <div class="pro-bg2">
+                                                                                    <i-button type="ghost">插入图片</i-button>
+                                                                                    <i-button type="ghost">添加文字</i-button>
+                                                                                </div>
+                                                                                <div class="pro-content"></div>
+                                                                            </div>
+                                                                            <div class="text-edit-area">
+                                                                                <span>还可以输入500字</span><br>
+                                                                                <i-input v-model="goodsEdit.remarks" type="textarea"
+                                                                                         :autosize="{minRows: 5,maxRows: 10}"></i-input><br>
+                                                                                <i-button type="ghost">确认</i-button>
+                                                                                <i-button type="ghost">提交</i-button>
+                                                                            </div>
+                                                                        </i-col>
+                                                                        <i-col span="14" class="request-col-line">
+                                                                            <row>
+                                                                                <i-col span="14">
+                                                                                    <ul class="request">
+                                                                                        <li v-for="item in requests">
+                                                                                            <p>{{item.name}}</p>
+                                                                                            <span>{{item.content}}</span>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </i-col>
+                                                                                <i-col span="10"></i-col>
+                                                                            </row>
+
+                                                                        </i-col>
+                                                                    </row>
                                                                 </tab-pane>
                                                             </tabs>
                                                         </div>
-                                                    </i-col>
-                                                    <i-col span="10">
-                                                        <ul class="request">
-                                                            <li v-for="item in  requests">
-                                                                <h6>{{item.name}}</h6>
-                                                                <span>{{item.content}}</span>
-                                                            </li>
-                                                        </ul>
                                                     </i-col>
                                                 </row>
                                             </form-item>
@@ -340,14 +353,14 @@
                                 <h5>商品基本信息</h5>
                                 <div class="application-content refund-module">
                                     <row>
-                                        <i-col span="18">
+                                        <i-col span="12">
                                             <form-item label="商品重量">
                                                 <i-input></i-input>
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
-                                        <i-col span="18">
+                                        <i-col span="12">
                                             <form-item label="商品体积">
                                                 <i-input></i-input>
                                             </form-item>
