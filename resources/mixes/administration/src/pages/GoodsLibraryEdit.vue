@@ -7,23 +7,67 @@
                 action: `${window.api}/mall/upload`,
                 goodsEdit: {
                     barCode: '',
+                    distribution: '',
                     type: '数码办公>时尚影音>智能设备',
                     name: '',
+                    goodStyle: '',
+                    goodComment: '',
+                    goodOrigin: '',
+                    price: '',
                     sellPoint: '',
                     logo: '',
                 },
-                loading: false,
-                searchProduct: '',
-                searchProducts: [
+                goodStyle: [
                     {
-                        value: '华为',
+                        value: '1',
                         label: '华为',
                     },
                     {
-                        value: '苹果',
+                        value: '2',
                         label: '苹果',
                     },
                 ],
+                distribution: [
+                    {
+                        value: '1',
+                        label: '333',
+                    },
+                    {
+                        value: '2',
+                        label: '444',
+                    },
+                ],
+                goodComment: [
+                    {
+                        value: '1',
+                        label: '好',
+                    },
+                    {
+                        value: '2',
+                        label: '一般',
+                    },
+                ],
+                goodOrigin: [
+                    {
+                        value: '1',
+                        label: '南',
+                    },
+                    {
+                        value: '2',
+                        label: '北',
+                    },
+                ],
+                priceList: [
+                    {
+                        value: '1',
+                        label: '100-200',
+                    },
+                    {
+                        value: '2',
+                        label: '400-600',
+                    },
+                ],
+                loading: false,
                 ruleValidate: {
                     remarks: [
                         { required: true, message: '信息不能为空', trigger: 'blur' },
@@ -109,7 +153,7 @@
 </script>
 <template>
     <div class="mall-wrap">
-        <div class="goods-library-editor ">
+        <div class="goods-library-edit ">
             <div class="store-refund-process">
                 <div class="edit-link-title">
                     <i-button type="text" @click.native="goBack">
@@ -120,7 +164,7 @@
                 <div>
                     <card :bordered="false">
                         <i-form ref="goodsEdit" :model="goodsEdit" :rules="ruleValidate" :label-width="200">
-                            <div class="refund-application">
+                            <div class="library-application">
                                 <h5>商品基本信息</h5>
                                 <div class="application-content refund-module">
                                     <row>
@@ -187,37 +231,52 @@
                                     </row>
                                 </div>
                             </div>
-                            <div class="refund-application">
+                            <div class="library-application">
                                 <h5>商品详情描述</h5>
-                                <div class="application-content refund-module">
+                                <div class="application-content">
                                     <row>
-                                        <i-col span="18">
+                                        <i-col span="10">
                                             <form-item label="商品品牌">
-                                                <i-select v-model="searchProduct" style="width:124px">
-                                                    <i-option v-for="item in searchProducts" :value="item.value" :key="item">{{ item.label }}</i-option>
+                                                <i-select v-model="goodsEdit.goodStyle">
+                                                    <i-option v-for="item in goodStyle" :value="item.value"
+                                                              :key="item">{{ item.label }}</i-option>
                                                 </i-select>
                                             </form-item>
                                         </i-col>
                                     </row>
                                     <row>
-                                        <i-col span="18">
-                                            <form-item label="商品属性">
-                                                价格区间
-                                                <i-select v-model="searchProduct" style="width:124px">
-                                                    <i-option v-for="item in searchProducts" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                                </i-select>
-                                                口碑
-                                                <i-select v-model="searchProduct" style="width:124px">
-                                                    <i-option v-for="item in searchProducts" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                                </i-select>
-                                                区域配送
-                                                <i-select v-model="searchProduct"  style="width:124px">
-                                                    <i-option v-for="item in searchProducts" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                                </i-select>
-                                                产地
-                                                <i-select v-model="searchProduct" style="width:124px">
-                                                    <i-option v-for="item in searchProducts" :value="item.value" :key="item">{{ item.label }}</i-option>
-                                                </i-select>
+                                        <i-col span="24">
+                                            <form-item label="商品属性" class="good-edit-style">
+                                                <row>
+                                                    <i-col span="6">
+                                                        <span class="style-title">价格区间</span>
+                                                        <i-select v-model="goodsEdit.price">
+                                                            <i-option v-for="item in priceList" :value="item.value"
+                                                                      :key="item">{{ item.label }}</i-option>
+                                                        </i-select>
+                                                    </i-col>
+                                                    <i-col span="6">
+                                                        <span class="style-title">口碑</span>
+                                                        <i-select v-model="goodsEdit.goodComment">
+                                                            <i-option v-for="item in goodComment" :value="item.value"
+                                                                      :key="item">{{ item.label }}</i-option>
+                                                        </i-select>
+                                                    </i-col>
+                                                    <i-col span="6">
+                                                        <span class="style-title">区域配送</span>
+                                                        <i-select v-model="goodsEdit.distribution">
+                                                            <i-option v-for="item in distribution" :value="item.value"
+                                                                      :key="item">{{ item.label }}</i-option>
+                                                        </i-select>
+                                                    </i-col>
+                                                    <i-col span="6">
+                                                        <span class="style-title">产地</span>
+                                                        <i-select v-model="goodsEdit.goodOrigin">
+                                                            <i-option v-for="item in goodOrigin" :value="item.value"
+                                                                      :key="item">{{ item.label }}</i-option>
+                                                        </i-select>
+                                                    </i-col>
+                                                </row>
                                             </form-item>
                                         </i-col>
                                     </row>
@@ -277,7 +336,7 @@
                                     </row>
                                 </div>
                             </div>
-                            <div class="refund-application">
+                            <div class="library-application">
                                 <h5>商品基本信息</h5>
                                 <div class="application-content refund-module">
                                     <row>
