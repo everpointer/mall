@@ -17,14 +17,32 @@
             padding: 0 20px;
         }
         .ivu-form-item {
-            margin-bottom: 6px;
-            .ivu-input {
-                width: 480px;
+            margin-bottom: 0;
+            padding: 8px 0;
+            .image-preview {
+                border: 2px solid #ccc;
+                position: relative;
+                width: 204px;
+                > i {
+                    bottom: 0;
+                    font-size: 30px;
+                    position: absolute;
+                    right: 0;
+                }
+                > img {
+                    display: block;
+                    max-width: 200px;
+                }
             }
-        }
-        .refund-module {
-            padding-top: 8px;
-            padding-bottom: 12px;
+            .ivu-upload {
+                background: #f5f7f9;
+                height: 90px;
+                width: 90px;
+                > .ivu-upload-select {
+                    background: url("../images/plus.svg") center no-repeat;
+                    height: 90px;
+                }
+            }
         }
         .review-content {
             padding-top: 20px;
@@ -43,12 +61,6 @@
             }
             .ivu-input{
                 margin-top: 1px;
-            }
-            .ivu-form-item-label,.ivu-form-item-content {
-                margin-top: 6px;
-                span.tip {
-                    color: rgba(101, 113, 128, 0.5);
-                }
             }
             .ivu-select-selection {
                 margin-bottom:3px ;
