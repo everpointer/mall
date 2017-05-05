@@ -9,6 +9,7 @@
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
+use Notadd\Mall\Handlers\Specification\CreateHandler;
 use Notadd\Mall\Handlers\Specification\ListHandler;
 
 /**
@@ -16,6 +17,16 @@ use Notadd\Mall\Handlers\Specification\ListHandler;
  */
 class SpecificationController extends Controller
 {
+    /**
+     * @param \Notadd\Mall\Handlers\Specification\CreateHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function create(CreateHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
     /**
      * @param \Notadd\Mall\Handlers\Specification\ListHandler $handler
      *
