@@ -23,6 +23,7 @@ use Notadd\Mall\Controllers\Api\ConfigurationSearchHotController;
 use Notadd\Mall\Controllers\Api\OrderController;
 use Notadd\Mall\Controllers\Api\ProductController;
 use Notadd\Mall\Controllers\Api\ShopController;
+use Notadd\Mall\Controllers\Api\SpecificationController;
 use Notadd\Mall\Controllers\Api\UploadController;
 use Notadd\Mall\Controllers\Api\VirtualOrderController;
 use Notadd\Mall\Controllers\Api\VirtualProductController;
@@ -87,6 +88,10 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('shop/list', ShopController::class . '@list');
             $this->router->post('shop/remove', ShopController::class . '@remove');
             $this->router->post('shop/restore', ShopController::class . '@restore');
+            $this->router->post('specification/create', SpecificationController::class . '@create');
+            $this->router->post('specification/edit', SpecificationController::class . '@edit');
+            $this->router->post('specification/list', SpecificationController::class . '@list');
+            $this->router->post('specification/remove', SpecificationController::class . '@remove');
             $this->router->post('upload', UploadController::class . '@handle');
             $this->router->post('virtual-order/create', VirtualOrderController::class . '@create');
             $this->router->post('virtual-order/edit', VirtualOrderController::class . '@edit');
