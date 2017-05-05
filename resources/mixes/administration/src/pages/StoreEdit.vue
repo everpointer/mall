@@ -370,16 +370,19 @@
                                                 </li>
                                                 <li>
                                                     <row>
-                                                        <i-col span="10" class="data-picker-input">
+                                                        <i-col span="18" class="data-picker-input">
                                                             <form-item label="营业执照有效期">
-                                                                <date-picker type="date" :options="options1"
-                                                                             placeholder="选择日期"></date-picker>
-                                                            </form-item>
-                                                        </i-col>
-                                                        <i-col span="10" class="data-picker-input picker-input">
-                                                            <form-item label="-">
-                                                                <date-picker type="date" :options="options2"
-                                                                             placeholder="选择日期"></date-picker>
+                                                                <row>
+                                                                    <i-col span="8">
+                                                                        <date-picker type="date" :options="options1"
+                                                                                     placeholder="选择日期"></date-picker>
+                                                                    </i-col>
+                                                                    <i-col span="2" style="text-align: center">-</i-col>
+                                                                    <i-col span="8">
+                                                                        <date-picker type="date" :options="options2"
+                                                                                     placeholder="选择日期"></date-picker>
+                                                                    </i-col>
+                                                                </row>
                                                             </form-item>
                                                         </i-col>
                                                     </row>
