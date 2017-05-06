@@ -202,7 +202,7 @@
                 const self = this;
                 self.$router.push(
                     {
-                        path: 'library/editor',
+                        path: 'library/edit',
                     },
                 );
             },
