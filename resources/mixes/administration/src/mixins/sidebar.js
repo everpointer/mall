@@ -149,6 +149,10 @@ export default function (injection) {
                     path: '/mall/configuration/message',
                     title: '消息通知',
                 },
+                {
+                    path: '/mall/configuration/pay',
+                    title: '支付方式',
+                },
             ],
             icon: 'plus',
             title: '设置',
