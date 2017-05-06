@@ -102,7 +102,7 @@
                             return `<dropdown><i-button type="ghost">设置<icon type="arrow-down-b"></icon></i-button>
                                 <dropdown-menu slot="list">
                                     <dropdown-item>查看商品详情</dropdown-item>
-                                    <dropdown-item @click.native="modal = true">查看商品SKU</dropdown-item>
+                                    <dropdown-item name="goodSku" @click.native="lookGoodsSku">查看商品SKU</dropdown-item>
                                     <dropdown-item>加入商品库</dropdown-item>
                                 </dropdown-menu></dropdown>
                                 <i-button type="ghost" class="delete-ad"
@@ -167,11 +167,13 @@
                         title: 'SKU编号',
                         key: 'skuId',
                         align: 'center',
+                        width: 185,
                     },
                     {
                         title: '商品图片',
                         key: 'goodsImg',
                         align: 'center',
+                        width: 185,
                         render() {
                             return '<icon type="image"></icon>';
                         },
@@ -180,11 +182,13 @@
                         title: 'SKU库存',
                         key: 'skuStock',
                         align: 'center',
+                        width: 185,
                     },
                     {
                         title: 'SKU价格(元)',
                         key: 'skuPrice',
                         align: 'center',
+                        width: 185,
                     },
                 ],
                 skuData: [
@@ -202,6 +206,9 @@
                 this.$refs.goodsList.exportCsv({
                     filename: '商品管理数据',
                 });
+            },
+            lookGoodsSku() {
+                this.modal = true;
             },
             remove(index) {
                 this.goodsData.splice(index, 1);
@@ -254,10 +261,10 @@
                             <i-table ref="goodsList" highlight-row class="goods-table" :columns="goodsColumns"
                                      :context="self" :data="goodsData"></i-table>
                         </div>
-                        <modal>
+                        <modal value="goodSku"
                             v-model="modal"
-                            title="商品“222616”的SKU列表"
-                            <i-table ref="goodsSKU" highlight-row class="goods-table" :columns="skuColumns"
+                            title="商品“222616”的SKU列表" class="good-sku-modal">
+                            <i-table ref="goodsSKU" class="goods-table" :columns="skuColumns"
                                      :context="self" :data="skuData"></i-table>
                         </modal>
                         <div class="page">
