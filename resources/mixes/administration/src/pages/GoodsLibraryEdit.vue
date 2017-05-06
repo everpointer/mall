@@ -118,6 +118,12 @@
                 const self = this;
                 self.isPcPicture = false;
             },
+            editInformation() {
+                const self = this;
+                self.$router.push({
+                    path: 'edit/category',
+                });
+            },
             goBack() {
                 const self = this;
                 self.$router.go(-1);
@@ -194,7 +200,7 @@
                                         <i-col span="12">
                                             <form-item label="商品分类">
                                                 {{ goodsEdit.type }}&nbsp; &nbsp;&nbsp;
-                                                <i-button type="ghost">编辑</i-button>
+                                                <i-button type="ghost" @click.native="editInformation">编辑</i-button>
                                             </form-item>
                                         </i-col>
                                     </row>

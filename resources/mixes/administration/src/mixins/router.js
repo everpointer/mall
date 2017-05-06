@@ -11,6 +11,7 @@ import Dashboard from '../pages/Dashboard.vue';
 import Goods from '../pages/Goods.vue';
 import GoodsLibrary from '../pages/GoodsLibrary.vue';
 import GoodsLibraryEdit from '../pages/GoodsLibraryEdit.vue';
+import GoodsLibraryEditCategory from '../pages/GoodsLibraryEditCategory.vue';
 import GoodsCategory from '../pages/GoodsCategory.vue';
 import GoodsStandard from '../pages/GoodsStandard.vue';
 import GoodsType from '../pages/GoodsType.vue';
@@ -114,6 +115,11 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: GoodsLibraryEdit,
                     path: 'goods/library/edit',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: GoodsLibraryEditCategory,
+                    path: 'goods/library/edit/category',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,
