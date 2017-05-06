@@ -50,7 +50,7 @@
                         render(row, column, index) {
                             return `<dropdown><i-button type="ghost">设置<icon type="arrow-down-b"></icon></i-button>
                                 <dropdown-menu slot="list">
-                                    <dropdown-item>编辑分类信息</dropdown-item>
+                                    <dropdown-item @click.native="editType">编辑分类信息</dropdown-item>
                                     <dropdown-item>新增下级分类</dropdown-item>
                                     <dropdown-item>查看下级分类</dropdown-item>
                                     <dropdown-item>编辑分类导航</dropdown-item>
@@ -91,6 +91,12 @@
             });
         },
         methods: {
+            editType() {
+                const self = this;
+                self.$router.push({
+                    path: 'category/edit',
+                });
+            },
             exportData() {
                 this.$refs.goodTable.exportCsv({
                     filename: '商品分类数据',
