@@ -9,6 +9,7 @@
         },
         data() {
             return {
+                loading: false,
                 self: this,
                 searchList: [
                     {
@@ -24,6 +25,9 @@
                         label: '商品分类',
                     },
                 ],
+                goodsReview: {
+                    switch1: true,
+                },
                 goodsColumns: [
                     {
                         type: 'selection',
@@ -98,7 +102,7 @@
                             return `<dropdown><i-button type="ghost">设置<icon type="arrow-down-b"></icon></i-button>
                                 <dropdown-menu slot="list">
                                     <dropdown-item>查看商品详情</dropdown-item>
-                                    <dropdown-item>查看商品SKU</dropdown-item>
+                                    <dropdown-item @click.native="modal = true">查看商品SKU</dropdown-item>
                                     <dropdown-item>加入商品库</dropdown-item>
                                 </dropdown-menu></dropdown>
                                 <i-button type="ghost" class="delete-ad"
@@ -158,6 +162,39 @@
                         styleName: '运动健康>户外>鞋服',
                     },
                 ],
+                skuColumns: [
+                    {
+                        title: 'SKU编号',
+                        key: 'skuId',
+                        align: 'center',
+                    },
+                    {
+                        title: '商品图片',
+                        key: 'goodsImg',
+                        align: 'center',
+                        render() {
+                            return '<icon type="image"></icon>';
+                        },
+                    },
+                    {
+                        title: 'SKU库存',
+                        key: 'skuStock',
+                        align: 'center',
+                    },
+                    {
+                        title: 'SKU价格(元)',
+                        key: 'skuPrice',
+                        align: 'center',
+                    },
+                ],
+                skuData: [
+                    {
+                        skuId: 133026,
+                        skuStock: 334455,
+                        skuPrice: 99.00,
+                    },
+                ],
+                modal: false,
             };
         },
         methods: {
@@ -168,6 +205,20 @@
             },
             remove(index) {
                 this.goodsData.splice(index, 1);
+            },
+            submit() {
+                const self = this;
+                self.loading = true;
+                self.$refs.goodsReview.validate(valid => {
+                    if (valid) {
+                        window.console.log(valid);
+                    } else {
+                        self.loading = false;
+                        self.$notice.error({
+                            title: '请正确填写设置信息！',
+                        });
+                    }
+                });
             },
         },
     };
@@ -203,6 +254,12 @@
                             <i-table ref="goodsList" highlight-row class="goods-table" :columns="goodsColumns"
                                      :context="self" :data="goodsData"></i-table>
                         </div>
+                        <modal>
+                            v-model="modal"
+                            title="商品“222616”的SKU列表"
+                            <i-table ref="goodsSKU" highlight-row class="goods-table" :columns="skuColumns"
+                                     :context="self" :data="skuData"></i-table>
+                        </modal>
                         <div class="page">
                             <page :total="100" show-elevator></page>
                         </div>
@@ -215,7 +272,30 @@
 
                 </tab-pane>
                 <tab-pane label="商品设置" name="name4">
-
+                    <card :bordered="false">
+                        <i-form ref="goodsReview" :model="goodsReview" :rules="ruleValidate" :label-width="200">
+                            <row>
+                                <i-col span="12">
+                                    <form-item label="商品是否需要审核">
+                                        <i-switch size="large" v-model="goodsReview.switch1">
+                                            <span slot="open">开启</span>
+                                            <span slot="close">关闭</span>
+                                        </i-switch>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                            <row>
+                                <i-col span="12">
+                                    <form-item>
+                                        <i-button :loading="loading" type="primary" @click.native="submit">
+                                            <span v-if="!loading">确认提交</span>
+                                            <span v-else>正在提交…</span>
+                                        </i-button>
+                                    </form-item>
+                                </i-col>
+                            </row>
+                        </i-form>
+                    </card>
                 </tab-pane>
             </tabs>
         </div>
