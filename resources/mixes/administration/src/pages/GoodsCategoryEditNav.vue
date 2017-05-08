@@ -73,7 +73,7 @@
 </script>
 <template>
     <div class="mall-wrap">
-        <div class="goods-category-edit">
+        <div class="goods-category-edit-nav">
             <div class="edit-link-title">
                 <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
