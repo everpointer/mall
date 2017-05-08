@@ -69,6 +69,12 @@
             remove(index) {
                 this.typeData.splice(index, 1);
             },
+            newAddData() {
+                const self = this;
+                self.$router.push({
+                    path: 'type/add',
+                });
+            },
             edit() {
                 const self = this;
                 self.$router.push({
