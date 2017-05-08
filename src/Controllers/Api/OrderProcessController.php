@@ -11,6 +11,7 @@ namespace Notadd\Mall\Controllers\Api;
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Order\Process\ConfirmHandler;
 use Notadd\Mall\Handlers\Order\Process\CreateHandler;
+use Notadd\Mall\Handlers\Order\Process\FinishHandler;
 use Notadd\Mall\Handlers\Order\Process\PayHandler;
 use Notadd\Mall\Handlers\Order\Process\SendHandler;
 
@@ -35,6 +36,16 @@ class OrderProcessController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function create(CreateHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Order\Process\FinishHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function finish(FinishHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
