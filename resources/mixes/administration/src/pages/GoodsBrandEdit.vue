@@ -13,6 +13,7 @@
                     switch1: true,
                     logo: '',
                     sort: '',
+                    selectStyle: '母婴用品',
                 },
                 ruleValidate: {
                     brandName: [
@@ -135,6 +136,10 @@
                 const self = this;
                 self.$router.go(-1);
             },
+            handleChange(value, selectedData) {
+                this.style = true;
+                this.addData.selectStyle = selectedData.map(o => o.label).join('>');
+            },
             removeLogo() {
                 this.addData.logo = '';
             },
@@ -217,9 +222,16 @@
                             </i-col>
                         </row>
                         <row>
-                            <i-col span="12">
+                            <i-col span="20">
                                 <form-item label="所属分类">
-                                    <cascader :data="styleData" trigger="hover"></cascader>
+                                    <div class="flex-module">
+                                        {{ addData.selectStyle }}
+                                        <cascader :data="styleData" trigger="hover" @on-change="handleChange"
+                                                  v-model="addData.selectStyle"></cascader>
+                                    </div>
+                                    <p class="tip">
+                                        请选择分类，可关联大分类或更具体的下级分类
+                                    </p>
                                 </form-item>
                             </i-col>
                         </row>

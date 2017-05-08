@@ -220,6 +220,9 @@
                             <i-col span="12">
                                 <form-item label="所属分类">
                                     <cascader :data="styleData" trigger="hover"></cascader>
+                                    <p class="tip">
+                                        请选择分类，可关联大分类或更具体的下级分类
+                                    </p>
                                 </form-item>
                             </i-col>
                         </row>
