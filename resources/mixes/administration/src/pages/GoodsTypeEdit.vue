@@ -4,6 +4,14 @@
     export default {
         data() {
             return {
+                attributeValidate: {
+                    name: [
+                        { required: true, message: '属性名称不能为空', trigger: 'blur' },
+                    ],
+                    sort: [
+                        { required: true, message: '排序不能为空', trigger: 'blur' },
+                    ],
+                },
                 editDetail: {
                     attributeNum: 0,
                     attributeName: '',
@@ -23,6 +31,12 @@
                     interestRadio: '',
                     interestType: true,
                 },
+                editModal: {
+                    name: '',
+                    sort: '',
+                    switch1: true,
+                },
+                modal: false,
                 styleData: [
                     {
                         value: '个护化妆',
@@ -167,10 +181,7 @@
 
             },
             editAttribute() {
-                const self = this;
-                self.$router.push({
-                    path: 'edit/attribute',
-                });
+                this.modal = true;
             },
             addCustomize() {
 
@@ -384,6 +395,44 @@
                     </div>
                 </i-form>
             </card>
+            <modal
+                    v-model="modal"
+                    title="编辑属性" class="edit-attribute-modal">
+                <div>
+                    <i-form ref="editModal" :model="editModal" :rules="attributeValidate" :label-width="100">
+                        <row>
+                            <i-col span="18">
+                                <form-item label="输入属性名称" prop="name">
+                                    <i-input v-model="editModal.name"></i-input>
+                                    <p class="tip">
+                                        请填写常用的商品属性的名称；例如：材质、价格区间等
+                                    </p>
+                                </form-item>
+                            </i-col>
+                        </row>
+                        <row>
+                            <i-col span="18">
+                                <form-item label="排序" prop="sort">
+                                    <i-input v-model="editModal.sort"></i-input>
+                                    <p class="tip">
+                                        请填写自然数。属性列表将会根据排序进行由小到大排列显示
+                                    </p>
+                                </form-item>
+                            </i-col>
+                        </row>
+                        <row>
+                            <i-col span="18">
+                                <form-item label="是否显示">
+                                    <i-switch size="large" v-model="editModal.switch1">
+                                        <span slot="open">开启</span>
+                                        <span slot="close">关闭</span>
+                                    </i-switch>
+                                </form-item>
+                            </i-col>
+                        </row>
+                    </i-form>
+                </div>
+            </modal>
         </div>
     </div>
 </template>
