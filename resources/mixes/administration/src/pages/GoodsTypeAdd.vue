@@ -5,23 +5,125 @@
         data() {
             return {
                 editDetail: {
-                    adPicture1: '',
-                    adPicture2: '',
-                    adAddress1: '',
-                    adAddress2: '',
+                    attributeNum: 0,
+                    attributeName: '',
+                    attributeSelect: '',
+                    attributeShow: false,
+                    customize: '',
                     checkbox1: [],
                     checkbox2: [],
                     checkbox3: [],
-                    checkboxDefault: [],
-                    checkboxAllBrand: [],
                     goodsSort: '',
-                    quotaRatio: '',
+                    location: '',
                     typeName: '',
                     showStyle: '',
+                    sort: '',
                     interestStyle: '',
                     interestRadio: '',
                     interestType: true,
                 },
+                styleData: [
+                    {
+                        value: '个护化妆',
+                        label: '个护化妆',
+                        children: [
+                            {
+                                value: '童车童床',
+                                label: '童车童床',
+                                children: [
+                                    {
+                                        value: '婴儿推车',
+                                        label: '婴儿推车',
+                                    },
+                                    {
+                                        value: '自行车',
+                                        label: '自行车',
+                                    },
+                                    {
+                                        value: '婴儿推车',
+                                        label: '婴儿推车',
+                                    },
+                                    {
+                                        value: '电动车',
+                                        label: '电动车',
+                                    },
+                                    {
+                                        value: '安全座椅',
+                                        label: '安全座椅',
+                                    },
+                                ],
+                            },
+                            {
+                                value: '营养辅食',
+                                label: '营养辅食',
+                            },
+                            {
+                                value: '尿裤湿巾',
+                                label: '尿裤湿巾',
+                            },
+                        ],
+                    },
+                    {
+                        value: '家用电器',
+                        label: '家用电器',
+                        children: [
+                            {
+                                value: '服饰寝居',
+                                label: '服饰寝居',
+                                children: [
+                                    {
+                                        value: '婴儿推车1',
+                                        label: '婴儿推车1',
+                                    },
+                                    {
+                                        value: '自行车2',
+                                        label: '自行车2',
+                                    },
+                                    {
+                                        value: '婴儿推车3',
+                                        label: '婴儿推车3',
+                                    },
+                                    {
+                                        value: '电动车',
+                                        label: '电动车',
+                                    },
+                                    {
+                                        value: '安全座椅4',
+                                        label: '安全座椅4',
+                                    },
+                                ],
+                            },
+                            {
+                                value: '营养辅食',
+                                label: '营养辅食',
+                                children: [
+                                    {
+                                        value: '婴儿推车1',
+                                        label: '婴儿推车1',
+                                    },
+                                    {
+                                        value: '自行车2',
+                                        label: '自行车2',
+                                    },
+                                ],
+                            },
+                            {
+                                value: '尿裤湿巾',
+                                label: '尿裤湿巾',
+                                children: [
+                                    {
+                                        value: '车1',
+                                        label: '车1',
+                                    },
+                                    {
+                                        value: '自行车2',
+                                        label: '自行车2',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
                 showStyle: [
                     {
                         value: '1',
@@ -47,9 +149,6 @@
                     typeName: [
                         { required: true, message: '名称名称不能为空', trigger: 'blur' },
                     ],
-                    quotaRatio: [
-                        { required: true, message: '分佣比例不能为空', trigger: 'blur' },
-                    ],
                 },
             };
         },
@@ -62,6 +161,11 @@
             goBack() {
                 const self = this;
                 self.$router.go(-1);
+            },
+            addAttribute() {},
+            addCustomize() {},
+            deleteCustomize() {
+
             },
             submit() {
                 const self = this;
@@ -102,39 +206,40 @@
                     <div class="basic-information">
                         <row>
                             <i-col span="12">
-                                <form-item label="分类别名">
+                                <form-item label="类型名称">
                                     <i-input v-model="editDetail.typeName"></i-input>
                                 </form-item>
                             </i-col>
                         </row>
                         <row>
                             <i-col span="12">
-                                <form-item label="分类图片" prop="logo">
-                                    <div class="image-preview" v-if="editDetail.logo">
-                                        <img :src="editDetail.logo">
-                                        <icon type="close" @click.native="removeLogo"></icon>
-                                    </div>
-                                    <upload :action="action"
-                                            :before-upload="uploadBefore"
-                                            :format="['jpg','jpeg','png']"
-                                            :headers="{
-                                                Authorization: `Bearer ${$store.state.token.access_token}`
-                                            }"
-                                            :max-size="2048"
-                                            :on-error="uploadError"
-                                            :on-format-error="uploadFormatError"
-                                            :on-success="uploadSuccess"
-                                            ref="upload"
-                                            :show-upload-list="false"
-                                            v-if="editDetail.logo === '' || editDetail.logo === null">
-                                    </upload>
-                                    <p class="tip">建议使用16*16像素png透明背景图片</p>
+                                <form-item label="分类图片">
+                                    <cascader :data="styleData" trigger="hover"></cascader>
+                                    <p class="tip">选择分类，可关联到任意级分类 （只在后台快捷定位中起作用）</p>
+                                </form-item>
+                            </i-col>
+                        </row>
+                        <row>
+                            <i-col span="12">
+                                <form-item label="排序" prop="sort">
+                                    <i-input v-model="editDetail.sort"></i-input>
+                                    <p class="tip">
+                                        请填写自然数。类型列表将会根据排序进行由小到大排列显示
+                                    </p>
                                 </form-item>
                             </i-col>
                         </row>
                         <row>
                             <i-col span="20">
-                                <form-item label="推荐分类" prop="recommend">分类下的三级分类
+                                <form-item label="选择关联规格" class="quike-position">
+                                    <div class="flex-position">
+                                        <span class="title">快捷定位</span>
+                                        <i-select placeholder="请选择" v-model="editDetail.location">
+                                            <i-option v-for="item in location" :value="item.value"
+                                                      :key="item">{{ item.label }}</i-option>
+                                        </i-select>
+                                        <span class="intro">分类下对应的规格</span>
+                                    </div>
                                     <div class="recommended-classification">
                                         <ul>
                                             <li>
@@ -163,81 +268,83 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <p class="tip-color">推荐品牌将在展开后的二、三级导航列表右侧突出显示，
+                                    <p class="tip">推荐品牌将在展开后的二、三级导航列表右侧突出显示，
                                         建议选择数量为8个具有图片的品牌，超过将被隐藏</p>
                                 </form-item>
                             </i-col>
                         </row>
                         <row>
                             <i-col span="20">
-                                <form-item label="推荐品牌" class="quike-position">
+                                <form-item label="选择关联品牌" class="quike-position">
                                     <div class="flex-position">
                                         <span class="title">快捷定位</span>
-                                        <i-select placeholder="请选择" v-model="editDetail.location">
-                                            <i-option v-for="item in location" :value="item.value"
+                                        <i-select placeholder="请选择" v-model="editDetail.showStyle">
+                                            <i-option v-for="item in showStyle" :value="item.value"
                                                       :key="item">{{ item.label }}</i-option>
                                         </i-select>
-                                        <span class="intro">分类下的商品类型</span>
+                                        <span class="intro">分类下对应的品牌</span>
                                     </div>
-                                    <div class="recommended-classification recommended-brand">
+                                    <div class="recommended-classification">
                                         <ul>
                                             <li>
-                                                <p>默认</p>
-                                                <checkbox-group v-model="editDetail.checkboxDefault">
-                                                    <checkbox label="时尚"></checkbox>
+                                                <p>时尚物品</p>
+                                                <checkbox-group v-model="editDetail.checkbox1">
                                                     <checkbox label="时尚1"></checkbox>
-                                                    <checkbox label="运动品牌"></checkbox>
+                                                    <checkbox label="时尚2"></checkbox>
+                                                    <checkbox label="运动品牌1"></checkbox>
                                                 </checkbox-group>
                                             </li>
                                             <li>
-                                                <p>所有品牌</p>
-                                                <checkbox-group v-model="editDetail.checkboxAllBrand">
-                                                    <checkbox label="时尚"></checkbox>
+                                                <p>时尚物品</p>
+                                                <checkbox-group v-model="editDetail.checkbox2">
+                                                    <checkbox label="时尚2"></checkbox>
+                                                    <checkbox label="时尚3"></checkbox>
+                                                    <checkbox label="运动品牌2"></checkbox>
+                                                    <checkbox label="运动品牌1"></checkbox>
+                                                </checkbox-group>
+                                            </li>
+                                            <li>
+                                                <p>时尚物品</p>
+                                                <checkbox-group v-model="editDetail.checkbox3">
                                                     <checkbox label="时尚1"></checkbox>
-                                                    <checkbox label="运动品牌"></checkbox>
-                                                    <checkbox label="运动品牌"></checkbox>
-                                                    <checkbox label="运动品牌"></checkbox>
-                                                    <checkbox label="运动品牌"></checkbox>
-                                                    <checkbox label="运动品牌"></checkbox>
-                                                    <checkbox label="运动品牌"></checkbox>
-                                                    <checkbox label="运动品牌"></checkbox>
+                                                    <checkbox label="时尚3"></checkbox>
                                                 </checkbox-group>
                                             </li>
                                         </ul>
                                     </div>
-                                    <p class="tip-color">推荐品牌将在展开后的二、三级导航列表右侧突出显示，
+                                    <p class="tip">推荐品牌将在展开后的二、三级导航列表右侧突出显示，
                                         建议选择数量为8个具有图片的品牌，超过将被隐藏</p>
                                 </form-item>
                             </i-col>
                         </row>
                         <row>
                             <i-col span="20">
-                                <form-item label="广告图1" prop="adPicture1">
-                                    <div class="image-preview" v-if="editDetail.adPicture1">
-                                        <img :src="editDetail.adPicture1">
-                                        <icon type="close" @click.native="removeLogo"></icon>
+                                <form-item label="添加属性" class="quike-position">
+                                    <div class="flex-position">
+                                        <i-input v-model="editDetail.attributeNum"></i-input>
+                                        <i-input v-model="editDetail.attributeName" placeholder="输入属性名称"></i-input>
+                                        <i-input v-model="editDetail.attributeSelect" placeholder="输入属性可选值"></i-input>
+                                        <checkbox v-model="editDetail.attributeShow">显示</checkbox>
                                     </div>
-                                    <upload :action="action"
-                                            :before-upload="uploadBefore"
-                                            :format="['jpg','jpeg','png']"
-                                            :headers="{
-                                                Authorization: `Bearer ${$store.state.token.access_token}`
-                                            }"
-                                            :max-size="2048"
-                                            :on-error="uploadError"
-                                            :on-format-error="uploadFormatError"
-                                            :on-success="uploadSuccess"
-                                            ref="upload"
-                                            :show-upload-list="false"
-                                            v-if="editDetail.adPicture1 === '' || editDetail.adPicture1 === null">
-                                    </upload>
-                                    <i-input v-model="editDetail.adAddress1" placeholder="http://" class="input-address"></i-input>
-                                    <div class="tip-width">
-                                        <p>
-                                            广告图片将展示在推荐品牌下方，请使用宽度190像素，高度150像素的jpg、gif、
-                                            png格式图片作为分类导航广告上传，如需跳转请在后方添加以http：//开头的链接地址
-                                        </p>
+                                    <i-button @click.native="addAttribute" type="ghost">+添加属性</i-button>
+                                    <p class="tip">
+                                        需要修改属性值，请点击属性后面的编辑按钮
+                                    </p>
+                                </form-item>
+                            </i-col>
+                        </row>
+                        <row>
+                            <i-col span="20">
+                                <form-item label="自定义属性" class="quike-position">
+                                    <div class="flex-position flex-customize">
+                                        <i-input v-model="editDetail.customize"></i-input>
+                                        <i-button @click.native="deleteCustomize" type="ghost">删除</i-button>
                                     </div>
+                                    <i-button @click.native="addCustomize" type="ghost">+添加自定义属性</i-button>
+                                    <p class="tip">
+                                        自定义属性用于为商家自行添加某些属性值的预留选项，平台只需建立并设定属性名称即可，
+                                        属性值有商家自行添加。注意：自定义属性不能作为商品检索项使用
+                                    </p>
                                 </form-item>
                             </i-col>
                         </row>
