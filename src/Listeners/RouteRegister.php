@@ -65,6 +65,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('configuration/advertisement/position/list', ConfigurationAdvertisementPositionController::class . '@list');
             $this->router->post('configuration/advertisement/position/remove', ConfigurationAdvertisementPositionController::class . '@remove');
             $this->router->post('configuration/express/get', ConfigurationExpressController::class . '@get');
+            $this->router->post('configuration/express/set', ConfigurationExpressController::class . '@set');
             $this->router->post('configuration/image/get', ConfigurationImageController::class . '@get');
             $this->router->post('configuration/image/set', ConfigurationImageController::class . '@set');
             $this->router->post('configuration/image/default/get', ConfigurationImageDefaultController::class . '@get');
