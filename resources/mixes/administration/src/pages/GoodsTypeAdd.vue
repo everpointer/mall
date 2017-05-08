@@ -162,8 +162,12 @@
                 const self = this;
                 self.$router.go(-1);
             },
-            addAttribute() {},
-            addCustomize() {},
+            addAttribute() {
+
+            },
+            addCustomize() {
+
+            },
             deleteCustomize() {
 
             },
@@ -320,11 +324,14 @@
                         <row>
                             <i-col span="20">
                                 <form-item label="添加属性" class="quike-position">
-                                    <div class="flex-position">
-                                        <i-input v-model="editDetail.attributeNum"></i-input>
-                                        <i-input v-model="editDetail.attributeName" placeholder="输入属性名称"></i-input>
-                                        <i-input v-model="editDetail.attributeSelect" placeholder="输入属性可选值"></i-input>
-                                        <checkbox v-model="editDetail.attributeShow">显示</checkbox>
+                                    <div ref="box">
+                                        <div class="flex-position">
+                                            <i-input v-model="editDetail.attributeNum"></i-input>
+                                            <i-input v-model="editDetail.attributeName" placeholder="输入属性名称"></i-input>
+                                            <i-input v-model="editDetail.attributeSelect" placeholder="输入属性可选值"></i-input>
+                                            <checkbox v-model="editDetail.attributeShow">显示</checkbox>
+                                            <i-button @click.native="deleteCustomize" type="ghost">删除</i-button>
+                                        </div>
                                     </div>
                                     <i-button @click.native="addAttribute" type="ghost">+添加属性</i-button>
                                     <p class="tip">
