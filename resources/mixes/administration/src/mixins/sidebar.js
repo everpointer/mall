@@ -15,6 +15,10 @@ export default function (injection) {
                     title: '分类管理',
                 },
                 {
+                    path: '/mall/goods/brand',
+                    title: '品牌管理',
+                },
+                {
                     path: '/mall/goods/type',
                     title: '类型管理',
                 },
