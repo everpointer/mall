@@ -10,6 +10,7 @@ namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Order\Express\ListHandler;
+use Notadd\Mall\Handlers\Order\Express\TraceHandler;
 use Notadd\Mall\Handlers\Order\Express\TypingHandler;
 
 /**
@@ -23,6 +24,16 @@ class OrderExpressController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function list(ListHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Order\Express\TraceHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function trace(TraceHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
