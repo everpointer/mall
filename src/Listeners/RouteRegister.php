@@ -14,6 +14,7 @@ use Notadd\Mall\Controllers\Api\CategoryController;
 use Notadd\Mall\Controllers\Api\ConfigurationAdvertisementController;
 use Notadd\Mall\Controllers\Api\ConfigurationAdvertisementPositionController;
 use Notadd\Mall\Controllers\Api\ConfigurationController;
+use Notadd\Mall\Controllers\Api\ConfigurationExpressController;
 use Notadd\Mall\Controllers\Api\ConfigurationImageController;
 use Notadd\Mall\Controllers\Api\ConfigurationImageDefaultController;
 use Notadd\Mall\Controllers\Api\ConfigurationMessageController;
@@ -63,6 +64,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('configuration/advertisement/position/edit', ConfigurationAdvertisementPositionController::class . '@edit');
             $this->router->post('configuration/advertisement/position/list', ConfigurationAdvertisementPositionController::class . '@list');
             $this->router->post('configuration/advertisement/position/remove', ConfigurationAdvertisementPositionController::class . '@remove');
+            $this->router->post('configuration/express/get', ConfigurationExpressController::class . '@get');
             $this->router->post('configuration/image/get', ConfigurationImageController::class . '@get');
             $this->router->post('configuration/image/set', ConfigurationImageController::class . '@set');
             $this->router->post('configuration/image/default/get', ConfigurationImageDefaultController::class . '@get');
