@@ -11,6 +11,7 @@ namespace Notadd\Mall\Controllers\Api;
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Order\Refund\AskHandler;
 use Notadd\Mall\Handlers\Order\Refund\ConfirmHandler;
+use Notadd\Mall\Handlers\Order\Refund\SendHandler;
 
 /**
  * Class OrderRefundController.
@@ -33,6 +34,16 @@ class OrderRefundController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function confirm(ConfirmHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Order\Refund\SendHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function send(SendHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
