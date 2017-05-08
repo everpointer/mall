@@ -4,11 +4,13 @@
     export default {
         data() {
             return {
+                action: `${window.api}/mall/upload`,
                 editDetail: {
                     goodsSort: '',
                     quotaRatio: '',
                     typeName: '',
                     showStyle: '',
+                    logo: '',
                 },
                 showStyle: [
                     {
@@ -54,6 +56,41 @@
                 const self = this;
                 self.$router.go(-1);
             },
+            removeLogo() {
+                this.editDetail.logo = '';
+            },
+            uploadBefore() {
+                injection.loading.start();
+            },
+            uploadError(error, data) {
+                const self = this;
+                injection.loading.error();
+                if (typeof data.message === 'object') {
+                    for (const p in data.message) {
+                        self.$notice.error({
+                            title: data.message[p],
+                        });
+                    }
+                } else {
+                    self.$notice.error({
+                        title: data.message,
+                    });
+                }
+            },
+            uploadFormatError(file) {
+                this.$notice.warning({
+                    title: '文件格式不正确',
+                    desc: `文件 ${file.name} 格式不正确`,
+                });
+            },
+            uploadSuccess(data) {
+                const self = this;
+                injection.loading.finish();
+                self.$notice.open({
+                    title: data.message,
+                });
+                self.editDetail.logo = data.data.path;
+            },
             submit() {
                 const self = this;
                 self.loading = true;
@@ -78,15 +115,45 @@
                 <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
-                <span>分类管理—编辑"珠宝手表"</span>
+                <span>分类管理—编辑"珠宝手表"分类导航</span>
             </div>
             <card :bordered="false">
+                <div class="prompt-box">
+                    <p>提示</p>
+                    <p>设置前台左上侧商品分类导航的相关信息，可以设置分类前图标、分类别名、推荐分类、推荐品牌以及两张广告图片</p>
+                    <p>分类导航信息设置完成后，需进入"平台>设置>清理缓存>首页及频道"操作后生效</p>
+                </div>
                 <i-form ref="editDetail" :model="editDetail" :rules="ruleValidate" :label-width="200">
                     <div class="basic-information">
                         <row>
                             <i-col span="12">
-                                <form-item label="分类名称" prop="typeName">
+                                <form-item label="分类别名">
                                     <i-input v-model="editDetail.typeName"></i-input>
+                                </form-item>
+                            </i-col>
+                        </row>
+                        <row>
+                            <i-col span="12">
+                                <form-item label="分类图片" prop="logo">
+                                    <div class="image-preview" v-if="editDetail.logo">
+                                        <img :src="editDetail.logo">
+                                        <icon type="close" @click.native="removeLogo"></icon>
+                                    </div>
+                                    <upload :action="action"
+                                            :before-upload="uploadBefore"
+                                            :format="['jpg','jpeg','png']"
+                                            :headers="{
+                                                Authorization: `Bearer ${$store.state.token.access_token}`
+                                            }"
+                                            :max-size="2048"
+                                            :on-error="uploadError"
+                                            :on-format-error="uploadFormatError"
+                                            :on-success="uploadSuccess"
+                                            ref="upload"
+                                            :show-upload-list="false"
+                                            v-if="editDetail.logo === '' || editDetail.logo === null">
+                                    </upload>
+                                    <p class="tip">建议使用16*16像素png透明背景图片</p>
                                 </form-item>
                             </i-col>
                         </row>
