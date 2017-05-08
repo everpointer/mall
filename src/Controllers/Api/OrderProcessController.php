@@ -12,6 +12,7 @@ use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Order\Process\ConfirmHandler;
 use Notadd\Mall\Handlers\Order\Process\CreateHandler;
 use Notadd\Mall\Handlers\Order\Process\PayHandler;
+use Notadd\Mall\Handlers\Order\Process\SendHandler;
 
 /**
  * Class OrderProcessController.
@@ -44,6 +45,16 @@ class OrderProcessController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function pay(PayHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Order\Process\SendHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function send(SendHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
