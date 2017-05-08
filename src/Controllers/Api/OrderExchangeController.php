@@ -12,6 +12,7 @@ use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Order\Exchange\AskHandler;
 use Notadd\Mall\Handlers\Order\Exchange\ConfirmHandler;
 use Notadd\Mall\Handlers\Order\Exchange\ListHandler;
+use Notadd\Mall\Handlers\Order\Exchange\SendHandler;
 
 /**
  * Class OrderExchangeController.
@@ -44,6 +45,16 @@ class OrderExchangeController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function list(ListHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Order\Exchange\SendHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function send(SendHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
