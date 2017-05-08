@@ -138,7 +138,7 @@
                                     </checkbox-group>
                                     <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
                                 </i-col>
-                                <i-col span="10">
+                                <i-col span="10" class="select-dropdown">
                                     <i-select placeholder="请选择" v-model="editDetail.location">
                                         <i-option v-for="item in location" :value="item.value"
                                                   :key="item">{{ item.label }}</i-option>
