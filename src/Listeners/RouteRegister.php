@@ -22,6 +22,7 @@ use Notadd\Mall\Controllers\Api\ConfigurationSearchController;
 use Notadd\Mall\Controllers\Api\ConfigurationSearchHotController;
 use Notadd\Mall\Controllers\Api\OrderController;
 use Notadd\Mall\Controllers\Api\OrderProcessController;
+use Notadd\Mall\Controllers\Api\OrderRefundController;
 use Notadd\Mall\Controllers\Api\ProductController;
 use Notadd\Mall\Controllers\Api\ShopController;
 use Notadd\Mall\Controllers\Api\SpecificationController;
@@ -79,7 +80,8 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('order/list', OrderController::class . '@list');
             $this->router->post('order/remove', OrderController::class . '@remove');
             $this->router->post('order/restore', OrderController::class . '@restore');
-            $this->router->post('order/refund/ask', OrderProcessController::class . '@ask');
+            $this->router->post('order/refund/ask', OrderRefundController::class . '@ask');
+            $this->router->post('order/refund/confirm', OrderRefundController::class . '@confirm');
             $this->router->post('order/process/confirm', OrderProcessController::class . '@confirm');
             $this->router->post('order/process/create', OrderProcessController::class . '@create');
             $this->router->post('order/process/finish', OrderProcessController::class . '@finish');
