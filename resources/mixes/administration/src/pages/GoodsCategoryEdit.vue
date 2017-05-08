@@ -34,6 +34,14 @@
                     },
                 ],
                 loading: false,
+                ruleValidate: {
+                    typeName: [
+                        { required: true, message: '名称名称不能为空', trigger: 'blur' },
+                    ],
+                    quotaRatio: [
+                        { required: true, message: '分佣比例不能为空', trigger: 'blur' },
+                    ],
+                },
             };
         },
         beforeRouteEnter(to, from, next) {
