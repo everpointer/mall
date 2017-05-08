@@ -9,6 +9,9 @@
                     quotaRatio: '',
                     typeName: '',
                     showStyle: '',
+                    interestStyle: true,
+                    interestRadio: true,
+                    interestType: true,
                 },
                 showStyle: [
                     {
@@ -20,9 +23,6 @@
                         label: '类型',
                     },
                 ],
-                interestStyle: '',
-                interestRadio: '',
-                interestType: '',
                 location: [
                     {
                         value: '1',
@@ -102,9 +102,8 @@
                                         <p>"颜色"：每个SPU只展示不同个颜色SKU，同一颜色多个SKU只展示一个SKU</p>
                                         <p>"SPU"：每个SUP只展示一个SKU</p>
                                     </div>
-                                    <checkbox-group v-model="editDetail.interestStyle">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
+                                    <checkbox v-model="editDetail.interestStyle" class="tip"
+                                              style="text-align: inherit; color: inherit">关联到子分类</checkbox>
                                     <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
                                 </form-item>
                             </i-col>
@@ -116,9 +115,8 @@
                                     <div class="tip">
                                         <p>分佣比例必须为0-100的整数</p>
                                     </div>
-                                    <checkbox-group v-model="editDetail.interestRadio">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
+                                    <checkbox v-model="editDetail.interestRadio" class="tip"
+                                              style="text-align: inherit; color: inherit">关联到子分类</checkbox>
                                     <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
                                 </form-item>
                             </i-col>
@@ -132,10 +130,8 @@
                                             <a href="">类型管理</a>
                                             功能中添加新的类型</p>
                                     </div>
-                                    <checkbox-group v-model="editDetail.interestType" class="tip"
-                                                    style="text-align: inherit; color: inherit">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
+                                    <checkbox v-model="editDetail.interestType" class="tip"
+                                              style="text-align: inherit; color: inherit">关联到子分类</checkbox>
                                     <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
                                 </i-col>
                                 <i-col span="10" class="select-dropdown">

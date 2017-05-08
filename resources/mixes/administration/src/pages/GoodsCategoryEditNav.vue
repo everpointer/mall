@@ -5,12 +5,60 @@
         data() {
             return {
                 action: `${window.api}/mall/upload`,
+                checkbox: [
+                    {
+                        title: '时尚物品',
+                        list: [
+                            {
+                                name: '运动品牌',
+                            },
+                            {
+                                name: '运动品牌',
+                            },
+                            {
+                                name: '运动品牌',
+                            },
+                        ],
+                    },
+                    {
+                        title: '时尚物品',
+                        list: [
+                            {
+                                name: '运动品牌',
+                            },
+                            {
+                                name: '运动品牌',
+                            },
+                            {
+                                name: '运动品牌',
+                            },
+                            {
+                                name: '运动品牌',
+                            },
+                        ],
+                    },
+                    {
+                        title: '时尚物品',
+                        list: [
+                            {
+                                name: '运动品牌',
+                            },
+                            {
+                                name: '运动品牌',
+                            },
+                        ],
+                    },
+                ],
                 editDetail: {
+                    checkbox: [],
                     goodsSort: '',
                     quotaRatio: '',
                     typeName: '',
                     showStyle: '',
                     logo: '',
+                    interestStyle: '',
+                    interestRadio: '',
+                    interestType: true,
                 },
                 showStyle: [
                     {
@@ -22,9 +70,6 @@
                         label: '类型',
                     },
                 ],
-                interestStyle: '',
-                interestRadio: '',
-                interestType: '',
                 location: [
                     {
                         value: '1',
@@ -158,40 +203,25 @@
                             </i-col>
                         </row>
                         <row>
-                            <i-col span="12">
-                                <form-item label="商品展示方式">
-                                    <i-select placeholder="请选择" v-model="editDetail.showStyle">
-                                        <i-option v-for="item in showStyle" :value="item.value"
-                                                  :key="item">{{ item.label }}</i-option>
-                                    </i-select>
-                                    <div class="tip">
-                                        <p>在商品列表页的展示方式</p>
-                                        <p>"颜色"：每个SPU只展示不同个颜色SKU，同一颜色多个SKU只展示一个SKU</p>
-                                        <p>"SPU"：每个SUP只展示一个SKU</p>
+                            <i-col span="24">
+                                <form-item label="推荐分类" prop="recommend">分类下的三级分类
+                                    <div class="recommended-classification">
+                                        <ul>
+                                            <li v-for="type in checkbox">
+                                                <p>{{ type.title }}</p>
+                                                <checkbox-group v-model="editDetail.checkbox">
+                                                    <checkbox label="时尚"></checkbox>
+                                                    <checkbox label="时尚1"></checkbox>
+                                                </checkbox-group>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <checkbox-group v-model="editDetail.interestStyle">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
-                                    <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
+                                    <p class="tip-color">推荐品牌将在展开后的二、三级导航列表右侧突出显示，
+                                        建议选择数量为8个具有图片的品牌，超过将被隐藏</p>
                                 </form-item>
                             </i-col>
                         </row>
-                        <row>
-                            <i-col span="12">
-                                <form-item label="分佣比例" prop="quotaRatio">
-                                    <i-input v-model="editDetail.quotaRatio"></i-input>
-                                    <div class="tip">
-                                        <p>分佣比例必须为0-100的整数</p>
-                                    </div>
-                                    <checkbox-group v-model="editDetail.interestRadio">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
-                                    <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
-                                </form-item>
-                            </i-col>
-                            <i-col span="1" class="inline-symbol">%</i-col>
-                        </row>
-                        <form-item label="类型">
+                        <form-item label="推荐品牌">
                             <row>
                                 <i-col span="2" class="position-module">快捷定位
                                     <div class="tip">
@@ -199,10 +229,8 @@
                                             <a href="">类型管理</a>
                                             功能中添加新的类型</p>
                                     </div>
-                                    <checkbox-group v-model="editDetail.interestType" class="tip"
-                                                    style="text-align: inherit; color: inherit">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
+                                    <checkbox v-model="editDetail.interestType" class="tip"
+                                              style="text-align: inherit; color: inherit">关联到子分类</checkbox>
                                     <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
                                 </i-col>
                                 <i-col span="10" class="select-dropdown">
