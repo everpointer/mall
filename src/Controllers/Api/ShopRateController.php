@@ -12,6 +12,7 @@ use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Shop\Rate\CreateHandler;
 use Notadd\Mall\Handlers\Shop\Rate\EditHandler;
 use Notadd\Mall\Handlers\Shop\Rate\ListHandler;
+use Notadd\Mall\Handlers\Shop\Rate\RateHandler;
 
 /**
  * Class ShopRateController.
@@ -44,6 +45,16 @@ class ShopRateController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function list(ListHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Shop\Rate\RateHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function rate(RateHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
