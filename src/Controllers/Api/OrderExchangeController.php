@@ -4,24 +4,24 @@
  *
  * @author TwilRoad <269044570@qq.com>
  * @copyright (c) 2017, iBenchu.org
- * @datetime 2017-05-08 15:23
+ * @datetime 2017-05-08 17:03
  */
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
-use Notadd\Mall\Handlers\Order\Refund\AskHandler;
-use Notadd\Mall\Handlers\Order\Refund\ConfirmHandler;
-use Notadd\Mall\Handlers\Order\Refund\FinishHandler;
-use Notadd\Mall\Handlers\Order\Refund\ListHandler;
-use Notadd\Mall\Handlers\Order\Refund\SendHandler;
+use Notadd\Mall\Handlers\Order\Exchange\AskHandler;
+use Notadd\Mall\Handlers\Order\Exchange\ConfirmHandler;
+use Notadd\Mall\Handlers\Order\Exchange\FinishHandler;
+use Notadd\Mall\Handlers\Order\Exchange\ListHandler;
+use Notadd\Mall\Handlers\Order\Exchange\SendHandler;
 
 /**
- * Class OrderRefundController.
+ * Class OrderExchangeController.
  */
-class OrderRefundController extends Controller
+class OrderExchangeController extends Controller
 {
     /**
-     * @param \Notadd\Mall\Handlers\Order\Refund\AskHandler $handler
+     * @param \Notadd\Mall\Handlers\Order\Exchange\AskHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -31,7 +31,7 @@ class OrderRefundController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Order\Refund\ConfirmHandler $handler
+     * @param \Notadd\Mall\Handlers\Order\Exchange\ConfirmHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -41,7 +41,7 @@ class OrderRefundController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Order\Refund\FinishHandler $handler
+     * @param \Notadd\Mall\Handlers\Order\Exchange\FinishHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -51,7 +51,7 @@ class OrderRefundController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Order\Refund\ListHandler $handler
+     * @param \Notadd\Mall\Handlers\Order\Exchange\ListHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -61,7 +61,7 @@ class OrderRefundController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Order\Refund\SendHandler $handler
+     * @param \Notadd\Mall\Handlers\Order\Exchange\SendHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
