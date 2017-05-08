@@ -38,7 +38,7 @@
                         width: 170,
                         align: 'center',
                         render() {
-                            return '<Icon type="image"></Icon>';
+                            return '<icon type="image"></icon>';
                         },
                     },
                     {

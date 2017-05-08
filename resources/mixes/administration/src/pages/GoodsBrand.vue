@@ -6,101 +6,75 @@
             return {
                 brandColumns: [
                     {
-                        type: 'selection',
-                        width: 60,
-                        align: 'center',
-                        fixed: 'left',
+                        title: '品牌ID',
+                        key: 'brandId',
                     },
                     {
-                        title: '名称',
+                        title: '品牌名称',
                         key: 'name',
-                        width: 200,
                     },
                     {
-                        title: '类型',
-                        key: 'type',
-                        width: 100,
+                        title: '首字母',
+                        key: 'initials',
                     },
                     {
-                        title: '展示方式',
-                        key: 'showStyle',
-                        width: 200,
-                    },
-                    {
-                        title: '宽度/字数',
-                        key: 'wordNum',
-                        width: 150,
-                    },
-                    {
-                        title: '高度',
-                        key: 'heightNum',
-                        width: 150,
-                    },
-                    {
-                        title: '广告数',
-                        key: 'adverNum',
-                        width: 150,
-                    },
-                    {
-                        title: '正在展示',
-                        key: 'showNum',
-                        width: 150,
-                    },
-                    {
-                        title: '是否启用',
-                        key: 'isshow',
-                        width: 200,
-                        render(row) {
-                            return `<span v-if="${row.status} === true" class="status-check"><icon type="checkmark-circled"></icon>开启</span>
-                                <span v-if="${row.status} === false"><icon type="close-circled"></icon>关闭</span>`;
+                        title: '品牌图片',
+                        key: 'brandPicture',
+                        render() {
+                            return '<icon type="image"></icon>';
                         },
+                    },
+                    {
+                        title: '品牌排序',
+                        key: 'sort',
+                    },
+                    {
+                        title: '是否推荐品牌',
+                        key: 'isshow',
+                        render(row) {
+                            return `<span v-if="${row.status} === true" class="status-check"><icon type="checkmark-circled"></icon>是</span>
+                                <span v-if="${row.status} === false"><icon type="close-circled"></icon>否</span>`;
+                        },
+                    },
+                    {
+                        title: '展示形式',
+                        key: 'showStyle',
                     },
                     {
                         title: '操作',
                         key: 'action',
-                        width: 200,
-                        align: 'center',
-                        fixed: 'right',
-                        render(row, column, index) {
-                            return `<dropdown><i-button type="ghost">设置<icon type="arrow-down-b"></icon></i-button>
-                                <dropdown-menu slot="list"><dropdown-item>设置设置</dropdown-item></dropdown-menu></dropdown>
-                                <i-button type="ghost" class="delete-ad" @click.native="removeAd(${index})">删除</i-button>`;
+                        render() {
+                            return '<i-button type="ghost" @click.native="edit">编辑</i-button>';
                         },
                     },
                 ],
                 brandData: [
                     {
-                        name: '商品列表左侧广告位',
-                        type: '图片',
-                        showStyle: '多广告展示',
-                        wordNum: 206,
-                        heightNum: 206,
-                        adverNum: 0,
-                        showNum: 4,
+                        brandId: '001',
+                        name: '迪卡侬',
+                        initials: 'Y',
+                        sort: 4,
                         isshow: '是',
                         status: true,
+                        showStyle: '图片',
                     },
                     {
-                        name: '商品列表左侧广告位',
-                        type: '图片',
-                        showStyle: '多广告展示',
-                        wordNum: 206,
-                        heightNum: 206,
-                        adverNum: 0,
-                        showNum: 4,
-                        isshow: '是',
-                        status: true,
-                    },
-                    {
-                        name: '商品列表左侧广告位',
-                        type: '图片',
-                        showStyle: '多广告展示',
-                        wordNum: 206,
-                        heightNum: 206,
-                        adverNum: 0,
-                        showNum: 4,
-                        isshow: '是',
+                        brandId: '001',
+                        name: '迪卡侬',
+                        initials: 'Y',
+                        sort: 4,
+                        isshow: '否',
                         status: false,
+                        showStyle: '图片',
+                    },
+                    {
+                        brandId: '001',
+                        name: '迪卡侬',
+                        initials: 'Y',
+                        sort: 4,
+                        isshow: '是',
+                        status: true,
+                        showStyle: '图片',
                     },
                 ],
                 self: this,
@@ -113,17 +87,16 @@
         },
         methods: {
             exportData() {
-                this.$refs.goodsList.exportCsv({
+                this.$refs.brand.exportCsv({
                     filename: '品牌管理数据',
                 });
             },
-            removeAd(index) {
-                this.advertisementData.splice(index, 1);
-            },
             newAddData() {
+            },
+            edit() {
                 const self = this;
                 self.$router.push({
-                    path: 'advertisement/add',
+                    path: 'brand/edit',
                 });
             },
         },
@@ -147,7 +120,7 @@
                         <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                     </div>
                     <i-table highlight-row :columns="brandColumns" :context="self"
-                             :data="brandData"></i-table>
+                             :data="brandData" ref="brand"></i-table>
                 </tab-pane>
                 <tab-pane label="待审核" name="name2">
 
