@@ -11,6 +11,7 @@ namespace Notadd\Mall\Controllers\Api;
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Order\Exchange\AskHandler;
 use Notadd\Mall\Handlers\Order\Exchange\ConfirmHandler;
+use Notadd\Mall\Handlers\Order\Exchange\FinishHandler;
 use Notadd\Mall\Handlers\Order\Exchange\ListHandler;
 use Notadd\Mall\Handlers\Order\Exchange\SendHandler;
 
@@ -35,6 +36,16 @@ class OrderExchangeController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function confirm(ConfirmHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Order\Exchange\FinishHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function finish(FinishHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
