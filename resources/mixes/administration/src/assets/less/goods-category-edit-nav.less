@@ -9,8 +9,57 @@
                 padding: 6px 8px 6px 20px;
             }
         }
+        .prompt-box {
+            background-color: #f5f7f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
         .ivu-card {
+            .ivu-form-item {
+                .image-preview {
+                    border: 2px solid #ccc;
+                    position: relative;
+                    width: 204px;
+                    > i {
+                        bottom: 0;
+                        font-size: 30px;
+                        position: absolute;
+                        right: 0;
+                    }
+                    > img {
+                        display: block;
+                        max-width: 200px;
+                    }
+                }
+                .ivu-upload {
+                    background: #f5f7f9;
+                    height: 90px;
+                    width: 90px;
+                    > .ivu-upload-select {
+                        background: url("../images/plus.svg") center no-repeat;
+                        height: 90px;
+                    }
+                }
+                .input-address {
+                    margin-top: 16px;
+                }
+            }
             .ivu-form {
+                .quike-position {
+                    .ivu-form-item-content {
+                        .flex-position {
+                            display: inline-flex;
+                        }
+                        span.title {
+                            width: 100px;
+                        }
+                        span.intro {
+                            width: 200px;
+                            margin-left: 10px;
+                        }
+                    }
+                }
                 .position-module {
                     width: 54px;
                 }
@@ -21,6 +70,15 @@
                         line-height: 18px;
                     }
                 }
+                .tip-width {
+                    color: rgba(101, 113, 128, 0.5);
+                    p {
+                        line-height: 18px;
+                    }
+                }
+                .tip-color {
+                    color: rgba(101, 113, 128, 0.5);
+                }
                 .contact {
                     line-height: 12px;
                 }
@@ -29,10 +87,25 @@
                     line-height: 32px;
                     text-align: center;
                 }
-                .select-dropdown {
-                    .ivu-select-dropdown {
-                        display: block;
-                        z-index: 100;
+                .recommended-classification {
+                    box-shadow: inset 2.1px 2.1px 5px 0 rgba(49, 53, 64, 0.1);
+                    border: solid 1px #e3e8ee;
+                    border-radius: 4px;
+                    padding: 10px 20px;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    li {
+                        border-bottom: 1px solid #e3e8ee;
+                        .ivu-checkbox-group-item {
+                            width: 15%;
+                        }
+                    }
+                }
+
+                .recommended-brand {
+                    margin-top: 10px;
+                    li:last-child {
+                        border-bottom: 0;
                     }
                 }
             }

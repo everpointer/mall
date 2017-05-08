@@ -9,6 +9,9 @@
                     quotaRatio: '',
                     typeName: '',
                     showStyle: '',
+                    interestStyle: true,
+                    interestRadio: true,
+                    interestType: true,
                 },
                 showStyle: [
                     {
@@ -20,9 +23,6 @@
                         label: '类型',
                     },
                 ],
-                interestStyle: '',
-                interestRadio: '',
-                interestType: '',
                 location: [
                     {
                         value: '1',
@@ -102,9 +102,8 @@
                                         <p>"颜色"：每个SPU只展示不同个颜色SKU，同一颜色多个SKU只展示一个SKU</p>
                                         <p>"SPU"：每个SUP只展示一个SKU</p>
                                     </div>
-                                    <checkbox-group v-model="editDetail.interestStyle">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
+                                    <checkbox v-model="editDetail.interestStyle" class="tip"
+                                              style="text-align: inherit; color: inherit">关联到子分类</checkbox>
                                     <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
                                 </form-item>
                             </i-col>
@@ -116,37 +115,34 @@
                                     <div class="tip">
                                         <p>分佣比例必须为0-100的整数</p>
                                     </div>
-                                    <checkbox-group v-model="editDetail.interestRadio">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
+                                    <checkbox v-model="editDetail.interestRadio" class="tip"
+                                              style="text-align: inherit; color: inherit">关联到子分类</checkbox>
                                     <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
                                 </form-item>
                             </i-col>
                             <i-col span="1" class="inline-symbol">%</i-col>
                         </row>
-                        <form-item label="类型">
-                            <row>
-                                <i-col span="2" class="position-module">快捷定位
-                                    <div class="tip">
-                                        <p>如果当前下拉选项中没有适合的类型，可以去
-                                            <a href="">类型管理</a>
-                                            功能中添加新的类型</p>
+                        <row>
+                            <i-col span="20">
+                                <form-item label="类型" class="quike-position">
+                                    <div class="flex-position">
+                                        <span class="title">快捷定位</span>
+                                        <i-select placeholder="请选择" v-model="editDetail.location">
+                                            <i-option v-for="item in location" :value="item.value"
+                                                      :key="item">{{ item.label }}</i-option>
+                                        </i-select>
+                                        <span class="intro">分类下的商品类型</span>
                                     </div>
-                                    <checkbox-group v-model="editDetail.interestType" class="tip"
-                                                    style="text-align: inherit; color: inherit">
-                                        <checkbox label="关联到子分类"></checkbox>
-                                    </checkbox-group>
-                                    <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
-                                </i-col>
-                                <i-col span="10" class="select-dropdown">
-                                    <i-select placeholder="请选择" v-model="editDetail.location">
-                                        <i-option v-for="item in location" :value="item.value"
-                                                  :key="item">{{ item.label }}</i-option>
-                                    </i-select>
-                                </i-col>
-                                <i-col span="12" class="inline-symbol" style="text-align: inherit">分类下的商品类型</i-col>
-                            </row>
-                        </form-item>
+                                    <div>
+                                        <p class="tip">如果当前下拉选项中没有适合的类型，可以去<a href="">类型管理</a>
+                                            功能中添加新的类型</p>
+                                        <checkbox v-model="editDetail.interestType" class="tip"
+                                                  style="text-align: inherit; color: inherit">关联到子分类</checkbox>
+                                        <p class="contact tip">勾选关联到子分类后，被绑定的商品展示方式也将继承到子分类中使用</p>
+                                    </div>
+                                </form-item>
+                            </i-col>
+                        </row>
                         <row>
                             <i-col span="12">
                                 <form-item label="排序">
