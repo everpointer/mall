@@ -92,12 +92,12 @@
                 });
             },
             newAddData() {
-            },
-            edit() {
                 const self = this;
                 self.$router.push({
-                    path: 'brand/edit',
+                    path: 'brand/add',
                 });
+            },
+            edit() {
             },
         },
     };
