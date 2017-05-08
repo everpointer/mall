@@ -11,6 +11,7 @@ namespace Notadd\Mall\Controllers\Api;
 use Notadd\Mall\Handlers\Order\Rate\CreateHandler;
 use Notadd\Mall\Handlers\Order\Rate\EditHandler;
 use Notadd\Mall\Handlers\Order\Rate\ListHandler;
+use Notadd\Mall\Handlers\Order\Rate\RateHandler;
 
 /**
  * Class OrderRateController.
@@ -43,6 +44,16 @@ class OrderRateController
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function list(ListHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Order\Rate\RateHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function rate(RateHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
