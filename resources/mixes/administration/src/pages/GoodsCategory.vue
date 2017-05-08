@@ -53,7 +53,7 @@
                                     <dropdown-item @click.native="editType">编辑分类信息</dropdown-item>
                                     <dropdown-item>新增下级分类</dropdown-item>
                                     <dropdown-item>查看下级分类</dropdown-item>
-                                    <dropdown-item>编辑分类导航</dropdown-item>
+                                    <dropdown-item @click.native="editTypeNav">编辑分类导航</dropdown-item>
                                 </dropdown-menu></dropdown>
                                 <i-button type="ghost" class="delete-ad"
                                 @click.native="remove(${index})">删除</i-button>`;
@@ -95,6 +95,12 @@
                 const self = this;
                 self.$router.push({
                     path: 'category/edit',
+                });
+            },
+            editTypeNav() {
+                const self = this;
+                self.$router.push({
+                    path: 'category/edit/nav',
                 });
             },
             exportData() {
