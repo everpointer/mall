@@ -9,6 +9,7 @@
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
+use Notadd\Mall\Handlers\Order\Exchange\AskHandler;
 use Notadd\Mall\Handlers\Order\Exchange\ListHandler;
 
 /**
@@ -16,6 +17,16 @@ use Notadd\Mall\Handlers\Order\Exchange\ListHandler;
  */
 class OrderExchangeController extends Controller
 {
+    /**
+     * @param \Notadd\Mall\Handlers\Order\Exchange\AskHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function ask(AskHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
     /**
      * @param \Notadd\Mall\Handlers\Order\Exchange\ListHandler $handler
      *
