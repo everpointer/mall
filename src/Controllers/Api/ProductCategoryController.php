@@ -9,11 +9,11 @@
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
-use Notadd\Mall\Handlers\Category\CreateHandler;
-use Notadd\Mall\Handlers\Category\EditHandler;
-use Notadd\Mall\Handlers\Category\ListHandler;
-use Notadd\Mall\Handlers\Category\RemoveHandler;
-use Notadd\Mall\Handlers\Category\RestoreHandler;
+use Notadd\Mall\Handlers\Product\Category\CreateHandler;
+use Notadd\Mall\Handlers\Product\Category\EditHandler;
+use Notadd\Mall\Handlers\Product\Category\ListHandler;
+use Notadd\Mall\Handlers\Product\Category\RemoveHandler;
+use Notadd\Mall\Handlers\Product\Category\RestoreHandler;
 
 /**
  * Class CategoryController.
@@ -21,7 +21,7 @@ use Notadd\Mall\Handlers\Category\RestoreHandler;
 class ProductCategoryController extends Controller
 {
     /**
-     * @param \Notadd\Mall\Handlers\Category\CreateHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Category\CreateHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -31,7 +31,7 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Category\EditHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Category\EditHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -41,7 +41,7 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Category\ListHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Category\ListHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -51,7 +51,7 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Category\RemoveHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Category\RemoveHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -61,7 +61,7 @@ class ProductCategoryController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Category\RestoreHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Category\RestoreHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
