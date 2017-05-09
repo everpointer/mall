@@ -10,7 +10,7 @@ namespace Notadd\Mall\Listeners;
 
 use Notadd\Foundation\Routing\Abstracts\RouteRegister as AbstractRouteRegister;
 use Notadd\Mall\Controllers\Api\AddressController;
-use Notadd\Mall\Controllers\Api\CategoryController;
+use Notadd\Mall\Controllers\Api\ProductCategoryController;
 use Notadd\Mall\Controllers\Api\ConfigurationAdvertisementController;
 use Notadd\Mall\Controllers\Api\ConfigurationAdvertisementPositionController;
 use Notadd\Mall\Controllers\Api\ConfigurationController;
@@ -50,11 +50,6 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('address', AddressController::class . '@address');
             $this->router->post('address/edit', AddressController::class . '@edit');
             $this->router->post('address/list', AddressController::class . '@list');
-            $this->router->post('category/create', CategoryController::class . '@create');
-            $this->router->post('category/edit', CategoryController::class . '@edit');
-            $this->router->post('category/list', CategoryController::class . '@list');
-            $this->router->post('category/remove', CategoryController::class . '@remove');
-            $this->router->post('category/restore', CategoryController::class . '@restore');
             $this->router->post('configuration/get', ConfigurationController::class . '@get');
             $this->router->post('configuration/set', ConfigurationController::class . '@set');
             $this->router->post('configuration/advertisement/create', ConfigurationAdvertisementController::class . '@create');
@@ -120,6 +115,11 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('product/list', ProductController::class . '@list');
             $this->router->post('product/remove', ProductController::class . '@remove');
             $this->router->post('product/restore', ProductController::class . '@restore');
+            $this->router->post('product/category/create', ProductCategoryController::class . '@create');
+            $this->router->post('product/category/edit', ProductCategoryController::class . '@edit');
+            $this->router->post('product/category/list', ProductCategoryController::class . '@list');
+            $this->router->post('product/category/remove', ProductCategoryController::class . '@remove');
+            $this->router->post('product/category/restore', ProductCategoryController::class . '@restore');
             $this->router->post('shop/create', ShopController::class . '@create');
             $this->router->post('shop/edit', ShopController::class . '@edit');
             $this->router->post('shop/list', ShopController::class . '@list');
