@@ -17,7 +17,7 @@ use Notadd\Mall\Handlers\Specification\RemoveHandler;
 /**
  * Class SpecificationController.
  */
-class SpecificationController extends Controller
+class ProductSpecificationController extends Controller
 {
     /**
      * @param \Notadd\Mall\Handlers\Specification\CreateHandler $handler
