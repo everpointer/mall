@@ -14,6 +14,7 @@ use Notadd\Mall\Handlers\Shop\Category\CreateHandler;
 use Notadd\Mall\Handlers\Shop\Category\EditHandler;
 use Notadd\Mall\Handlers\Shop\Category\ListHandler;
 use Notadd\Mall\Handlers\Shop\Category\RemoveHandler;
+use Notadd\Mall\Handlers\Shop\Category\RestoreHandler;
 
 /**
  * Class ShopCategoryController.
@@ -66,6 +67,16 @@ class ShopCategoryController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function remove(RemoveHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Shop\Category\RestoreHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function restore(RestoreHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
