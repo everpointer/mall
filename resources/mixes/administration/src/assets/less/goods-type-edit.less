@@ -105,14 +105,35 @@
         }
         .ivu-modal-footer {
             border-top: 0;
-            .ivu-btn-text {
-                display: none;
-            }
+            display: none;
         }
         .ivu-form {
             .tip {
                 color: rgba(101, 113, 128, 0.5);
                 line-height: 18px;
+            }
+            .quike-position {
+                .ivu-form-item-content {
+                    .flex-position {
+                        width: 100%;
+                        display: inline-flex;
+                        margin-bottom: 16px;
+                        .ivu-input-wrapper {
+                            margin-right: 10px;
+                            &:nth-child(1) {
+                                width: 20%;
+                            }
+                            &:nth-child(2) {
+                                width: 40%;
+                            }
+                        }
+                    }
+                }
+            }
+            .submit-modal {
+                .ivu-form-item-content {
+                    text-align: center;
+                }
             }
         }
     }

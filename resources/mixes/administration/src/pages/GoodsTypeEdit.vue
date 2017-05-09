@@ -207,6 +207,20 @@
                     }
                 });
             },
+            submitEdit() {
+                const self = this;
+                self.loading = true;
+                self.$refs.editModal.validate(valid => {
+                    if (valid) {
+                        window.console.log(valid);
+                    } else {
+                        self.loading = false;
+                        self.$notice.error({
+                            title: '请正确填写设置信息！',
+                        });
+                    }
+                });
+            },
         },
     };
 </script>
@@ -427,6 +441,33 @@
                                         <span slot="open">开启</span>
                                         <span slot="close">关闭</span>
                                     </i-switch>
+                                </form-item>
+                            </i-col>
+                        </row>
+                        <div class="ivu-modal-header" style="margin-bottom: 20px">
+                            <div class="ivu-modal-header-inner">编辑属性可选值</div>
+                        </div>
+                        <row>
+                            <i-col span="20">
+                                <form-item label="排序" class="quike-position">
+                                    <div ref="box">
+                                        <div class="flex-position">
+                                            <i-input v-model="editDetail.attributeNum"></i-input>
+                                            <i-input v-model="editDetail.attributeSelect" placeholder="输入属性可选值"></i-input>
+                                            <i-button @click.native="deleteCustomize" type="ghost">删除</i-button>
+                                        </div>
+                                    </div>
+                                    <i-button @click.native="addAttribute" type="ghost">+添加属性可选值</i-button>
+                                </form-item>
+                            </i-col>
+                        </row>
+                        <row>
+                            <i-col span="20" class="submit-modal">
+                                <form-item>
+                                    <i-button :loading="loading" type="primary" @click.native="submitEdit">
+                                        <span v-if="!loading">确认提交</span>
+                                        <span v-else>正在提交…</span>
+                                    </i-button>
                                 </form-item>
                             </i-col>
                         </row>
