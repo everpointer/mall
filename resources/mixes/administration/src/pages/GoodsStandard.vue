@@ -86,7 +86,10 @@
                 this.typeData.splice(index, 1);
             },
             newAddData() {
-
+                const self = this;
+                self.$router.push({
+                    path: 'standard/add',
+                });
             },
             edit() {
                 const self = this;
