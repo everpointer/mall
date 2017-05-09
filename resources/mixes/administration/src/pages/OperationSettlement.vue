@@ -148,8 +148,146 @@
                         label: '商品分类',
                     },
                 ],
-                settlementStatus: 0,
+                refundColumns: [
+                    {
+                        title: '退单编号',
+                        key: 'number',
+                        width: 150,
+                        align: 'center',
+                        fixed: 'left',
+                    },
+                    {
+                        title: '订单编号',
+                        key: 'orderNum',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '退款金额',
+                        key: 'orderMoney',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '退还佣金',
+                        key: 'commission',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '退还红包',
+                        key: 'redEnvelopes',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '类型',
+                        key: 'type',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '退款日期',
+                        key: 'dealData',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '买家',
+                        key: 'buyer',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '买家ID',
+                        key: 'buyerId',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '商家',
+                        key: 'businessmen',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '商家ID',
+                        key: 'businessmenId',
+                        width: 150,
+                        align: 'center',
+                    },
+                ],
+                refundData: [
+                    {
+                        number: '01',
+                        orderNum: '324235346',
+                        orderMoney: '999.00',
+                        commission: '37.00',
+                        redEnvelopes: '0.00',
+                        type: '端午节优惠活动',
+                        dealData: '2017-2-24',
+                        buyer: '买家',
+                        buyerId: '0012',
+                        businessmen: 'Rey旗舰店',
+                        businessmenId: '235468',
+                    },
+                    {
+                        number: '01',
+                        orderNum: '324235346',
+                        orderMoney: '999.00',
+                        commission: '37.00',
+                        redEnvelopes: '0.00',
+                        type: '端午节优惠活动',
+                        dealData: '2017-2-24',
+                        buyer: '买家',
+                        buyerId: '0012',
+                        businessmen: 'Rey旗舰店',
+                        businessmenId: '235468',
+                    },
+                    {
+                        number: '01',
+                        orderNum: '324235346',
+                        orderMoney: '999.00',
+                        commission: '37.00',
+                        redEnvelopes: '0.00',
+                        type: '端午节优惠活动',
+                        dealData: '2017-2-24',
+                        buyer: '买家',
+                        buyerId: '0012',
+                        businessmen: 'Rey旗舰店',
+                        businessmenId: '235468',
+                    },
+                    {
+                        number: '01',
+                        orderNum: '324235346',
+                        orderMoney: '999.00',
+                        commission: '37.00',
+                        redEnvelopes: '0.00',
+                        type: '端午节优惠活动',
+                        dealData: '2017-2-24',
+                        buyer: '买家',
+                        buyerId: '0012',
+                        businessmen: 'Rey旗舰店',
+                        businessmenId: '235468',
+                    },
+                ],
+                refundDataList: [
+                    {
+                        value: '订单编号',
+                        label: '店铺名称',
+                    },
+                    {
+                        value: '商品名称',
+                        label: '商品名称',
+                    },
+                    {
+                        value: '商品分类',
+                        label: '商品分类',
+                    },
+                ],
+                settlementStatus: 1,
                 self: this,
+                refundSearchData: '',
                 managementSearch: '',
             };
         },
@@ -162,6 +300,11 @@
             exportData() {
                 this.$refs.orderTable.exportCsv({
                     filename: '订单列表数据',
+                });
+            },
+            exportRefundData() {
+                this.$refs.refundTable.exportCsv({
+                    filename: '退单列表数据',
                 });
             },
             goBack() {
@@ -250,7 +393,23 @@
                         <i-table highlight-row :columns="typeColumns" :context="self"
                                  :data="typeData" ref="orderTable"></i-table>
                     </tab-pane>
-                    <tab-pane label="退单列表">标签二的内容</tab-pane>
+                    <tab-pane label="退单列表">
+                        <div class="album-action">
+                            <i-button class="add-data" type="ghost" @click.native="exportRefundData">导出数据</i-button>
+                            <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
+                            <div class="goods-body-header-right">
+                                <i-input v-model="managementWord" placeholder="请输入关键词进行搜索">
+                                    <i-select v-model="refundSearchData" slot="prepend" style="width: 150px;">
+                                        <i-option v-for="item in refundDataList"
+                                                  :value="item.value">{{ item.label }}</i-option>
+                                    </i-select>
+                                    <i-button slot="append" type="primary">搜索</i-button>
+                                </i-input>
+                            </div>
+                        </div>
+                        <i-table highlight-row :columns="refundColumns" :context="self"
+                                 :data="refundData" ref="refundTable"></i-table>
+                    </tab-pane>
                 </tabs>
             </card>
         </div>
