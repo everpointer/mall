@@ -126,6 +126,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('shop/list', ShopController::class . '@list');
             $this->router->post('shop/remove', ShopController::class . '@remove');
             $this->router->post('shop/restore', ShopController::class . '@restore');
+            $this->router->post('shop/category', ShopCategoryController::class . '@category');
             $this->router->post('shop/category/create', ShopCategoryController::class . '@create');
             $this->router->post('shop/category/edit', ShopCategoryController::class . '@edit');
             $this->router->post('shop/category/list', ShopCategoryController::class . '@list');
