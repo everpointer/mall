@@ -153,7 +153,7 @@
                 <i-button type="text" @click.native="goBack">
                     <icon type="chevron-left"></icon>
                 </i-button>
-                <span>类型管理—添加</span>
+                <span>规格管理—添加</span>
             </div>
             <card :bordered="false">
                 <i-form ref="standardData" :model="standardData" :rules="ruleValidate" :label-width="200">
