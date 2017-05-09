@@ -10,7 +10,7 @@ use Notadd\Foundation\Database\Migrations\Migration;
 /**
  * Class CreateMallCategoriesTable.
  */
-class CreateMallCategoriesTable extends Migration
+class CreateMallProductCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateMallCategoriesTable extends Migration
      */
     public function up()
     {
-        $this->schema->create('mall_categories', function (Blueprint $table) {
+        $this->schema->create('mall_product_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned()->nullable();
             $table->string('name', 60);
@@ -40,6 +40,6 @@ class CreateMallCategoriesTable extends Migration
      */
     public function down()
     {
-        $this->schema->drop('mall_categories');
+        $this->schema->drop('mall_product_categories');
     }
 }

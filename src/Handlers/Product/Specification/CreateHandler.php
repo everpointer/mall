@@ -4,15 +4,15 @@
  *
  * @author TwilRoad <269044570@qq.com>
  * @copyright (c) 2017, iBenchu.org
- * @datetime 2017-05-05 20:42
+ * @datetime 2017-05-05 20:41
  */
-namespace Notadd\Mall\Handlers\Specification;
+namespace Notadd\Mall\Handlers\Product\Specification;
 
 use Notadd\Foundation\Passport\Abstracts\SetHandler;
 
 /**
- * Class EditHandler.
+ * Class CreateHandler.
  */
-class EditHandler extends SetHandler
+class CreateHandler extends SetHandler
 {
 }

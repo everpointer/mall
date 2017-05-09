@@ -9,18 +9,18 @@
 namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
-use Notadd\Mall\Handlers\Specification\CreateHandler;
-use Notadd\Mall\Handlers\Specification\EditHandler;
-use Notadd\Mall\Handlers\Specification\ListHandler;
-use Notadd\Mall\Handlers\Specification\RemoveHandler;
+use Notadd\Mall\Handlers\Product\Specification\CreateHandler;
+use Notadd\Mall\Handlers\Product\Specification\EditHandler;
+use Notadd\Mall\Handlers\Product\Specification\ListHandler;
+use Notadd\Mall\Handlers\Product\Specification\RemoveHandler;
 
 /**
  * Class SpecificationController.
  */
-class SpecificationController extends Controller
+class ProductSpecificationController extends Controller
 {
     /**
-     * @param \Notadd\Mall\Handlers\Specification\CreateHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Specification\CreateHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -30,7 +30,7 @@ class SpecificationController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Specification\EditHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Specification\EditHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -40,7 +40,7 @@ class SpecificationController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Specification\ListHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Specification\ListHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
@@ -50,7 +50,7 @@ class SpecificationController extends Controller
     }
 
     /**
-     * @param \Notadd\Mall\Handlers\Specification\RemoveHandler $handler
+     * @param \Notadd\Mall\Handlers\Product\Specification\RemoveHandler $handler
      *
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
