@@ -28,6 +28,7 @@
                     {
                         title: '操作',
                         key: 'action',
+                        width: 180,
                         render(row, column, index) {
                             return `<i-button type="ghost" class="delete-ad" @click.native="edit">编辑</i-button>
                                 <i-button type="ghost" class="delete-ad" @click.native="remove(${index})">删除</i-button>`;
@@ -58,6 +59,21 @@
                     },
                 ],
                 self: this,
+                searchList: [
+                    {
+                        value: '订单编号',
+                        label: '店铺名称',
+                    },
+                    {
+                        value: '商品名称',
+                        label: '商品名称',
+                    },
+                    {
+                        value: '商品分类',
+                        label: '商品分类',
+                    },
+                ],
+                managementSearch: '',
             };
         },
         beforeRouteEnter(to, from, next) {
