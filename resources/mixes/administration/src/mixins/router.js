@@ -25,6 +25,8 @@ import GoodsStandardEdit from '../pages/GoodsStandardEdit.vue';
 import GoodsType from '../pages/GoodsType.vue';
 import GoodsTypeEdit from '../pages/GoodsTypeEdit.vue';
 import GoodsTypeAdd from '../pages/GoodsTypeAdd.vue';
+import GoodsPicture from '../pages/GoodsPicture.vue';
+import GoodsPictureLook from '../pages/GoodsPictureLook.vue';
 import Layout from '../layouts/Layout.vue';
 import Order from '../pages/Order.vue';
 import OrderView from '../pages/OrderView.vue';
@@ -195,6 +197,16 @@ export default function (injection) {
                     beforeEnter: injection.middleware.requireAuth,
                     component: GoodsStandardEdit,
                     path: 'goods/standard/edit',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: GoodsPicture,
+                    path: 'goods/picture',
+                },
+                {
+                    beforeEnter: injection.middleware.requireAuth,
+                    component: GoodsPictureLook,
+                    path: 'goods/picture/look',
                 },
                 {
                     beforeEnter: injection.middleware.requireAuth,

@@ -26,6 +26,10 @@ export default function (injection) {
                     path: '/mall/goods/standard',
                     title: '规格管理',
                 },
+                {
+                    path: '/mall/goods/picture',
+                    title: '图片空间',
+                },
             ],
             icon: 'plus',
             title: '商品',
