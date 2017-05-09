@@ -176,7 +176,7 @@
             handel() {
                 const self = this;
                 self.$router.push({
-                    path: 'operation/handel',
+                    path: 'operation/settlement',
                 });
             },
             look() {
