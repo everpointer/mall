@@ -13,6 +13,7 @@ use Notadd\Mall\Handlers\Shop\Dynamic\CreateHandler;
 use Notadd\Mall\Handlers\Shop\Dynamic\DynamicHandler;
 use Notadd\Mall\Handlers\Shop\Dynamic\EditHandler;
 use Notadd\Mall\Handlers\Shop\Dynamic\ListHandler;
+use Notadd\Mall\Handlers\Shop\Dynamic\RemoveHandler;
 
 /**
  * Class ShopDynamicController.
@@ -55,6 +56,16 @@ class ShopDynamicController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function list(ListHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Shop\Dynamic\RemoveHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function remove(RemoveHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
