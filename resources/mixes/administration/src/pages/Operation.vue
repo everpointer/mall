@@ -6,63 +6,136 @@
             return {
                 typeColumns: [
                     {
-                        title: '相册ID',
-                        key: 'albumId',
+                        title: '账单编号',
+                        key: 'number',
+                        width: 150,
+                        align: 'center',
+                        fixed: 'left',
                     },
                     {
-                        title: '相册名称',
-                        key: 'albumName',
+                        title: '订单金额（含运费）',
+                        key: 'orderMoney',
+                        width: 150,
+                        align: 'center',
                     },
                     {
-                        title: '店铺ID',
-                        key: 'shopId',
+                        title: '运费',
+                        key: 'freight',
+                        width: 150,
+                        align: 'center',
                     },
                     {
-                        title: '店铺名称',
-                        key: 'shopName',
+                        title: '收取佣金',
+                        key: 'commission',
+                        width: 150,
+                        align: 'center',
                     },
                     {
-                        title: '封面图片',
-                        key: 'coverImg',
-                        render() {
-                            return '<icon type="image"></icon>';
-                        },
+                        title: '退单金额',
+                        key: 'refund',
+                        width: 150,
+                        align: 'center',
                     },
                     {
-                        title: '图片数量',
-                        key: 'albumNum',
+                        title: '店铺费用',
+                        key: 'shopCosts',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '分销佣金',
+                        key: 'distribution',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '本期应结',
+                        key: 'settlement',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '出账日期',
+                        key: 'accountData',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '帐单状态',
+                        key: 'status',
+                        width: 150,
+                        align: 'center',
+                    },
+                    {
+                        title: '商家名称',
+                        key: 'businessName',
+                        width: 150,
+                        align: 'center',
                     },
                     {
                         title: '操作',
                         key: 'action',
+                        fixed: 'right',
                         width: 180,
+                        align: 'center',
                         render(row, column, index) {
-                            return `<i-button type="ghost" class="delete-ad" @click.native="look">查看</i-button>
-                                <i-button type="ghost" class="delete-ad" @click.native="remove(${index})">删除</i-button>`;
+                            return `<i-button type="ghost" class="delete-ad" @click.native="handel(${index})">处理</i-button>
+                                <i-button type="ghost" class="delete-ad" @click.native="look(${index})">查看</i-button>`;
                         },
                     },
                 ],
                 typeData: [
                     {
-                        albumId: '01',
-                        albumName: '默认相册',
-                        shopId: '336',
-                        shopName: 'Rey吕官方旗舰店',
-                        albumNum: 50,
+                        number: '01',
+                        orderMoney: '999.00',
+                        freight: '12.00',
+                        commission: '37.00',
+                        refund: '0.00',
+                        shopCosts: '30.00',
+                        distribution: '10.00',
+                        settlement: '865.00',
+                        accountData: '2017-5-9',
+                        status: '已出账',
+                        businessName: 'Rey旗舰店',
                     },
                     {
-                        albumId: '01',
-                        albumName: '默认相册',
-                        shopId: '336',
-                        shopName: 'Rey吕官方旗舰店',
-                        albumNum: 50,
+                        number: '02',
+                        orderMoney: '999.00',
+                        freight: '12.00',
+                        commission: '37.00',
+                        refund: '0.00',
+                        shopCosts: '30.00',
+                        distribution: '10.00',
+                        settlement: '865.00',
+                        accountData: '2017-5-9',
+                        status: '已出账',
+                        businessName: 'Rey旗舰店',
                     },
                     {
-                        albumId: '01',
-                        albumName: '默认相册',
-                        shopId: '336',
-                        shopName: 'Rey吕官方旗舰店',
-                        albumNum: 50,
+                        number: '03',
+                        orderMoney: '999.00',
+                        freight: '12.00',
+                        commission: '37.00',
+                        refund: '0.00',
+                        shopCosts: '30.00',
+                        distribution: '10.00',
+                        settlement: '865.00',
+                        accountData: '2017-5-9',
+                        status: '已出账',
+                        businessName: 'Rey旗舰店',
+                    },
+                    {
+                        number: '04',
+                        orderMoney: '999.00',
+                        freight: '12.00',
+                        commission: '37.00',
+                        refund: '0.00',
+                        shopCosts: '30.00',
+                        distribution: '10.00',
+                        settlement: '865.00',
+                        accountData: '2017-5-9',
+                        status: '已出账',
+                        businessName: 'Rey旗舰店',
                     },
                 ],
                 searchList: [
@@ -97,10 +170,10 @@
             remove(index) {
                 this.typeData.splice(index, 1);
             },
-            lookData() {
+            handel() {
                 const self = this;
                 self.$router.push({
-                    path: 'picture/look',
+                    path: 'operation/handel',
                 });
             },
             look() {
@@ -126,7 +199,7 @@
                         <i-button type="text" icon="android-sync" class="refresh">刷新</i-button>
                         <div class="goods-body-header-right">
                             <i-input v-model="managementWord" placeholder="请输入关键词进行搜索">
-                                <i-select v-model="managementSearch" slot="prepend" style="width: 100px;">
+                                <i-select v-model="managementSearch" slot="prepend" style="width: 150px;">
                                     <i-option v-for="item in searchList"
                                               :value="item.value">{{ item.label }}</i-option>
                                 </i-select>
@@ -136,6 +209,9 @@
                     </div>
                     <i-table highlight-row :columns="typeColumns" :context="self"
                              :data="typeData" ref="managementTable"></i-table>
+                    <div class="page">
+                        <page :total="150" show-elevator></page>
+                    </div>
                 </tab-pane>
             </tabs>
         </div>
