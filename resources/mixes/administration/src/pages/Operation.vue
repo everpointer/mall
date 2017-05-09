@@ -187,7 +187,7 @@
 </script>
 <template>
     <div class="mall-wrap">
-        <div class="operation-settlement">
+        <div class="operation">
             <tabs value="name1">
                 <tab-pane label="结算管理" name="name1">
                     <div class="prompt-box">
