@@ -4,6 +4,7 @@
     export default {
         data() {
             return {
+                btnStatus: true,
                 typeColumns: [
                     {
                         title: '账单编号',
@@ -76,11 +77,13 @@
                         title: '操作',
                         key: 'action',
                         fixed: 'right',
-                        width: 180,
+                        width: 150,
                         align: 'center',
                         render(row, column, index) {
-                            return `<i-button type="ghost" class="delete-ad" @click.native="handel(${index})">处理</i-button>
-                                <i-button type="ghost" class="delete-ad" @click.native="look(${index})">查看</i-button>`;
+                            return `<i-button type="ghost" class="delete-ad" v-if="btnStatus === true"
+                                    @click.native="handel(${index})">处理</i-button>
+                                    <i-button type="ghost" class="delete-ad" v-if="btnStatus === false"
+                                    @click.native="look(${index})">查看</i-button>`;
                         },
                     },
                 ],
@@ -173,7 +176,7 @@
             handel() {
                 const self = this;
                 self.$router.push({
-                    path: 'operation/handel',
+                    path: 'operation/settlement',
                 });
             },
             look() {
@@ -184,7 +187,7 @@
 </script>
 <template>
     <div class="mall-wrap">
-        <div class="operation-settlement">
+        <div class="operation">
             <tabs value="name1">
                 <tab-pane label="结算管理" name="name1">
                     <div class="prompt-box">
