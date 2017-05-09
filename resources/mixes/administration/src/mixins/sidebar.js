@@ -83,7 +83,16 @@ export default function (injection) {
             title: '订单',
         },
         {
-            children: [],
+            children: [
+                {
+                    path: '/mall/operation',
+                    title: '结算管理',
+                },
+                {
+                    path: '/mall/delivery',
+                    title: '自提点',
+                },
+            ],
             icon: 'plus',
             title: '运营',
         },
