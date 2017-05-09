@@ -18,7 +18,7 @@ use Notadd\Mall\Handlers\Category\RestoreHandler;
 /**
  * Class CategoryController.
  */
-class CategoryController extends Controller
+class ProductCategoryController extends Controller
 {
     /**
      * @param \Notadd\Mall\Handlers\Category\CreateHandler $handler
