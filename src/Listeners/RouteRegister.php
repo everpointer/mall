@@ -31,6 +31,7 @@ use Notadd\Mall\Controllers\Api\OrderRefundController;
 use Notadd\Mall\Controllers\Api\ProductController;
 use Notadd\Mall\Controllers\Api\ShopCategoryController;
 use Notadd\Mall\Controllers\Api\ShopController;
+use Notadd\Mall\Controllers\Api\ShopDynamicController;
 use Notadd\Mall\Controllers\Api\ShopRateController;
 use Notadd\Mall\Controllers\Api\SpecificationController;
 use Notadd\Mall\Controllers\Api\UploadController;
@@ -132,6 +133,7 @@ class RouteRegister extends AbstractRouteRegister
             $this->router->post('shop/category/list', ShopCategoryController::class . '@list');
             $this->router->post('shop/category/remove', ShopCategoryController::class . '@remove');
             $this->router->post('shop/category/restore', ShopCategoryController::class . '@restore');
+            $this->router->post('shop/dynamic/list', ShopDynamicController::class . '@dynamic');
             $this->router->post('shop/rate', ShopRateController::class . '@rate');
             $this->router->post('shop/rate/create', ShopRateController::class . '@create');
             $this->router->post('shop/rate/edit', ShopRateController::class . '@edit');
