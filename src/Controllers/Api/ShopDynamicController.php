@@ -10,6 +10,7 @@ namespace Notadd\Mall\Controllers\Api;
 
 use Notadd\Foundation\Routing\Abstracts\Controller;
 use Notadd\Mall\Handlers\Shop\Dynamic\CreateHandler;
+use Notadd\Mall\Handlers\Shop\Dynamic\DynamicHandler;
 use Notadd\Mall\Handlers\Shop\Dynamic\EditHandler;
 use Notadd\Mall\Handlers\Shop\Dynamic\ListHandler;
 
@@ -24,6 +25,16 @@ class ShopDynamicController extends Controller
      * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
      */
     public function create(CreateHandler $handler)
+    {
+        return $handler->toResponse()->generateHttpResponse();
+    }
+
+    /**
+     * @param \Notadd\Mall\Handlers\Shop\Dynamic\DynamicHandler $handler
+     *
+     * @return \Notadd\Foundation\Passport\Responses\ApiResponse|\Psr\Http\Message\ResponseInterface|\Zend\Diactoros\Response
+     */
+    public function dynamic(DynamicHandler $handler)
     {
         return $handler->toResponse()->generateHttpResponse();
     }
